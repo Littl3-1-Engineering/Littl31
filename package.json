@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "run-p server watch",
     "deploy": "run-s build:prod release",
-    "html": "pug -P src/index.pug -o dist",
+    "prehtml": "yaml json write src/content.yml > dist/content.json",
+    "html": "pug -O dist/content.json -P src/index.pug -o dist",
+    "posthtml": "rm dist/content.json",
     "css": "stylus src/css/index.styl -p | postcss -o dist/css/style.css --config conf",
     "js:dev": "babel src/js/main --presets=@babel/preset-env --source-maps | uglifyjs > dist/js/main.js",
     "js:prod": "babel src/js/main --presets=@babel/preset-env | uglifyjs > dist/js/main.js",
@@ -25,7 +27,7 @@
     "preserver": "npm run build:dev",
     "server": "browser-sync start --server -f dist --ss dist --port 8080 --no-open --no-ui",
     "watch:assets": "onchange 'src/assets/**/*' -- npm run copy:assets",
-    "watch:html": "onchange 'src/**/*.pug' -- npm run html",
+    "watch:html": "onchange 'src/**/*.pug' 'src/**/*.yml' -- npm run html",
     "watch:css": "onchange 'src/**/*.styl' -- npm run css",
     "watch:js": "onchange 'src/**/*.js' -- npm run js:dev",
     "watch:vendor": "onchange 'src/vendor/**/*.js' -- npm run js:vendor",
@@ -44,6 +46,7 @@
     "cssnano": "^4.1.10",
     "gh-pages": "^3.1.0",
     "hashmark": "^5.0.0",
+    "jstransformer-markdown-it": "^2.1.0",
     "mkdirp": "^1.0.4",
     "npm-run-all": "^4.1.5",
     "onchange": "^7.1.0",
@@ -54,6 +57,7 @@
     "replaceinfiles": "^1.1.4",
     "rimraf": "^3.0.2",
     "stylus": "^0.54.8",
-    "uglify-js": "^3.12.1"
+    "uglify-js": "^3.12.1",
+    "yaml-cli": "^1.1.8"
   }
 }
