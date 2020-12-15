@@ -9,7 +9,7 @@
     "prehtml": "js-yaml src/content.yml > dist/content.json",
     "html": "pug -O dist/content.json -P src/index.pug -o dist",
     "posthtml": "rimraf dist/content.json",
-    "css": "stylus src/css/index.styl -p | postcss -o dist/css/style.css --config conf",
+    "css": "stylus src/css/index.styl --include node_modules --include-css --print | postcss -o dist/css/style.css --config conf",
     "js:dev": "browserify src/js/* -o dist/js/main.js -d -t [ babelify --presets [ @babel/preset-env ] ]",
     "js:prod": "browserify src/js/* -o dist/js/main.js -t [ babelify --presets [ @babel/preset-env ] ]",
     "clean": "rimraf dist",
@@ -32,8 +32,8 @@
     "watch": "run-p watch:*"
   },
   "dependencies": {
-    "rellax": "^1.12.1",
     "aos": "^2.3.4",
+    "rellax": "^1.12.1",
     "snapsvg": "^0.5.1",
     "tailwindcss": "^2.0.2"
   },
