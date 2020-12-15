@@ -69,7 +69,7 @@ const PHRASES = [
   'Consulting',
 ]
 
-const el = document.querySelector('h1')
+const el = document.querySelector('.scramble')
 const fx = new TextScramble(el)
 
 let counter = 0
@@ -79,3 +79,5 @@ const next = () => {
   })
   counter = (counter + 1) % PHRASES.length
 }
+
+setTimeout(next, 5000)
