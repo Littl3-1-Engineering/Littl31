@@ -6,7 +6,6 @@ head
   meta(name='description' content=meta.description)
   meta(name='viewport' content='width=device-width, initial-scale=1.0')
   link(rel='stylesheet' href='css/style.css')
-  script(src='js/vendor.js', defer)
   script(src='js/main.js', defer)
 
 body.text-white
@@ -30,8 +29,12 @@ body.text-white
 
     section#projects
       for project in projects
-        .rellax-container.flex.items-center.justify-center.mt-16.p-8(id=project.id)(data-aos="fade-up")
-          .max-w-screen-lg.w-full
+        .rellax-container.flex.items-center.justify-center.mt-16.p-8(id=project.id)
+          .max-w-screen-lg.w-full(
+            data-aos='fade-up'
+            data-aos-offset='500'
+            data-aos-anchor-placement='top-bottom'
+          )
             h2.text-7xl.font-bold.text-yellow-500.rellax(data-rellax-speed='-1' data-rellax-percentage='.35')
               - var href = `#${project.id}`
               a(href=href) #{project.title}
