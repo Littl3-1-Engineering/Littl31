@@ -6,9 +6,9 @@
   "scripts": {
     "dev": "run-p server watch",
     "deploy": "run-s build:prod release",
-    "prehtml": "yaml json write src/content.yml > dist/content.json",
+    "prehtml": "js-yaml src/content.yml > dist/content.json",
     "html": "pug -O dist/content.json -P src/index.pug -o dist",
-    "posthtml": "rm dist/content.json",
+    "posthtml": "rimraf dist/content.json",
     "css": "stylus src/css/index.styl -p | postcss -o dist/css/style.css --config conf",
     "js:dev": "babel src/js/main --presets=@babel/preset-env --source-maps | uglifyjs > dist/js/main.js",
     "js:prod": "babel src/js/main --presets=@babel/preset-env | uglifyjs > dist/js/main.js",
@@ -48,6 +48,7 @@
     "cssnano": "^4.1.10",
     "gh-pages": "^3.1.0",
     "hashmark": "^5.0.0",
+    "js-yaml": "^3.14.1",
     "jstransformer-markdown-it": "^2.1.0",
     "mkdirp": "^1.0.4",
     "npm-run-all": "^4.1.5",
@@ -59,7 +60,6 @@
     "replaceinfiles": "^1.1.4",
     "rimraf": "^3.0.2",
     "stylus": "^0.54.8",
-    "uglify-js": "^3.12.1",
-    "yaml-cli": "^1.1.8"
+    "uglify-js": "^3.12.1"
   }
 }

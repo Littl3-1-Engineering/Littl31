@@ -27,9 +27,30 @@ body.text-white
               p #{line}
 
     section#projects
-      include pug/project-x.pug
-      include pug/project-y.pug
-      include pug/project-3.pug
+      for project in projects
+        .flex.items-center.justify-center.mt-16.p-8(id=project.id)
+          .max-w-screen-lg.w-full
+            h2.text-7xl.font-bold.text-yellow-500
+              a(href='##{project.id}') #{project.title}
+            hr.my-4.border-t-4.border-yellow-500
+
+            if project.right
+              .w-full.mt-16.flex
+                .h-80.border-4.border-yellow-500(class='w-1/2')
+            else
+              .w-full.mt-16.flex.justify-end
+                .h-80.border-4.border-yellow-500(class='w-1/2')
+
+            if project.right
+              .w-full.mt-24.flex.justify-end
+                div.max-w-xl.space-y-8
+                  for line in project.lines
+                    p= line
+            else
+              .w-full.mt-24.flex.justify-start
+                div.max-w-xl.space-y-8
+                  for line in project.lines
+                    p= line
 
     footer.container.mx-auto.mt-32.py-8.px-4.text-white
       .max-w-screen-lg.mx-auto.flex.flex-col
