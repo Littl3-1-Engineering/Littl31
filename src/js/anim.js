@@ -1,3 +1,5 @@
+import Snap from 'snapsvg'
+
 const C = config()
 const logo = new Snap('.logo')
 const ls = {}
