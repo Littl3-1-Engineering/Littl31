@@ -10,9 +10,9 @@
     "html": "pug -O dist/content.json -P src/index.pug -o dist",
     "posthtml": "rimraf dist/content.json",
     "css": "stylus src/css/index.styl -p | postcss -o dist/css/style.css --config conf",
-    "js:dev": "babel src/js/main --presets=@babel/preset-env --source-maps | uglifyjs > dist/js/main.js",
-    "js:prod": "babel src/js/main --presets=@babel/preset-env | uglifyjs > dist/js/main.js",
-    "js:vendor": "uglifyjs src/js/vendor/*.js > dist/js/vendor.js",
+    "js:dev": "browserify src/js/main/* -o dist/js/main.js -d -t [ babelify --presets [ @babel/preset-env ] ]",
+    "js:prod": "browserify src/js/main/* -o dist/js/main.js -t [ babelify --presets [ @babel/preset-env ] ]",
+    "js:vendor": "browserify src/js/vendor/*.js -o dist/js/vendor.js",
     "clean": "rimraf dist",
     "mkdirs": "mkdirp dist/assets dist/js dist/css",
     "copy:assets": "cpr src/assets dist/assets",
@@ -34,23 +34,24 @@
     "watch": "run-p watch:*"
   },
   "dependencies": {
+    "rellax": "^1.12.1",
     "aos": "^2.3.4",
     "snapsvg": "^0.5.1",
     "tailwindcss": "^2.0.2"
   },
   "devDependencies": {
-    "@babel/cli": "^7.12.10",
     "@babel/core": "^7.12.10",
     "@babel/preset-env": "^7.12.10",
     "autoprefixer": "^10.1.0",
+    "babelify": "^10.0.0",
     "browser-sync": "^2.26.13",
+    "browserify": "^17.0.0",
     "cpr": "^3.0.1",
     "cross-env": "^7.0.3",
     "cssnano": "^4.1.10",
     "gh-pages": "^3.1.0",
     "hashmark": "^5.0.0",
     "js-yaml": "^3.14.1",
-    "jstransformer-markdown-it": "^2.1.0",
     "mkdirp": "^1.0.4",
     "npm-run-all": "^4.1.5",
     "onchange": "^7.1.0",
@@ -60,7 +61,6 @@
     "pug-cli": "^1.0.0-alpha6",
     "replaceinfiles": "^1.1.4",
     "rimraf": "^3.0.2",
-    "stylus": "^0.54.8",
-    "uglify-js": "^3.12.1"
+    "stylus": "^0.54.8"
   }
 }
