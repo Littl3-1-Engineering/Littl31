@@ -34,6 +34,7 @@
     "watch": "run-p watch:*"
   },
   "dependencies": {
+    "rellax": "^1.12.1",
     "snapsvg": "^0.5.1",
     "tailwindcss": "^2.0.2"
   },
