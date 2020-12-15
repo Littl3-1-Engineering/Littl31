@@ -35,6 +35,7 @@
   },
   "dependencies": {
     "rellax": "^1.12.1",
+    "aos": "^2.3.4",
     "snapsvg": "^0.5.1",
     "tailwindcss": "^2.0.2"
   },

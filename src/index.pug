@@ -30,7 +30,7 @@ body.text-white
 
     section#projects
       for project in projects
-        .rellax-container.flex.items-center.justify-center.mt-16.p-8(id=project.id)
+        .rellax-container.flex.items-center.justify-center.mt-16.p-8(id=project.id)(data-aos="fade-up")
           .max-w-screen-lg.w-full
             h2.text-7xl.font-bold.text-yellow-500.rellax(data-rellax-speed='-1' data-rellax-percentage='.35')
               - var href = `#${project.id}`
