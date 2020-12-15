@@ -8,6 +8,7 @@ head
   link(rel='stylesheet' href='css/style.css')
   script(src='js/vendor.js', defer)
   script(src='js/main.js', defer)
+  script(src='js/aos.js', defer)
 
 body.text-white
   main.min-h-screen
@@ -28,7 +29,7 @@ body.text-white
 
     section#projects
       for project in projects
-        .flex.items-center.justify-center.mt-16.p-8(id=project.id)
+        .flex.items-center.justify-center.mt-16.p-8(id=project.id)(data-aos="fade-up")
           .max-w-screen-lg.w-full
             h2.text-7xl.font-bold.text-yellow-500
               a(href='##{project.id}') #{project.title}
