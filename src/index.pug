@@ -25,36 +25,38 @@ body.text-white
         .w-full.mt-32.flex.justify-end
           div.max-w-xl.space-y-8
             for line, i in intro.lines
-              p.rellax(data-rellax-speed=((i * 0.05) + 0.5)) #{line}
+              p.rellax(data-rellax-speed=((i * 0.1) + 0.1)) #{line}
 
     section#projects
       for project in projects
-        .rellax-container.flex.items-center.justify-center.mt-16.p-8(id=project.id)
+        .rellax-container.flex.items-center.justify-center.mt-4.p-8(id=project.id)
           .max-w-screen-lg.w-full(
             data-aos='fade-up'
             data-aos-offset='500'
             data-aos-anchor-placement='top-bottom'
           )
-            h2.text-7xl.font-bold.text-yellow-500.rellax(data-rellax-speed='-1' data-rellax-percentage='.35')
+            h2.text-7xl.font-bold.text-yellow-500.rellax(data-rellax-speed='-1' data-rellax-percentage='.3')
               - var href = `#${project.id}`
               a(href=href) #{project.title}
-            hr.my-4.border-t-4.border-yellow-500.rellax(data-rellax-speed='0' data-rellax-percentage='-0.5')
+            hr.my-4.border-t-4.border-yellow-500.rellax(data-rellax-speed='-0.5' data-rellax-percentage='-0.3')
 
             if project.right
-              .w-full.mt-16.flex.rellax(data-rellax-speed='3' data-rellax-percentage='0.5')
-                .h-80.border-4.border-yellow-500(class='w-1/2')
+              .w-full.mt-16.flex.rellax(data-rellax-speed='2' data-rellax-percentage='0.8')
+                .border-4.border-yellow-500.bg-yellow-500(class='w-1/2')
+                  img.mx-auto.opacity-90.w-full(src=project.img)
             else
-              .w-full.mt-16.flex.justify-end.rellax(data-rellax-speed='3' data-rellax-percentage='0.5')
-                .h-80.border-4.border-yellow-500(class='w-1/2')
+              .w-full.mt-16.flex.justify-end.rellax(data-rellax-speed='2' data-rellax-percentage='0.8')
+                .border-4.border-yellow-500.bg-yellow-500(class='w-1/2')
+                  img.mx-auto.opacity-90.w-full(src=project.img)
 
             if project.right
-              .w-full.mt-24.flex.justify-end
-                div.max-w-xl.space-y-8.rellax(data-rellax-speed='-3' data-rellax-percentage='1')
+              .w-full.mt-8.flex.justify-end
+                .max-w-md.space-y-8.rellax(data-rellax-speed='3' data-rellax-percentage='-0.5')
                   for line in project.lines
                     p= line
             else
-              .w-full.mt-24.flex.justify-start
-                div.max-w-xl.space-y-8.rellax(data-rellax-speed='-3' data-rellax-percentage='1')
+              .w-full.mt-8.flex.justify-start
+                .max-w-md.space-y-8.rellax(data-rellax-speed='3' data-rellax-percentage='-0.5')
                   for line in project.lines
                     p= line
 
