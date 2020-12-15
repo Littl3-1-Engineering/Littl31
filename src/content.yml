@@ -12,6 +12,24 @@ intro:
     - Most importantly, when this was written, only the author and the gods of science and rock’n’roll knew what the true message was.
     - Now, even the gods are wondering.
 
+projects:
+  - title: Project X
+    id: p0
+    lines:
+      - Swab yardarm red ensign mizzenmast topgallant reef sails chandler aye barkadeer scuttle. Man-of-war barque keelhaul broadside matey salmagundi hang the jib Davy Jones' Locker me quarter. Maroon transom scuttle killick lass reef sails gangway Yellow Jack Jack Tar bilge. Pieces of Eight carouser nipper avast ye hardtack walk the plank provost Sea Legs jib.
+      - Cat o'nine tails plunder starboard poop deck long clothes squiffy cutlass Yellow Jack piracy Pieces of Eight. Hail-shot broadside chase guns run a rig scallywag piracy cackle fruit long clothes Nelsons folly Privateer. Grapple pressgang bilge rat scurvy Shiver me timbers matey lee chantey Chain Shot scourge of the seven seas. Strike colors bowsprit grog starboard pirate pinnace gun belay holystone clap of thunder.
+  - title: Project Y
+    id: p1
+    right: true
+    lines:
+      - Swab yardarm red ensign mizzenmast topgallant reef sails chandler aye barkadeer scuttle. Man-of-war barque keelhaul broadside matey salmagundi hang the jib Davy Jones' Locker me quarter. Maroon transom scuttle killick lass reef sails gangway Yellow Jack Jack Tar bilge. Pieces of Eight carouser nipper avast ye hardtack walk the plank provost Sea Legs jib.
+      - Cat o'nine tails plunder starboard poop deck long clothes squiffy cutlass Yellow Jack piracy Pieces of Eight. Hail-shot broadside chase guns run a rig scallywag piracy cackle fruit long clothes Nelsons folly Privateer. Grapple pressgang bilge rat scurvy Shiver me timbers matey lee chantey Chain Shot scourge of the seven seas. Strike colors bowsprit grog starboard pirate pinnace gun belay holystone clap of thunder.
+  - title: Project 3
+    id: p2
+    lines:
+      - Swab yardarm red ensign mizzenmast topgallant reef sails chandler aye barkadeer scuttle. Man-of-war barque keelhaul broadside matey salmagundi hang the jib Davy Jones' Locker me quarter. Maroon transom scuttle killick lass reef sails gangway Yellow Jack Jack Tar bilge. Pieces of Eight carouser nipper avast ye hardtack walk the plank provost Sea Legs jib.
+      - Cat o'nine tails plunder starboard poop deck long clothes squiffy cutlass Yellow Jack piracy Pieces of Eight. Hail-shot broadside chase guns run a rig scallywag piracy cackle fruit long clothes Nelsons folly Privateer. Grapple pressgang bilge rat scurvy Shiver me timbers matey lee chantey Chain Shot scourge of the seven seas. Strike colors bowsprit grog starboard pirate pinnace gun belay holystone clap of thunder.
+
 footer:
   text: >
     If you’ve gotten this far, you may as well keep reading.
