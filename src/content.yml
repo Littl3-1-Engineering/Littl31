@@ -1,7 +1,7 @@
 
 meta:
   title: 'LiTl31 : Automation Engineering'
-  description: Automation Engineering - Consulting, Planning, Execution, Support
+  description: Automation Engineering - Consulting, Design, Planning, Execution, Support
 
 intro:
   title: Bad Idea Engineering
@@ -13,25 +13,25 @@ intro:
     - Now, even the gods are wondering.
 
 projects:
-  - title: Project X
+  - title: Prim3 LED
     id: p0
     img: 'assets/images/IMG_20201213_114739.jpg'
     lines:
-      - Swab yardarm red ensign mizzenmast topgallant reef sails chandler aye barkadeer scuttle. Man-of-war barque keelhaul broadside matey salmagundi hang the jib Davy Jones' Locker me quarter. Maroon transom scuttle killick lass reef sails gangway Yellow Jack Jack Tar bilge. Pieces of Eight carouser nipper avast ye hardtack walk the plank provost Sea Legs jib.
-      - Cat o'nine tails plunder starboard poop deck long clothes squiffy cutlass Yellow Jack piracy Pieces of Eight. Hail-shot broadside chase guns run a rig scallywag piracy cackle fruit long clothes Nelsons folly Privateer. Grapple pressgang bilge rat scurvy Shiver me timbers matey lee chantey Chain Shot scourge of the seven seas. Strike colors bowsprit grog starboard pirate pinnace gun belay holystone clap of thunder.
-  - title: Project Y
+      - Your cyber_virtual_presence meetings of talking heads are made dull by boring background of a gray wall and you refuse to use a sandy beach green-screen insert; You think that blurred backgorund was cool back in 2016; You want to shine in your authentic way.
+      - Attach this littl3 nugget to a LED strip, fire up our app and awe your viewers with creative visuals and certain distraction. If that's not your stride, you can tuck a similar rig under your bed frame or on top of cabinets for accent lighting. Either way, the results are shining.
+  - title: Emoji Goggl3s
     id: p1
     right: true
     img: 'assets/images/FB_IMG_1504669124233.jpg'
     lines:
-      - Swab yardarm red ensign mizzenmast topgallant reef sails chandler aye barkadeer scuttle. Man-of-war barque keelhaul broadside matey salmagundi hang the jib Davy Jones' Locker me quarter. Maroon transom scuttle killick lass reef sails gangway Yellow Jack Jack Tar bilge. Pieces of Eight carouser nipper avast ye hardtack walk the plank provost Sea Legs jib.
-      - Cat o'nine tails plunder starboard poop deck long clothes squiffy cutlass Yellow Jack piracy Pieces of Eight. Hail-shot broadside chase guns run a rig scallywag piracy cackle fruit long clothes Nelsons folly Privateer. Grapple pressgang bilge rat scurvy Shiver me timbers matey lee chantey Chain Shot scourge of the seven seas. Strike colors bowsprit grog starboard pirate pinnace gun belay holystone clap of thunder.
-  - title: Project 3
+      - Right, so you got yourself some nice goggles and you really want to see absolutely nothing out of them. Why not stuff them full of LEDs, copper and lithium? Then, all you need is a helmet or a hat to attach them to and you'll have a very unique headlamp for your next camping trip. 
+      - That is exactly what has happened here. Arranged in a peculiar order and with a little bit of initiative, the LEDs in the goggles can be made to display anything from your current facebook status to your favorite crypto value. We chose to render a randomly selected expression from a collection of ASCII emojis on a random timer. These goggles are a great conversation piece, a source of light and endless amusement. 
+  - title: H3x Tent Lighting
     id: p2
-    img: 'assets/images/IMG_20170714_214110.jpg'
+    vid: 'assets/vid/TentLighingRender3.mp4'
     lines:
-      - Swab yardarm red ensign mizzenmast topgallant reef sails chandler aye barkadeer scuttle. Man-of-war barque keelhaul broadside matey salmagundi hang the jib Davy Jones' Locker me quarter. Maroon transom scuttle killick lass reef sails gangway Yellow Jack Jack Tar bilge. Pieces of Eight carouser nipper avast ye hardtack walk the plank provost Sea Legs jib.
-      - Cat o'nine tails plunder starboard poop deck long clothes squiffy cutlass Yellow Jack piracy Pieces of Eight. Hail-shot broadside chase guns run a rig scallywag piracy cackle fruit long clothes Nelsons folly Privateer. Grapple pressgang bilge rat scurvy Shiver me timbers matey lee chantey Chain Shot scourge of the seven seas. Strike colors bowsprit grog starboard pirate pinnace gun belay holystone clap of thunder.
+      - Candles, flood lights, kerosine lamps and even the common smart bulbs have already been outdated. On the cutting edge of technology, we want something more. We want lighting capable of being an VU meter when occassion calls for a rager. We want to be able to feel the flicker of campfire or experience blue skies... why not have it all?
+      - This event lighting project spanned over 3000 utlra_bright LEDs, contained over a kilometer of wires and survived some very extreme weather conditions. Several pre-defined lighting patterns allowed the overall lighting system to provide mood lighting or responsive music lighting depending on need or occassion. For those of you who might be concerned about polar bears, you can reast easy knowing that this entire setup was powered by 750W power supply but averaged around 300W mark using ~1% of available power.
 
 footer:
   text: >
