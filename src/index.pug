@@ -83,7 +83,8 @@ body.text-white
             .rellax(data-rellax-speed='-2' data-rellax-percentage='.5')
               img.mx-auto.w-24(src='assets/images/logo.svg')
           div.text-right(class='w-1/3')
-            .rellax(data-rellax-speed='-5', data-rellax-percentage='.35')
-              a.cursor-pointer.text-5xl.font-bold.text-yellow-500 Contact
+            .rellax(data-rellax-speed='-5', data-rellax-percentage='.5')
+              - var mail = `${footer.email}`
+              a.cursor-pointer.text-5xl.font-bold.text-yellow-500(href="mailto:"+mail) Contact
         p.text-center.text-sm.mt-16.px-8.
           #{footer.text}
