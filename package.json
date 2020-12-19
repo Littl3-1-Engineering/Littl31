@@ -20,7 +20,7 @@
     "prebuild:prod": "run-s clean mkdirs copy:*",
     "build:prod": "cross-env NODE_ENV=prod run-p html css js:prod",
     "postbuild:prod": "npm run hash",
-    "hash": "hashmark **/{main,style}.* -d md5 -l 8 --cwd dist '{dir}/{name}.{hash}{ext}' | replaceinfiles -S -s dist/*.html",
+    "hash": "hashmark **/{main,style}.* -d md5 -l 8 --cwd dist {dir}/{name}.{hash}{ext} | rexreplace \\\\\\\\ / | replaceinfiles -S -s dist/index.html",
     "posthash": "rimraf dist/js/main.js dist/css/style.css",
     "release": "gh-pages -d dist -b live -m 'release updates' --no-history",
     "preserver": "npm run build:dev",
@@ -58,6 +58,7 @@
     "pug": "^3.0.0",
     "pug-cli": "^1.0.0-alpha6",
     "replaceinfiles": "^1.1.4",
+    "rexreplace": "^6.0.14",
     "rimraf": "^3.0.2",
     "stylus": "^0.54.8"
   }

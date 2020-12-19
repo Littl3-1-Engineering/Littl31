@@ -3,11 +3,14 @@ module.exports = {
     require('tailwindcss')('./conf/tailwind.config.js'),
     require('autoprefixer'),
     ...(process.env.NODE_ENV !== 'prod' ? [] : [
-      require('@fullhuman/postcss-purgecss')({
-        content: [
-          './src/index.pug'
-        ]
-      }),
+      // require('@fullhuman/postcss-purgecss')({
+      //   content: [
+      //     './src/index.pug'
+      //   ],
+      //   safelist: [
+      //      'data-aos'
+      //   ]
+      // }),
       require('cssnano')
     ])
   ]
