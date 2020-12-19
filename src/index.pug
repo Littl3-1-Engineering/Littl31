@@ -29,7 +29,10 @@ body.text-white
 
     section#projects
       for project in projects
-        .rellax-container.flex.items-center.justify-center.mt-4.p-8(id=project.id)
+        .rellax-container.flex.items-center.justify-center.mt-4.p-8.bg-center.bg-cover(
+          id=project.id,
+          style=`background-image: url(${project.background})`
+        )
           .max-w-screen-lg.w-full(
             data-aos='fade-up'
             data-aos-offset='500'
