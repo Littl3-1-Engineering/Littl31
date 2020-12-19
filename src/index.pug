@@ -29,7 +29,10 @@ body.text-white
 
     section#projects
       for project in projects
-        .rellax-container.flex.items-center.justify-center.mt-4.p-8(id=project.id)
+        .rellax-container.flex.items-center.justify-center.mt-4.p-8.bg-center.bg-cover(
+          id=project.id,
+          style=`background-image: url(${project.background})`
+        )
           .max-w-screen-lg.w-full(
             data-aos='fade-up'
             data-aos-offset='500'
@@ -41,25 +44,25 @@ body.text-white
             hr.my-4.border-t-4.border-yellow-500.rellax(data-rellax-speed='-0.5' data-rellax-percentage='-0.3')
 
             if project.right
-              if project.img    
-                .w-full.mt-16.flex.justify-start.rellax(data-rellax-speed='2' data-rellax-percentage='0.8')          
+              if project.img
+                .w-full.mt-16.flex.justify-start.rellax(data-rellax-speed='2' data-rellax-percentage='0.8')
                   .border-4.border-yellow-500.bg-yellow-500(class='w-1/2')
                     img.mx-auto.opacity-90.w-full(src=project.img)
-              if project.vid              
+              if project.vid
                 .w-full.mt-16.flex.justify-start.rellax(data-rellax-speed='2' data-rellax-percentage='0.8')
                   .border-4.border-yellow-500.bg-yellow-500(class='w-1/2')
                     video.autoplay.mx-auto.opacity-90.w-full(autoplay loop)
-                      source(src=project.vid type="video/mp4")                  
+                      source(src=project.vid type="video/mp4")
             else
               if project.img
                 .w-full.mt-16.flex.justify-end.rellax(data-rellax-speed='2' data-rellax-percentage='0.8')
                   .border-4.border-yellow-500.bg-yellow-500(class='w-1/2')
                     img.mx-auto.opacity-90.w-full(src=project.img)
               if project.vid
-                .w-full.mt-16.flex.justify-end.rellax(data-rellax-speed='2' data-rellax-percentage='0.8')              
+                .w-full.mt-16.flex.justify-end.rellax(data-rellax-speed='2' data-rellax-percentage='0.8')
                   .border-4.border-yellow-500.bg-yellow-500(class='w-1/2')
                     video.autoplay.mx-auto.opacity-90.w-full(autoplay loop)
-                      source(src=project.vid type="video/mp4") 
+                      source(src=project.vid type="video/mp4")
 
             if project.right
               .w-full.mt-8.flex.justify-end
