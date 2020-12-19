@@ -15,6 +15,7 @@ projects:
   - title: Prim3 LED
     id: p0
     img: 'assets/images/IMG_20201213_114739.jpg'
+    background: 'assets/images/Littl31_web_graphic1.png'
     lines:
       - Your cyber_virtual_presence meetings of talking heads are made dull by boring background of a gray wall and you refuse to use a sandy beach green-screen insert; You think that blurred backgorund was cool back in 2016; You want to shine in your authentic way.
       - Attach this littl3 nugget to a LED strip, fire up our app and awe your viewers with creative visuals and certain distraction. If that's not your stride, you can tuck a similar rig under your bed frame or on top of cabinets for accent lighting. Either way, the results are shining.
@@ -22,12 +23,14 @@ projects:
     id: p1
     right: true
     img: 'assets/images/FB_IMG_1504669124233.jpg'
+    background: 'assets/images/Littl31_web_graphic2.png'
     lines:
       - Right, so you got yourself some nice goggles and you really want to see absolutely nothing out of them. Why not stuff them full of LEDs, copper and lithium? Then, all you need is a helmet or a hat to attach them to and you'll have a very unique headlamp for your next camping trip. 
       - That is exactly what has happened here. Arranged in a peculiar order and with a little bit of initiative, the LEDs in the goggles can be made to display anything from your current facebook status to your favorite crypto value. We chose to render a randomly selected expression from a collection of ASCII emojis on a random timer. These goggles are a great conversation piece, a source of light and endless amusement. 
   - title: H3x Tent Lighting
     id: p2
     vid: 'assets/vid/TentLighingRender3.mp4'
+    background: 'assets/images/Littl31_web_graphic3.png'
     lines:
       - Candles, flood lights, kerosine lamps and even the common smart bulbs have already been outdated. On the cutting edge of technology, we want something more. We want lighting capable of being an VU meter when occassion calls for a rager. We want to be able to feel the flicker of campfire or experience blue skies... why not have it all?
       - This event lighting project spanned over 3000 utlra_bright LEDs, contained over a kilometer of wires and survived some very extreme weather conditions. Several pre-defined lighting patterns allowed the overall lighting system to provide mood lighting or responsive music lighting depending on need or occassion. For those of you who might be concerned about polar bears, you can reast easy knowing that this entire setup was powered by 750W power supply but averaged around 300W mark using ~1% of available power.
