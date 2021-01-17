@@ -2,17 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-@import 'aos/dist/aos.css'
+@import 'locomotive-scroll/dist/locomotive-scroll.css'
 @import './snap-logo.styl'
 @import './font.styl'
 
-html
-	scroll-behavior smooth
-
 body
 	background rgb(22,22,22)
-	//background linear-gradient(45deg, rgba(22,22,22,1) 0%,rgba(44,44,44,1) 100%)
-
-main
-	& > section
-		min-height 100vh
+	overflow hidden
