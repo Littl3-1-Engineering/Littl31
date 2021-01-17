@@ -1,3 +1,8 @@
-import Rellax from 'rellax'
+import LocomotiveScroll from 'locomotive-scroll'
 
-const catchall = new Rellax('.rellax')
+setTimeout(() => {
+  const scroll = new LocomotiveScroll({
+    el: document.querySelector('[data-scroll-container]'),
+    smooth: true
+  })
+}, 500)

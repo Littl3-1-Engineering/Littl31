@@ -32,8 +32,7 @@
     "watch": "run-p watch:*"
   },
   "dependencies": {
-    "aos": "^2.3.4",
-    "rellax": "^1.12.1",
+    "locomotive-scroll": "^4.0.6",
     "snapsvg": "^0.5.1",
     "tailwindcss": "^2.0.2"
   },

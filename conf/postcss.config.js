@@ -6,6 +6,7 @@ module.exports = {
       // require('@fullhuman/postcss-purgecss')({
       //   content: [
       //     './src/index.pug'
+      //     './dist/js/**'
       //   ],
       //   safelist: [
       //      'data-aos'
