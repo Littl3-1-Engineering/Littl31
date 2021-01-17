@@ -1,8 +1,4 @@
-
-// ——————————————————————————————————————————————————
-// TextScramble
 // https://codepen.io/soulwire/pen/mErPAK
-// ——————————————————————————————————————————————————
 
 class TextScramble {
   constructor(el) {
@@ -58,26 +54,25 @@ class TextScramble {
   }
 }
 
-// ——————————————————————————————————————————————————
-// Rotate Phrases
-// ——————————————————————————————————————————————————
-
-const PHRASES = [
-  'LiTl31',
-  'Automation',
-  'Engineering',
-  'Consulting',
-]
-
-const el = document.querySelector('.scramble')
-const fx = new TextScramble(el)
-
-let counter = 0
-const next = () => {
-  fx.setText(PHRASES[counter]).then(() => {
-    setTimeout(next, 1500)
+function scrambleTitle (fx, phrases, rate=1, index=0) {
+  fx.setText(phrases[index]).then(() => {
+    setTimeout(() => {
+      scrambleTitle(fx, phrases, rate, (index + 1) % phrases.length)
+    }, 1500 * rate)
   })
-  counter = (counter + 1) % PHRASES.length
 }
 
-setTimeout(next, 5000)
+setTimeout(
+  () => {
+    scrambleTitle(
+      new TextScramble(document.querySelector('[data-scramble-title]')),
+      ['LiTl31', 'Automation', 'Engineering', 'Consulting']
+    )
+    scrambleTitle(new TextScramble(document.querySelector('[data-scramble-intro]')), ['Bad Idea Engineering'], 5)
+    document.querySelectorAll('[data-scramble-project]').forEach(project => {
+      scrambleTitle(new TextScramble(project), [project.innerText], 4)
+    })
+  },
+  5000
+)
+
