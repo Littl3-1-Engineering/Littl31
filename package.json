@@ -22,7 +22,7 @@
     "postbuild:prod": "npm run hash",
     "hash": "hashmark **/{main,style}.* -d md5 -l 8 --cwd dist {dir}/{name}.{hash}{ext} | rexreplace \\\\\\\\ / | replaceinfiles -S -s dist/index.html",
     "posthash": "rimraf dist/js/main.js dist/css/style.css",
-    "release": "gh-pages -d dist -b live -m 'release updates' --no-history",
+    "release": "gh-pages -d dist -b live -m 'release updates'",
     "preserver": "npm run build:dev",
     "server": "browser-sync start --server -f dist --ss dist --port 8080 --no-open --no-ui",
     "watch:assets": "onchange 'src/assets/**/*' -- npm run copy:assets",
