@@ -70,14 +70,14 @@ setTimeout(
     )
     scrambleTitle(
       new TextScramble(document.querySelector('[data-scramble-intro]')), 
-      ['Bad Idea Engineering'], 5
+      ['Bad Idea Engineering'], 3
     )
     scrambleTitle(
       new TextScramble(document.querySelector('[data-scramble-contact]')), 
-      ['Contact'], 3
+      ['Contact','e-mail','Get in touch'], 2
     )    
     document.querySelectorAll('[data-scramble-project]').forEach(project => {
-      scrambleTitle(new TextScramble(project), [project.innerText], 4)
+      scrambleTitle(new TextScramble(project), [project.innerText], 1)
     })
   },
   5000
