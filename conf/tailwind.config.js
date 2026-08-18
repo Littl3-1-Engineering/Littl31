@@ -5,6 +5,11 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ['audimat', ...defaultTheme.fontFamily.sans]
+      },
+      colors: {
+        brand: {
+          orange: '#FFA500'
+        }
       }
     },
   },

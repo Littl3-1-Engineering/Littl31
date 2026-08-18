@@ -1,0 +1,54 @@
+doctype html
+
+include mixins.pug
+
+head
+  meta(charset='utf-8')
+  title #{alfr3d.meta.title}
+  meta(name='description' content=alfr3d.meta.description)
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  link(rel='stylesheet' href='css/style.css')
+  link(rel="icon" type="image/png" href='assets/images/favicon.ico')
+  script(src='js/main.js', defer)
+
+body.text-white
+  main(data-scroll-container)
+
+    +splash
+      .flex.gap-4.mt-4(data-scroll data-scroll-repeat data-scroll-position='top')
+        for badge in alfr3d.badges
+          span.inline-block.text-xs.tracking-widest.uppercase.border.rounded-full.px-4.py-2(
+            style=`color:${badge.color};border-color:${badge.color}`
+          )= badge.text
+
+    section#intro.p-8.flex.items-center.justify-center(data-scroll-section)
+      .max-w-screen-lg.w-full
+        h2.text-6xl.font-bold.text-yellow-500.text-right(
+          data-scramble-intro,
+          data-scroll,
+          data-scroll-repeat,
+          data-scroll-speed='3',
+          data-scroll-position='top',
+          data-scroll-direction='horizontal'
+        ) #{alfr3d.intro.title}
+        .w-full.mt-32.flex.justify-end
+          div.max-w-xl.space-y-8(data-scroll)
+            for line in alfr3d.intro.lines
+              p.opacity-0.transition-opacity.delay-100.duration-700(
+                data-scroll,
+                data-scroll-repeat,
+                data-scroll-class='opacity-100'
+              ) #{line}
+
+    section#products(data-scroll-section)
+      for product in alfr3d.products
+        +section(product)
+
+    section.py-16.px-8.border-t.border-gray-800(data-scroll-section)
+      .max-w-screen-lg.mx-auto.flex.items-center.justify-between.flex-wrap.gap-8
+        div
+          h3.text-2xl.font-bold.text-gray-300 #{alfr3d.kit.title}
+          p.text-gray-500.text-sm.mt-2.max-w-lg #{alfr3d.kit.text}
+        span.inline-block.text-xs.tracking-widest.uppercase.border.border-gray-700.text-gray-500.rounded-full.px-4.py-2 #{alfr3d.kit.badge}
+
+    +siteFooter(footer, { href: 'index.html', text: '← Littl3.1 Engineering' })

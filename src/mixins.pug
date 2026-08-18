@@ -1,0 +1,106 @@
+//- Shared page chrome + the full-bleed section pattern used for both
+//- the legacy LED-project cards and the ALFR3D product sections.
+
+mixin splash
+  section#splash.h-screen.flex.flex-col.items-center.justify-center(data-scroll-section)
+    div(
+      data-scroll,
+      data-scroll-repeat,
+      data-scroll-speed='-3',
+      data-scroll-position='top',
+    )
+      svg.logo.-mt-32
+    div(
+      data-scroll,
+      data-scroll-repeat,
+      data-scroll-speed='-2',
+      data-scroll-position='top',
+    )
+      a(href='#intro')
+        h1.text-5xl.font-bold.text-yellow-500(data-scramble-title) &nbsp;
+    if block
+      block
+
+mixin section(item)
+  .flex.items-center.justify-center.p-8.bg-center.bg-cover(
+    id=item.id,
+    style=`background-image: url(${item.background})`
+  )
+    .max-w-screen-lg.w-full
+      h2.text-7xl.font-bold.text-yellow-500(
+        data-scramble-project=item.title,
+        data-scroll,
+        data-scroll-repeat,
+        data-scroll-speed='-1',
+        data-scroll-position='top',
+        data-scroll-direction='horizontal',
+        data-scroll-target=`#${item.id}`
+      )= item.title
+      hr.my-4.border-t-4.border-yellow-500
+
+      if item.badge
+        span.inline-block.text-xs.tracking-widest.uppercase.border.rounded-full.px-4.py-2.mt-2(
+          style=`color:${item.badge.color};border-color:${item.badge.color}`
+        )= item.badge.text
+
+      - var mediaSide = item.right ? 'justify-start' : 'justify-end'
+      - var textSide = item.right ? 'justify-end' : 'justify-start'
+      - var textWidth = item.wide ? 'max-w-2xl' : 'max-w-md'
+
+      if item.img
+        .w-full.mt-16.flex(class=mediaSide)
+          .border-4.border-yellow-500.bg-yellow-500(class='w-1/2')
+            img.mx-auto.opacity-90.w-full(src=item.img)
+      if item.vid
+        .w-full.mt-16.flex(class=mediaSide)
+          .border-4.border-yellow-500.bg-yellow-500(class='w-1/2')
+            video.autoplay.mx-auto.opacity-90.w-full(autoplay loop)
+              source(src=item.vid type="video/mp4")
+
+      .w-full.mt-8.flex(class=textSide)
+        div(class=`${textWidth} space-y-8`)
+          for line in item.lines
+            p.opacity-0.transition-opacity.delay-100.duration-700(
+              data-scroll,
+              data-scroll-repeat,
+              data-scroll-class='opacity-100'
+            )= line
+          if item.pricing
+            .flex.flex-wrap.gap-6.pt-2
+              for tier in item.pricing
+                div.border.rounded.px-6.py-4(
+                  style=`border-color:${tier.accent || '#374151'}`
+                )
+                  div.text-3xl.font-bold(style=`color:${tier.accent || '#F59E0B'}`)= tier.amount
+                  div.text-xs.text-gray-400.mt-1= tier.label
+          if item.cta
+            p
+              a.font-bold.text-lg(href=item.cta.href)= item.cta.text
+
+mixin siteFooter(data, backLink)
+  footer.container.mx-auto.py-8.px-4.text-white(data-scroll-section)
+    .max-w-screen-lg.mx-auto.flex.flex-col
+      if backLink
+        .w-full.mb-8
+          a.text-sm.text-gray-400(href=backLink.href)= backLink.text
+      .flex.items-center.w-full
+        div(class='w-1/3')
+        div(class='w-1/3')
+          img.mx-auto.w-24(src='assets/images/logo.svg')
+        div.text-right(class='w-1/3')
+          div(
+            data-scroll,
+            data-scroll-repeat,
+            data-scroll-position='top',
+            data-scroll-speed='-1'
+          )
+          - var mail = `${data.email}`
+          a.cursor-pointer.text-5xl.font-bold.text-yellow-500(
+            href="mailto:"+mail,
+            data-scramble-contact
+          ) Contact
+      p.text-center.text-sm.mt-4.px-8(
+        data-scroll,
+        data-scroll-repeat,
+        data-scroll-speed='0.5'
+      )= data.text
