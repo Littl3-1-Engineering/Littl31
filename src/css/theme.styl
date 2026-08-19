@@ -1,0 +1,174 @@
+// Window chrome — chamfered "notched" panels, a titlebar strip, and a
+// pull-tab handle, styled directly after the Nexus Launcher's window and
+// search-panel shapes (see alfr3d_deck/docs/screenshots). Replaces the
+// old glass-panel corner-glow treatment.
+//
+// Clip-path is only ever applied to decorative ::before pseudo-elements
+// (or to .window-titlebar, whose own children never need to escape it) —
+// never to a real container that holds something like the pricing
+// popover, which needs to render outside its card's bounds. A clip-path
+// on a real ancestor would clip that popover invisible.
+
+window-cut-big-lg = 20px
+window-cut-small-lg = 6px
+window-cut-big-lg-in = 18px
+window-cut-small-lg-in = 5px
+window-cut-big-sm = 10px
+window-cut-small-sm = 3px
+window-cut-big-sm-in = 9px
+window-cut-small-sm-in = 2px
+
+// Stylus does not substitute mixin variables that appear inside a literal
+// calc(...) block, so the polygon has to be built as a string via s()/
+// unquote() rather than written as a normal property value.
+notch(big, small)
+	clip-path unquote(s('polygon(%s 0, calc(100% - %s) 0, 100% %s, 100% calc(100% - %s), calc(100% - %s) 100%, %s 100%, 0 calc(100% - %s), 0 %s)', big, small, small, big, big, small, small, big))
+
+tab-clip(big, small)
+	clip-path unquote(s('polygon(%s 0, calc(100% - %s) 0, 100% 100%, 0 100%)', big, small))
+
+.window-frame
+	position relative
+	padding 2px
+
+	&::before
+		content ''
+		position absolute
+		inset 0
+		pointer-events none
+		background var(--accent-solid, #F7C948)
+		notch(window-cut-big-lg, window-cut-small-lg)
+
+.window-frame.window-sm
+	padding 1.5px
+
+	&::before
+		notch(window-cut-big-sm, window-cut-small-sm)
+
+.window-tab
+	position absolute
+	top -5px
+	left 50%
+	transform translateX(-50%)
+	width 40px
+	height 5px
+	border-radius 9999px
+	background var(--accent-solid, #F7C948)
+	pointer-events none
+
+.window-body
+	position relative
+
+	&::before
+		content ''
+		position absolute
+		inset 0
+		pointer-events none
+		background rgba(10, 13, 19, 0.9)
+		backdrop-filter blur(16px)
+		-webkit-backdrop-filter blur(16px)
+		notch(window-cut-big-lg-in, window-cut-small-lg-in)
+
+.window-frame.window-sm .window-body::before
+	notch(window-cut-big-sm-in, window-cut-small-sm-in)
+
+.window-titlebar
+	position relative
+	display flex
+	align-items center
+	gap 0.5rem
+	padding 0.6rem 1.25rem
+	background rgba(0, 0, 0, 0.4)
+	border-bottom 1px solid rgba(255, 255, 255, 0.12)
+	tab-clip(window-cut-big-lg-in, window-cut-small-lg-in)
+
+.window-frame.window-sm .window-titlebar
+	tab-clip(window-cut-big-sm-in, window-cut-small-sm-in)
+
+.window-dot
+	width 8px
+	height 8px
+	border-radius 9999px
+	background var(--accent-solid, #F7C948)
+	box-shadow 0 0 8px var(--accent-solid, #F7C948)
+	flex-shrink 0
+
+.window-content
+	position relative
+
+.info-popover
+	background rgba(20, 24, 33, 0.95)
+	backdrop-filter blur(12px)
+	-webkit-backdrop-filter blur(12px)
+	border-radius 0.5rem
+
+.grid-bg
+	background-image linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px)
+	background-size 48px 48px
+
+.btn-glow
+	display inline-flex
+	align-items center
+	padding 0.75rem 1.75rem
+	border-radius 9999px
+	font-weight 700
+	color #0a0d13
+	background var(--accent-solid, #F7C948)
+	transition box-shadow 0.2s ease, transform 0.2s ease
+	box-shadow 0 0 0 rgba(0, 0, 0, 0)
+
+	&:hover
+		box-shadow 0 0 28px var(--accent-solid, #F7C948)
+		transform translateY(-2px)
+
+.nav-glass
+	background rgba(10, 13, 19, 0.72)
+	backdrop-filter blur(14px)
+	-webkit-backdrop-filter blur(14px)
+	border-bottom 1px solid rgba(255, 255, 255, 0.08)
+
+	a:hover
+		color #FFA500
+
+[data-nav-menu].is-open
+	display flex
+	position absolute
+	top 100%
+	left 0
+	right 0
+	flex-direction column
+	background rgba(10, 13, 19, 0.95)
+	padding 1.5rem
+	gap 1rem
+	border-bottom 1px solid rgba(255, 255, 255, 0.08)
+
+// Accent modifiers — set --accent-solid, inherited down through
+// .window-body/.window-titlebar/.window-dot without needing to be
+// reapplied on descendants.
+
+.accent-amber
+	--accent-solid #F7C948
+.accent-cyan
+	--accent-solid #22D3EE
+.accent-orange
+	--accent-solid #FFA500
+.accent-gray
+	--accent-solid #9CA3AF
+
+.accent-text-amber
+	color #F7C948
+.accent-text-cyan
+	color #22D3EE
+.accent-text-orange
+	color #FFA500
+.accent-text-gray
+	color #9CA3AF
+
+.accent-border-amber
+	border-color #F7C948
+.accent-border-cyan
+	border-color #22D3EE
+.accent-border-orange
+	border-color #FFA500
+.accent-border-gray
+	border-color #9CA3AF

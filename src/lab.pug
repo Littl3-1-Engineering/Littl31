@@ -1,0 +1,27 @@
+doctype html
+
+include mixins.pug
+
+head
+  meta(charset='utf-8')
+  title #{lab.meta.title}
+  meta(name='description' content=lab.meta.description)
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  link(rel='stylesheet' href='css/style.css')
+  link(rel="icon" type="image/png" href='assets/images/favicon.ico')
+  script(src='js/main.js', defer)
+
+body.text-white.grid-bg
+  +navBar(nav, brand)
+
+  main(data-scroll-container)
+
+    +splash
+
+    +introHero(lab.intro, 'orange')
+
+    section#projects(data-scroll-section, class='py-8')
+      for project in lab.items
+        +section(project, 'orange')
+
+    +siteFooter(footer, { href: 'index.html', text: '← Littl3.1 Engineering' })
