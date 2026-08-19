@@ -1,66 +1,47 @@
 
 meta:
-  title: 'LiTl31 : Automation Engineering'
-  description: Automation Engineering - Consulting, Design, Planning, Execution, Support
+  title: 'ALFR3D by Littl3.1 Engineering — Self-Hosted Home Automation'
+  description: ALFR3D is a self-hosted, local-first home-automation platform by Littl3.1 Engineering. No ads, no telemetry, your home stays yours.
 
-intro:
-  title: Bad Idea Engineering
-  lines:
-    - We are just going to pass through your life and make it just a little bit more better before we turn back to inconveniencing very large groups of electrons. 
-    - Littl3.1 is rooted in profound laziness and relentless pursuit of the ghost of reason. Yet, no credit can be taken for any of it. It’s a gift really. Few possess it. Here, at Littl3.1 Engineering, it is aimed directly at evolutionary and technological advance of our species by being deliberately and meticulously selective. 
-    - As a result, most of what happens here is a series of single-servings of sheer genius, ambitious prototyping, one_of_a_kind designs and tranquil determination.
-    - Now, tell us, how can we make your life even more awesome?
-  cta:
-    text: '→ ALFR3D — our flagship build, live outside the workbench'
+brand:
+  name: Littl3.1
+  logo: assets/images/logo.svg
+
+nav:
+  - text: ALFR3D
     href: alfr3d.html
+  - text: Lab
+    href: lab.html
+  - text: Contact
+    href: '#contact'
 
-projects:
-  - title: ALFR3D
-    id: p-alfr3d
-    right: true
-    img: 'assets/images/alfr3d-dashboard.jpg'
-    background: 'assets/images/Littl31_web_graphic2.png'
+home:
+  pitch:
+    title: ALFR3D runs your home. You still own it.
     lines:
-      - Our flagship build lives outside the museum of one-off LED experiments. ALFR3D is a self-hosted, local-first home-automation platform — no ads, ever, no telemetry, your home's data never leaves your network unless you decide it should.
-      - Free forever at its core. A companion Android launcher for the people who'd rather tap a home screen than write YAML. An optional hosted Cloud relay for the people who want it from outside the house too.
+      - A self-hosted, local-first home-automation platform — a containerized backend that actually knows what day it is and what's playing, and Nexus Launcher, an Android home screen built to talk to it directly.
+      - No ad tier. Not now, not ever. That's not a pricing decision, it's a policy.
     cta:
       text: → See what ALFR3D can do
       href: alfr3d.html
-  - title: Prim3 LED
-    id: p0
-    img: 'assets/images/IMG_20201213_114739.jpg'
-    background: 'assets/images/Littl31_web_graphic1.png'
+  highlights:
+    - title: Self-hosted
+      text: Runs on hardware you own — the platform costs nothing to run yourself, the way it should.
+    - title: No ads, ever
+      text: Excluded by policy, not by roadmap. Your home's data never leaves your network unless you decide it should.
+    - title: Free core forever
+      text: The backend and the launcher's core stay free — always. You only pay for convenience you actually want.
+  about:
+    title: Littl3.1 Engineering
     lines:
-      - Your cyber_virtual_presence meetings of talking heads are made dull by boring background of a gray wall and you refuse to use a sandy beach green-screen insert; You think that blurred background was cool back in 2009; You want to shine in your authentic way.
-      - Attach this littl3 nugget to a LED strip, fire up our app and awe your viewers with creative visuals and certain distraction. If that's not your stride, you can tuck a similar rig under your bed frame or on top of cabinets for accent lighting. Either way, the results are shining.
-  - title: Emoji Goggl3s
-    id: p1
-    right: true
-    img: 'assets/images/FB_IMG_1504669124233.jpg'
-    background: 'assets/images/Littl31_web_graphic2.png'
-    lines:
-      - Right, so you got yourself some nice goggles and you really want to see absolutely nothing out of them. Why not stuff them full of LEDs, copper and lithium? Then, all you need is a helmet or a hat to attach them to and you'll have a very unique headlamp for your next camping trip. 
-      - That is exactly what has happened here. Arranged in a peculiar order and with a little bit of initiative, the LEDs in the goggles can be made to display anything from your current facebook status to your favorite crypto value. We chose to render a randomly selected expression from a collection of ASCII emojis on a random timer. These goggles are a great conversation piece, a source of light and endless amusement. 
-  - title: H3x Tent Lighting
-    id: p2
-    vid: 'assets/vid/TentLighingRender3.mp4'
-    background: 'assets/images/Littl31_web_graphic3.png'
-    lines:
-      - Candles, flood lights, kerosine lamps and even the common smart bulbs have already been outdated. On the cutting edge of technology, we want something more. We want lighting capable of being a VU meter when occasion calls for a rager. We want to be able to feel the flicker of campfire or experience blue skies... why not have it all?
-      - This event lighting project spanned over 3000 utlra_bright LEDs, contained over a kilometer of wires and survived some very extreme weather conditions. Several predefined lighting patterns allowed the overall lighting system to provide mood lighting or responsive music lighting depending on need or occassion. For those of you who might be concerned about polar bears, you can rest easy knowing that this entire setup was powered by 750W power supply but averaged around 300W mark using ~1% of available power.
-  - title: Whit3 Board
-    id: p3
-    right: true
-    img: 'assets/images/IMG_20210414_085631.jpg'
-    background: 'assets/images/Littl31_web_graphic1.png'
-    lines:
-      - This white board dances and mesmerizes. While idle, a snake of color will loop round and round. A vibrant wave will splash from one corner to all others. It serves as a night light without screaming for attention.
-      - However, once you stand in front of it, grab a marker and begin your brainstorming session, the board will sense your presence and stop dazzling you. Instead, it will start to flash slowly, very slowly, in rhythm of meditative breath. Each breath a different color, for just a little bit of flare, with the overarching desire to soothe your mind into a state of clarity and focus. 
+      - Littl3.1 is a small, deliberately selective engineering shop. ALFR3D is the flagship — everything else is R&D, prototypes, and one-off builds, kept in the Lab.
+    cta:
+      text: → Visit the Lab
+      href: lab.html
 
 footer:
   email: athos@littl31.com
-  text: >
-    If you’ve gotten this far, you may as well keep reading. At Littl3.1 we stand behind our engineering and we stand behind our community. For this reason, we are transient and any anti-advertising is the integral part of elaborate and delicate ploy to deter an entire generation of individuals who feel entitled to lives they don’t want to work for. Further, experience has shown us that we may need to take a moment to provide some interpretational guidelines. We choose our words with great care and with much deliberation. In particular, any reference to laziness does not imply procrastination, tardiness, or sloth. On the contrary, it refers to disciplined mastery of finding easy ways to perform difficult tasks.
+  text: No ads, no telemetry, by design — not a pricing tier, a policy. Littl3.1 Engineering builds deliberately and ships selectively.
 
 alfr3d:
   meta:
@@ -68,9 +49,9 @@ alfr3d:
     description: ALFR3D is a self-hosted, local-first home-automation platform by Littl3.1 Engineering. No ads, no telemetry, your home stays yours.
   badges:
     - text: Open source · FSL-1.1-ALv2
-      color: '#F59E0B'
+      accent: amber
     - text: by Littl3.1 Engineering
-      color: '#FFA500'
+      accent: orange
   intro:
     title: Your house, your data, your rules.
     lines:
@@ -80,8 +61,9 @@ alfr3d:
   products:
     - title: Nexus Launcher
       id: p-launcher
-      img: 'assets/images/nexus-launcher-1.jpg'
-      background: 'assets/images/Littl31_web_graphic1.png'
+      eyebrow: / NEXUS LAUNCHER
+      accent: cyan
+      img: 'assets/images/nexus-launcher-radial.jpg'
       lines:
         - A free-form spatial launcher for Android — no permanent dock, apps and ALFR3D surfaces open as free-floating windows on an infinite canvas. Double-tap search, a built-in terminal, live situational-awareness cards.
         - Free core, forever. A one-time unlock removes the ceiling — no subscription, because a launcher sitting on your own phone doesn't cost us a server bill to run.
@@ -89,23 +71,25 @@ alfr3d:
       pricing:
         - amount: Free
           label: Core launcher, full spatial canvas, ALFR3D pairing
+          info: Free forever — the whole spatial canvas, Nexus Core radial menu, double-tap search, window manager, terminal, base theming. No trial timer, no feature ceiling that expires.
         - amount: $5.99
           label: Pro unlock · one-time, Play Billing
-          accent: '#FFA500'
+          accent: orange
+          info: One-time purchase through Google Play Billing — not a subscription, no tiers. Unlocks extra themes and icon packs, advanced window layouts (snap presets, multi-window save/restore), and layout backup & restore.
     - title: ALFR3D Core
       id: p-core
+      eyebrow: / ALFR3D CORE
       right: true
       img: 'assets/images/alfr3d-dashboard.jpg'
-      background: 'assets/images/Littl31_web_graphic3.png'
       lines:
         - The backend. Kafka messaging, containerized services, a dashboard that actually looks like something you'd want on a wall panel — not a spreadsheet.
         - Stays free forever, stays self-hosted, stays local-first. This is the platform, not the product we're selling — think of it the way Home Assistant thinks of Home Assistant Core.
     - title: ALFR3D Cloud
       id: p-cloud
-      background: 'assets/images/Littl31_web_graphic2.png'
+      eyebrow: / ALFR3D CLOUD
       badge:
         text: Coming — Phase 3
-        color: '#FFA500'
+        accent: gray
       lines:
         - A thin, dumb-pipe relay for remote access and push — it never sees your home's plaintext data. Reach your house from anywhere without opening a port on your router.
         - Benchmarked against Nabu Casa — a fair price for infrastructure we run, on top of a platform that costs nothing to run yourself.
@@ -113,13 +97,54 @@ alfr3d:
       pricing:
         - amount: Free
           label: Local-only, always available
+          info: Local network only — everything ALFR3D does today. No relay, no account, no monthly fee. This tier isn't going away.
         - amount: $5.99/mo
           label: Cloud · remote access, push
+          info: Or $59/yr. Remote access relay — no port-forwarding — plus push notifications to the launcher and phone. Benchmarked against Nabu Casa (~$6.50/mo), the closest real precedent for this model.
         - amount: $11.99/mo
           label: Cloud+ · hosted backups, personality features, priority support
-          accent: '#FFA500'
+          accent: orange
+          info: Or $119/yr. Everything in Cloud, plus hosted backups, the LLM-powered personality/quips features, and a priority support queue — real per-user compute cost behind each of those.
   kit:
     title: ALFR3D Kit
     text: A pre-flashed Pi appliance, built to order. Parked until Cloud proves there's real demand for it.
     badge: Not yet scheduled
 
+lab:
+  meta:
+    title: 'Lab : Littl3.1 Engineering'
+    description: LED experiments, one-off builds, and workbench prototypes from Littl3.1 Engineering — the R&D corner behind ALFR3D.
+  intro:
+    title: Bad Idea Engineering
+    lines:
+      - We are just going to pass through your life and make it just a little bit more better before we turn back to inconveniencing very large groups of electrons.
+      - Littl3.1 is rooted in profound laziness and relentless pursuit of the ghost of reason. Yet, no credit can be taken for any of it. It's a gift really. Few possess it. Here, at Littl3.1 Engineering, it is aimed directly at evolutionary and technological advance of our species by being deliberately and meticulously selective.
+      - As a result, most of what happens here is a series of single-servings of sheer genius, ambitious prototyping, one_of_a_kind designs and tranquil determination.
+      - Now, tell us, how can we make your life even more awesome?
+  items:
+    - title: Prim3 LED
+      id: p0
+      img: 'assets/images/IMG_20201213_114739.jpg'
+      lines:
+        - Your cyber_virtual_presence meetings of talking heads are made dull by boring background of a gray wall and you refuse to use a sandy beach green-screen insert; You think that blurred background was cool back in 2009; You want to shine in your authentic way.
+        - Attach this littl3 nugget to a LED strip, fire up our app and awe your viewers with creative visuals and certain distraction. If that's not your stride, you can tuck a similar rig under your bed frame or on top of cabinets for accent lighting. Either way, the results are shining.
+    - title: Emoji Goggl3s
+      id: p1
+      right: true
+      img: 'assets/images/FB_IMG_1504669124233.jpg'
+      lines:
+        - Right, so you got yourself some nice goggles and you really want to see absolutely nothing out of them. Why not stuff them full of LEDs, copper and lithium? Then, all you need is a helmet or a hat to attach them to and you'll have a very unique headlamp for your next camping trip.
+        - That is exactly what has happened here. Arranged in a peculiar order and with a little bit of initiative, the LEDs in the goggles can be made to display anything from your current facebook status to your favorite crypto value. We chose to render a randomly selected expression from a collection of ASCII emojis on a random timer. These goggles are a great conversation piece, a source of light and endless amusement.
+    - title: H3x Tent Lighting
+      id: p2
+      vid: 'assets/vid/TentLighingRender3.mp4'
+      lines:
+        - Candles, flood lights, kerosine lamps and even the common smart bulbs have already been outdated. On the cutting edge of technology, we want something more. We want lighting capable of being a VU meter when occasion calls for a rager. We want to be able to feel the flicker of campfire or experience blue skies... why not have it all?
+        - This event lighting project spanned over 3000 utlra_bright LEDs, contained over a kilometer of wires and survived some very extreme weather conditions. Several predefined lighting patterns allowed the overall lighting system to provide mood lighting or responsive music lighting depending on need or occassion. For those of you who might be concerned about polar bears, you can rest easy knowing that this entire setup was powered by 750W power supply but averaged around 300W mark using ~1% of available power.
+    - title: Whit3 Board
+      id: p3
+      right: true
+      img: 'assets/images/IMG_20210414_085631.jpg'
+      lines:
+        - This white board dances and mesmerizes. While idle, a snake of color will loop round and round. A vibrant wave will splash from one corner to all others. It serves as a night light without screaming for attention.
+        - However, once you stand in front of it, grab a marker and begin your brainstorming session, the board will sense your presence and stop dazzling you. Instead, it will start to flash slowly, very slowly, in rhythm of meditative breath. Each breath a different color, for just a little bit of flare, with the overarching desire to soothe your mind into a state of clarity and focus.

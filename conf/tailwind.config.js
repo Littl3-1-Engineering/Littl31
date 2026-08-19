@@ -4,16 +4,27 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['audimat', ...defaultTheme.fontFamily.sans]
+        sans: [...defaultTheme.fontFamily.sans],
+        display: ['audimat', ...defaultTheme.fontFamily.sans]
       },
       colors: {
         brand: {
           orange: '#FFA500'
+        },
+        accent: {
+          amber: '#F7C948',
+          cyan: '#22D3EE'
+        },
+        bg: {
+          charcoal: '#0A0D13',
+          panel: '#141821'
         }
       }
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      pointerEvents: ['group-hover'],
+    },
   }
 }
