@@ -11,40 +11,41 @@ head
   link(rel="icon" type="image/png" href='assets/images/favicon.ico')
   script(src='js/main.js', defer)
 
-body.text-white
+body.text-white.grid-bg
+  +navBar(nav, brand)
+
   main(data-scroll-container)
 
     +splash
+      .flex.flex-wrap.justify-center.mt-4(data-scroll data-scroll-repeat data-scroll-position='top' class='gap-4')
+        for badge in alfr3d.badges
+          span.inline-block.mt-2(class=`accent-border-${badge.accent || 'gray'} accent-text-${badge.accent || 'gray'} text-xs tracking-widest uppercase border rounded-full px-4 py-2`)= badge.text
 
-    section#intro.p-8.flex.items-center.justify-center(data-scroll-section)
-      .max-w-screen-lg.w-full
-        h2.text-7xl.font-bold.text-yellow-500.text-right(
-          href='#intro',
-          data-scramble-intro,
-          data-scroll,
-          data-scroll-repeat,
-          data-scroll-speed='3',
-          data-scroll-position='top',
-          data-scroll-direction='horizontal'
-        ) #{intro.title}
-        .w-full.mt-32.flex.justify-end
-          div.max-w-xl.space-y-8(data-scroll)
-            for line, i in intro.lines
-              p.opacity-0.transition-opacity.delay-100.duration-700(
-                data-scroll,
-                data-scroll-repeat,
-                data-scroll-class='opacity-100'
-              ) #{line}
-            if intro.cta
-              p.opacity-0.transition-opacity.delay-100.duration-700(
-                data-scroll,
-                data-scroll-repeat,
-                data-scroll-class='opacity-100'
-              )
-                a.font-bold(href=intro.cta.href)= intro.cta.text
+    +introHero(home.pitch, 'amber')
 
-    section#projects(data-scroll-section)
-      for project in projects
-        +section(project)
+    section#highlights(data-scroll-section, class='py-16 px-8')
+      .max-w-screen-lg.mx-auto.grid(class='grid-cols-1 md:grid-cols-3 gap-6')
+        for chip in home.highlights
+          .relative.opacity-0(
+            data-scroll,
+            data-scroll-repeat,
+            data-scroll-class='opacity-100',
+            class='window-frame window-sm accent-amber transition-opacity delay-100 duration-700'
+          )
+            .window-body
+              .window-titlebar
+                span.window-dot
+              .window-content(class='p-6')
+                h3.font-display.font-bold.accent-text-amber(class='text-xl')= chip.title
+                p.text-gray-300.mt-2(class='text-sm leading-relaxed')= chip.text
+
+    section#about.border-t.border-gray-800(data-scroll-section, class='py-16 px-8')
+      .max-w-screen-lg.mx-auto.flex.items-center.justify-between.flex-wrap(class='gap-8')
+        div.max-w-xl
+          h3.font-display.font-bold.text-white(class='text-2xl')= home.about.title
+          for line in home.about.lines
+            p.text-gray-400.mt-2(class='text-sm leading-relaxed')= line
+        if home.about.cta
+          a(href=home.about.cta.href, class='btn-glow accent-orange')= home.about.cta.text
 
     +siteFooter(footer)

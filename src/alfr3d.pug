@@ -11,44 +11,27 @@ head
   link(rel="icon" type="image/png" href='assets/images/favicon.ico')
   script(src='js/main.js', defer)
 
-body.text-white
+body.text-white.grid-bg
+  +navBar(nav, brand)
+
   main(data-scroll-container)
 
     +splash
-      .flex.gap-4.mt-4(data-scroll data-scroll-repeat data-scroll-position='top')
+      .flex.flex-wrap.justify-center.mt-4(data-scroll data-scroll-repeat data-scroll-position='top' class='gap-4')
         for badge in alfr3d.badges
-          span.inline-block.text-xs.tracking-widest.uppercase.border.rounded-full.px-4.py-2(
-            style=`color:${badge.color};border-color:${badge.color}`
-          )= badge.text
+          span.inline-block.mt-2(class=`accent-border-${badge.accent || 'gray'} accent-text-${badge.accent || 'gray'} text-xs tracking-widest uppercase border rounded-full px-4 py-2`)= badge.text
 
-    section#intro.p-8.flex.items-center.justify-center(data-scroll-section)
-      .max-w-screen-lg.w-full
-        h2.text-6xl.font-bold.text-yellow-500.text-right(
-          data-scramble-intro,
-          data-scroll,
-          data-scroll-repeat,
-          data-scroll-speed='3',
-          data-scroll-position='top',
-          data-scroll-direction='horizontal'
-        ) #{alfr3d.intro.title}
-        .w-full.mt-32.flex.justify-end
-          div.max-w-xl.space-y-8(data-scroll)
-            for line in alfr3d.intro.lines
-              p.opacity-0.transition-opacity.delay-100.duration-700(
-                data-scroll,
-                data-scroll-repeat,
-                data-scroll-class='opacity-100'
-              ) #{line}
+    +introHero(alfr3d.intro, 'amber')
 
-    section#products(data-scroll-section)
+    section#products(data-scroll-section, class='py-8')
       for product in alfr3d.products
         +section(product)
 
-    section.py-16.px-8.border-t.border-gray-800(data-scroll-section)
-      .max-w-screen-lg.mx-auto.flex.items-center.justify-between.flex-wrap.gap-8
+    section.border-t.border-gray-800(data-scroll-section, class='py-16 px-8')
+      .max-w-screen-lg.mx-auto.flex.items-center.justify-between.flex-wrap(class='gap-8')
         div
-          h3.text-2xl.font-bold.text-gray-300 #{alfr3d.kit.title}
-          p.text-gray-500.text-sm.mt-2.max-w-lg #{alfr3d.kit.text}
-        span.inline-block.text-xs.tracking-widest.uppercase.border.border-gray-700.text-gray-500.rounded-full.px-4.py-2 #{alfr3d.kit.badge}
+          h3.font-display.font-bold.text-gray-300(class='text-2xl') #{alfr3d.kit.title}
+          p.text-gray-500.mt-2(class='text-sm max-w-lg') #{alfr3d.kit.text}
+        span.inline-block.border.border-gray-700.text-gray-500.rounded-full(class='text-xs tracking-widest uppercase px-4 py-2') #{alfr3d.kit.badge}
 
     +siteFooter(footer, { href: 'index.html', text: '← Littl3.1 Engineering' })

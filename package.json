@@ -7,7 +7,7 @@
     "dev": "run-p server watch",
     "deploy": "run-s build:prod release",
     "prehtml": "js-yaml src/content.yml > dist/content.json",
-    "html": "pug -O dist/content.json -P src/index.pug src/alfr3d.pug -o dist",
+    "html": "pug -O dist/content.json -P src/index.pug src/alfr3d.pug src/lab.pug -o dist",
     "posthtml": "rimraf dist/content.json",
     "css": "stylus src/css/index.styl --include node_modules --include-css --print | postcss -o dist/css/style.css --config conf",
     "js:dev": "browserify src/js/index.js -o dist/js/main.js -d -t [ babelify --presets [ @babel/preset-env ] ]",
