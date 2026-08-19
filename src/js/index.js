@@ -1,3 +1,5 @@
 import './parallax.js'
 import './scramble.js'
 import './anim.js'
+import './pricing-info.js'
+import './nav.js'

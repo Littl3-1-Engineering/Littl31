@@ -1,0 +1,37 @@
+doctype html
+
+include mixins.pug
+
+head
+  meta(charset='utf-8')
+  title #{alfr3d.meta.title}
+  meta(name='description' content=alfr3d.meta.description)
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  link(rel='stylesheet' href='css/style.css')
+  link(rel="icon" type="image/png" href='assets/images/favicon.ico')
+  script(src='js/main.js', defer)
+
+body.text-white.grid-bg
+  +navBar(nav, brand)
+
+  main(data-scroll-container)
+
+    +splash
+      .flex.flex-wrap.justify-center.mt-4(data-scroll data-scroll-repeat data-scroll-position='top' class='gap-4')
+        for badge in alfr3d.badges
+          span.inline-block.mt-2(class=`accent-border-${badge.accent || 'gray'} accent-text-${badge.accent || 'gray'} text-xs tracking-widest uppercase border rounded-full px-4 py-2`)= badge.text
+
+    +introHero(alfr3d.intro, 'amber')
+
+    section#products(data-scroll-section, class='py-8')
+      for product in alfr3d.products
+        +section(product)
+
+    section.border-t.border-gray-800(data-scroll-section, class='py-16 px-8')
+      .max-w-screen-lg.mx-auto.flex.items-center.justify-between.flex-wrap(class='gap-8')
+        div
+          h3.font-display.font-bold.text-gray-300(class='text-2xl') #{alfr3d.kit.title}
+          p.text-gray-500.mt-2(class='text-sm max-w-lg') #{alfr3d.kit.text}
+        span.inline-block.border.border-gray-700.text-gray-500.rounded-full(class='text-xs tracking-widest uppercase px-4 py-2') #{alfr3d.kit.badge}
+
+    +siteFooter(footer, { href: 'index.html', text: '← Littl3.1 Engineering' })
