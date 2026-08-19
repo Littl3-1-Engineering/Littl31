@@ -1,116 +1,105 @@
 <!DOCTYPE html>
 <head>
   <meta charset="utf-8">
-  <title>LiTl31 : Automation Engineering</title>
-  <meta name="description" content="Automation Engineering - Consulting, Design, Planning, Execution, Support">
+  <title>ALFR3D by Littl3.1 Engineering — Self-Hosted Home Automation</title>
+  <meta name="description" content="ALFR3D is a self-hosted, local-first home-automation platform by Littl3.1 Engineering. No ads, no telemetry, your home stays yours.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" type="image/png" href="assets/images/favicon.ico">
   <script src="js/main.js" defer></script>
 </head>
-<body class="text-white">
+<body class="text-white grid-bg">
+  <nav class="nav-glass fixed top-0 left-0 right-0 z-50">
+    <div class="max-w-screen-lg mx-auto flex items-center justify-between px-4 md:px-8 py-3"><a class="flex items-center gap-2" href="index.html"><img class="w-7 h-7" src="assets/images/logo.svg" alt="Littl3.1"><span class="font-display text-white text-lg tracking-wide">Littl3.1</span></a>
+      <button class="text-white md:hidden p-2" type="button" aria-label="Toggle menu" aria-expanded="false" data-nav-toggle>
+        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+      <ul class="font-mono hidden md:flex items-center gap-8 text-xs uppercase tracking-widest" data-nav-menu>
+        <li><a class="text-gray-300 transition-colors" href="alfr3d.html">ALFR3D</a></li>
+        <li><a class="text-gray-300 transition-colors" href="lab.html">Lab</a></li>
+        <li><a class="text-gray-300 transition-colors" href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
   <main data-scroll-container>
     <section class="h-screen flex flex-col items-center justify-center" id="splash" data-scroll-section>
       <div data-scroll data-scroll-repeat data-scroll-speed="-3" data-scroll-position="top">
         <svg class="logo -mt-32"></svg>
       </div>
       <div data-scroll data-scroll-repeat data-scroll-speed="-2" data-scroll-position="top"><a href="#intro">
-          <h1 class="text-5xl font-bold text-yellow-500" data-scramble-title>&nbsp;</h1></a></div>
+          <h1 class="font-bold font-display accent-text-orange text-5xl" data-scramble-title>&nbsp;</h1></a></div>
+      <div class="flex flex-wrap justify-center mt-4 gap-4" data-scroll data-scroll-repeat data-scroll-position="top"><span class="inline-block mt-2 accent-border-amber accent-text-amber text-xs tracking-widest uppercase border rounded-full px-4 py-2">Open source · FSL-1.1-ALv2</span><span class="inline-block mt-2 accent-border-orange accent-text-orange text-xs tracking-widest uppercase border rounded-full px-4 py-2">by Littl3.1 Engineering</span>
+      </div>
     </section>
     <section class="p-8 flex items-center justify-center" id="intro" data-scroll-section>
-      <div class="max-w-screen-lg w-full">
-        <h2 class="text-7xl font-bold text-yellow-500 text-right whitespace-nowrap" href="#intro" data-scramble-intro data-scroll data-scroll-repeat data-scroll-speed="3" data-scroll-position="top" data-scroll-direction="horizontal">Bad Idea Engineering</h2>
-        <div class="w-full mt-32 flex justify-end">
-          <div class="max-w-xl space-y-8" data-scroll>
-            <p class="opacity-0 transition-opacity delay-100 duration-700" data-scroll data-scroll-repeat data-scroll-class="opacity-100">We are just going to pass through your life and make it just a little bit more better before we turn back to inconveniencing very large groups of electrons.</p>
-            <p class="opacity-0 transition-opacity delay-100 duration-700" data-scroll data-scroll-repeat data-scroll-class="opacity-100">Littl3.1 is rooted in profound laziness and relentless pursuit of the ghost of reason. Yet, no credit can be taken for any of it. It’s a gift really. Few possess it. Here, at Littl3.1 Engineering, it is aimed directly at evolutionary and technological advance of our species by being deliberately and meticulously selective.</p>
-            <p class="opacity-0 transition-opacity delay-100 duration-700" data-scroll data-scroll-repeat data-scroll-class="opacity-100">As a result, most of what happens here is a series of single-servings of sheer genius, ambitious prototyping, one_of_a_kind designs and tranquil determination.</p>
-            <p class="opacity-0 transition-opacity delay-100 duration-700" data-scroll data-scroll-repeat data-scroll-class="opacity-100">Now, tell us, how can we make your life even more awesome?</p>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section id="projects" data-scroll-section>
-      <div class="flex items-center justify-center p-8 bg-center bg-cover" id="p0" style="background-image: url(assets/images/Littl31_web_graphic1.png)">
-        <div class="max-w-screen-lg w-full">
-          <h2 class="text-7xl font-bold text-yellow-500 whitespace-nowrap" data-scramble-project="Prim3 LED" data-scroll data-scroll-repeat data-scroll-speed="-1" data-scroll-position="top" data-scroll-direction="horizontal" data-scroll-target="#p0">Prim3 LED
-          </h2>
-          <hr class="my-4 border-t-4 border-yellow-500">
-          <div class="w-full mt-16 flex justify-end">
-            <div class="border-4 border-yellow-500 bg-yellow-500 w-1/2"><img class="mx-auto opacity-90 w-full" src="assets/images/IMG_20201213_114739.jpg"></div>
-          </div>
-          <div class="w-full mt-8 flex justify-start">
-            <div class="max-w-md space-y-8">
-              <p class="opacity-0 transition-opacity delay-100 duration-700" data-scroll data-scroll-repeat data-scroll-class="opacity-100">Your cyber_virtual_presence meetings of talking heads are made dull by boring background of a gray wall and you refuse to use a sandy beach green-screen insert; You think that blurred background was cool back in 2009; You want to shine in your authentic way.</p>
-              <p class="opacity-0 transition-opacity delay-100 duration-700" data-scroll data-scroll-repeat data-scroll-class="opacity-100">Attach this littl3 nugget to a LED strip, fire up our app and awe your viewers with creative visuals and certain distraction. If that's not your stride, you can tuck a similar rig under your bed frame or on top of cabinets for accent lighting. Either way, the results are shining.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="flex items-center justify-center p-8 bg-center bg-cover" id="p1" style="background-image: url(assets/images/Littl31_web_graphic2.png)">
-        <div class="max-w-screen-lg w-full">
-          <h2 class="text-7xl font-bold text-yellow-500 whitespace-nowrap" data-scramble-project="Emoji Goggl3s" data-scroll data-scroll-repeat data-scroll-speed="-1" data-scroll-position="top" data-scroll-direction="horizontal" data-scroll-target="#p1">Emoji Goggl3s
-          </h2>
-          <hr class="my-4 border-t-4 border-yellow-500">
-          <div class="w-full mt-16 flex justify-start">
-            <div class="border-4 border-yellow-500 bg-yellow-500 w-1/2"><img class="mx-auto opacity-90 w-full" src="assets/images/FB_IMG_1504669124233.jpg"></div>
-          </div>
-          <div class="w-full mt-8 flex justify-end">
-            <div class="max-w-md space-y-8">
-              <p class="opacity-0 transition-opacity delay-100 duration-700" data-scroll data-scroll-repeat data-scroll-class="opacity-100">Right, so you got yourself some nice goggles and you really want to see absolutely nothing out of them. Why not stuff them full of LEDs, copper and lithium? Then, all you need is a helmet or a hat to attach them to and you'll have a very unique headlamp for your next camping trip.</p>
-              <p class="opacity-0 transition-opacity delay-100 duration-700" data-scroll data-scroll-repeat data-scroll-class="opacity-100">That is exactly what has happened here. Arranged in a peculiar order and with a little bit of initiative, the LEDs in the goggles can be made to display anything from your current facebook status to your favorite crypto value. We chose to render a randomly selected expression from a collection of ASCII emojis on a random timer. These goggles are a great conversation piece, a source of light and endless amusement.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="flex items-center justify-center p-8 bg-center bg-cover" id="p2" style="background-image: url(assets/images/Littl31_web_graphic3.png)">
-        <div class="max-w-screen-lg w-full">
-          <h2 class="text-7xl font-bold text-yellow-500 whitespace-nowrap" data-scramble-project="H3x Tent Lighting" data-scroll data-scroll-repeat data-scroll-speed="-1" data-scroll-position="top" data-scroll-direction="horizontal" data-scroll-target="#p2">H3x Tent Lighting
-          </h2>
-          <hr class="my-4 border-t-4 border-yellow-500">
-          <div class="w-full mt-16 flex justify-end">
-            <div class="border-4 border-yellow-500 bg-yellow-500 w-1/2">
-              <video class="autoplay mx-auto opacity-90 w-full" autoplay loop>
-                <source src="assets/vid/TentLighingRender3.mp4" type="video/mp4">
-              </video>
-            </div>
-          </div>
-          <div class="w-full mt-8 flex justify-start">
-            <div class="max-w-md space-y-8">
-              <p class="opacity-0 transition-opacity delay-100 duration-700" data-scroll data-scroll-repeat data-scroll-class="opacity-100">Candles, flood lights, kerosine lamps and even the common smart bulbs have already been outdated. On the cutting edge of technology, we want something more. We want lighting capable of being a VU meter when occasion calls for a rager. We want to be able to feel the flicker of campfire or experience blue skies... why not have it all?</p>
-              <p class="opacity-0 transition-opacity delay-100 duration-700" data-scroll data-scroll-repeat data-scroll-class="opacity-100">This event lighting project spanned over 3000 utlra_bright LEDs, contained over a kilometer of wires and survived some very extreme weather conditions. Several predefined lighting patterns allowed the overall lighting system to provide mood lighting or responsive music lighting depending on need or occassion. For those of you who might be concerned about polar bears, you can rest easy knowing that this entire setup was powered by 750W power supply but averaged around 300W mark using ~1% of available power.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="flex items-center justify-center p-8 bg-center bg-cover" id="p3" style="background-image: url(assets/images/Littl31_web_graphic1.png)">
-        <div class="max-w-screen-lg w-full">
-          <h2 class="text-7xl font-bold text-yellow-500 whitespace-nowrap" data-scramble-project="Whit3 Board" data-scroll data-scroll-repeat data-scroll-speed="-1" data-scroll-position="top" data-scroll-direction="horizontal" data-scroll-target="#p3">Whit3 Board
-          </h2>
-          <hr class="my-4 border-t-4 border-yellow-500">
-          <div class="w-full mt-16 flex justify-start">
-            <div class="border-4 border-yellow-500 bg-yellow-500 w-1/2"><img class="mx-auto opacity-90 w-full" src="assets/images/IMG_20210414_085631.jpg"></div>
-          </div>
-          <div class="w-full mt-8 flex justify-end">
-            <div class="max-w-md space-y-8">
-              <p class="opacity-0 transition-opacity delay-100 duration-700" data-scroll data-scroll-repeat data-scroll-class="opacity-100">This white board dances and mesmerizes. While idle, a snake of color will loop round and round. A vibrant wave will splash from one corner to all others. It serves as a night light without screaming for attention.</p>
-              <p class="opacity-0 transition-opacity delay-100 duration-700" data-scroll data-scroll-repeat data-scroll-class="opacity-100">However, once you stand in front of it, grab a marker and begin your brainstorming session, the board will sense your presence and stop dazzling you. Instead, it will start to flash slowly, very slowly, in rhythm of meditative breath. Each breath a different color, for just a little bit of flare, with the overarching desire to soothe your mind into a state of clarity and focus.</p>
+      <div class="max-w-screen-lg w-full relative window-frame accent-amber">
+        <div class="window-tab"></div>
+        <div class="window-body">
+          <div class="window-titlebar"><span class="window-dot"></span></div>
+          <div class="window-content p-8 md:p-12">
+            <h2 class="font-display font-bold text-right accent-text-amber text-4xl md:text-6xl" data-scramble-intro data-scroll data-scroll-repeat data-scroll-speed="3" data-scroll-position="top" data-scroll-direction="horizontal">ALFR3D runs your home. You still own it.</h2>
+            <div class="w-full mt-12 flex justify-end">
+              <div class="max-w-xl space-y-6" data-scroll>
+                <p class="opacity-0 transition-opacity delay-100 duration-700 text-gray-300 leading-relaxed" data-scroll data-scroll-repeat data-scroll-class="opacity-100">A self-hosted, local-first home-automation platform — a containerized backend that actually knows what day it is and what's playing, and Nexus Launcher, an Android home screen built to talk to it directly.</p>
+                <p class="opacity-0 transition-opacity delay-100 duration-700 text-gray-300 leading-relaxed" data-scroll data-scroll-repeat data-scroll-class="opacity-100">No ad tier. Not now, not ever. That's not a pricing decision, it's a policy.</p>
+                <p class="pt-2"><a class="btn-glow accent-amber" href="alfr3d.html">→ See what ALFR3D can do</a></p>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
-    <footer class="container mx-auto py-8 px-4 text-white" data-scroll-section>
+    <section class="py-16 px-8" id="highlights" data-scroll-section>
+      <div class="max-w-screen-lg mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="relative opacity-0 window-frame window-sm accent-amber transition-opacity delay-100 duration-700" data-scroll data-scroll-repeat data-scroll-class="opacity-100">
+          <div class="window-body">
+            <div class="window-titlebar"><span class="window-dot"></span></div>
+            <div class="window-content p-6">
+              <h3 class="font-display font-bold accent-text-amber text-xl">Self-hosted</h3>
+              <p class="text-gray-300 mt-2 text-sm leading-relaxed">Runs on hardware you own — the platform costs nothing to run yourself, the way it should.</p>
+            </div>
+          </div>
+        </div>
+        <div class="relative opacity-0 window-frame window-sm accent-amber transition-opacity delay-100 duration-700" data-scroll data-scroll-repeat data-scroll-class="opacity-100">
+          <div class="window-body">
+            <div class="window-titlebar"><span class="window-dot"></span></div>
+            <div class="window-content p-6">
+              <h3 class="font-display font-bold accent-text-amber text-xl">No ads, ever</h3>
+              <p class="text-gray-300 mt-2 text-sm leading-relaxed">Excluded by policy, not by roadmap. Your home's data never leaves your network unless you decide it should.</p>
+            </div>
+          </div>
+        </div>
+        <div class="relative opacity-0 window-frame window-sm accent-amber transition-opacity delay-100 duration-700" data-scroll data-scroll-repeat data-scroll-class="opacity-100">
+          <div class="window-body">
+            <div class="window-titlebar"><span class="window-dot"></span></div>
+            <div class="window-content p-6">
+              <h3 class="font-display font-bold accent-text-amber text-xl">Free core forever</h3>
+              <p class="text-gray-300 mt-2 text-sm leading-relaxed">The backend and the launcher's core stay free — always. You only pay for convenience you actually want.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="border-t border-gray-800 py-16 px-8" id="about" data-scroll-section>
+      <div class="max-w-screen-lg mx-auto flex items-center justify-between flex-wrap gap-8">
+        <div class="max-w-xl">
+          <h3 class="font-display font-bold text-white text-2xl">Littl3.1 Engineering</h3>
+          <p class="text-gray-400 mt-2 text-sm leading-relaxed">Littl3.1 is a small, deliberately selective engineering shop. ALFR3D is the flagship — everything else is R&amp;D, prototypes, and one-off builds, kept in the Lab.</p>
+        </div><a class="btn-glow accent-orange" href="lab.html">→ Visit the Lab</a>
+      </div>
+    </section>
+    <footer class="nav-glass text-white py-8 px-4" id="contact" data-scroll-section>
       <div class="max-w-screen-lg mx-auto flex flex-col">
         <div class="flex items-center w-full">
           <div class="w-1/3"></div>
           <div class="w-1/3"><img class="mx-auto w-24" src="assets/images/logo.svg"></div>
           <div class="text-right w-1/3">
-            <div data-scroll data-scroll-repeat data-scroll-position="top" data-scroll-speed="-1"></div><a class="cursor-pointer text-4xl font-bold text-yellow-500" href="mailto:athos@littl31.com" data-scramble-contact>Contact</a>
+            <div data-scroll data-scroll-repeat data-scroll-position="top" data-scroll-speed="-1"></div><a class="cursor-pointer font-bold font-display accent-text-orange text-5xl" href="mailto:athos@littl31.com" data-scramble-contact>Contact</a>
           </div>
         </div>
-        <p class="text-center text-sm mt-4 px-8" data-scroll data-scroll-repeat data-scroll-speed="0.5">If you’ve gotten this far, you may as well keep reading. At Littl3.1 we stand behind our engineering and we stand behind our community. For this reason, we are transient and any anti-advertising is the integral part of elaborate and delicate ploy to deter an entire generation of individuals who feel entitled to lives they don’t want to work for. Further, experience has shown us that we may need to take a moment to provide some interpretational guidelines. We choose our words with great care and with much deliberation. In particular, any reference to laziness does not imply procrastination, tardiness, or sloth. On the contrary, it refers to disciplined mastery of finding easy ways to perform difficult tasks. 
-</p>
+        <p class="text-center text-gray-400 text-sm mt-4 px-8" data-scroll data-scroll-repeat data-scroll-speed="0.5">No ads, no telemetry, by design — not a pricing tier, a policy. Littl3.1 Engineering builds deliberately and ships selectively.</p>
       </div>
     </footer>
   </main>
