@@ -1,0 +1,178 @@
+//- Shared page chrome: nav, splash hero, the glass-panel "intro hero"
+//- pattern, the full-bleed product/project card pattern, and the footer.
+//-
+//- Colon-bearing Tailwind variants (md:, hover:, group-hover:, focus:)
+//- must always go inside a class='...' attribute string, never chained
+//- as .md:foo — Pug's parser reads the colon as filter syntax and breaks.
+
+mixin navBar(nav, brand)
+  nav.nav-glass(class='fixed top-0 left-0 right-0 z-50')
+    .max-w-screen-lg.mx-auto.flex.items-center.justify-between(class='px-4 md:px-8 py-3')
+      a.flex.items-center.gap-2(href='index.html')
+        img(src=brand.logo, alt=brand.name, class='w-7 h-7')
+        span.font-display.text-white(class='text-lg tracking-wide')= brand.name
+      button.text-white(type='button', aria-label='Toggle menu', aria-expanded='false', data-nav-toggle, class='md:hidden p-2')
+        svg(fill='none', viewBox='0 0 24 24', stroke='currentColor', class='w-6 h-6')
+          path(stroke-linecap='round', stroke-linejoin='round', stroke-width='2', d='M4 6h16M4 12h16M4 18h16')
+      ul.font-mono(data-nav-menu, class='hidden md:flex items-center gap-8 text-xs uppercase tracking-widest')
+        for link in nav
+          li
+            a.text-gray-300.transition-colors(href=link.href)= link.text
+
+mixin splash
+  section#splash.h-screen.flex.flex-col.items-center.justify-center(data-scroll-section)
+    div(
+      data-scroll,
+      data-scroll-repeat,
+      data-scroll-speed='-3',
+      data-scroll-position='top',
+    )
+      svg.logo.-mt-32
+    div(
+      data-scroll,
+      data-scroll-repeat,
+      data-scroll-speed='-2',
+      data-scroll-position='top',
+    )
+      a(href='#intro')
+        h1.font-bold.font-display.accent-text-orange(class='text-5xl', data-scramble-title) &nbsp;
+    if block
+      block
+
+mixin introHero(item, accent)
+  section#intro(data-scroll-section, class='p-8 flex items-center justify-center')
+    .max-w-screen-lg.w-full.relative(class=`window-frame accent-${accent}`)
+      .window-tab
+      .window-body
+        .window-titlebar
+          span.window-dot
+        .window-content(class='p-8 md:p-12')
+          h2.font-display.font-bold.text-right(
+            data-scramble-intro,
+            data-scroll,
+            data-scroll-repeat,
+            data-scroll-speed='3',
+            data-scroll-position='top',
+            data-scroll-direction='horizontal',
+            class=`accent-text-${accent} text-4xl md:text-6xl`
+          )= item.title
+          .w-full.mt-12.flex.justify-end
+            div.max-w-xl.space-y-6(data-scroll)
+              for line in item.lines
+                p.opacity-0(
+                  data-scroll,
+                  data-scroll-repeat,
+                  data-scroll-class='opacity-100',
+                  class='transition-opacity delay-100 duration-700 text-gray-300 leading-relaxed'
+                )= line
+              if item.cta
+                p.pt-2
+                  a(href=item.cta.href, class=`btn-glow accent-${accent}`)= item.cta.text
+
+mixin section(item, defaultAccent)
+  - var accent = item.accent || defaultAccent || 'amber'
+  .flex.items-center.justify-center(id=item.id, class='p-4 md:p-8')
+    .max-w-screen-lg.w-full.relative(class=`window-frame accent-${accent}`)
+      .window-tab
+      .window-body
+        .window-titlebar
+          span.window-dot
+          if item.eyebrow
+            span.font-mono(class='text-xs uppercase tracking-widest text-gray-300')= item.eyebrow
+        .window-content(class='p-8 md:p-12')
+          h2.font-display.font-bold(
+            data-scroll,
+            data-scroll-repeat,
+            data-scroll-speed='-1',
+            data-scroll-position='top',
+            data-scroll-direction='horizontal',
+            data-scroll-target=`#${item.id}`,
+            class=`accent-text-${accent} text-4xl md:text-6xl`
+          )= item.title
+          hr.my-4(class=`accent-border-${accent} border-t-2 opacity-40`)
+
+          if item.badge
+            - var badgeAccent = item.badge.accent || 'gray'
+            span.inline-block.mt-2(class=`accent-border-${badgeAccent} accent-text-${badgeAccent} text-xs tracking-widest uppercase border rounded-full px-4 py-2`)= item.badge.text
+
+          - var mediaSide = item.right ? 'justify-start' : 'justify-end'
+          - var textSide = item.right ? 'justify-end' : 'justify-start'
+          - var textWidth = item.wide ? 'max-w-2xl' : 'max-w-md'
+
+          if item.img
+            .w-full.mt-12.flex(class=mediaSide)
+              .overflow-hidden(class=`accent-border-${accent} border rounded-lg w-full md:w-1/2`)
+                img.w-full(src=item.img)
+          if item.vid
+            .w-full.mt-12.flex(class=mediaSide)
+              .overflow-hidden(class=`accent-border-${accent} border rounded-lg w-full md:w-1/2`)
+                video.w-full(autoplay, loop, muted, playsinline)
+                  source(src=item.vid, type='video/mp4')
+
+          .w-full.mt-10.flex(class=textSide)
+            div(class=`${textWidth} space-y-6`)
+              for line in item.lines
+                p.opacity-0(
+                  data-scroll,
+                  data-scroll-repeat,
+                  data-scroll-class='opacity-100',
+                  class='transition-opacity delay-100 duration-700 text-gray-300 leading-relaxed'
+                )= line
+
+              if item.pricing
+                .flex.flex-wrap.pt-2(class='gap-6')
+                  for tier in item.pricing
+                    - var tierAccent = tier.accent || accent
+                    .group.relative
+                      .window-frame.window-sm(class=`accent-${tierAccent}`)
+                        .window-body
+                          .window-content(class='px-6 py-4')
+                            .flex.items-center.gap-2
+                              div.font-bold(class=`accent-text-${tierAccent} text-3xl`)= tier.amount
+                              if tier.info
+                                button(
+                                  type='button',
+                                  aria-label=`More info — ${tier.label}`,
+                                  data-pricing-info-toggle,
+                                  class='flex-shrink-0 w-5 h-5 rounded-full border border-gray-500 text-gray-400 text-xs italic font-bold leading-none flex items-center justify-center hover:border-amber-400 hover:text-amber-400 focus:outline-none focus:border-amber-400 focus:text-amber-400 transition-colors'
+                                ) i
+                            div.text-xs.text-gray-400.mt-1= tier.label
+                      if tier.info
+                        .pricing-info-popover(
+                          data-pricing-info-popover,
+                          class=`info-popover accent-border-${tierAccent} absolute left-0 top-full mt-2 w-72 p-4 border text-sm text-gray-300 leading-relaxed opacity-0 pointer-events-none transition-opacity duration-200 z-20 group-hover:opacity-100 group-hover:pointer-events-auto`
+                        )= tier.info
+
+          if item.cta
+            p.pt-2
+              a(href=item.cta.href, class=`btn-glow accent-${accent}`)= item.cta.text
+
+mixin siteFooter(data, backLink)
+  footer.nav-glass.text-white(id='contact', data-scroll-section, class='py-8 px-4')
+    .max-w-screen-lg.mx-auto.flex.flex-col
+      if backLink
+        .w-full.mb-8
+          a.text-gray-400.transition-colors(href=backLink.href, class='text-sm hover:text-amber-400')= backLink.text
+      .flex.items-center.w-full
+        div(class='w-1/3')
+        div(class='w-1/3')
+          img.mx-auto(src='assets/images/logo.svg', class='w-24')
+        div.text-right(class='w-1/3')
+          div(
+            data-scroll,
+            data-scroll-repeat,
+            data-scroll-position='top',
+            data-scroll-speed='-1'
+          )
+          - var mail = `${data.email}`
+          a.cursor-pointer.font-bold.font-display.accent-text-orange(
+            href='mailto:' + mail,
+            data-scramble-contact,
+            class='text-5xl'
+          ) Contact
+      p.text-center.text-gray-400(
+        data-scroll,
+        data-scroll-repeat,
+        data-scroll-speed='0.5',
+        class='text-sm mt-4 px-8'
+      )= data.text

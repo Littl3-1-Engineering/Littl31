@@ -68,17 +68,16 @@ setTimeout(
       new TextScramble(document.querySelector('[data-scramble-title]')),
       ['LiTl31', 'Automation', 'Engineering', 'Consulting']
     )
+    // Each page has its own intro heading — scramble it into itself
+    // rather than a fixed phrase, so the effect works on every page.
+    const introEl = document.querySelector('[data-scramble-intro]')
+    if (introEl) {
+      scrambleTitle(new TextScramble(introEl), [introEl.innerText], 3)
+    }
     scrambleTitle(
-      new TextScramble(document.querySelector('[data-scramble-intro]')), 
-      ['Bad Idea Engineering'], 3
-    )
-    scrambleTitle(
-      new TextScramble(document.querySelector('[data-scramble-contact]')), 
+      new TextScramble(document.querySelector('[data-scramble-contact]')),
       ['Contact','e-mail','Get in touch'], 2
-    )    
-    document.querySelectorAll('[data-scramble-project]').forEach(project => {
-      scrambleTitle(new TextScramble(project), [project.innerText], 1)
-    })
+    )
   },
   5000
 )
