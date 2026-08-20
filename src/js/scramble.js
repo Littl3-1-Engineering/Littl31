@@ -20,6 +20,10 @@ class TextScramble {
     }
     cancelAnimationFrame(this.frameRequest)
     this.frame = 0
+    // Pin to monospace while scrambling so glyph-width changes each frame don't
+    // trigger a layout reflow on top of the innerHTML rewrite (font-display is
+    // proportional) — this is the mobile jitter source. Reverted once settled.
+    this.el.style.fontFamily = 'ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", "Courier New", monospace'
     this.update()
     return promise
   }
@@ -43,6 +47,7 @@ class TextScramble {
     }
     this.el.innerHTML = output
     if (complete === this.queue.length) {
+      this.el.style.fontFamily = ''
       this.resolve()
     } else {
       this.frameRequest = requestAnimationFrame(this.update)
@@ -54,28 +59,44 @@ class TextScramble {
   }
 }
 
-function scrambleTitle (fx, phrases, rate=1, index=0) {
+// callsLeft bounds the effect to 2 full loops through `phrases`, always settling
+// back on phrases[0], instead of recursing forever for the page's whole lifetime
+// (the other half of the mobile jitter — continuous background reflow cost).
+function scrambleTitle (fx, phrases, rate=1, index=0, callsLeft=phrases.length * 2 + 1) {
   fx.setText(phrases[index]).then(() => {
+    if (callsLeft <= 1) return
     setTimeout(() => {
-      scrambleTitle(fx, phrases, rate, (index + 1) % phrases.length)
+      scrambleTitle(fx, phrases, rate, (index + 1) % phrases.length, callsLeft - 1)
     }, 1500 * rate)
   })
 }
 
 setTimeout(
   () => {
+    const titleEl = document.querySelector('[data-scramble-title]')
+    const introEl = document.querySelector('[data-scramble-intro]')
+    const contactEl = document.querySelector('[data-scramble-contact]')
+
+    // Respect the OS-level "reduce motion" setting: skip the animated effect
+    // entirely and just show the final text.
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      if (titleEl) titleEl.textContent = 'LiTl31'
+      if (contactEl) contactEl.textContent = 'Contact'
+      // introEl already server-renders its real heading text — leave as-is.
+      return
+    }
+
     scrambleTitle(
-      new TextScramble(document.querySelector('[data-scramble-title]')),
+      new TextScramble(titleEl),
       ['LiTl31', 'Automation', 'Engineering', 'Consulting']
     )
     // Each page has its own intro heading — scramble it into itself
     // rather than a fixed phrase, so the effect works on every page.
-    const introEl = document.querySelector('[data-scramble-intro]')
     if (introEl) {
       scrambleTitle(new TextScramble(introEl), [introEl.innerText], 3)
     }
     scrambleTitle(
-      new TextScramble(document.querySelector('[data-scramble-contact]')),
+      new TextScramble(contactEl),
       ['Contact','e-mail','Get in touch'], 2
     )
   },

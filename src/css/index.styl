@@ -10,4 +10,11 @@
 
 body
 	background #0A0D13
-	overflow hidden
+
+// No `overflow: hidden` here on purpose: locomotive-scroll.css (imported
+// above) already scopes it to `html.has-scroll-smooth body` -- the class
+// Locomotive only adds when its transform-driven smooth engine actually
+// initializes (desktop, see parallax.js). An unconditional rule here would
+// block native scroll on mobile/tablet, which fall back to Locomotive's
+// native-scroll mode and need body's overflow left alone or nothing below
+// the fold is reachable.
