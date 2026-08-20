@@ -1,15 +1,15 @@
 import LocomotiveScroll from 'locomotive-scroll'
 
 setTimeout(() => {
+  // smooth only on desktop (Locomotive's own default for tablet/smartphone
+  // is false — real touch devices fall back to native scroll instead of the
+  // transform-driven engine, which is what avoids scroll jank on mobile).
+  // `overflow: hidden` on body is scoped in CSS to `html.has-scroll-smooth`
+  // (a class Locomotive only adds when smooth mode actually initializes),
+  // so native scroll isn't blocked on devices that fall back to it.
   const scroll = new LocomotiveScroll({
     el: document.querySelector('[data-scroll-container]'),
-    smooth: true,
-    // body has `overflow: hidden`, so scrolling only ever happens via
-    // Locomotive's transform-driven smooth engine. Its tablet/smartphone
-    // defaults turn smooth off and fall back to native scroll, which the
-    // CSS blocks outright — leaving touch devices with no way to scroll.
-    tablet: { smooth: true },
-    smartphone: { smooth: true }
+    smooth: true
   })
 
   // Locomotive Scroll drives scroll position via a transform on
