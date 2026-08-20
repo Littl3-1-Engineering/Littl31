@@ -12934,19 +12934,15 @@ if (toggle && menu) {
 var _locomotiveScroll = _interopRequireDefault(require("locomotive-scroll"));
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
 setTimeout(function () {
+  // smooth only on desktop (Locomotive's own default for tablet/smartphone
+  // is false — real touch devices fall back to native scroll instead of the
+  // transform-driven engine, which is what avoids scroll jank on mobile).
+  // `overflow: hidden` on body is scoped in CSS to `html.has-scroll-smooth`
+  // (a class Locomotive only adds when smooth mode actually initializes),
+  // so native scroll isn't blocked on devices that fall back to it.
   var scroll = new _locomotiveScroll["default"]({
     el: document.querySelector('[data-scroll-container]'),
-    smooth: true,
-    // body has `overflow: hidden`, so scrolling only ever happens via
-    // Locomotive's transform-driven smooth engine. Its tablet/smartphone
-    // defaults turn smooth off and fall back to native scroll, which the
-    // CSS blocks outright — leaving touch devices with no way to scroll.
-    tablet: {
-      smooth: true
-    },
-    smartphone: {
-      smooth: true
-    }
+    smooth: true
   });
 
   // Locomotive Scroll drives scroll position via a transform on
@@ -13041,6 +13037,10 @@ var TextScramble = /*#__PURE__*/function () {
       }
       cancelAnimationFrame(this.frameRequest);
       this.frame = 0;
+      // Pin to monospace while scrambling so glyph-width changes each frame don't
+      // trigger a layout reflow on top of the innerHTML rewrite (font-display is
+      // proportional) — this is the mobile jitter source. Reverted once settled.
+      this.el.style.fontFamily = 'ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", "Courier New", monospace';
       this.update();
       return promise;
     }
@@ -13071,6 +13071,7 @@ var TextScramble = /*#__PURE__*/function () {
       }
       this.el.innerHTML = output;
       if (complete === this.queue.length) {
+        this.el.style.fontFamily = '';
         this.resolve();
       } else {
         this.frameRequest = requestAnimationFrame(this.update);
@@ -13083,25 +13084,40 @@ var TextScramble = /*#__PURE__*/function () {
       return this.chars[Math.floor(Math.random() * this.chars.length)];
     }
   }]);
-}();
+}(); // callsLeft bounds the effect to 2 full loops through `phrases`, always settling
+// back on phrases[0], instead of recursing forever for the page's whole lifetime
+// (the other half of the mobile jitter — continuous background reflow cost).
 function scrambleTitle(fx, phrases) {
   var rate = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1;
   var index = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0;
+  var callsLeft = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : phrases.length * 2 + 1;
   fx.setText(phrases[index]).then(function () {
+    if (callsLeft <= 1) return;
     setTimeout(function () {
-      scrambleTitle(fx, phrases, rate, (index + 1) % phrases.length);
+      scrambleTitle(fx, phrases, rate, (index + 1) % phrases.length, callsLeft - 1);
     }, 1500 * rate);
   });
 }
 setTimeout(function () {
-  scrambleTitle(new TextScramble(document.querySelector('[data-scramble-title]')), ['LiTl31', 'Automation', 'Engineering', 'Consulting']);
+  var titleEl = document.querySelector('[data-scramble-title]');
+  var introEl = document.querySelector('[data-scramble-intro]');
+  var contactEl = document.querySelector('[data-scramble-contact]');
+
+  // Respect the OS-level "reduce motion" setting: skip the animated effect
+  // entirely and just show the final text.
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    if (titleEl) titleEl.textContent = 'LiTl31';
+    if (contactEl) contactEl.textContent = 'Contact';
+    // introEl already server-renders its real heading text — leave as-is.
+    return;
+  }
+  scrambleTitle(new TextScramble(titleEl), ['LiTl31', 'Automation', 'Engineering', 'Consulting']);
   // Each page has its own intro heading — scramble it into itself
   // rather than a fixed phrase, so the effect works on every page.
-  var introEl = document.querySelector('[data-scramble-intro]');
   if (introEl) {
     scrambleTitle(new TextScramble(introEl), [introEl.innerText], 3);
   }
-  scrambleTitle(new TextScramble(document.querySelector('[data-scramble-contact]')), ['Contact', 'e-mail', 'Get in touch'], 2);
+  scrambleTitle(new TextScramble(contactEl), ['Contact', 'e-mail', 'Get in touch'], 2);
 }, 5000);
 
 },{}]},{},[5]);
