@@ -12936,7 +12936,17 @@ function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default":
 setTimeout(function () {
   var scroll = new _locomotiveScroll["default"]({
     el: document.querySelector('[data-scroll-container]'),
-    smooth: true
+    smooth: true,
+    // body has `overflow: hidden`, so scrolling only ever happens via
+    // Locomotive's transform-driven smooth engine. Its tablet/smartphone
+    // defaults turn smooth off and fall back to native scroll, which the
+    // CSS blocks outright — leaving touch devices with no way to scroll.
+    tablet: {
+      smooth: true
+    },
+    smartphone: {
+      smooth: true
+    }
   });
 
   // Locomotive Scroll drives scroll position via a transform on
