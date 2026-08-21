@@ -116,7 +116,7 @@
     ],
     "status": "Shipped",
     "date": "2026-08-20",
-    "description": "Now Littl3-1-Engineering/alfr3d, 279 commits, latest tagged release v0.1.7. Described by its own README as \"the final resting place of Alfr3d after years of different architectures and repos.\"",
+    "description": "Now Littl3-1-Engineering/alfr3d, 534 commits on main, latest tagged release v0.2.0. Described by its own README as \"the final resting place of Alfr3d after years of different architectures and repos.\"",
     "source": "https://github.com/Littl3-1-Engineering/alfr3d"
   },
   {
@@ -133,14 +133,14 @@
   },
   {
     "id": "backend-v018",
-    "milestone": "Alfr3d Backend v0.1.8 feature set",
+    "milestone": "Alfr3d Backend v0.2.0 feature set",
     "phase": "Present",
     "product": [
       "Backend"
     ],
     "status": "Shipped",
-    "date": "2026-08-01",
-    "description": "Containerized microservices (Kafka, MySQL, Redis, FastAPI, React), Nexus/Domain/Matrix frontends, Spotify integration, RTSP streaming, WHEN/IF/THEN automations, situational-awareness engine, IoT sync. Functionality shipped in code though not yet git-tagged.",
+    "date": "2026-08-21",
+    "description": "Containerized microservices (Kafka, MySQL, Redis, FastAPI, React), Nexus/Domain/Matrix frontends, Spotify integration, RTSP/HLS camera streaming (now device-registry-backed, multi-camera), WHEN/IF/THEN automations, situational-awareness engine, IoT sync across Home Assistant/SmartThings/ESPHome. Tagged v0.2.0 \"Multi-Camera Registry\", 2026-08-21.",
     "source": "https://github.com/Littl3-1-Engineering/alfr3d"
   },
   {
@@ -152,8 +152,28 @@
     ],
     "status": "Shipped",
     "date": "2026-08-01",
-    "description": "28 tagged releases, free spatial launcher + $5.99 Pro unlock live, CI builds debug APK on every push to main, signed-release workflow on version tags.",
+    "description": "Free spatial launcher + $5.99 Pro unlock live, CI builds debug APK on every push to main, signed-release workflow on version tags. Latest tag v0.1.29; a rotation-lock setting bumped the code to v0.1.30 (not yet tag-cut).",
     "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck"
+  },
+  {
+    "id": "nexus-custom-colors",
+    "milestone": "Custom Colors theming (5th Pro feature)",
+    "phase": "Present",
+    "product": ["Nexus Launcher"],
+    "status": "Shipped",
+    "date": "2026-08-20",
+    "description": "User-defined Primary/Action/Environmental accent colors via an in-app HSV picker, sharing the same palette-derivation code as the wallpaper-inferred theme. Backgrounds/glass/text stay fixed for legibility. Also fixed a hardcoded radial-menu wedge color bug for the launcher category on the two data-driven theme variants.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/commit/360aafae472197b424a5ed9b84c60b050e907538"
+  },
+  {
+    "id": "nexus-rotation-lock",
+    "milestone": "Rotation lock setting",
+    "phase": "Present",
+    "product": ["Nexus Launcher"],
+    "status": "Shipped",
+    "date": "2026-08-21",
+    "description": "New \"Lock screen rotation\" toggle in Behavior settings — launcher stays upright portrait regardless of device orientation when enabled; follows system auto-rotate when disabled (default). Verified on-device in both directions. Bumped to v0.1.30 in code; not yet tag-cut (latest tag v0.1.29).",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/blob/main/todo/todo_launcher_rotation_lock.md"
   },
   {
     "id": "monetization-plan",
@@ -192,20 +212,20 @@
     ],
     "status": "In Progress",
     "date": null,
-    "description": "Remote-access relay (no port forwarding) + push notifications; \"thin, dumb-pipe relay\" that never sees plaintext data. Not yet built.",
-    "source": "https://www.littl31.com/alfr3d.html"
+    "description": "Remote-access relay (no port forwarding) + push notifications; \"thin, dumb-pipe relay\" that never sees plaintext data. Now scoped into a phased plan in todo_cloud_relay.md: architecture spike -> subscriber/billing identity + Stripe -> relay/tunnel -> FCM push -> security review. Deliberately a separate identity system from household RBAC auth. Not yet built.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/todo_cloud_relay.md"
   },
   {
     "id": "cut-v018-tag",
-    "milestone": "Cut v0.1.8 git tag/release",
-    "phase": "Future",
+    "milestone": "v0.1.8 and v0.2.0 tagged releases",
+    "phase": "Present",
     "product": [
       "Backend"
     ],
-    "status": "In Progress",
-    "date": null,
-    "description": "RELEASE_NOTES.md already documents v0.1.8 (\"Situational Awareness Registry\") but the latest actual git tag is still v0.1.7.",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d"
+    "status": "Shipped",
+    "date": "2026-08-21",
+    "description": "Both tags now cut. v0.1.8 \"Situational Awareness Registry\" and v0.2.0 \"Multi-Camera Registry\" (adds ESPHome as a local-only IoT provider, moves camera streaming to a device-registry-backed multi-camera model, unifies version numbering across every service).",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/releases"
   },
   {
     "id": "play-store-publishing",
@@ -291,13 +311,83 @@
   },
   {
     "id": "esphome-integration",
-    "milestone": "ESPHome IoT integration",
+    "milestone": "ESPHome IoT integration (Phases 0-4)",
+    "phase": "Present",
+    "product": ["Backend"],
+    "status": "Shipped",
+    "date": "2026-08-21",
+    "description": "Shipped in v0.2.0 (2026-08-21): mDNS discovery, Noise-encrypted native API, manual-accept flow for discovered nodes, runs always-on in parallel with whichever of HA/SmartThings is the default provider. Also fixed a pre-existing bug where /api/iot/devices only ever showed one provider's devices at a time. Phase 5 (persistent push-based state via subscribe_states(), replacing the 15-min poll) not started.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/todo_esphome.md"
+  },
+  {
+    "id": "encrypt-secrets-at-rest",
+    "milestone": "Encrypt integration secrets at rest",
     "phase": "Future",
     "product": ["Backend"],
     "status": "Backburner",
     "date": null,
-    "description": "Add ESPHome as a first-class local-first IoT provider alongside Home Assistant/SmartThings \u2014 mDNS discovery, native encrypted API, no cloud/OAuth. Final unshipped phase of the IoT integration plan.",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/Neural-Blueprint/todo/todo_iot.md"
+    "description": "Every integration credential (ha_token, st_pat, Spotify client secret, ESPHome PSK) is currently plaintext in the config/smarthome_devices tables. Scoped as its own item after the ESPHome PSK design deliberately chose plaintext-for-v1. Planning only, not started.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/todo_encrypt_secrets_at_rest.md"
+  },
+  {
+    "id": "kit-cloud-commerce-plan",
+    "milestone": "Kit ordering / Cloud signup commerce plan",
+    "phase": "Future",
+    "product": ["littl31.com", "Cloud"],
+    "status": "Backburner",
+    "date": null,
+    "description": "Phased plan to give the Kit and Cloud pricing sections a real path from visitor to paying customer \u2014 site currently has zero CTA/checkout links on either tier. Phase A: free waitlist/interest-capture forms. Phase B (gated on Kit waitlist signal): Stripe Checkout for the one-time Kit purchase. Phase C (gated on the Cloud relay being built): Stripe Checkout + Customer Portal + magic-link login alongside the relay's own subscriber identity. Planning only, not started.",
+    "source": "https://github.com/Littl3-1-Engineering/Littl31/blob/master/todo/todo_cloud_kit_commerce.md"
+  },
+  {
+    "id": "repo-tooling-standardization",
+    "milestone": "Repo tooling standardization (all 3 repos)",
+    "phase": "Future",
+    "product": ["Backend", "Nexus Launcher", "littl31.com"],
+    "status": "Backburner",
+    "date": null,
+    "description": "Audit and bring pre-commit hooks, Dependabot, Aikido security scanning, and CI lint/test/build workflows to the same baseline across alfr3d, alfr3d_deck, and littl31 \u2014 alfr3d already has pre-commit + Dependabot + CI, the other two don't yet. Not started.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/todo_repo_standardization.md"
+  },
+  {
+    "id": "container-autostart",
+    "milestone": "Container autostart on device boot",
+    "phase": "Future",
+    "product": ["Backend"],
+    "status": "Backburner",
+    "date": null,
+    "description": "Init scripts (systemd unit or Docker restart policies) so all ALFR3D containers start automatically on host boot, without a manual docker compose up. Not started.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/todo_container_autostart.md"
+  },
+  {
+    "id": "db-schema-diagram",
+    "milestone": "DB schema ER diagram for README/wiki",
+    "phase": "Future",
+    "product": ["Backend"],
+    "status": "Backburner",
+    "date": null,
+    "description": "Export the current MySQL schema and generate an up-to-date ER diagram (e.g. Mermaid erDiagram) for the README and Notion wiki \u2014 the last diagram (if any) predates recent migrations (personality/context, IoT, routines). Not started.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/todo_db_schema_diagram.md"
+  },
+  {
+    "id": "hardware-enclosure",
+    "milestone": "Hardware enclosure design",
+    "phase": "Future",
+    "product": ["Backend"],
+    "status": "Backburner",
+    "date": null,
+    "description": "Physical enclosure for the ALFR3D device + peripherals (mic/speaker/camera/sensors), matching the dark tactical/glassmorphic visual identity. Not currently scheduled \u2014 blocked on the hardware phase starting and a finalized bill of materials.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/todo_hardware_enclosure.md"
+  },
+  {
+    "id": "personality-ticks-probabilistic",
+    "milestone": "Personality ticks shouldn't fire on every speak",
+    "phase": "Future",
+    "product": ["Backend"],
+    "status": "Backburner",
+    "date": null,
+    "description": "Personality quip \"ticks\" currently apply to every TTS speak action; should be probabilistic/occasional (random chance, cooldown, or context-based) so it doesn't feel like a bit every time. Newly scoped, not started.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/personality.md"
   },
   {
     "id": "camera-streaming-roadmap",
