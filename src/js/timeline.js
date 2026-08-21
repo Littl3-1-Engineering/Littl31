@@ -109,9 +109,6 @@ if (root) {
   }
 
   function entryCard (entry, accent) {
-    const link = entry.source
-      ? `<a class="btn-glow accent-${accent} mt-4 inline-flex text-xs" href="${escapeHtml(entry.source)}" target="_blank" rel="noopener noreferrer">View source →</a>`
-      : ''
     return `
       <div class="window-frame window-sm accent-${accent}">
         <div class="window-body">
@@ -124,7 +121,6 @@ if (root) {
             <h3 class="font-display font-bold text-white text-lg md:text-xl">${escapeHtml(entry.milestone)}</h3>
             <div class="flex flex-wrap gap-2 mt-3">${productChips(entry.product)}</div>
             <p class="text-gray-300 text-sm leading-relaxed mt-4">${escapeHtml(entry.description)}</p>
-            ${link}
           </div>
         </div>
       </div>`

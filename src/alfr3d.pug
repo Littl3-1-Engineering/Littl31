@@ -14,12 +14,11 @@ head
 body.text-white.grid-bg
   +navBar(nav, brand)
 
-  main(data-scroll-container)
+  main(class='pt-24', data-scroll-container)
 
-    +splash
-      .flex.flex-wrap.justify-center.mt-4(data-scroll data-scroll-repeat data-scroll-position='top' class='gap-4')
-        for badge in alfr3d.badges
-          span.inline-block.mt-2(class=`accent-border-${badge.accent || 'gray'} accent-text-${badge.accent || 'gray'} text-xs tracking-widest uppercase border rounded-full px-4 py-2`)= badge.text
+    .flex.flex-wrap.justify-center(data-scroll data-scroll-repeat data-scroll-position='top' class='gap-4 px-8')
+      for badge in alfr3d.badges
+        span.inline-block.mt-2(class=`accent-border-${badge.accent || 'gray'} accent-text-${badge.accent || 'gray'} text-xs tracking-widest uppercase border rounded-full px-4 py-2`)= badge.text
 
     +introHero(alfr3d.intro, 'amber')
 

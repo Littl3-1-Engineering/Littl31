@@ -60,6 +60,9 @@ alfr3d:
       - Home Assistant made self-hosting mainstream. Nabu Casa made it convenient. ALFR3D is built the same way — a real platform running on hardware you own, with a hosted layer you can opt into, never the other way around.
       - A containerized microservices backend, a situational-awareness engine that actually knows what day it is and what's playing, and Nexus Launcher — an Android home screen built to talk to it directly.
       - No ad tier. Not now, not ever. That's not a pricing decision, it's a policy.
+    cta:
+      text: → See the full timeline
+      href: timeline.html
   products:
     - title: Nexus Launcher
       id: p-launcher
