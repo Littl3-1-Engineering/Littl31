@@ -12236,6 +12236,12 @@ function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) 
 function _iterableToArray(r) { if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r); }
 function _arrayWithoutHoles(r) { if (Array.isArray(r)) return _arrayLikeToArray(r); }
 function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+// bezier()'s easing closure below reads C, so it must stay at module
+// scope even though the DOM-touching animation code only runs
+// conditionally — config() itself has no DOM dependency, it's safe
+// unconditionally.
+var C = config();
+
 // The logo animation only runs on pages that render the +splash mixin
 // (currently just index) — guard the whole thing so pages without a
 // .logo element in the DOM don't throw and break the rest of main.js.
@@ -12243,7 +12249,6 @@ if (document.querySelector('.logo')) {
   runLogoAnimation();
 }
 function runLogoAnimation() {
-  var C = config();
   var logo = new _snapsvg["default"]('.logo');
   var ls = {};
 
@@ -12949,9 +12954,25 @@ setTimeout(function () {
   // `overflow: hidden` on body is scoped in CSS to `html.has-scroll-smooth`
   // (a class Locomotive only adds when smooth mode actually initializes),
   // so native scroll isn't blocked on devices that fall back to it.
+  var container = document.querySelector('[data-scroll-container]');
   var scroll = new _locomotiveScroll["default"]({
-    el: document.querySelector('[data-scroll-container]'),
+    el: container,
     smooth: true
+  });
+
+  // Element positions/trigger points are captured once at init. Product
+  // card screenshots are large and often still loading at that point —
+  // each one finishing later reflows everything below it, leaving
+  // Locomotive's recorded positions stale (so scroll-reveal text past an
+  // image never gets marked in-view). Recalculate as each image lands.
+  container.querySelectorAll('img').forEach(function (img) {
+    if (!img.complete) {
+      img.addEventListener('load', function () {
+        return scroll.update();
+      }, {
+        once: true
+      });
+    }
   });
 
   // Locomotive Scroll drives scroll position via a transform on

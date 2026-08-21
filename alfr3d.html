@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/style.e29cc282.css">
   <link rel="icon" type="image/png" href="assets/images/favicon.ico">
-  <script src="js/main.173ef744.js" defer></script>
+  <script src="js/main.d3f0ef12.js" defer></script>
 </head>
 <body class="text-white grid-bg">
   <nav class="nav-glass fixed top-0 left-0 right-0 z-50">
@@ -25,7 +25,7 @@
     </div>
   </nav>
   <main class="pt-24" data-scroll-container>
-    <div class="flex flex-wrap justify-center gap-4 px-8" data-scroll data-scroll-repeat data-scroll-position="top"><span class="inline-block mt-2 accent-border-amber accent-text-amber text-xs tracking-widest uppercase border rounded-full px-4 py-2">Open source · FSL-1.1-ALv2</span><span class="inline-block mt-2 accent-border-orange accent-text-orange text-xs tracking-widest uppercase border rounded-full px-4 py-2">by Littl3.1 Engineering</span>
+    <div class="flex flex-wrap justify-center gap-4 px-8"><span class="inline-block mt-2 accent-border-amber accent-text-amber text-xs tracking-widest uppercase border rounded-full px-4 py-2">Open source · FSL-1.1-ALv2</span><span class="inline-block mt-2 accent-border-orange accent-text-orange text-xs tracking-widest uppercase border rounded-full px-4 py-2">by Littl3.1 Engineering</span>
     </div>
     <section class="p-8 flex items-center justify-center" id="intro" data-scroll-section>
       <div class="max-w-screen-lg w-full relative window-frame accent-amber">
@@ -39,6 +39,7 @@
                 <p class="opacity-0 transition-opacity delay-100 duration-700 text-gray-300 leading-relaxed" data-scroll data-scroll-repeat data-scroll-class="opacity-100">Home Assistant made self-hosting mainstream. Nabu Casa made it convenient. ALFR3D is built the same way — a real platform running on hardware you own, with a hosted layer you can opt into, never the other way around.</p>
                 <p class="opacity-0 transition-opacity delay-100 duration-700 text-gray-300 leading-relaxed" data-scroll data-scroll-repeat data-scroll-class="opacity-100">A containerized microservices backend, a situational-awareness engine that actually knows what day it is and what's playing, and Nexus Launcher — an Android home screen built to talk to it directly.</p>
                 <p class="opacity-0 transition-opacity delay-100 duration-700 text-gray-300 leading-relaxed" data-scroll data-scroll-repeat data-scroll-class="opacity-100">No ad tier. Not now, not ever. That's not a pricing decision, it's a policy.</p>
+                <p class="opacity-0 transition-opacity delay-100 duration-700 text-gray-300 leading-relaxed" data-scroll data-scroll-repeat data-scroll-class="opacity-100">It behaves like a butler, not a control panel — situational awareness, a personality layer, dashboards built to live on a wall, not hide in an app. The parts of &quot;smart home&quot; that usually stay locked behind someone else's cloud.</p>
                 <p class="pt-2"><a class="btn-glow accent-amber" href="timeline.html">→ See the full timeline</a></p>
               </div>
             </div>
@@ -57,43 +58,14 @@
               <h2 class="font-display font-bold accent-text-cyan text-4xl md:text-6xl" data-scroll data-scroll-repeat data-scroll-speed="-1" data-scroll-position="top" data-scroll-direction="horizontal" data-scroll-target="#p-launcher">Nexus Launcher</h2>
               <hr class="my-4 accent-border-cyan border-t-2 opacity-40">
               <p class="font-mono italic accent-text-cyan text-xs md:text-sm opacity-80">“I've taken the liberty of arranging your applications. You're welcome.”</p>
-              <div class="w-full mt-12 flex justify-end">
-                <div class="overflow-hidden accent-border-cyan border rounded-lg w-full md:w-1/2"><img class="w-full" src="assets/images/nexus-launcher-radial.jpg"></div>
-              </div>
-              <div class="w-full mt-10 flex justify-start">
-                <div class="max-w-2xl space-y-6">
-                  <p class="opacity-0 transition-opacity delay-100 duration-700 text-gray-300 leading-relaxed" data-scroll data-scroll-repeat data-scroll-class="opacity-100">A free-form spatial launcher for Android — no permanent dock, apps and ALFR3D surfaces open as free-floating windows on an infinite canvas. Double-tap search, a built-in terminal, live situational-awareness cards.</p>
+              <div class="w-full mt-12 flex flex-col gap-8 md:items-start md:flex-row ">
+                <div class="w-full md:w-1/2">
+                  <div class="overflow-hidden accent-border-cyan border rounded-lg w-full"><img class="w-full" src="assets/images/nexus-launcher-radial.jpg"></div>
+                  <p class="font-mono text-gray-500 mt-3 text-xs leading-relaxed">The Ambient Brief card, mid-gathering — real presence data, not a canned notification.</p>
+                </div>
+                <div class="w-full md:w-1/2 space-y-6">
+                  <p class="opacity-0 transition-opacity delay-100 duration-700 text-gray-300 leading-relaxed" data-scroll data-scroll-repeat data-scroll-class="opacity-100">A free-form spatial launcher for Android: no permanent dock, no fixed grid. Apps, the terminal, and ALFR3D surfaces open as free-floating windows on an infinite canvas — summoned by double-tap search or the Nexus Core's press-and-flow radial menu, with live situational-awareness cards updating right on the canvas.</p>
                   <p class="opacity-0 transition-opacity delay-100 duration-700 text-gray-300 leading-relaxed" data-scroll data-scroll-repeat data-scroll-class="opacity-100">Free core, forever. A one-time unlock removes the ceiling — no subscription, because a launcher sitting on your own phone doesn't cost us a server bill to run.</p>
-                  <div class="flex flex-wrap pt-2 gap-6">
-                    <div class="group relative">
-                      <div class="window-frame window-sm accent-cyan">
-                        <div class="window-body">
-                          <div class="window-content px-6 py-4">
-                            <div class="flex items-center gap-2">
-                              <div class="font-bold accent-text-cyan text-3xl">Free</div>
-                              <button class="flex-shrink-0 w-5 h-5 rounded-full border border-gray-500 text-gray-400 text-xs italic font-bold leading-none flex items-center justify-center hover:border-amber-400 hover:text-amber-400 focus:outline-none focus:border-amber-400 focus:text-amber-400 transition-colors" type="button" aria-label="More info — Core launcher, full spatial canvas, ALFR3D pairing" data-pricing-info-toggle>i</button>
-                            </div>
-                            <div class="text-xs text-gray-400 mt-1">Core launcher, full spatial canvas, ALFR3D pairing</div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="pricing-info-popover info-popover accent-border-cyan absolute left-0 top-full mt-2 w-72 p-4 border text-sm text-gray-300 leading-relaxed opacity-0 pointer-events-none transition-opacity duration-200 z-20 group-hover:opacity-100 group-hover:pointer-events-auto" data-pricing-info-popover>Free forever — the whole spatial canvas, Nexus Core radial menu, double-tap search, window manager, terminal, base theming. No trial timer, no feature ceiling that expires.</div>
-                    </div>
-                    <div class="group relative">
-                      <div class="window-frame window-sm accent-orange">
-                        <div class="window-body">
-                          <div class="window-content px-6 py-4">
-                            <div class="flex items-center gap-2">
-                              <div class="font-bold accent-text-orange text-3xl">$5.99</div>
-                              <button class="flex-shrink-0 w-5 h-5 rounded-full border border-gray-500 text-gray-400 text-xs italic font-bold leading-none flex items-center justify-center hover:border-amber-400 hover:text-amber-400 focus:outline-none focus:border-amber-400 focus:text-amber-400 transition-colors" type="button" aria-label="More info — Pro unlock · one-time, Play Billing" data-pricing-info-toggle>i</button>
-                            </div>
-                            <div class="text-xs text-gray-400 mt-1">Pro unlock · one-time, Play Billing</div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="pricing-info-popover info-popover accent-border-orange absolute left-0 top-full mt-2 w-72 p-4 border text-sm text-gray-300 leading-relaxed opacity-0 pointer-events-none transition-opacity duration-200 z-20 group-hover:opacity-100 group-hover:pointer-events-auto" data-pricing-info-popover>One-time purchase through Google Play Billing — not a subscription, no tiers. Unlocks extra themes and icon packs, advanced window layouts (snap presets, multi-window save/restore), and layout backup &amp; restore.</div>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
@@ -110,12 +82,13 @@
               <h2 class="font-display font-bold accent-text-amber text-4xl md:text-6xl" data-scroll data-scroll-repeat data-scroll-speed="-1" data-scroll-position="top" data-scroll-direction="horizontal" data-scroll-target="#p-core">ALFR3D Core</h2>
               <hr class="my-4 accent-border-amber border-t-2 opacity-40">
               <p class="font-mono italic accent-text-amber text-xs md:text-sm opacity-80">“The engine room. I keep it running so you never have to think about it.”</p>
-              <div class="w-full mt-12 flex justify-start">
-                <div class="overflow-hidden accent-border-amber border rounded-lg w-full md:w-1/2"><img class="w-full" src="assets/images/alfr3d-dashboard.jpg"></div>
-              </div>
-              <div class="w-full mt-10 flex justify-end">
-                <div class="max-w-md space-y-6">
-                  <p class="opacity-0 transition-opacity delay-100 duration-700 text-gray-300 leading-relaxed" data-scroll data-scroll-repeat data-scroll-class="opacity-100">The backend. Kafka messaging, containerized services, a dashboard that actually looks like something you'd want on a wall panel — not a spreadsheet.</p>
+              <div class="w-full mt-12 flex flex-col gap-8 md:items-start md:flex-row md:flex-row-reverse">
+                <div class="w-full md:w-1/2">
+                  <div class="overflow-hidden accent-border-amber border rounded-lg w-full"><img class="w-full" src="assets/images/alfr3d-dashboard.jpg"></div>
+                  <p class="font-mono text-gray-500 mt-3 text-xs leading-relaxed">The Nexus dashboard — residents, situational awareness, and live container health, all on one wall panel.</p>
+                </div>
+                <div class="w-full md:w-1/2 space-y-6">
+                  <p class="opacity-0 transition-opacity delay-100 duration-700 text-gray-300 leading-relaxed" data-scroll data-scroll-repeat data-scroll-class="opacity-100">The backend: containerized microservices — API, User, Device, Environment, and Speak — each one independent, coordinating only over Kafka, plus a Python daemon that handles situational awareness and voice routing. The result is a dashboard that actually looks like something you'd want on a wall panel — not a spreadsheet.</p>
                   <p class="opacity-0 transition-opacity delay-100 duration-700 text-gray-300 leading-relaxed" data-scroll data-scroll-repeat data-scroll-class="opacity-100">Stays free forever, stays self-hosted, stays local-first. This is the platform, not the product we're selling — think of it the way Home Assistant thinks of Home Assistant Core.</p>
                 </div>
               </div>
@@ -137,49 +110,49 @@
                 <div class="max-w-2xl space-y-6">
                   <p class="opacity-0 transition-opacity delay-100 duration-700 text-gray-300 leading-relaxed" data-scroll data-scroll-repeat data-scroll-class="opacity-100">A thin, dumb-pipe relay for remote access and push — it never sees your home's plaintext data. Reach your house from anywhere without opening a port on your router.</p>
                   <p class="opacity-0 transition-opacity delay-100 duration-700 text-gray-300 leading-relaxed" data-scroll data-scroll-repeat data-scroll-class="opacity-100">Benchmarked against Nabu Casa — a fair price for infrastructure we run, on top of a platform that costs nothing to run yourself.</p>
-                  <div class="flex flex-wrap pt-2 gap-6">
-                    <div class="group relative">
-                      <div class="window-frame window-sm accent-amber">
-                        <div class="window-body">
-                          <div class="window-content px-6 py-4">
-                            <div class="flex items-center gap-2">
-                              <div class="font-bold accent-text-amber text-3xl">Free</div>
-                              <button class="flex-shrink-0 w-5 h-5 rounded-full border border-gray-500 text-gray-400 text-xs italic font-bold leading-none flex items-center justify-center hover:border-amber-400 hover:text-amber-400 focus:outline-none focus:border-amber-400 focus:text-amber-400 transition-colors" type="button" aria-label="More info — Local-only, always available" data-pricing-info-toggle>i</button>
-                            </div>
-                            <div class="text-xs text-gray-400 mt-1">Local-only, always available</div>
+                </div>
+                <div class="flex flex-wrap pt-2 gap-6">
+                  <div class="group relative">
+                    <div class="window-frame window-sm accent-amber">
+                      <div class="window-body">
+                        <div class="window-content px-6 py-4">
+                          <div class="flex items-center gap-2">
+                            <div class="font-bold accent-text-amber text-3xl">Free</div>
+                            <button class="flex-shrink-0 w-5 h-5 rounded-full border border-gray-500 text-gray-400 text-xs italic font-bold leading-none flex items-center justify-center hover:border-amber-400 hover:text-amber-400 focus:outline-none focus:border-amber-400 focus:text-amber-400 transition-colors" type="button" aria-label="More info — Local-only, always available" data-pricing-info-toggle>i</button>
                           </div>
+                          <div class="text-xs text-gray-400 mt-1">Local-only, always available</div>
                         </div>
                       </div>
-                      <div class="pricing-info-popover info-popover accent-border-amber absolute left-0 top-full mt-2 w-72 p-4 border text-sm text-gray-300 leading-relaxed opacity-0 pointer-events-none transition-opacity duration-200 z-20 group-hover:opacity-100 group-hover:pointer-events-auto" data-pricing-info-popover>Local network only — everything ALFR3D does today. No relay, no account, no monthly fee. This tier isn't going away.</div>
                     </div>
-                    <div class="group relative">
-                      <div class="window-frame window-sm accent-amber">
-                        <div class="window-body">
-                          <div class="window-content px-6 py-4">
-                            <div class="flex items-center gap-2">
-                              <div class="font-bold accent-text-amber text-3xl">$5.99/mo</div>
-                              <button class="flex-shrink-0 w-5 h-5 rounded-full border border-gray-500 text-gray-400 text-xs italic font-bold leading-none flex items-center justify-center hover:border-amber-400 hover:text-amber-400 focus:outline-none focus:border-amber-400 focus:text-amber-400 transition-colors" type="button" aria-label="More info — Cloud · remote access, push" data-pricing-info-toggle>i</button>
-                            </div>
-                            <div class="text-xs text-gray-400 mt-1">Cloud · remote access, push</div>
+                    <div class="pricing-info-popover info-popover accent-border-amber absolute left-0 top-full mt-2 w-72 p-4 border text-sm text-gray-300 leading-relaxed opacity-0 pointer-events-none transition-opacity duration-200 z-20 group-hover:opacity-100 group-hover:pointer-events-auto" data-pricing-info-popover>Local network only — everything ALFR3D does today. No relay, no account, no monthly fee. This tier isn't going away.</div>
+                  </div>
+                  <div class="group relative">
+                    <div class="window-frame window-sm accent-amber">
+                      <div class="window-body">
+                        <div class="window-content px-6 py-4">
+                          <div class="flex items-center gap-2">
+                            <div class="font-bold accent-text-amber text-3xl">$5.99/mo</div>
+                            <button class="flex-shrink-0 w-5 h-5 rounded-full border border-gray-500 text-gray-400 text-xs italic font-bold leading-none flex items-center justify-center hover:border-amber-400 hover:text-amber-400 focus:outline-none focus:border-amber-400 focus:text-amber-400 transition-colors" type="button" aria-label="More info — Cloud · remote access, push" data-pricing-info-toggle>i</button>
                           </div>
+                          <div class="text-xs text-gray-400 mt-1">Cloud · remote access, push</div>
                         </div>
                       </div>
-                      <div class="pricing-info-popover info-popover accent-border-amber absolute left-0 top-full mt-2 w-72 p-4 border text-sm text-gray-300 leading-relaxed opacity-0 pointer-events-none transition-opacity duration-200 z-20 group-hover:opacity-100 group-hover:pointer-events-auto" data-pricing-info-popover>Or $59/yr. Remote access relay — no port-forwarding — plus push notifications to the launcher and phone. Benchmarked against Nabu Casa (~$6.50/mo), the closest real precedent for this model.</div>
                     </div>
-                    <div class="group relative">
-                      <div class="window-frame window-sm accent-orange">
-                        <div class="window-body">
-                          <div class="window-content px-6 py-4">
-                            <div class="flex items-center gap-2">
-                              <div class="font-bold accent-text-orange text-3xl">$11.99/mo</div>
-                              <button class="flex-shrink-0 w-5 h-5 rounded-full border border-gray-500 text-gray-400 text-xs italic font-bold leading-none flex items-center justify-center hover:border-amber-400 hover:text-amber-400 focus:outline-none focus:border-amber-400 focus:text-amber-400 transition-colors" type="button" aria-label="More info — Cloud+ · hosted backups, personality features, priority support" data-pricing-info-toggle>i</button>
-                            </div>
-                            <div class="text-xs text-gray-400 mt-1">Cloud+ · hosted backups, personality features, priority support</div>
+                    <div class="pricing-info-popover info-popover accent-border-amber absolute left-0 top-full mt-2 w-72 p-4 border text-sm text-gray-300 leading-relaxed opacity-0 pointer-events-none transition-opacity duration-200 z-20 group-hover:opacity-100 group-hover:pointer-events-auto" data-pricing-info-popover>Or $59/yr. Remote access relay — no port-forwarding — plus push notifications to the launcher and phone. Benchmarked against Nabu Casa (~$6.50/mo), the closest real precedent for this model.</div>
+                  </div>
+                  <div class="group relative">
+                    <div class="window-frame window-sm accent-orange">
+                      <div class="window-body">
+                        <div class="window-content px-6 py-4">
+                          <div class="flex items-center gap-2">
+                            <div class="font-bold accent-text-orange text-3xl">$11.99/mo</div>
+                            <button class="flex-shrink-0 w-5 h-5 rounded-full border border-gray-500 text-gray-400 text-xs italic font-bold leading-none flex items-center justify-center hover:border-amber-400 hover:text-amber-400 focus:outline-none focus:border-amber-400 focus:text-amber-400 transition-colors" type="button" aria-label="More info — Cloud+ · hosted backups, personality features, priority support" data-pricing-info-toggle>i</button>
                           </div>
+                          <div class="text-xs text-gray-400 mt-1">Cloud+ · hosted backups, personality features, priority support</div>
                         </div>
                       </div>
-                      <div class="pricing-info-popover info-popover accent-border-orange absolute left-0 top-full mt-2 w-72 p-4 border text-sm text-gray-300 leading-relaxed opacity-0 pointer-events-none transition-opacity duration-200 z-20 group-hover:opacity-100 group-hover:pointer-events-auto" data-pricing-info-popover>Or $119/yr. Everything in Cloud, plus hosted backups, the LLM-powered personality/quips features, and a priority support queue — real per-user compute cost behind each of those.</div>
                     </div>
+                    <div class="pricing-info-popover info-popover accent-border-orange absolute left-0 top-full mt-2 w-72 p-4 border text-sm text-gray-300 leading-relaxed opacity-0 pointer-events-none transition-opacity duration-200 z-20 group-hover:opacity-100 group-hover:pointer-events-auto" data-pricing-info-popover>Or $119/yr. Everything in Cloud, plus hosted backups, the LLM-powered personality/quips features, and a priority support queue — real per-user compute cost behind each of those.</div>
                   </div>
                 </div>
               </div>
@@ -193,7 +166,7 @@
         <div>
           <h3 class="font-display font-bold text-gray-300 text-2xl">ALFR3D Kit</h3>
           <p class="font-mono italic text-gray-400 mt-2 text-xs md:text-sm opacity-80">“A butler, boxed and ready to ship. Currently interviewing for the position — do check back.”</p>
-          <p class="text-gray-500 mt-2 text-sm max-w-lg">A pre-flashed Pi appliance, built to order. Parked until Cloud proves there's real demand for it.</p>
+          <p class="text-gray-500 mt-2 text-sm max-w-lg">A Raspberry Pi, pre-flashed with ALFR3D Core and shipped ready to plug in — no Docker Compose, no manual setup, just power and a network connection. It's built to order, not stocked. Development hasn't started: the Kit only makes sense once enough people are running Cloud to justify building hardware for them, not before.</p>
         </div><span class="inline-block border border-gray-700 text-gray-500 rounded-full text-xs tracking-widest uppercase px-4 py-2">Not yet scheduled</span>
       </div>
     </section>
