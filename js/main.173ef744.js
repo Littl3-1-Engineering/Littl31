@@ -12236,604 +12236,612 @@ function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) 
 function _iterableToArray(r) { if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r); }
 function _arrayWithoutHoles(r) { if (Array.isArray(r)) return _arrayLikeToArray(r); }
 function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
-var C = config();
-var logo = new _snapsvg["default"]('.logo');
-var ls = {};
+// The logo animation only runs on pages that render the +splash mixin
+// (currently just index) — guard the whole thing so pages without a
+// .logo element in the DOM don't throw and break the rest of main.js.
+if (document.querySelector('.logo')) {
+  runLogoAnimation();
+}
+function runLogoAnimation() {
+  var C = config();
+  var logo = new _snapsvg["default"]('.logo');
+  var ls = {};
 
-// ——————————————————————————————————————————————————
-//  TRANSPARENT BACKGROUND CIRCLE
-// ——————————————————————————————————————————————————
-var lc2 = {
-  r: 0,
-  attr: {
-    fill: C.ORANGE,
-    fillOpacity: 0
-  },
-  anim: {
+  // ——————————————————————————————————————————————————
+  //  TRANSPARENT BACKGROUND CIRCLE
+  // ——————————————————————————————————————————————————
+  var lc2 = {
+    r: 0,
     attr: {
-      r: 18,
-      fillOpacity: 0.2
+      fill: C.ORANGE,
+      fillOpacity: 0
     },
-    timeout: 2000,
-    timing: C.TIMING
-  }
-};
+    anim: {
+      attr: {
+        r: 18,
+        fillOpacity: 0.2
+      },
+      timeout: 2000,
+      timing: C.TIMING
+    }
+  };
 
-// ——————————————————————————————————————————————————
-//  CENTER SMALL CIRCLE
-// ——————————————————————————————————————————————————
-var lc1 = {
-  r: 0,
-  attr: {
-    fill: C.ORANGE,
-    fillOpacity: 0
-  },
-  anim: {
+  // ——————————————————————————————————————————————————
+  //  CENTER SMALL CIRCLE
+  // ——————————————————————————————————————————————————
+  var lc1 = {
+    r: 0,
     attr: {
-      r: 4,
-      fillOpacity: 1
+      fill: C.ORANGE,
+      fillOpacity: 0
     },
-    timeout: 2000,
-    timing: C.TIMING
-  }
-};
+    anim: {
+      attr: {
+        r: 4,
+        fillOpacity: 1
+      },
+      timeout: 2000,
+      timing: C.TIMING
+    }
+  };
 
-// ——————————————————————————————————————————————————
-//  TRANSPARENT BACKGROUND CIRCLE
-// ——————————————————————————————————————————————————
-ls.lc2 = logo.circle(C.X, C.Y, lc2.r).attr(Object.assign({}, lc2.attr));
+  // ——————————————————————————————————————————————————
+  //  TRANSPARENT BACKGROUND CIRCLE
+  // ——————————————————————————————————————————————————
+  ls.lc2 = logo.circle(C.X, C.Y, lc2.r).attr(Object.assign({}, lc2.attr));
 
-// ——————————————————————————————————————————————————
-//  CENTER SMALL CIRCLE
-// ——————————————————————————————————————————————————
-ls.lc1 = logo.circle(C.X, C.Y, lc1.r).attr(Object.assign({}, lc1.attr));
-var initAnim = new Promise(function (resolve) {
-  ls.lc2.animate(Object.assign({}, lc2.anim.attr), lc2.anim.timeout, lc2.anim.timing);
-  ls.lc1.animate(Object.assign({}, lc1.anim.attr), lc1.anim.timeout, lc1.anim.timing, resolve);
-});
+  // ——————————————————————————————————————————————————
+  //  CENTER SMALL CIRCLE
+  // ——————————————————————————————————————————————————
+  ls.lc1 = logo.circle(C.X, C.Y, lc1.r).attr(Object.assign({}, lc1.attr));
+  var initAnim = new Promise(function (resolve) {
+    ls.lc2.animate(Object.assign({}, lc2.anim.attr), lc2.anim.timeout, lc2.anim.timing);
+    ls.lc1.animate(Object.assign({}, lc1.anim.attr), lc1.anim.timeout, lc1.anim.timing, resolve);
+  });
 
-// ——————————————————————————————————————————————————
-//  1 o'clock DASH
-// ——————————————————————————————————————————————————
-var ld1 = {
-  perim: 0,
-  start: 275,
-  get radius() {
-    return C.radius(this.perim);
-  },
-  get width() {
-    return this.perim / 12;
-  },
-  get end() {
-    return this.start + this.width;
-  },
-  get attr() {
-    return {
-      fill: 'transparent',
-      stroke: C.ORANGE,
-      strokeWidth: 0,
-      strokeDasharray: [this.width, this.perim - this.width],
-      transform: ['r' + -85, C.X, C.Y]
-    };
-  },
-  anim: {
-    from: 0,
-    to: 205,
-    attr: function attr(v) {
+  // ——————————————————————————————————————————————————
+  //  1 o'clock DASH
+  // ——————————————————————————————————————————————————
+  var ld1 = {
+    perim: 0,
+    start: 275,
+    get radius() {
+      return C.radius(this.perim);
+    },
+    get width() {
+      return this.perim / 12;
+    },
+    get end() {
+      return this.start + this.width;
+    },
+    get attr() {
       return {
-        r: C.radius(v),
-        strokeWidth: C.radius(v) * 1.5,
-        strokeDasharray: [v / 12, v - v / 12]
+        fill: 'transparent',
+        stroke: C.ORANGE,
+        strokeWidth: 0,
+        strokeDasharray: [this.width, this.perim - this.width],
+        transform: ['r' + -85, C.X, C.Y]
       };
     },
-    timeout: 200,
-    timing: C.TIMING
-  }
-};
-ls.ld1 = logo.circle(C.X, C.Y, ld1.radius).attr(Object.assign({}, ld1.attr));
-var anim_expand1Dash = initAnim.then(function () {
-  return new Promise(function (resolve) {
-    _snapsvg["default"].animate(ld1.anim.from, ld1.anim.to, function (v) {
-      ls.ld1.attr(Object.assign({}, ld1.anim.attr(v)));
-    }, ld1.anim.timeout, ld1.anim.timing, resolve);
-  });
-});
-
-// ——————————————————————————————————————————————————
-//  3 o'clock DASH
-// ——————————————————————————————————————————————————
-var ld2 = {
-  perim: 205,
-  start: -10,
-  get width() {
-    return this.perim / 16;
-  },
-  get end() {
-    return this.start + this.width;
-  },
-  get radius() {
-    return C.radius(this.perim);
-  },
-  anim: {
-    timeout: 400
-  }
-};
-
-// ——————————————————————————————————————————————————
-//  1 - 3 -- CENTER DASH CONNECTION
-// ——————————————————————————————————————————————————
-var ld3 = {
-  perim: 360,
-  scale: 1 / 4,
-  start: -85,
-  get radius() {
-    return C.radius(this.perim * this.scale);
-  },
-  get end() {
-    return ld2.width + ld2.start - 1;
-  },
-  get width() {
-    return Math.abs(this.start - this.end) * this.scale;
-  },
-  get attr() {
-    return {
-      fill: 'transparent',
-      stroke: C.ORANGE,
-      strokeWidth: 12,
-      strokeDasharray: [0, 360],
-      transform: ['r' + this.start, C.X, C.Y]
-    };
-  }
-};
-ls.ld3 = logo.circle(C.X, C.Y, ld3.radius).attr(Object.assign({}, ld3.attr));
-var anim_expand3Dash = anim_expand1Dash.then(function () {
-  return new Promise(function (resolve) {
-    ls.ld2 = ls.ld1.clone();
-    _snapsvg["default"].animate(0, ld3.width, function (val) {
-      ls.ld3.attr({
-        strokeDasharray: [val, ld3.perim - val]
-      });
-    }, ld2.anim.timeout, mina.bounce);
-    // 1-3 inner connection
-    _snapsvg["default"].animate(ld2.perim / 12, ld2.perim / 16, function (val) {
-      ls.ld2.attr({
-        strokeDasharray: [val, ld2.perim - val]
-      });
-    }, ld2.anim.timeout, mina.bounce);
-    _snapsvg["default"].animate(-85, ld2.start, function (val) {
-      ls.ld2.attr({
-        transform: ['r' + val, C.X, C.Y]
-      });
-    }, ld2.anim.timeout, mina.bounce, resolve);
-  });
-});
-
-// ——————————————————————————————————————————————————
-//  Noon DASH
-// ——————————————————————————————————————————————————
-var ld4 = {
-  perim: 360,
-  start: 250,
-  end: 270,
-  get radius() {
-    return C.radius(this.perim);
-  },
-  get width() {
-    return this.end - this.start;
-  },
-  get attr() {
-    return {
-      fill: 'transparent',
-      stroke: C.ORANGE,
-      strokeWidth: this.radius,
-      strokeDasharray: [0, this.perim],
-      transform: ['r' + ld1.start, C.X, C.Y]
-    };
-  },
-  anim: {
-    timeout: 100,
-    timing: C.TIMING
-  }
-};
-ls.ld4 = logo.circle(C.X, C.Y, ld4.radius).attr(Object.assign({}, ld4.attr));
-var anim_expandNoonDash = anim_expand3Dash.then(function () {
-  return new Promise(function (resolve) {
-    // Noon dash
-    ls.ld4.attr({
-      strokeDasharray: [ld4.width, ld4.perim - ld4.width]
+    anim: {
+      from: 0,
+      to: 205,
+      attr: function attr(v) {
+        return {
+          r: C.radius(v),
+          strokeWidth: C.radius(v) * 1.5,
+          strokeDasharray: [v / 12, v - v / 12]
+        };
+      },
+      timeout: 200,
+      timing: C.TIMING
+    }
+  };
+  ls.ld1 = logo.circle(C.X, C.Y, ld1.radius).attr(Object.assign({}, ld1.attr));
+  var anim_expand1Dash = initAnim.then(function () {
+    return new Promise(function (resolve) {
+      _snapsvg["default"].animate(ld1.anim.from, ld1.anim.to, function (v) {
+        ls.ld1.attr(Object.assign({}, ld1.anim.attr(v)));
+      }, ld1.anim.timeout, ld1.anim.timing, resolve);
     });
-    _snapsvg["default"].animate(ld1.start, ld4.start, function (val) {
+  });
+
+  // ——————————————————————————————————————————————————
+  //  3 o'clock DASH
+  // ——————————————————————————————————————————————————
+  var ld2 = {
+    perim: 205,
+    start: -10,
+    get width() {
+      return this.perim / 16;
+    },
+    get end() {
+      return this.start + this.width;
+    },
+    get radius() {
+      return C.radius(this.perim);
+    },
+    anim: {
+      timeout: 400
+    }
+  };
+
+  // ——————————————————————————————————————————————————
+  //  1 - 3 -- CENTER DASH CONNECTION
+  // ——————————————————————————————————————————————————
+  var ld3 = {
+    perim: 360,
+    scale: 1 / 4,
+    start: -85,
+    get radius() {
+      return C.radius(this.perim * this.scale);
+    },
+    get end() {
+      return ld2.width + ld2.start - 1;
+    },
+    get width() {
+      return Math.abs(this.start - this.end) * this.scale;
+    },
+    get attr() {
+      return {
+        fill: 'transparent',
+        stroke: C.ORANGE,
+        strokeWidth: 12,
+        strokeDasharray: [0, 360],
+        transform: ['r' + this.start, C.X, C.Y]
+      };
+    }
+  };
+  ls.ld3 = logo.circle(C.X, C.Y, ld3.radius).attr(Object.assign({}, ld3.attr));
+  var anim_expand3Dash = anim_expand1Dash.then(function () {
+    return new Promise(function (resolve) {
+      ls.ld2 = ls.ld1.clone();
+      _snapsvg["default"].animate(0, ld3.width, function (val) {
+        ls.ld3.attr({
+          strokeDasharray: [val, ld3.perim - val]
+        });
+      }, ld2.anim.timeout, mina.bounce);
+      // 1-3 inner connection
+      _snapsvg["default"].animate(ld2.perim / 12, ld2.perim / 16, function (val) {
+        ls.ld2.attr({
+          strokeDasharray: [val, ld2.perim - val]
+        });
+      }, ld2.anim.timeout, mina.bounce);
+      _snapsvg["default"].animate(-85, ld2.start, function (val) {
+        ls.ld2.attr({
+          transform: ['r' + val, C.X, C.Y]
+        });
+      }, ld2.anim.timeout, mina.bounce, resolve);
+    });
+  });
+
+  // ——————————————————————————————————————————————————
+  //  Noon DASH
+  // ——————————————————————————————————————————————————
+  var ld4 = {
+    perim: 360,
+    start: 250,
+    end: 270,
+    get radius() {
+      return C.radius(this.perim);
+    },
+    get width() {
+      return this.end - this.start;
+    },
+    get attr() {
+      return {
+        fill: 'transparent',
+        stroke: C.ORANGE,
+        strokeWidth: this.radius,
+        strokeDasharray: [0, this.perim],
+        transform: ['r' + ld1.start, C.X, C.Y]
+      };
+    },
+    anim: {
+      timeout: 100,
+      timing: C.TIMING
+    }
+  };
+  ls.ld4 = logo.circle(C.X, C.Y, ld4.radius).attr(Object.assign({}, ld4.attr));
+  var anim_expandNoonDash = anim_expand3Dash.then(function () {
+    return new Promise(function (resolve) {
+      // Noon dash
       ls.ld4.attr({
-        transform: ['r' + val, C.X, C.Y]
+        strokeDasharray: [ld4.width, ld4.perim - ld4.width]
       });
-      // Noon-1 connection
-      ls.ld5.attr({
-        strokeDasharray: [10, ld5.perim - 10]
-      });
-      var deg = Math.abs(-275 + val) / 2;
-      ls.ld5.attr({
-        transform: ['r' + (ld5.start - deg), C.X, C.Y]
-      });
-    }, ld4.anim.timeout, ld4.anim.timing, resolve);
-  });
-});
-
-// ——————————————————————————————————————————————————
-//  Noon to 1 o'clock CONNECTION
-// ——————————————————————————————————————————————————
-var ld5 = {
-  perim: 360,
-  scale: 1 / 2,
-  stroke: 10,
-  width: 10,
-  get radius() {
-    return C.radius(this.perim * this.scale) + this.stroke / 2;
-  },
-  get start() {
-    return ld1.start + 1;
-  },
-  get attr() {
-    return {
-      fill: 'transparent',
-      stroke: C.ORANGE,
-      strokeWidth: this.stroke,
-      strokeDasharray: [0, this.perim - 0],
-      transform: ['r' + this.start, C.X, C.Y]
-    };
-  }
-};
-ls.ld5 = logo.circle(C.X, C.Y, ld5.radius).attr(Object.assign({}, ld5.attr));
-
-// ——————————————————————————————————————————————————
-//  BOTTOM DASH -- 3 to 7 o'clock
-// ——————————————————————————————————————————————————
-var ld7 = {
-  perim: 360,
-  stroke: 40,
-  end: 135,
-  get start() {
-    return ld2.start;
-  },
-  get radius() {
-    return C.radius(this.perim);
-  },
-  get width() {
-    return this.end - this.start;
-  },
-  get attr() {
-    return {
-      fill: 'transparent',
-      stroke: C.ORANGE,
-      strokeWidth: this.stroke,
-      strokeDasharray: [0, this.perim],
-      transform: ['r' + this.start, C.X, C.Y]
-    };
-  },
-  anim: {
-    timeout: 200,
-    timing: C.TIMING
-  }
-};
-
-// ——————————————————————————————————————————————————
-//  7 o'clock DASH
-// ——————————————————————————————————————————————————
-var ld8 = {
-  perim: 360,
-  width: 22,
-  get radius() {
-    return C.radius(this.perim);
-  },
-  get start() {
-    return this.end - this.width + 1;
-  },
-  get end() {
-    return ld7.end;
-  }
-};
-ls.ld7 = logo.circle(C.X, C.Y, ld7.radius).attr(Object.assign({}, ld7.attr));
-var anim_expand3to7Dash = anim_expand3Dash.then(function () {
-  return new Promise(function (resolve) {
-    // 7 o'clock dash
-    ls.ld8 = ls.ld2.clone().attr({
-      r: ld8.radius,
-      strokeWidth: ld8.radius * 1.35,
-      strokeDasharray: [ld8.width, ld8.perim - ld8.width]
+      _snapsvg["default"].animate(ld1.start, ld4.start, function (val) {
+        ls.ld4.attr({
+          transform: ['r' + val, C.X, C.Y]
+        });
+        // Noon-1 connection
+        ls.ld5.attr({
+          strokeDasharray: [10, ld5.perim - 10]
+        });
+        var deg = Math.abs(-275 + val) / 2;
+        ls.ld5.attr({
+          transform: ['r' + (ld5.start - deg), C.X, C.Y]
+        });
+      }, ld4.anim.timeout, ld4.anim.timing, resolve);
     });
-    _snapsvg["default"].animate(ld7.start, ld7.end - ld8.width + 1, function (v) {
-      // 3-7 long bottom dash
-      ls.ld7.attr({
-        strokeDasharray: [v + 20, ld7.perim - v + 20]
-      });
-      ls.ld8.attr({
-        transform: ['r' + v, C.X, C.Y]
-      });
-    }, ld7.anim.timeout, ld7.anim.timing, resolve);
   });
-});
 
-// ——————————————————————————————————————————————————
-//  8 o'clock DASH
-// ——————————————————————————————————————————————————
-var ld9 = {
-  perim: 360,
-  width: 22,
-  get radius() {
-    return C.radius(this.perim);
-  },
-  get end() {
-    return ld8.end + this.width * 1.5;
-  },
-  get start() {
-    return this.end - this.width + 1;
-  },
-  anim: {
-    timeout: 200,
-    timing: C.TIMING
-  }
-};
+  // ——————————————————————————————————————————————————
+  //  Noon to 1 o'clock CONNECTION
+  // ——————————————————————————————————————————————————
+  var ld5 = {
+    perim: 360,
+    scale: 1 / 2,
+    stroke: 10,
+    width: 10,
+    get radius() {
+      return C.radius(this.perim * this.scale) + this.stroke / 2;
+    },
+    get start() {
+      return ld1.start + 1;
+    },
+    get attr() {
+      return {
+        fill: 'transparent',
+        stroke: C.ORANGE,
+        strokeWidth: this.stroke,
+        strokeDasharray: [0, this.perim - 0],
+        transform: ['r' + this.start, C.X, C.Y]
+      };
+    }
+  };
+  ls.ld5 = logo.circle(C.X, C.Y, ld5.radius).attr(Object.assign({}, ld5.attr));
 
-// ——————————————————————————————————————————————————
-//  7 - 8 INNER CONNECTION
-// ——————————————————————————————————————————————————
-var ld10 = {
-  perim: 360,
-  scale: 1 / 2.5,
-  get radius() {
-    return C.radius(ld10.perim * ld10.scale);
-  },
-  get start() {
-    return ld8.start;
-  },
-  get end() {
-    return ld9.end;
-  },
-  get width() {
-    return (ld10.end - ld10.start) * ld10.scale - 1;
-  },
-  get attr() {
-    return {
-      fill: 'transparent',
-      stroke: C.ORANGE,
-      strokeWidth: 2,
-      strokeDasharray: [0, this.perim],
-      transform: ['r' + this.start, C.X, C.Y]
-    };
-  }
-};
-ls.ld10 = logo.circle(C.X, C.Y, ld10.radius).attr(Object.assign({}, ld10.attr));
-var anim_expand8Dash = anim_expand3to7Dash.then(function () {
-  return new Promise(function (resolve) {
-    // 8 o'clock dash
-    ls.ld9 = ls.ld8.clone();
-    _snapsvg["default"].animate(ld8.start, ld9.start, function (val) {
-      ls.ld9.attr({
-        transform: ['r' + val, C.X, C.Y]
+  // ——————————————————————————————————————————————————
+  //  BOTTOM DASH -- 3 to 7 o'clock
+  // ——————————————————————————————————————————————————
+  var ld7 = {
+    perim: 360,
+    stroke: 40,
+    end: 135,
+    get start() {
+      return ld2.start;
+    },
+    get radius() {
+      return C.radius(this.perim);
+    },
+    get width() {
+      return this.end - this.start;
+    },
+    get attr() {
+      return {
+        fill: 'transparent',
+        stroke: C.ORANGE,
+        strokeWidth: this.stroke,
+        strokeDasharray: [0, this.perim],
+        transform: ['r' + this.start, C.X, C.Y]
+      };
+    },
+    anim: {
+      timeout: 200,
+      timing: C.TIMING
+    }
+  };
+
+  // ——————————————————————————————————————————————————
+  //  7 o'clock DASH
+  // ——————————————————————————————————————————————————
+  var ld8 = {
+    perim: 360,
+    width: 22,
+    get radius() {
+      return C.radius(this.perim);
+    },
+    get start() {
+      return this.end - this.width + 1;
+    },
+    get end() {
+      return ld7.end;
+    }
+  };
+  ls.ld7 = logo.circle(C.X, C.Y, ld7.radius).attr(Object.assign({}, ld7.attr));
+  var anim_expand3to7Dash = anim_expand3Dash.then(function () {
+    return new Promise(function (resolve) {
+      // 7 o'clock dash
+      ls.ld8 = ls.ld2.clone().attr({
+        r: ld8.radius,
+        strokeWidth: ld8.radius * 1.35,
+        strokeDasharray: [ld8.width, ld8.perim - ld8.width]
       });
-      var width = (val - ld8.start) / 2;
-      // 7-8 inner connection
-      ls.ld10.attr({
-        strokeDasharray: [width, ld10.perim - width]
-      });
-      // 7-8 outer connection
-      ls.ld11.attr({
-        strokeDasharray: [width * 1.5, ld10.perim - width * 1.5]
-      });
-    }, ld9.anim.timeout, ld9.anim.timing, resolve);
-  });
-});
-
-// ——————————————————————————————————————————————————
-// //  7 - 8 OUTER CONNECTION
-// ——————————————————————————————————————————————————
-var ld11 = {
-  perim: 360,
-  scale: 1 / 1.75,
-  get radius() {
-    return C.radius(this.perim * this.scale);
-  },
-  get start() {
-    return ld8.start;
-  },
-  get end() {
-    return ld9.end;
-  },
-  get width() {
-    return (this.end - this.start) * this.scale - 1;
-  },
-  get attr() {
-    return {
-      fill: 'transparent',
-      stroke: C.ORANGE,
-      strokeWidth: 10,
-      strokeDasharray: [0, this.perim],
-      transform: ['r' + this.start, C.X, C.Y]
-    };
-  }
-};
-ls.ld11 = logo.circle(C.X, C.Y, ld11.radius).attr(Object.assign({}, ld11.attr));
-
-// ——————————————————————————————————————————————————
-//  11 o'clock DASH
-// ——————————————————————————————————————————————————
-var ld13 = {
-  perim: 360,
-  width: 12,
-  get radius() {
-    return C.radius(this.perim);
-  },
-  get end() {
-    return ld12.end + this.width * 1.5;
-  },
-  get start() {
-    return this.end - this.width + 1;
-  },
-  anim: {
-    timeout: 200,
-    timing: mina.bounce
-  }
-};
-var anim_expand11Dash = anim_expandNoonDash.then(function () {
-  return new Promise(function (resolve) {
-    // 11 o'clock dash
-    ls.ld13 = ls.ld4.clone();
-    ls.ld13.attr({
-      strokeDasharray: [ld13.width, ld13.perim - ld13.width]
+      _snapsvg["default"].animate(ld7.start, ld7.end - ld8.width + 1, function (v) {
+        // 3-7 long bottom dash
+        ls.ld7.attr({
+          strokeDasharray: [v + 20, ld7.perim - v + 20]
+        });
+        ls.ld8.attr({
+          transform: ['r' + v, C.X, C.Y]
+        });
+      }, ld7.anim.timeout, ld7.anim.timing, resolve);
     });
-    _snapsvg["default"].animate(ld4.start, ld13.start, function (val) {
+  });
+
+  // ——————————————————————————————————————————————————
+  //  8 o'clock DASH
+  // ——————————————————————————————————————————————————
+  var ld9 = {
+    perim: 360,
+    width: 22,
+    get radius() {
+      return C.radius(this.perim);
+    },
+    get end() {
+      return ld8.end + this.width * 1.5;
+    },
+    get start() {
+      return this.end - this.width + 1;
+    },
+    anim: {
+      timeout: 200,
+      timing: C.TIMING
+    }
+  };
+
+  // ——————————————————————————————————————————————————
+  //  7 - 8 INNER CONNECTION
+  // ——————————————————————————————————————————————————
+  var ld10 = {
+    perim: 360,
+    scale: 1 / 2.5,
+    get radius() {
+      return C.radius(ld10.perim * ld10.scale);
+    },
+    get start() {
+      return ld8.start;
+    },
+    get end() {
+      return ld9.end;
+    },
+    get width() {
+      return (ld10.end - ld10.start) * ld10.scale - 1;
+    },
+    get attr() {
+      return {
+        fill: 'transparent',
+        stroke: C.ORANGE,
+        strokeWidth: 2,
+        strokeDasharray: [0, this.perim],
+        transform: ['r' + this.start, C.X, C.Y]
+      };
+    }
+  };
+  ls.ld10 = logo.circle(C.X, C.Y, ld10.radius).attr(Object.assign({}, ld10.attr));
+  var anim_expand8Dash = anim_expand3to7Dash.then(function () {
+    return new Promise(function (resolve) {
+      // 8 o'clock dash
+      ls.ld9 = ls.ld8.clone();
+      _snapsvg["default"].animate(ld8.start, ld9.start, function (val) {
+        ls.ld9.attr({
+          transform: ['r' + val, C.X, C.Y]
+        });
+        var width = (val - ld8.start) / 2;
+        // 7-8 inner connection
+        ls.ld10.attr({
+          strokeDasharray: [width, ld10.perim - width]
+        });
+        // 7-8 outer connection
+        ls.ld11.attr({
+          strokeDasharray: [width * 1.5, ld10.perim - width * 1.5]
+        });
+      }, ld9.anim.timeout, ld9.anim.timing, resolve);
+    });
+  });
+
+  // ——————————————————————————————————————————————————
+  // //  7 - 8 OUTER CONNECTION
+  // ——————————————————————————————————————————————————
+  var ld11 = {
+    perim: 360,
+    scale: 1 / 1.75,
+    get radius() {
+      return C.radius(this.perim * this.scale);
+    },
+    get start() {
+      return ld8.start;
+    },
+    get end() {
+      return ld9.end;
+    },
+    get width() {
+      return (this.end - this.start) * this.scale - 1;
+    },
+    get attr() {
+      return {
+        fill: 'transparent',
+        stroke: C.ORANGE,
+        strokeWidth: 10,
+        strokeDasharray: [0, this.perim],
+        transform: ['r' + this.start, C.X, C.Y]
+      };
+    }
+  };
+  ls.ld11 = logo.circle(C.X, C.Y, ld11.radius).attr(Object.assign({}, ld11.attr));
+
+  // ——————————————————————————————————————————————————
+  //  11 o'clock DASH
+  // ——————————————————————————————————————————————————
+  var ld13 = {
+    perim: 360,
+    width: 12,
+    get radius() {
+      return C.radius(this.perim);
+    },
+    get end() {
+      return ld12.end + this.width * 1.5;
+    },
+    get start() {
+      return this.end - this.width + 1;
+    },
+    anim: {
+      timeout: 200,
+      timing: mina.bounce
+    }
+  };
+  var anim_expand11Dash = anim_expandNoonDash.then(function () {
+    return new Promise(function (resolve) {
+      // 11 o'clock dash
+      ls.ld13 = ls.ld4.clone();
       ls.ld13.attr({
-        transform: ['r' + val, C.X, C.Y]
+        strokeDasharray: [ld13.width, ld13.perim - ld13.width]
       });
-    }, ld13.anim.timeout, ld13.anim.timing, resolve);
+      _snapsvg["default"].animate(ld4.start, ld13.start, function (val) {
+        ls.ld13.attr({
+          transform: ['r' + val, C.X, C.Y]
+        });
+      }, ld13.anim.timeout, ld13.anim.timing, resolve);
+    });
   });
-});
 
-// ——————————————————————————————————————————————————
-//  10 o'clock DASH
-// ——————————————————————————————————————————————————
-var ld12 = {
-  perim: 360,
-  width: 12,
-  end: 222,
-  get radius() {
-    return C.radius(this.perim);
-  },
-  get start() {
-    return this.end - this.width + 1;
-  },
-  anim: {
-    timeout: 200,
-    timing: mina.bounce
-  }
-};
-var anim_expand10Dash = anim_expand11Dash.then(function () {
-  return new Promise(function (resolve) {
-    // 10 o'clock dash
-    ls.ld12 = ls.ld4.clone();
-    ls.ld12.attr({
-      strokeDasharray: [ld12.width, ld12.perim - ld12.width]
-    });
-    // 10-11 connection
-    ls.ld14.attr({
-      strokeDasharray: [8.5, ld14.perim - 8.5]
-    });
-    _snapsvg["default"].animate(ld13.start, ld12.start, function (val) {
+  // ——————————————————————————————————————————————————
+  //  10 o'clock DASH
+  // ——————————————————————————————————————————————————
+  var ld12 = {
+    perim: 360,
+    width: 12,
+    end: 222,
+    get radius() {
+      return C.radius(this.perim);
+    },
+    get start() {
+      return this.end - this.width + 1;
+    },
+    anim: {
+      timeout: 200,
+      timing: mina.bounce
+    }
+  };
+  var anim_expand10Dash = anim_expand11Dash.then(function () {
+    return new Promise(function (resolve) {
+      // 10 o'clock dash
+      ls.ld12 = ls.ld4.clone();
       ls.ld12.attr({
-        transform: ['r' + val, C.X, C.Y]
+        strokeDasharray: [ld12.width, ld12.perim - ld12.width]
       });
-      var deg = Math.abs(-229 + val) / 1.9;
+      // 10-11 connection
       ls.ld14.attr({
-        transform: ['r' + (ld13.start - deg), C.X, C.Y]
+        strokeDasharray: [8.5, ld14.perim - 8.5]
       });
-    }, ld12.anim.timeout, ld12.anim.timing, resolve);
-  });
-});
-
-// ——————————————————————————————————————————————————
-//  10 - 11 CONNECTION
-// ——————————————————————————————————————————————————
-var ld14 = {
-  perim: 360,
-  scale: 3 / 4,
-  get radius() {
-    return C.radius(this.perim * this.scale);
-  },
-  get start() {
-    return ld12.start;
-  },
-  get end() {
-    return ld13.end;
-  },
-  get width() {
-    return (this.end - this.start) * this.scale - 1;
-  },
-  get attr() {
-    return {
-      fill: 'transparent',
-      stroke: C.ORANGE,
-      strokeWidth: 4,
-      strokeDasharray: [0, this.perim - 0],
-      transform: ['r' + ld13.start, C.X, C.Y]
-    };
-  }
-};
-ls.ld14 = logo.circle(C.X, C.Y, ld14.radius).attr(Object.assign({}, ld14.attr));
-
-// ——————————————————————————————————————————————————
-//  1 to 3 CONNECTION
-// ——————————————————————————————————————————————————
-var ld6 = {
-  perim: 360,
-  scale: 1 / 2,
-  stroke: 2,
-  end: 365,
-  get start() {
-    return ld1.start;
-  },
-  get radius() {
-    return C.radius(this.perim * this.scale) - this.stroke / 2 * 4;
-  },
-  get width() {
-    return (this.end - this.start) * this.scale - 5;
-  },
-  get attr() {
-    return {
-      fill: 'transparent',
-      stroke: 'transparent',
-      strokeWidth: this.stroke,
-      strokeDasharray: [0, this.perim],
-      transform: ['r' + this.start, C.X, C.Y]
-    };
-  },
-  anim: {
-    timeout: 100,
-    timing: C.TIMING
-  }
-};
-ls.ld6 = logo.circle(C.X, C.Y, ld3.radius).attr(Object.assign({}, ld6.attr));
-var anim_expand1to3Dash = anim_expand11Dash.then(function () {
-  return new Promise(function (resolve) {
-    // 1-3 outer connection
-    ls.ld6.attr({
-      stroke: C.ORANGE
+      _snapsvg["default"].animate(ld13.start, ld12.start, function (val) {
+        ls.ld12.attr({
+          transform: ['r' + val, C.X, C.Y]
+        });
+        var deg = Math.abs(-229 + val) / 1.9;
+        ls.ld14.attr({
+          transform: ['r' + (ld13.start - deg), C.X, C.Y]
+        });
+      }, ld12.anim.timeout, ld12.anim.timing, resolve);
     });
-    _snapsvg["default"].animate(C.perimeter(ld3.radius / ld6.scale), ld6.perim, function (val) {
-      var mod = ld6.perim * val / Math.pow(ld6.perim, 2) - 0.1;
-      var radius = C.radius(val * ld6.scale) - ld6.stroke / 2 * 4;
-      var strokeDasharray = [ld6.width * mod, val - ld6.width * mod];
+  });
+
+  // ——————————————————————————————————————————————————
+  //  10 - 11 CONNECTION
+  // ——————————————————————————————————————————————————
+  var ld14 = {
+    perim: 360,
+    scale: 3 / 4,
+    get radius() {
+      return C.radius(this.perim * this.scale);
+    },
+    get start() {
+      return ld12.start;
+    },
+    get end() {
+      return ld13.end;
+    },
+    get width() {
+      return (this.end - this.start) * this.scale - 1;
+    },
+    get attr() {
+      return {
+        fill: 'transparent',
+        stroke: C.ORANGE,
+        strokeWidth: 4,
+        strokeDasharray: [0, this.perim - 0],
+        transform: ['r' + ld13.start, C.X, C.Y]
+      };
+    }
+  };
+  ls.ld14 = logo.circle(C.X, C.Y, ld14.radius).attr(Object.assign({}, ld14.attr));
+
+  // ——————————————————————————————————————————————————
+  //  1 to 3 CONNECTION
+  // ——————————————————————————————————————————————————
+  var ld6 = {
+    perim: 360,
+    scale: 1 / 2,
+    stroke: 2,
+    end: 365,
+    get start() {
+      return ld1.start;
+    },
+    get radius() {
+      return C.radius(this.perim * this.scale) - this.stroke / 2 * 4;
+    },
+    get width() {
+      return (this.end - this.start) * this.scale - 5;
+    },
+    get attr() {
+      return {
+        fill: 'transparent',
+        stroke: 'transparent',
+        strokeWidth: this.stroke,
+        strokeDasharray: [0, this.perim],
+        transform: ['r' + this.start, C.X, C.Y]
+      };
+    },
+    anim: {
+      timeout: 100,
+      timing: C.TIMING
+    }
+  };
+  ls.ld6 = logo.circle(C.X, C.Y, ld3.radius).attr(Object.assign({}, ld6.attr));
+  var anim_expand1to3Dash = anim_expand11Dash.then(function () {
+    return new Promise(function (resolve) {
+      // 1-3 outer connection
       ls.ld6.attr({
-        r: radius,
-        strokeDasharray: strokeDasharray
+        stroke: C.ORANGE
       });
-    }, ld6.anim.timeout, ld6.anim.timing, resolve);
+      _snapsvg["default"].animate(C.perimeter(ld3.radius / ld6.scale), ld6.perim, function (val) {
+        var mod = ld6.perim * val / Math.pow(ld6.perim, 2) - 0.1;
+        var radius = C.radius(val * ld6.scale) - ld6.stroke / 2 * 4;
+        var strokeDasharray = [ld6.width * mod, val - ld6.width * mod];
+        ls.ld6.attr({
+          r: radius,
+          strokeDasharray: strokeDasharray
+        });
+      }, ld6.anim.timeout, ld6.anim.timing, resolve);
+    });
   });
-});
 
-// ——————————————————————————————————————————————————
-// CIRCLE MASK
-// ——————————————————————————————————————————————————
-var l_mask = logo.circle(C.X, C.Y, C.radius(360)).attr({
-  fill: 'white'
-});
-
-// ——————————————————————————————————————————————————
-// LOGO GROUP
-// ——————————————————————————————————————————————————
-var ldg = logo.group.apply(logo, _toConsumableArray(Object.keys(ls).map(function (k) {
-  return ls[k];
-}))).attr({
-  mask: l_mask
-});
-var anim_rotateLogo = anim_expand1to3Dash.then(function () {
-  return new Promise(function (resolve) {
-    document.querySelector('svg.logo').classList.add('rotate');
-    setTimeout(function () {
-      document.querySelector('svg.logo').classList.remove('rotate');
-      document.querySelector('svg.logo').classList.add('rotated');
-    }, 1200);
-    setTimeout(resolve, 1200);
+  // ——————————————————————————————————————————————————
+  // CIRCLE MASK
+  // ——————————————————————————————————————————————————
+  var l_mask = logo.circle(C.X, C.Y, C.radius(360)).attr({
+    fill: 'white'
   });
-});
+
+  // ——————————————————————————————————————————————————
+  // LOGO GROUP
+  // ——————————————————————————————————————————————————
+  var ldg = logo.group.apply(logo, _toConsumableArray(Object.keys(ls).map(function (k) {
+    return ls[k];
+  }))).attr({
+    mask: l_mask
+  });
+  var anim_rotateLogo = anim_expand1to3Dash.then(function () {
+    return new Promise(function (resolve) {
+      document.querySelector('svg.logo').classList.add('rotate');
+      setTimeout(function () {
+        document.querySelector('svg.logo').classList.remove('rotate');
+        document.querySelector('svg.logo').classList.add('rotated');
+      }, 1200);
+      setTimeout(resolve, 1200);
+    });
+  });
+}
 
 // ——————————————————————————————————————————————————
 // Utils
@@ -13112,13 +13120,20 @@ setTimeout(function () {
     // introEl already server-renders its real heading text — leave as-is.
     return;
   }
-  scrambleTitle(new TextScramble(titleEl), ['LiTl31', 'Automation', 'Engineering', 'Consulting']);
+
+  // Only splash-page (index) has titleEl; guard each element independently
+  // so a page missing one (e.g. no splash) doesn't stop the others.
+  if (titleEl) {
+    scrambleTitle(new TextScramble(titleEl), ['LiTl31', 'Automation', 'Engineering', 'Consulting']);
+  }
   // Each page has its own intro heading — scramble it into itself
   // rather than a fixed phrase, so the effect works on every page.
   if (introEl) {
     scrambleTitle(new TextScramble(introEl), [introEl.innerText], 3);
   }
-  scrambleTitle(new TextScramble(contactEl), ['Contact', 'e-mail', 'Get in touch'], 2);
+  if (contactEl) {
+    scrambleTitle(new TextScramble(contactEl), ['Contact', 'e-mail', 'Get in touch'], 2);
+  }
 }, 5000);
 
 },{}],10:[function(require,module,exports){
@@ -13179,8 +13194,7 @@ if (root) {
     return "<div class=\"flex flex-wrap gap-4 mt-6\">".concat(cards, "</div>");
   };
   var entryCard = function entryCard(entry, accent) {
-    var link = entry.source ? "<a class=\"btn-glow accent-".concat(accent, " mt-4 inline-flex text-xs\" href=\"").concat(escapeHtml(entry.source), "\" target=\"_blank\" rel=\"noopener noreferrer\">View source \u2192</a>") : '';
-    return "\n      <div class=\"window-frame window-sm accent-".concat(accent, "\">\n        <div class=\"window-body\">\n          <div class=\"window-titlebar\">\n            <span class=\"window-dot\"></span>\n            <span class=\"font-mono text-xs uppercase tracking-widest text-gray-300\">").concat(escapeHtml(formatDate(entry.date)), "</span>\n            <span class=\"font-mono text-xs uppercase tracking-widest text-gray-500\">\xB7 ").concat(escapeHtml(entry.status), "</span>\n          </div>\n          <div class=\"window-content p-6 md:p-8\">\n            <h3 class=\"font-display font-bold text-white text-lg md:text-xl\">").concat(escapeHtml(entry.milestone), "</h3>\n            <div class=\"flex flex-wrap gap-2 mt-3\">").concat(productChips(entry.product), "</div>\n            <p class=\"text-gray-300 text-sm leading-relaxed mt-4\">").concat(escapeHtml(entry.description), "</p>\n            ").concat(link, "\n          </div>\n        </div>\n      </div>");
+    return "\n      <div class=\"window-frame window-sm accent-".concat(accent, "\">\n        <div class=\"window-body\">\n          <div class=\"window-titlebar\">\n            <span class=\"window-dot\"></span>\n            <span class=\"font-mono text-xs uppercase tracking-widest text-gray-300\">").concat(escapeHtml(formatDate(entry.date)), "</span>\n            <span class=\"font-mono text-xs uppercase tracking-widest text-gray-500\">\xB7 ").concat(escapeHtml(entry.status), "</span>\n          </div>\n          <div class=\"window-content p-6 md:p-8\">\n            <h3 class=\"font-display font-bold text-white text-lg md:text-xl\">").concat(escapeHtml(entry.milestone), "</h3>\n            <div class=\"flex flex-wrap gap-2 mt-3\">").concat(productChips(entry.product), "</div>\n            <p class=\"text-gray-300 text-sm leading-relaxed mt-4\">").concat(escapeHtml(entry.description), "</p>\n          </div>\n        </div>\n      </div>");
   };
   var groupHeading = function groupHeading(product, accent) {
     return "<h3 class=\"font-display font-bold accent-text-".concat(accent, " text-2xl md:text-3xl border-b accent-border-").concat(accent, " border-opacity-40 pb-2 mb-6\">").concat(escapeHtml(product), "</h3>");
