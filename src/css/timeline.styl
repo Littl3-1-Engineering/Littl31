@@ -1,0 +1,50 @@
+// Tab/segment control and filter-chip states for timeline.html. The
+// rendered entry cards themselves reuse .window-frame/.window-sm from
+// theme.styl (same chrome as everywhere else) so no card rules live
+// here — just the two interactive controls that are specific to this
+// page.
+
+.timeline-tab
+	padding 0.6rem 1.5rem
+	border-radius 9999px
+	font-family inherit
+	font-weight 700
+	font-size 0.75rem
+	letter-spacing 0.08em
+	text-transform uppercase
+	color #9CA3AF
+	border 1px solid rgba(255, 255, 255, 0.14)
+	background transparent
+	cursor pointer
+	transition color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease
+
+	&:hover
+		color #fff
+		border-color rgba(255, 255, 255, 0.32)
+
+	&.is-active
+		color #0a0d13
+		background var(--accent-solid, #F7C948)
+		border-color transparent
+		box-shadow 0 0 20px var(--accent-solid, #F7C948)
+
+.timeline-filter-chip
+	padding 0.4rem 1.1rem
+	border-radius 9999px
+	font-family inherit
+	font-size 0.7rem
+	letter-spacing 0.06em
+	text-transform uppercase
+	color #9CA3AF
+	border 1px solid rgba(255, 255, 255, 0.1)
+	background transparent
+	cursor pointer
+	transition color 0.2s ease, border-color 0.2s ease
+
+	&:hover
+		color #fff
+		border-color rgba(255, 255, 255, 0.3)
+
+	&.is-active
+		color var(--accent-solid, #22D3EE)
+		border-color var(--accent-solid, #22D3EE)

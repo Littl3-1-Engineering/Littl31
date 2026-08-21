@@ -3,3 +3,5 @@ node_modules
 dist
 yarn.lock
 package-lock.json
+CLAUDE.md
+AGENTS.md

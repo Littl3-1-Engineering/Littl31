@@ -1,0 +1,61 @@
+doctype html
+
+include mixins.pug
+
+-
+  // Pricing tiers for the "Current Feature Set" view come from the same
+  // alfr3d.products pricing data alfr3d.pug renders (single source of
+  // truth stays content.yml) — pulled out here and handed to timeline.js
+  // as an inline JSON blob, keyed by product name, since that view is
+  // rendered client-side from the fetched timeline.json rather than by
+  // Pug loops.
+  var launcherProduct = alfr3d.products.find(function (p) { return p.id === 'p-launcher' })
+  var cloudProduct = alfr3d.products.find(function (p) { return p.id === 'p-cloud' })
+  var timelinePricing = {
+    'Nexus Launcher': (launcherProduct && launcherProduct.pricing) || [],
+    'Cloud': (cloudProduct && cloudProduct.pricing) || []
+  }
+
+head
+  meta(charset='utf-8')
+  title #{timeline.meta.title}
+  meta(name='description' content=timeline.meta.description)
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  link(rel='stylesheet' href='css/style.css')
+  link(rel="icon" type="image/png" href='assets/images/favicon.ico')
+  script(src='js/main.js', defer)
+
+body.text-white.grid-bg
+  +navBar(nav, brand)
+
+  main(data-scroll-container)
+
+    +splash
+
+    +introHero(timeline.intro, 'cyan')
+
+    section#timeline-app(data-scroll-section, class='py-8 px-4 md:px-8')
+      script#timeline-pricing-data(type='application/json')!= JSON.stringify(timelinePricing)
+
+      .max-w-screen-lg.mx-auto(data-timeline-root, data-source='assets/data/timeline.json')
+
+        .flex.flex-wrap.justify-center(data-timeline-tabs, role='tablist', class='gap-2 mb-6')
+          button.timeline-tab.is-active.accent-gray(type='button', data-tab='history', role='tab', aria-selected='true') History
+          button.timeline-tab.accent-amber(type='button', data-tab='current', role='tab', aria-selected='false') Current Feature Set
+          button.timeline-tab.accent-orange(type='button', data-tab='upcoming', role='tab', aria-selected='false') Upcoming
+          button.timeline-tab.accent-cyan(type='button', data-tab='roadmap', role='tab', aria-selected='false') Roadmap
+
+        p.text-center.text-gray-500(class='text-xs uppercase tracking-widest mb-3') Filter by product
+
+        .flex.flex-wrap.justify-center(data-timeline-filters, class='gap-2 mb-10')
+          button.timeline-filter-chip.is-active(type='button', data-filter='all') All
+          button.timeline-filter-chip.accent-gray(type='button', data-filter='Backend') Backend
+          button.timeline-filter-chip.accent-cyan(type='button', data-filter='Nexus Launcher') Nexus Launcher
+          button.timeline-filter-chip.accent-amber(type='button', data-filter='littl31.com') littl31.com
+          button.timeline-filter-chip.accent-orange(type='button', data-filter='Cloud') Cloud
+
+        p.text-center.text-gray-500.text-sm(data-timeline-status, class='py-16') Loading timeline…
+        div.hidden(data-timeline-results, class='space-y-10')
+        p.text-center.text-gray-500.text-sm.hidden(data-timeline-empty, class='py-16') No entries match this filter.
+
+    +siteFooter(footer, { href: 'index.html', text: '← Littl3.1 Engineering' })
