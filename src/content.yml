@@ -10,6 +10,8 @@ brand:
 nav:
   - text: ALFR3D
     href: alfr3d.html
+  - text: Timeline
+    href: timeline.html
   - text: Lab
     href: lab.html
   - text: Contact
@@ -109,6 +111,16 @@ alfr3d:
     title: ALFR3D Kit
     text: A pre-flashed Pi appliance, built to order. Parked until Cloud proves there's real demand for it.
     badge: Not yet scheduled
+
+timeline:
+  meta:
+    title: 'Timeline : Littl3.1 Engineering'
+    description: The Alfr3d timeline — history, current feature set, and roadmap for Littl3.1 Engineering's flagship self-hosted home-automation platform.
+  intro:
+    title: From a Pi script to a platform.
+    lines:
+      - Alfr3d didn't start as a product — it started as a script on a Raspberry Pi in 2012. This is the record of every rebuild, rewrite and rebrand between then and now, plus what's shipping next.
+      - Switch views and filter by product to follow the real commits and pages behind each milestone.
 
 lab:
   meta:
