@@ -16,7 +16,7 @@ body.text-white.grid-bg
 
   main(class='pt-24', data-scroll-container)
 
-    .flex.flex-wrap.justify-center(data-scroll data-scroll-repeat data-scroll-position='top' class='gap-4 px-8')
+    .flex.flex-wrap.justify-center(class='gap-4 px-8')
       for badge in alfr3d.badges
         span.inline-block.mt-2(class=`accent-border-${badge.accent || 'gray'} accent-text-${badge.accent || 'gray'} text-xs tracking-widest uppercase border rounded-full px-4 py-2`)= badge.text
 

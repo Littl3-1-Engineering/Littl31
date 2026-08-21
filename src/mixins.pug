@@ -104,24 +104,36 @@ mixin section(item, defaultAccent)
           - var textWidth = item.wide ? 'max-w-2xl' : 'max-w-md'
 
           if item.img
-            .w-full.mt-12.flex(class=mediaSide)
-              .overflow-hidden(class=`accent-border-${accent} border rounded-lg w-full md:w-1/2`)
-                img.w-full(src=item.img)
-          if item.vid
-            .w-full.mt-12.flex(class=mediaSide)
-              .overflow-hidden(class=`accent-border-${accent} border rounded-lg w-full md:w-1/2`)
-                video.w-full(autoplay, loop, muted, playsinline)
-                  source(src=item.vid, type='video/mp4')
+            .w-full.mt-12.flex.flex-col(class=`gap-8 md:items-start md:flex-row ${item.right ? 'md:flex-row-reverse' : ''}`)
+              div(class='w-full md:w-1/2')
+                .overflow-hidden(class=`accent-border-${accent} border rounded-lg w-full`)
+                  img.w-full(src=item.img)
+                if item.imgCaption
+                  p.font-mono.text-gray-500.mt-3(class='text-xs leading-relaxed')= item.imgCaption
+              div(class='w-full md:w-1/2 space-y-6')
+                for line in item.lines
+                  p.opacity-0(
+                    data-scroll,
+                    data-scroll-repeat,
+                    data-scroll-class='opacity-100',
+                    class='transition-opacity delay-100 duration-700 text-gray-300 leading-relaxed'
+                  )= line
+          else
+            if item.vid
+              .w-full.mt-12.flex(class=mediaSide)
+                .overflow-hidden(class=`accent-border-${accent} border rounded-lg w-full md:w-1/2`)
+                  video.w-full(autoplay, loop, muted, playsinline)
+                    source(src=item.vid, type='video/mp4')
 
-          .w-full.mt-10.flex(class=textSide)
-            div(class=`${textWidth} space-y-6`)
-              for line in item.lines
-                p.opacity-0(
-                  data-scroll,
-                  data-scroll-repeat,
-                  data-scroll-class='opacity-100',
-                  class='transition-opacity delay-100 duration-700 text-gray-300 leading-relaxed'
-                )= line
+            .w-full.mt-10.flex(class=textSide)
+              div(class=`${textWidth} space-y-6`)
+                for line in item.lines
+                  p.opacity-0(
+                    data-scroll,
+                    data-scroll-repeat,
+                    data-scroll-class='opacity-100',
+                    class='transition-opacity delay-100 duration-700 text-gray-300 leading-relaxed'
+                  )= line
 
               if item.pricing
                 .flex.flex-wrap.pt-2(class='gap-6')
