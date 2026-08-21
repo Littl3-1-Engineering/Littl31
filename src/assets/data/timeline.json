@@ -368,5 +368,29 @@
     "date": null,
     "description": "Personality panel currently shows call-count usage only; per-token usage metadata from the LLM client isn't surfaced yet. Minor \u2014 a future-enhancement aside, not a scoped plan.",
     "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/Neural-Blueprint/todo/personality.md"
+  },
+  {
+    "id": "alfr3d-html-card-copy-scroll-fixes",
+    "milestone": "alfr3d.html card copy + scroll-reveal fixes",
+    "phase": "Present",
+    "product": [
+      "littl31.com"
+    ],
+    "status": "Shipped",
+    "date": "2026-08-21",
+    "description": "Added real descriptive paragraphs to the Nexus Launcher, Core, Cloud, and Kit cards (plus a 4th intro-hero line). Also fixed a Locomotive Scroll init crash that was silently blocking all scroll-reveal content sitewide, a stale scroll-trigger-position bug after async image loads, and restructured card layout so text sits beside its screenshot instead of stacking below it.",
+    "source": "https://github.com/Littl3-1-Engineering/Littl31/commit/1c8b5c3b7bb309273ae7a3cdbf016c08f0798fa7"
+  },
+  {
+    "id": "logo-anim-referenceerror-fix",
+    "milestone": "Fixed ReferenceError in logo animation",
+    "phase": "Present",
+    "product": [
+      "littl31.com"
+    ],
+    "status": "Shipped",
+    "date": "2026-08-21",
+    "description": "bezier()'s returned easing closure read a module-scope C that was actually only declared inside runLogoAnimation()'s local scope, throwing ReferenceError whenever Snap invoked the easing function during the index-page splash logo animation. Hoisted config() to module scope to fix.",
+    "source": "https://github.com/Littl3-1-Engineering/Littl31/commit/19adb02db40c6ff94390641850132263c79634db"
   }
 ]
