@@ -86,19 +86,25 @@ setTimeout(
       return
     }
 
-    scrambleTitle(
-      new TextScramble(titleEl),
-      ['LiTl31', 'Automation', 'Engineering', 'Consulting']
-    )
+    // Only splash-page (index) has titleEl; guard each element independently
+    // so a page missing one (e.g. no splash) doesn't stop the others.
+    if (titleEl) {
+      scrambleTitle(
+        new TextScramble(titleEl),
+        ['LiTl31', 'Automation', 'Engineering', 'Consulting']
+      )
+    }
     // Each page has its own intro heading — scramble it into itself
     // rather than a fixed phrase, so the effect works on every page.
     if (introEl) {
       scrambleTitle(new TextScramble(introEl), [introEl.innerText], 3)
     }
-    scrambleTitle(
-      new TextScramble(contactEl),
-      ['Contact','e-mail','Get in touch'], 2
-    )
+    if (contactEl) {
+      scrambleTitle(
+        new TextScramble(contactEl),
+        ['Contact','e-mail','Get in touch'], 2
+      )
+    }
   },
   5000
 )

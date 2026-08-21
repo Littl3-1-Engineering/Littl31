@@ -1,5 +1,14 @@
 import Snap from 'snapsvg'
 
+// The logo animation only runs on pages that render the +splash mixin
+// (currently just index) — guard the whole thing so pages without a
+// .logo element in the DOM don't throw and break the rest of main.js.
+if (document.querySelector('.logo')) {
+  runLogoAnimation()
+}
+
+function runLogoAnimation () {
+
 const C = config()
 const logo = new Snap('.logo')
 const ls = {}
@@ -488,6 +497,7 @@ const anim_rotateLogo = anim_expand1to3Dash.then(() =>
   })
 )
 
+}
 
 // ——————————————————————————————————————————————————
 // Utils
