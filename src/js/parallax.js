@@ -7,9 +7,21 @@ setTimeout(() => {
   // `overflow: hidden` on body is scoped in CSS to `html.has-scroll-smooth`
   // (a class Locomotive only adds when smooth mode actually initializes),
   // so native scroll isn't blocked on devices that fall back to it.
+  const container = document.querySelector('[data-scroll-container]')
   const scroll = new LocomotiveScroll({
-    el: document.querySelector('[data-scroll-container]'),
+    el: container,
     smooth: true
+  })
+
+  // Element positions/trigger points are captured once at init. Product
+  // card screenshots are large and often still loading at that point —
+  // each one finishing later reflows everything below it, leaving
+  // Locomotive's recorded positions stale (so scroll-reveal text past an
+  // image never gets marked in-view). Recalculate as each image lands.
+  container.querySelectorAll('img').forEach((img) => {
+    if (!img.complete) {
+      img.addEventListener('load', () => scroll.update(), { once: true })
+    }
   })
 
   // Locomotive Scroll drives scroll position via a transform on

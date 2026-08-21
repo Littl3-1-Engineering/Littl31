@@ -60,6 +60,7 @@ alfr3d:
       - Home Assistant made self-hosting mainstream. Nabu Casa made it convenient. ALFR3D is built the same way — a real platform running on hardware you own, with a hosted layer you can opt into, never the other way around.
       - A containerized microservices backend, a situational-awareness engine that actually knows what day it is and what's playing, and Nexus Launcher — an Android home screen built to talk to it directly.
       - No ad tier. Not now, not ever. That's not a pricing decision, it's a policy.
+      - It behaves like a butler, not a control panel — situational awareness, a personality layer, dashboards built to live on a wall, not hide in an app. The parts of "smart home" that usually stay locked behind someone else's cloud.
     cta:
       text: → See the full timeline
       href: timeline.html
@@ -69,9 +70,10 @@ alfr3d:
       eyebrow: / NEXUS LAUNCHER
       accent: cyan
       img: 'assets/images/nexus-launcher-radial.jpg'
+      imgCaption: The Ambient Brief card, mid-gathering — real presence data, not a canned notification.
       quip: I've taken the liberty of arranging your applications. You're welcome.
       lines:
-        - A free-form spatial launcher for Android — no permanent dock, apps and ALFR3D surfaces open as free-floating windows on an infinite canvas. Double-tap search, a built-in terminal, live situational-awareness cards.
+        - "A free-form spatial launcher for Android: no permanent dock, no fixed grid. Apps, the terminal, and ALFR3D surfaces open as free-floating windows on an infinite canvas — summoned by double-tap search or the Nexus Core's press-and-flow radial menu, with live situational-awareness cards updating right on the canvas."
         - Free core, forever. A one-time unlock removes the ceiling — no subscription, because a launcher sitting on your own phone doesn't cost us a server bill to run.
       wide: true
       pricing:
@@ -87,9 +89,10 @@ alfr3d:
       eyebrow: / ALFR3D CORE
       right: true
       img: 'assets/images/alfr3d-dashboard.jpg'
+      imgCaption: The Nexus dashboard — residents, situational awareness, and live container health, all on one wall panel.
       quip: The engine room. I keep it running so you never have to think about it.
       lines:
-        - The backend. Kafka messaging, containerized services, a dashboard that actually looks like something you'd want on a wall panel — not a spreadsheet.
+        - "The backend: containerized microservices — API, User, Device, Environment, and Speak — each one independent, coordinating only over Kafka, plus a Python daemon that handles situational awareness and voice routing. The result is a dashboard that actually looks like something you'd want on a wall panel — not a spreadsheet."
         - Stays free forever, stays self-hosted, stays local-first. This is the platform, not the product we're selling — think of it the way Home Assistant thinks of Home Assistant Core.
     - title: ALFR3D Cloud
       id: p-cloud
@@ -116,7 +119,7 @@ alfr3d:
   kit:
     title: ALFR3D Kit
     quip: A butler, boxed and ready to ship. Currently interviewing for the position — do check back.
-    text: A pre-flashed Pi appliance, built to order. Parked until Cloud proves there's real demand for it.
+    text: "A Raspberry Pi, pre-flashed with ALFR3D Core and shipped ready to plug in — no Docker Compose, no manual setup, just power and a network connection. It's built to order, not stocked. Development hasn't started: the Kit only makes sense once enough people are running Cloud to justify building hardware for them, not before."
     badge: Not yet scheduled
 
 timeline:
