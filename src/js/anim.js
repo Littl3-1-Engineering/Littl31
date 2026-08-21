@@ -1,5 +1,11 @@
 import Snap from 'snapsvg'
 
+// bezier()'s easing closure below reads C, so it must stay at module
+// scope even though the DOM-touching animation code only runs
+// conditionally — config() itself has no DOM dependency, it's safe
+// unconditionally.
+const C = config()
+
 // The logo animation only runs on pages that render the +splash mixin
 // (currently just index) — guard the whole thing so pages without a
 // .logo element in the DOM don't throw and break the rest of main.js.
@@ -9,7 +15,6 @@ if (document.querySelector('.logo')) {
 
 function runLogoAnimation () {
 
-const C = config()
 const logo = new Snap('.logo')
 const ls = {}
 
