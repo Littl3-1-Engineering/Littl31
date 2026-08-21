@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <title>Timeline : Littl3.1 Engineering</title>
+  <meta name="description" content="The Alfr3d timeline — history, current feature set, and roadmap for Littl3.1 Engineering's flagship self-hosted home-automation platform.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.e29cc282.css">
+  <link rel="icon" type="image/png" href="assets/images/favicon.ico">
+  <script src="js/main.c9bda0eb.js" defer></script>
+</head>
+<body class="text-white grid-bg">
+  <nav class="nav-glass fixed top-0 left-0 right-0 z-50">
+    <div class="max-w-screen-lg mx-auto flex items-center justify-between px-4 md:px-8 py-3"><a class="flex items-center gap-2" href="index.html"><img class="w-7 h-7" src="assets/images/logo.svg" alt="Littl3.1"><span class="font-display text-white text-lg tracking-wide">Littl3.1</span></a>
+      <button class="text-white md:hidden p-2" type="button" aria-label="Toggle menu" aria-expanded="false" data-nav-toggle>
+        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+      <ul class="font-mono hidden md:flex items-center gap-8 text-xs uppercase tracking-widest" data-nav-menu>
+        <li><a class="text-gray-300 transition-colors" href="alfr3d.html">ALFR3D</a></li>
+        <li><a class="text-gray-300 transition-colors" href="timeline.html">Timeline</a></li>
+        <li><a class="text-gray-300 transition-colors" href="lab.html">Lab</a></li>
+        <li><a class="text-gray-300 transition-colors" href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+  <main data-scroll-container>
+    <section class="h-screen flex flex-col items-center justify-center" id="splash" data-scroll-section>
+      <div data-scroll data-scroll-repeat data-scroll-speed="-3" data-scroll-position="top">
+        <svg class="logo -mt-32"></svg>
+      </div>
+      <div data-scroll data-scroll-repeat data-scroll-speed="-2" data-scroll-position="top"><a href="#intro">
+          <h1 class="font-bold font-display accent-text-orange text-5xl" data-scramble-title>&nbsp;</h1></a></div>
+    </section>
+    <section class="p-8 flex items-center justify-center" id="intro" data-scroll-section>
+      <div class="max-w-screen-lg w-full relative window-frame accent-cyan">
+        <div class="window-tab"></div>
+        <div class="window-body">
+          <div class="window-titlebar"><span class="window-dot"></span></div>
+          <div class="window-content p-8 md:p-12">
+            <h2 class="font-display font-bold text-right accent-text-cyan text-4xl md:text-6xl" data-scramble-intro data-scroll data-scroll-repeat data-scroll-speed="3" data-scroll-position="top" data-scroll-direction="horizontal">From a Pi script to a platform.</h2>
+            <div class="w-full mt-12 flex justify-end">
+              <div class="max-w-xl space-y-6" data-scroll>
+                <p class="opacity-0 transition-opacity delay-100 duration-700 text-gray-300 leading-relaxed" data-scroll data-scroll-repeat data-scroll-class="opacity-100">Alfr3d didn't start as a product — it started as a script on a Raspberry Pi in 2012. This is the record of every rebuild, rewrite and rebrand between then and now, plus what's shipping next.</p>
+                <p class="opacity-0 transition-opacity delay-100 duration-700 text-gray-300 leading-relaxed" data-scroll data-scroll-repeat data-scroll-class="opacity-100">Switch views and filter by product to follow the real commits and pages behind each milestone.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="py-8 px-4 md:px-8" id="timeline-app" data-scroll-section>
+      <script id="timeline-pricing-data" type="application/json">{"Nexus Launcher":[{"amount":"Free","label":"Core launcher, full spatial canvas, ALFR3D pairing","info":"Free forever — the whole spatial canvas, Nexus Core radial menu, double-tap search, window manager, terminal, base theming. No trial timer, no feature ceiling that expires."},{"amount":"$5.99","label":"Pro unlock · one-time, Play Billing","accent":"orange","info":"One-time purchase through Google Play Billing — not a subscription, no tiers. Unlocks extra themes and icon packs, advanced window layouts (snap presets, multi-window save/restore), and layout backup & restore."}],"Cloud":[{"amount":"Free","label":"Local-only, always available","info":"Local network only — everything ALFR3D does today. No relay, no account, no monthly fee. This tier isn't going away."},{"amount":"$5.99/mo","label":"Cloud · remote access, push","info":"Or $59/yr. Remote access relay — no port-forwarding — plus push notifications to the launcher and phone. Benchmarked against Nabu Casa (~$6.50/mo), the closest real precedent for this model."},{"amount":"$11.99/mo","label":"Cloud+ · hosted backups, personality features, priority support","accent":"orange","info":"Or $119/yr. Everything in Cloud, plus hosted backups, the LLM-powered personality/quips features, and a priority support queue — real per-user compute cost behind each of those."}]}</script>
+      <div class="max-w-screen-lg mx-auto" data-timeline-root data-source="assets/data/timeline.json">
+        <div class="flex flex-wrap justify-center gap-2 mb-6" data-timeline-tabs role="tablist">
+          <button class="timeline-tab is-active accent-gray" type="button" data-tab="history" role="tab" aria-selected="true">History</button>
+          <button class="timeline-tab accent-amber" type="button" data-tab="current" role="tab" aria-selected="false">Current Feature Set</button>
+          <button class="timeline-tab accent-orange" type="button" data-tab="upcoming" role="tab" aria-selected="false">Upcoming</button>
+          <button class="timeline-tab accent-cyan" type="button" data-tab="roadmap" role="tab" aria-selected="false">Roadmap</button>
+        </div>
+        <p class="text-center text-gray-500 text-xs uppercase tracking-widest mb-3">Filter by product</p>
+        <div class="flex flex-wrap justify-center gap-2 mb-10" data-timeline-filters>
+          <button class="timeline-filter-chip is-active" type="button" data-filter="all">All</button>
+          <button class="timeline-filter-chip accent-gray" type="button" data-filter="Backend">Backend</button>
+          <button class="timeline-filter-chip accent-cyan" type="button" data-filter="Nexus Launcher">Nexus Launcher</button>
+          <button class="timeline-filter-chip accent-amber" type="button" data-filter="littl31.com">littl31.com</button>
+          <button class="timeline-filter-chip accent-orange" type="button" data-filter="Cloud">Cloud</button>
+        </div>
+        <p class="text-center text-gray-500 text-sm py-16" data-timeline-status>Loading timeline…</p>
+        <div class="hidden space-y-10" data-timeline-results></div>
+        <p class="text-center text-gray-500 text-sm hidden py-16" data-timeline-empty>No entries match this filter.</p>
+      </div>
+    </section>
+    <footer class="nav-glass text-white py-8 px-4" id="contact" data-scroll-section>
+      <div class="max-w-screen-lg mx-auto flex flex-col">
+        <div class="w-full mb-8"><a class="text-gray-400 transition-colors text-sm hover:text-amber-400" href="index.html">← Littl3.1 Engineering</a></div>
+        <div class="flex items-center w-full">
+          <div class="w-1/3"></div>
+          <div class="w-1/3"><img class="mx-auto w-24" src="assets/images/logo.svg"></div>
+          <div class="text-right w-1/3">
+            <div data-scroll data-scroll-repeat data-scroll-position="top" data-scroll-speed="-1"></div><a class="cursor-pointer font-bold font-display accent-text-orange text-5xl" href="mailto:athos@littl31.com" data-scramble-contact>Contact</a>
+          </div>
+        </div>
+        <p class="text-center text-gray-400 text-sm mt-4 px-8" data-scroll data-scroll-repeat data-scroll-speed="0.5">No ads, no telemetry, by design — not a pricing tier, a policy. Littl3.1 Engineering builds deliberately and ships selectively.</p>
+      </div>
+    </footer>
+  </main>
+</body>

@@ -1,0 +1,272 @@
+[
+  {
+    "id": "alfred-cube",
+    "milestone": "Alfred Cube",
+    "phase": "Past",
+    "product": [
+      "Backend"
+    ],
+    "status": "Shipped",
+    "date": "2012-01-01",
+    "description": "Earliest known concept/build in the Alfr3d lineage.",
+    "source": "https://app.notion.com/p/fcf312f57c094496a224a47ebedcc6fe"
+  },
+  {
+    "id": "mk-1",
+    "milestone": "MK-I",
+    "phase": "Past",
+    "product": [
+      "Backend"
+    ],
+    "status": "Shipped",
+    "date": "2014-01-01",
+    "description": "Early 2014 iteration of the home-automation daemon.",
+    "source": "https://app.notion.com/p/b48806b34d1041808317bd615f751bae"
+  },
+  {
+    "id": "mk-3",
+    "milestone": "MK-III",
+    "phase": "Past",
+    "product": [
+      "Backend"
+    ],
+    "status": "Shipped",
+    "date": "2014-06-01",
+    "description": "2014 iteration, ordering relative to MK-I/MK-II unconfirmed.",
+    "source": "https://app.notion.com/p/98bdf9cedb2a42f99836658ebdde9080"
+  },
+  {
+    "id": "mk-2",
+    "milestone": "MK-II",
+    "phase": "Past",
+    "product": [
+      "Backend"
+    ],
+    "status": "Shipped",
+    "date": "2014-06-01",
+    "description": "Home-automation daemon running on a Pi (/home/alfr3d/alfr3ddaemon.py), audio handling.",
+    "source": "https://app.notion.com/p/57c9ca8acded4691a91b0664bbb4ff90"
+  },
+  {
+    "id": "mk-4-2015",
+    "milestone": "MK-IV (2015)",
+    "phase": "Past",
+    "product": [
+      "Backend"
+    ],
+    "status": "Shipped",
+    "date": "2015-01-01",
+    "description": "Added Python LIFX integration (pylifx).",
+    "source": "https://app.notion.com/p/0533da7c4d7244809b696fddfc0db169"
+  },
+  {
+    "id": "split-repos",
+    "milestone": "Split into dedicated repos",
+    "phase": "Past",
+    "product": [
+      "Backend"
+    ],
+    "status": "Shipped",
+    "date": "2016-01-01",
+    "description": "Server + mobile companion apps split out: Alfr3dServer, Alfr3d4Android-Original, Alfr3d-MKIII-Android, alfr3d.io.",
+    "source": "https://github.com/armageddion/Alfr3dServer"
+  },
+  {
+    "id": "mk4-new-arch",
+    "milestone": "Alfr3d-MKIV (new architecture)",
+    "phase": "Past",
+    "product": [
+      "Backend"
+    ],
+    "status": "Shipped",
+    "date": "2019-01-01",
+    "description": "Separate repo from the 2015 MK-IV Notion page, not yet reconciled with it.",
+    "source": "https://github.com/armageddion/Alfr3d-MKIV"
+  },
+  {
+    "id": "cassiopia",
+    "milestone": "Cassiop3ia / MK-VI",
+    "phase": "Past",
+    "product": [
+      "Backend"
+    ],
+    "status": "Shipped",
+    "date": null,
+    "description": "First Kafka message-bus architecture (topics speak/environment/device/user); direct architectural precursor to today's Kafka-based backend. Undated.",
+    "source": "https://github.com/armageddion/cassiop3ia"
+  },
+  {
+    "id": "bedouina",
+    "milestone": "Bedouina (\"Bena\")",
+    "phase": "Past",
+    "product": [
+      "Backend"
+    ],
+    "status": "Shipped",
+    "date": null,
+    "description": "Repo explicitly describes itself as \"Successor to Project Alfr3d\" \u2014 a rebrand attempt that didn't end up replacing it. Undated.",
+    "source": "https://github.com/armageddion/b3na"
+  },
+  {
+    "id": "consolidated-rewrite",
+    "milestone": "Consolidated rewrite (current repo)",
+    "phase": "Present",
+    "product": [
+      "Backend"
+    ],
+    "status": "Shipped",
+    "date": "2026-08-20",
+    "description": "Now Littl3-1-Engineering/alfr3d, 279 commits, latest tagged release v0.1.7. Described by its own README as \"the final resting place of Alfr3d after years of different architectures and repos.\"",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d"
+  },
+  {
+    "id": "littl31-current-site",
+    "milestone": "littl31.com \u2014 current live site",
+    "phase": "Present",
+    "product": [
+      "littl31.com"
+    ],
+    "status": "Shipped",
+    "date": "2026-08-01",
+    "description": "Product site for Littl3.1 Engineering with Alfr3d as flagship. Pages: index.html, alfr3d.html, lab.html.",
+    "source": "https://www.littl31.com"
+  },
+  {
+    "id": "backend-v018",
+    "milestone": "Alfr3d Backend v0.1.8 feature set",
+    "phase": "Present",
+    "product": [
+      "Backend"
+    ],
+    "status": "Shipped",
+    "date": "2026-08-01",
+    "description": "Containerized microservices (Kafka, MySQL, Redis, FastAPI, React), Nexus/Domain/Matrix frontends, Spotify integration, RTSP streaming, WHEN/IF/THEN automations, situational-awareness engine, IoT sync. Functionality shipped in code though not yet git-tagged.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d"
+  },
+  {
+    "id": "nexus-v0128",
+    "milestone": "Nexus Launcher v0.1.28",
+    "phase": "Present",
+    "product": [
+      "Nexus Launcher"
+    ],
+    "status": "Shipped",
+    "date": "2026-08-01",
+    "description": "28 tagged releases, free spatial launcher + $5.99 Pro unlock live, CI builds debug APK on every push to main, signed-release workflow on version tags.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck"
+  },
+  {
+    "id": "monetization-plan",
+    "milestone": "Monetization Plan published",
+    "phase": "Present",
+    "product": [
+      "Backend",
+      "Nexus Launcher",
+      "Cloud"
+    ],
+    "status": "Shipped",
+    "date": "2026-08-01",
+    "description": "Core free / Nexus Launcher free+$5.99 Pro / Cloud Phase 3 $5.99-$11.99 / Kit unscheduled, published on littl31.com/alfr3d.html.",
+    "source": "https://www.littl31.com/alfr3d.html"
+  },
+  {
+    "id": "github-org-migration",
+    "milestone": "GitHub org migration to Littl3-1-Engineering",
+    "phase": "Present",
+    "product": [
+      "Backend",
+      "Nexus Launcher",
+      "littl31.com"
+    ],
+    "status": "Shipped",
+    "date": "2026-08-20",
+    "description": "All 3 repos (alfr3d, alfr3d_deck, Littl31) migrated from personal armageddion account to the Littl3-1-Engineering org.",
+    "source": "https://github.com/Littl3-1-Engineering"
+  },
+  {
+    "id": "alfr3d-cloud-phase3",
+    "milestone": "Alfr3d Cloud (Phase 3)",
+    "phase": "Future",
+    "product": [
+      "Cloud"
+    ],
+    "status": "In Progress",
+    "date": null,
+    "description": "Remote-access relay (no port forwarding) + push notifications; \"thin, dumb-pipe relay\" that never sees plaintext data. Not yet built.",
+    "source": "https://www.littl31.com/alfr3d.html"
+  },
+  {
+    "id": "cut-v018-tag",
+    "milestone": "Cut v0.1.8 git tag/release",
+    "phase": "Future",
+    "product": [
+      "Backend"
+    ],
+    "status": "In Progress",
+    "date": null,
+    "description": "RELEASE_NOTES.md already documents v0.1.8 (\"Situational Awareness Registry\") but the latest actual git tag is still v0.1.7.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d"
+  },
+  {
+    "id": "play-store-publishing",
+    "milestone": "Nexus Launcher Play Store publishing",
+    "phase": "Future",
+    "product": [
+      "Nexus Launcher"
+    ],
+    "status": "In Progress",
+    "date": null,
+    "description": "Signing, Gradle Play Publisher, and gated CI already wired up; blocked on manual account-holder steps: Play developer enrollment, Play Console app entry, first manual release upload, sensitive-permission declarations + demo video, hosted privacy policy URL, CI service account for future automated releases.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck"
+  },
+  {
+    "id": "alfr3d-kit",
+    "milestone": "Alfr3d Kit",
+    "phase": "Future",
+    "product": [
+      "Backend",
+      "Cloud"
+    ],
+    "status": "Backburner",
+    "date": null,
+    "description": "Pre-flashed Raspberry Pi appliance, built to order. Parked until Alfr3d Cloud proves demand. Not yet scheduled.",
+    "source": "https://www.littl31.com/alfr3d.html"
+  },
+  {
+    "id": "backend-license",
+    "milestone": "Backend LICENSE \u2014 confirmed present (FSL-1.1-ALv2)",
+    "phase": "Present",
+    "product": [
+      "Backend"
+    ],
+    "status": "Shipped",
+    "date": null,
+    "description": "Corrected: repo does have a LICENSE file (FSL-1.1-ALv2 text, matches the site). GitHub's NOASSERTION was a license-detector classification gap for a non-SPDX-standard license, not a missing file. No action needed.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d"
+  },
+  {
+    "id": "nexus-cloud-pairing",
+    "milestone": "Nexus Launcher Cloud pairing",
+    "phase": "Future",
+    "product": [
+      "Nexus Launcher",
+      "Cloud"
+    ],
+    "status": "Backburner",
+    "date": null,
+    "description": "Push notifications to the launcher; depends on Alfr3d Cloud Phase 3 shipping first.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck"
+  },
+  {
+    "id": "littl31-roadmap",
+    "milestone": "littl31.com roadmap",
+    "phase": "Future",
+    "product": [
+      "littl31.com"
+    ],
+    "status": "Backburner",
+    "date": null,
+    "description": "No accessible public roadmap/issue list found for the site itself \u2014 unconfirmed.",
+    "source": "https://www.littl31.com"
+  }
+]

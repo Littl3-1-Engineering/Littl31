@@ -12909,8 +12909,9 @@ require("./scramble.js");
 require("./anim.js");
 require("./pricing-info.js");
 require("./nav.js");
+require("./timeline.js");
 
-},{"./anim.js":4,"./nav.js":6,"./parallax.js":7,"./pricing-info.js":8,"./scramble.js":9}],6:[function(require,module,exports){
+},{"./anim.js":4,"./nav.js":6,"./parallax.js":7,"./pricing-info.js":8,"./scramble.js":9,"./timeline.js":10}],6:[function(require,module,exports){
 "use strict";
 
 var toggle = document.querySelector('[data-nav-toggle]');
@@ -13119,5 +13120,201 @@ setTimeout(function () {
   }
   scrambleTitle(new TextScramble(contactEl), ['Contact', 'e-mail', 'Get in touch'], 2);
 }, 5000);
+
+},{}],10:[function(require,module,exports){
+"use strict";
+
+// Timeline page (timeline.html) — fetches the static timeline.json asset
+// at runtime and renders/filters it client-side. Self-guarded: on any
+// other page `root` is null and the whole module is a no-op, same
+// pattern as pricing-info.js/nav.js.
+
+var root = document.querySelector('[data-timeline-root]');
+if (root) {
+  var sortByDate = function sortByDate(direction) {
+    var sign = direction === 'asc' ? 1 : -1;
+    return function (a, b) {
+      var ta = a.date ? Date.parse(a.date) : null;
+      var tb = b.date ? Date.parse(b.date) : null;
+      if (ta === null && tb === null) return 0;
+      if (ta === null) return 1; // undated always sorts last, either direction
+      if (tb === null) return -1;
+      return sign * (ta - tb);
+    };
+  };
+  var escapeHtml = function escapeHtml(str) {
+    return String(str).replace(/[&<>"']/g, function (c) {
+      return {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;'
+      }[c];
+    });
+  };
+  var formatDate = function formatDate(iso) {
+    if (!iso) return 'Undated';
+    var parsed = new Date(iso);
+    if (Number.isNaN(parsed.getTime())) return 'Undated';
+    return parsed.toLocaleDateString('en-US', {
+      month: 'short',
+      year: 'numeric',
+      timeZone: 'UTC'
+    });
+  };
+  var productChips = function productChips(products) {
+    return products.map(function (p) {
+      var accent = PRODUCT_ACCENT[p] || 'gray';
+      return "<span class=\"accent-border-".concat(accent, " accent-text-").concat(accent, " text-xs tracking-widest uppercase border rounded-full px-3 py-1 inline-block\">").concat(escapeHtml(p), "</span>");
+    }).join('');
+  };
+  var pricingTiers = function pricingTiers(product) {
+    var tiers = pricingByProduct[product];
+    if (!tiers || !tiers.length) return '';
+    var cards = tiers.map(function (tier) {
+      var accent = tier.accent || 'amber';
+      return "\n        <div class=\"window-frame window-sm accent-".concat(escapeHtml(accent), "\">\n          <div class=\"window-body\">\n            <div class=\"window-content px-6 py-4\">\n              <div class=\"font-bold accent-text-").concat(escapeHtml(accent), " text-2xl\">").concat(escapeHtml(tier.amount), "</div>\n              <div class=\"text-xs text-gray-400 mt-1\">").concat(escapeHtml(tier.label), "</div>\n            </div>\n          </div>\n        </div>");
+    }).join('');
+    return "<div class=\"flex flex-wrap gap-4 mt-6\">".concat(cards, "</div>");
+  };
+  var entryCard = function entryCard(entry, accent) {
+    var link = entry.source ? "<a class=\"btn-glow accent-".concat(accent, " mt-4 inline-flex text-xs\" href=\"").concat(escapeHtml(entry.source), "\" target=\"_blank\" rel=\"noopener noreferrer\">View source \u2192</a>") : '';
+    return "\n      <div class=\"window-frame window-sm accent-".concat(accent, "\">\n        <div class=\"window-body\">\n          <div class=\"window-titlebar\">\n            <span class=\"window-dot\"></span>\n            <span class=\"font-mono text-xs uppercase tracking-widest text-gray-300\">").concat(escapeHtml(formatDate(entry.date)), "</span>\n            <span class=\"font-mono text-xs uppercase tracking-widest text-gray-500\">\xB7 ").concat(escapeHtml(entry.status), "</span>\n          </div>\n          <div class=\"window-content p-6 md:p-8\">\n            <h3 class=\"font-display font-bold text-white text-lg md:text-xl\">").concat(escapeHtml(entry.milestone), "</h3>\n            <div class=\"flex flex-wrap gap-2 mt-3\">").concat(productChips(entry.product), "</div>\n            <p class=\"text-gray-300 text-sm leading-relaxed mt-4\">").concat(escapeHtml(entry.description), "</p>\n            ").concat(link, "\n          </div>\n        </div>\n      </div>");
+  };
+  var groupHeading = function groupHeading(product, accent) {
+    return "<h3 class=\"font-display font-bold accent-text-".concat(accent, " text-2xl md:text-3xl border-b accent-border-").concat(accent, " border-opacity-40 pb-2 mb-6\">").concat(escapeHtml(product), "</h3>");
+  };
+  var render = function render() {
+    if (!entries) return;
+    var config = STATES[activeTab];
+    var filterMatch = function filterMatch(e) {
+      return activeFilter === 'all' || e.product.includes(activeFilter);
+    };
+    var filtered = entries.filter(config.match).filter(filterMatch).slice().sort(config.sort);
+    if (!filtered.length) {
+      resultsEl.classList.add('hidden');
+      resultsEl.innerHTML = '';
+      emptyEl.classList.remove('hidden');
+      statusEl.classList.add('hidden');
+      return;
+    }
+    emptyEl.classList.add('hidden');
+    statusEl.classList.add('hidden');
+    resultsEl.classList.remove('hidden');
+    if (config.grouped) {
+      var products = activeFilter === 'all' ? PRODUCTS : [activeFilter];
+      resultsEl.innerHTML = products.map(function (product) {
+        var inGroup = filtered.filter(function (e) {
+          return e.product.includes(product);
+        });
+        if (!inGroup.length) return '';
+        var cards = inGroup.map(function (e) {
+          return entryCard(e, config.accent);
+        }).join('');
+        var pricing = pricingTiers(product);
+        return "<div>".concat(groupHeading(product, PRODUCT_ACCENT[product] || config.accent), "<div class=\"space-y-6\">").concat(cards, "</div>").concat(pricing, "</div>");
+      }).join('');
+    } else {
+      resultsEl.innerHTML = "<div class=\"space-y-6\">".concat(filtered.map(function (e) {
+        return entryCard(e, config.accent);
+      }).join(''), "</div>");
+    }
+  };
+  var setActiveTab = function setActiveTab(tab) {
+    activeTab = tab;
+    tabsEl.querySelectorAll('[data-tab]').forEach(function (btn) {
+      var isActive = btn.dataset.tab === tab;
+      btn.classList.toggle('is-active', isActive);
+      btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
+    });
+    render();
+  };
+  var setActiveFilter = function setActiveFilter(filter) {
+    activeFilter = filter;
+    filtersEl.querySelectorAll('[data-filter]').forEach(function (btn) {
+      btn.classList.toggle('is-active', btn.dataset.filter === filter);
+    });
+    render();
+  };
+  var PRODUCTS = ['Backend', 'Nexus Launcher', 'littl31.com', 'Cloud'];
+
+  // Fixed per-product accent, used both for the entry-card product chips
+  // and (statically, in timeline.pug) for the filter chips themselves —
+  // keep these two in sync if either changes.
+  var PRODUCT_ACCENT = {
+    Backend: 'gray',
+    'Nexus Launcher': 'cyan',
+    'littl31.com': 'amber',
+    Cloud: 'orange'
+  };
+  var STATES = {
+    history: {
+      accent: 'gray',
+      grouped: false,
+      match: function match(e) {
+        return e.phase === 'Past';
+      },
+      sort: sortByDate('asc')
+    },
+    current: {
+      accent: 'amber',
+      grouped: true,
+      match: function match(e) {
+        return e.phase === 'Present';
+      },
+      sort: sortByDate('desc')
+    },
+    upcoming: {
+      accent: 'orange',
+      grouped: false,
+      match: function match(e) {
+        return e.phase === 'Future' && e.status === 'In Progress';
+      },
+      sort: sortByDate('asc')
+    },
+    roadmap: {
+      accent: 'cyan',
+      grouped: false,
+      match: function match(e) {
+        return e.phase === 'Future' && e.status === 'Backburner';
+      },
+      sort: sortByDate('asc')
+    }
+  };
+  var tabsEl = document.querySelector('[data-timeline-tabs]');
+  var filtersEl = document.querySelector('[data-timeline-filters]');
+  var statusEl = document.querySelector('[data-timeline-status]');
+  var resultsEl = document.querySelector('[data-timeline-results]');
+  var emptyEl = document.querySelector('[data-timeline-empty]');
+  var pricingDataEl = document.getElementById('timeline-pricing-data');
+  var pricingByProduct = pricingDataEl ? JSON.parse(pricingDataEl.textContent || '{}') : {};
+  var entries = null;
+  var activeTab = 'history';
+  var activeFilter = 'all';
+  if (tabsEl) {
+    tabsEl.addEventListener('click', function (e) {
+      var btn = e.target.closest('[data-tab]');
+      if (btn) setActiveTab(btn.dataset.tab);
+    });
+  }
+  if (filtersEl) {
+    filtersEl.addEventListener('click', function (e) {
+      var btn = e.target.closest('[data-filter]');
+      if (btn) setActiveFilter(btn.dataset.filter);
+    });
+  }
+  fetch(root.dataset.source).then(function (res) {
+    if (!res.ok) throw new Error("HTTP ".concat(res.status));
+    return res.json();
+  }).then(function (data) {
+    entries = data;
+    render();
+  })["catch"](function (err) {
+    statusEl.textContent = 'Could not load the timeline right now — please try again later.';
+    // eslint-disable-next-line no-console
+    console.error('[timeline] failed to load timeline.json', err);
+  });
+}
 
 },{}]},{},[5]);
