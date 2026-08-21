@@ -266,7 +266,107 @@
     ],
     "status": "Backburner",
     "date": null,
-    "description": "No accessible public roadmap/issue list found for the site itself \u2014 unconfirmed.",
+    "description": "Its own todo/ folder was checked directly and contains only a completed bugfix note (mobile scramble jitter fix); no forward-looking roadmap items exist for the site itself.",
     "source": "https://www.littl31.com"
+  },
+  {
+    "id": "auth-rbac",
+    "milestone": "Auth + RBAC (JWT, role-based access)",
+    "phase": "Future",
+    "product": ["Backend"],
+    "status": "Backburner",
+    "date": null,
+    "description": "JWT-based auth with a role-based ACL (technoking/resident/guest) gating all write routes; currently zero auth exists on any API route. Planning only, not started.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/Neural-Blueprint/todo/todo_auth_rbac.md"
+  },
+  {
+    "id": "multiuser-integrations",
+    "milestone": "Multi-user calendar/email attribution",
+    "phase": "Future",
+    "product": ["Backend"],
+    "status": "Backburner",
+    "date": null,
+    "description": "Attribute calendar/Gmail integrations to individual household members instead of one shared global account. Blocked on Auth + RBAC landing first.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/Neural-Blueprint/todo/todo_multiuser_integrations.md"
+  },
+  {
+    "id": "esphome-integration",
+    "milestone": "ESPHome IoT integration",
+    "phase": "Future",
+    "product": ["Backend"],
+    "status": "Backburner",
+    "date": null,
+    "description": "Add ESPHome as a first-class local-first IoT provider alongside Home Assistant/SmartThings \u2014 mDNS discovery, native encrypted API, no cloud/OAuth. Final unshipped phase of the IoT integration plan.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/Neural-Blueprint/todo/todo_iot.md"
+  },
+  {
+    "id": "camera-streaming-roadmap",
+    "milestone": "Camera streaming roadmap (WebRTC / recording / CV)",
+    "phase": "Future",
+    "product": ["Backend"],
+    "status": "Backburner",
+    "date": null,
+    "description": "Three parked options beyond the already-shipped HLS pipeline: WebRTC for sub-500ms latency, recorded/archived playback, and computer-vision motion/person detection.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/Neural-Blueprint/todo/todo_camera_streaming.md"
+  },
+  {
+    "id": "additional-ui-themes",
+    "milestone": "Additional UI themes (Matrix, Steel/Graphite)",
+    "phase": "Future",
+    "product": ["Backend"],
+    "status": "Backburner",
+    "date": null,
+    "description": "Two more theme options for the existing theme-picker system, on top of the three already shipped (Cyan/Navy, Amber/Charcoal, Light/Teal).",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/Neural-Blueprint/todo/todo_customizations.md"
+  },
+  {
+    "id": "multi-source-audio",
+    "milestone": "Multi-source audio (beyond Spotify)",
+    "phase": "Future",
+    "product": ["Backend"],
+    "status": "Backburner",
+    "date": null,
+    "description": "Abstract audio-source interface so playback isn't Spotify-only \u2014 local library, Tidal, YouTube Music, radio \u2014 plus a loose future-ideas list (NLU voice control, Last.fm scrobbling, multi-room sync).",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/Neural-Blueprint/todo/todo_music.md"
+  },
+  {
+    "id": "spotify-nowplaying-backend",
+    "milestone": "Spotify now-playing exposure",
+    "phase": "Future",
+    "product": ["Backend"],
+    "status": "In Progress",
+    "date": null,
+    "description": "Daemon polls Spotify playback state, publishes change events, renders a situational-awareness card, exposes GET /api/music/now-playing. Code complete and unit-tested; not yet verified against a live Spotify-authorized deployment.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/Neural-Blueprint/todo/todo_music_spotify.md"
+  },
+  {
+    "id": "spotify-nowplaying-launcher-push",
+    "milestone": "Spotify now-playing via launcher push",
+    "phase": "Future",
+    "product": ["Backend", "Nexus Launcher"],
+    "status": "Backburner",
+    "date": null,
+    "description": "Have the launcher push on-device now-playing (any media session, not just Spotify) to the backend instead of only backend-side polling. Documented as a deferred fast-follow, not yet scoped.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/Neural-Blueprint/todo/todo_music_spotify.md"
+  },
+  {
+    "id": "spotify-playlist-deeplink",
+    "milestone": "Spotify playlist recommendation deep-link",
+    "phase": "Future",
+    "product": ["Backend", "Nexus Launcher"],
+    "status": "In Progress",
+    "date": null,
+    "description": "Resolve Alfr3d's mood/genre recommendation into one specific real Spotify playlist and wire the launcher's \u2018Play it\u2019 button to deep-link into it. Implemented on both sides and passing unit tests; not yet verified on-device against a live deployment (backend and launcher todo files both cover this).",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/Neural-Blueprint/todo/todo_music_playlist_recommendation.md"
+  },
+  {
+    "id": "llm-token-usage-display",
+    "milestone": "Per-token LLM usage display",
+    "phase": "Future",
+    "product": ["Backend"],
+    "status": "Backburner",
+    "date": null,
+    "description": "Personality panel currently shows call-count usage only; per-token usage metadata from the LLM client isn't surfaced yet. Minor \u2014 a future-enhancement aside, not a scoped plan.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/Neural-Blueprint/todo/personality.md"
   }
 ]
