@@ -91,6 +91,10 @@ mixin section(item, defaultAccent)
           )= item.title
           hr.my-4(class=`accent-border-${accent} border-t-2 opacity-40`)
 
+          if item.quip
+            p.font-mono.italic(class=`accent-text-${accent} text-xs md:text-sm opacity-80`)
+              | “#{item.quip}”
+
           if item.badge
             - var badgeAccent = item.badge.accent || 'gray'
             span.inline-block.mt-2(class=`accent-border-${badgeAccent} accent-text-${badgeAccent} text-xs tracking-widest uppercase border rounded-full px-4 py-2`)= item.badge.text
