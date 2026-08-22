@@ -24,6 +24,19 @@ setTimeout(() => {
     }
   })
 
+  // Sections that render their own content asynchronously (e.g. timeline.js
+  // fetching timeline.json and swapping tabs/filters) grow or shrink the
+  // container well after this init measurement, same problem as the image
+  // case above but for arbitrary DOM changes instead of just images.
+  // Recalculate whenever the container's subtree mutates, debounced since
+  // a single render can touch many nodes at once.
+  let updateHandle = null
+  const observer = new MutationObserver(() => {
+    if (updateHandle) clearTimeout(updateHandle)
+    updateHandle = setTimeout(() => scroll.update(), 100)
+  })
+  observer.observe(container, { childList: true, subtree: true })
+
   // Locomotive Scroll drives scroll position via a transform on
   // [data-scroll-container], not native document scroll (which is
   // disabled outright via `overflow: hidden` on body) — so plain
