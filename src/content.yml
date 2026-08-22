@@ -64,7 +64,40 @@ alfr3d:
     cta:
       text: → See the full timeline
       href: timeline.html
+  commerceNotes:
+    - title: Open source, actually
+      text: "Licensed FSL-1.1-ALv2: you can run it, modify it, and never pay us. The one thing you can't do is resell hosted ALFR3D as a competing service — and even that restriction expires after two years, at which point the license converts to Apache 2.0."
+    - title: The Relay commitment
+      text: "Relay access is included for the life of your Kit. If we ever discontinue the hosted relay, we'll open-source the relay server so you can run your own instead of losing the feature outright."
   products:
+    - title: Alfr3d Kit
+      id: p-kit
+      eyebrow: / ALFR3D KIT
+      accent: magenta
+      wide: true
+      badge:
+        text: Founding batch open — 100 units
+        accent: magenta
+      quip: A butler, boxed and ready to ship. Numbered, not mass-produced.
+      lines:
+        - "A Raspberry Pi, pre-flashed with ALFR3D Core and shipped ready to plug in — no Docker Compose, no manual setup, just power and a network connection. Built to order, not stocked."
+        - "The lead way to get ALFR3D: every Kit ships with a lifetime Relay connection and Nexus Launcher Pro unlocked for free. The first 100 units are numbered, and come with a direct line to me for support instead of a ticket queue."
+      pricing:
+        - amount: $399
+          label: Founding 100 · one-time
+          accent: magenta
+          badge: Limited — first 100 only
+          info: 'A numbered unit (e.g. "#014 of 100"), lifetime Relay included for as long as you own the Kit, Nexus Launcher Pro unlocked free, and direct founder support. Once all 100 ship, this price is gone for good — it becomes the $449 steady-state price below.'
+          cta:
+            text: → Reserve by email
+            href: 'mailto:athos@littl31.com?subject=Alfr3d%20Kit%20%E2%80%94%20Founding%20100%20reservation'
+          note: 'Ships by [date TBD — no ship date committed yet]'
+        - amount: $449
+          label: Steady-state · one-time
+          info: The same Kit, same lifetime Relay, same free Nexus Launcher Pro — the ongoing price once all 100 founding units are gone.
+          cta:
+            text: → Join the waitlist
+            href: 'mailto:athos@littl31.com?subject=Alfr3d%20Kit%20%E2%80%94%20waitlist'
     - title: Nexus Launcher
       id: p-launcher
       eyebrow: / NEXUS LAUNCHER
@@ -83,7 +116,10 @@ alfr3d:
         - amount: $5.99
           label: Pro unlock · one-time, Play Billing
           accent: orange
-          info: One-time purchase through Google Play Billing — not a subscription, no tiers. Unlocks extra themes and icon packs, advanced window layouts (snap presets, multi-window save/restore), and layout backup & restore.
+          info: One-time purchase through Google Play Billing — not a subscription. Unlocks extra themes and icon packs, advanced window layouts (snap presets, multi-window save/restore), and layout backup & restore. Free automatically if you own an Alfr3d Kit or subscribe to Butler — no separate purchase needed.
+          cta:
+            text: → Notify me on Google Play
+            href: 'mailto:athos@littl31.com?subject=Nexus%20Launcher%20Pro%20%E2%80%94%20notify%20me'
     - title: ALFR3D Core
       id: p-core
       eyebrow: / ALFR3D CORE
@@ -93,34 +129,61 @@ alfr3d:
       quip: The engine room. I keep it running so you never have to think about it.
       lines:
         - "The backend: containerized microservices — API, User, Device, Environment, and Speak — each one independent, coordinating only over Kafka, plus a Python daemon that handles situational awareness and voice routing. The result is a dashboard that actually looks like something you'd want on a wall panel — not a spreadsheet."
-        - Stays free forever, stays self-hosted, stays local-first. This is the platform, not the product we're selling — think of it the way Home Assistant thinks of Home Assistant Core.
-    - title: ALFR3D Cloud
-      id: p-cloud
-      eyebrow: / ALFR3D CLOUD
-      badge:
-        text: Coming — Phase 3
-        accent: gray
-      quip: I'll forward your calls when you're away. I still won't forward your secrets.
-      lines:
-        - A thin, dumb-pipe relay for remote access and push — it never sees your home's plaintext data. Reach your house from anywhere without opening a port on your router.
-        - Benchmarked against Nabu Casa — a fair price for infrastructure we run, on top of a platform that costs nothing to run yourself.
-      wide: true
+        - Stays free forever, stays self-hosted, stays local-first, no feature ceiling. This is the platform, not the product we're selling — think of it the way Home Assistant thinks of Home Assistant Core.
       pricing:
         - amount: Free
-          label: Local-only, always available
-          info: Local network only — everything ALFR3D does today. No relay, no account, no monthly fee. This tier isn't going away.
-        - amount: $5.99/mo
-          label: Cloud · remote access, push
-          info: Or $59/yr. Remote access relay — no port-forwarding — plus push notifications to the launcher and phone. Benchmarked against Nabu Casa (~$6.50/mo), the closest real precedent for this model.
-        - amount: $11.99/mo
-          label: Cloud+ · hosted backups, personality features, priority support
-          accent: orange
-          info: Or $119/yr. Everything in Cloud, plus hosted backups, the LLM-powered personality/quips features, and a priority support queue — real per-user compute cost behind each of those.
-  kit:
-    title: ALFR3D Kit
-    quip: A butler, boxed and ready to ship. Currently interviewing for the position — do check back.
-    text: "A Raspberry Pi, pre-flashed with ALFR3D Core and shipped ready to plug in — no Docker Compose, no manual setup, just power and a network connection. It's built to order, not stocked. Development hasn't started: the Kit only makes sense once enough people are running Cloud to justify building hardware for them, not before."
-    badge: Not yet scheduled
+          label: Full platform, forever
+          info: Self-hosted, local-first, updates included forever. Licensed FSL-1.1-ALv2 — run it and modify it without paying us a cent.
+      cta:
+        text: → View on GitHub
+        href: 'https://github.com/Littl3-1-Engineering/alfr3d'
+    - title: Relay
+      id: p-relay
+      eyebrow: / RELAY
+      accent: cyan
+      quip: I'll forward your calls when you're away. I still won't forward your secrets.
+      lines:
+        - "A thin, dumb-pipe relay for remote access — no port-forwarding, no plaintext ever passing through our servers. Reach your house from anywhere without opening your router to the internet."
+        - Included free for the life of your Kit, and free with a Butler subscription. Relay standalone is for Core users who just want remote access without anything else.
+      wide: true
+      pricing:
+        - amount: $2.99/mo
+          label: Relay · monthly
+          info: Remote access only — no push, no hosted backups, no personality features. Included free with any Alfr3d Kit or a Butler subscription.
+          cta:
+            text: → Join the Relay waitlist
+            href: 'mailto:athos@littl31.com?subject=Alfr3d%20Relay%20%E2%80%94%20waitlist'
+        - amount: $29/yr
+          label: Relay · annual
+          badge: Save vs. monthly
+          info: Same Relay, billed yearly — about 19% off the monthly rate.
+          cta:
+            text: → Join the Relay waitlist
+            href: 'mailto:athos@littl31.com?subject=Alfr3d%20Relay%20%E2%80%94%20waitlist%20(annual)'
+    - title: Butler
+      id: p-butler
+      eyebrow: / BUTLER
+      right: true
+      accent: magenta
+      quip: I remember your errands, your appointments, and exactly how you like your coffee. Butler edition me, anyway.
+      lines:
+        - "The one subscription: Relay's remote access, plus push notifications, hosted encrypted backups, and the personality/quips layer that makes ALFR3D feel less like a control panel and more like staff."
+        - Fair-use LLM usage included — generous, capped to keep it sustainable, not throttled to nudge you into a bigger plan. Priority support included.
+      pricing:
+        - amount: $99/yr
+          label: Butler · annual
+          accent: magenta
+          badge: Recommended
+          info: Works out to about $8.25/mo — two months free versus paying monthly. Relay + push + hosted encrypted backups + personality/quips (fair-use capped) + priority support.
+          cta:
+            text: → Join the Butler waitlist
+            href: 'mailto:athos@littl31.com?subject=Alfr3d%20Butler%20%E2%80%94%20waitlist%20(annual)'
+        - amount: $9.99/mo
+          label: Butler · monthly
+          info: Same inclusions as annual, billed monthly.
+          cta:
+            text: → Join the Butler waitlist
+            href: 'mailto:athos@littl31.com?subject=Alfr3d%20Butler%20%E2%80%94%20waitlist'
 
 timeline:
   meta:

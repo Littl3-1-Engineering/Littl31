@@ -13,7 +13,8 @@ module.exports = {
         },
         accent: {
           amber: '#F7C948',
-          cyan: '#22D3EE'
+          cyan: '#22D3EE',
+          magenta: '#E93DE9'
         },
         bg: {
           charcoal: '#0A0D13',
