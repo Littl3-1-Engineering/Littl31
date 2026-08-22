@@ -27,11 +27,10 @@ body.text-white.grid-bg
         +section(product)
 
     section.border-t.border-gray-800(data-scroll-section, class='py-16 px-8')
-      .max-w-screen-lg.mx-auto.flex.items-center.justify-between.flex-wrap(class='gap-8')
-        div
-          h3.font-display.font-bold.text-gray-300(class='text-2xl') #{alfr3d.kit.title}
-          p.font-mono.italic.text-gray-400.mt-2(class='text-xs md:text-sm opacity-80') “#{alfr3d.kit.quip}”
-          p.text-gray-500.mt-2(class='text-sm max-w-lg') #{alfr3d.kit.text}
-        span.inline-block.border.border-gray-700.text-gray-500.rounded-full(class='text-xs tracking-widest uppercase px-4 py-2') #{alfr3d.kit.badge}
+      .max-w-screen-lg.mx-auto.space-y-6
+        for note in alfr3d.commerceNotes
+          div
+            h3.font-display.font-bold.text-gray-300(class='text-lg') #{note.title}
+            p.text-gray-500.mt-2(class='text-sm max-w-2xl leading-relaxed') #{note.text}
 
     +siteFooter(footer, { href: 'index.html', text: '← Littl3.1 Engineering' })
