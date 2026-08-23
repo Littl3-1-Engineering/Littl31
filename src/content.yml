@@ -73,11 +73,11 @@ alfr3d:
     - title: Alfr3d Kit
       id: p-kit
       eyebrow: / ALFR3D KIT
-      accent: magenta
+      accent: amber
       wide: true
       badge:
         text: Founding batch open — 100 units
-        accent: magenta
+        accent: amber
       quip: A butler, boxed and ready to ship. Numbered, not mass-produced.
       lines:
         - "A Raspberry Pi, pre-flashed with ALFR3D Core and shipped ready to plug in — no Docker Compose, no manual setup, just power and a network connection. Built to order, not stocked."
@@ -85,7 +85,7 @@ alfr3d:
       pricing:
         - amount: $399
           label: Founding 100 · one-time
-          accent: magenta
+          accent: amber
           badge: Limited — first 100 only
           info: 'A numbered unit (e.g. "#014 of 100"), lifetime Relay included for as long as you own the Kit, Nexus Launcher Pro unlocked free, and direct founder support. Once all 100 ship, this price is gone for good — it becomes the $449 steady-state price below.'
           cta:
@@ -164,7 +164,7 @@ alfr3d:
       id: p-butler
       eyebrow: / BUTLER
       right: true
-      accent: magenta
+      accent: amber
       quip: I remember your errands, your appointments, and exactly how you like your coffee. Butler edition me, anyway.
       lines:
         - "The one subscription: Relay's remote access, plus push notifications, hosted encrypted backups, and the personality/quips layer that makes ALFR3D feel less like a control panel and more like staff."
@@ -172,7 +172,7 @@ alfr3d:
       pricing:
         - amount: $99/yr
           label: Butler · annual
-          accent: magenta
+          accent: amber
           badge: Recommended
           info: Works out to about $8.25/mo — two months free versus paying monthly. Relay + push + hosted encrypted backups + personality/quips (fair-use capped) + priority support.
           cta:
