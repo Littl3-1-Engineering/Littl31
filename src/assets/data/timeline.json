@@ -159,7 +159,9 @@
     "id": "nexus-custom-colors",
     "milestone": "Custom Colors theming (5th Pro feature)",
     "phase": "Present",
-    "product": ["Nexus Launcher"],
+    "product": [
+      "Nexus Launcher"
+    ],
     "status": "Shipped",
     "date": "2026-08-20",
     "description": "User-defined Primary/Action/Environmental accent colors via an in-app HSV picker, sharing the same palette-derivation code as the wallpaper-inferred theme. Backgrounds/glass/text stay fixed for legibility. Also fixed a hardcoded radial-menu wedge color bug for the launcher category on the two data-driven theme variants.",
@@ -169,10 +171,12 @@
     "id": "nexus-rotation-lock",
     "milestone": "Rotation lock setting",
     "phase": "Present",
-    "product": ["Nexus Launcher"],
+    "product": [
+      "Nexus Launcher"
+    ],
     "status": "Shipped",
     "date": "2026-08-21",
-    "description": "New \"Lock screen rotation\" toggle in Behavior settings — launcher stays upright portrait regardless of device orientation when enabled; follows system auto-rotate when disabled (default). Verified on-device in both directions. Bumped to v0.1.30 in code; not yet tag-cut (latest tag v0.1.29).",
+    "description": "New \"Lock screen rotation\" toggle in Behavior settings \u2014 launcher stays upright portrait regardless of device orientation when enabled; follows system auto-rotate when disabled (default). Verified on-device in both directions. Bumped to v0.1.30 in code; not yet tag-cut (latest tag v0.1.29).",
     "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/blob/main/todo/todo_launcher_rotation_lock.md"
   },
   {
@@ -292,18 +296,22 @@
   {
     "id": "auth-rbac",
     "milestone": "Auth + RBAC (JWT, role-based access)",
-    "phase": "Future",
-    "product": ["Backend"],
-    "status": "Backburner",
-    "date": null,
-    "description": "JWT-based auth with a role-based ACL (technoking/resident/guest) gating all write routes; currently zero auth exists on any API route. Planning only, not started.",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/Neural-Blueprint/todo/todo_auth_rbac.md"
+    "phase": "Present",
+    "product": [
+      "Backend"
+    ],
+    "status": "Shipped",
+    "date": "2026-08-23",
+    "description": "Fully shipped and on-device verified, all 5 phases: backend (JWT login/refresh/logout, claim bootstrap, permission matrix on all 56 write routes), webapp login UI (Sign In/Out nav control, route-level view-only gating), Nexus Launcher login (Keystore-backed sign-in in Settings), and hardening (login/claim rate limiting, no username-enumeration, self-service + admin-assisted password change/reset). Confirmed end-to-end on a real device signed in as the athos seed account via wireless adb. A real production bug was found and fixed during that verification: werkzeug 3.1.6 defaults generate_password_hash() to scrypt, whose output didn't fit the password_hash VARCHAR(128) column — pinned to pbkdf2:sha256 instead.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/todo_auth_rbac.md"
   },
   {
     "id": "multiuser-integrations",
     "milestone": "Multi-user calendar/email attribution",
     "phase": "Future",
-    "product": ["Backend"],
+    "product": [
+      "Backend"
+    ],
     "status": "Backburner",
     "date": null,
     "description": "Attribute calendar/Gmail integrations to individual household members instead of one shared global account. Blocked on Auth + RBAC landing first.",
@@ -313,7 +321,9 @@
     "id": "esphome-integration",
     "milestone": "ESPHome IoT integration (Phases 0-4)",
     "phase": "Present",
-    "product": ["Backend"],
+    "product": [
+      "Backend"
+    ],
     "status": "Shipped",
     "date": "2026-08-21",
     "description": "Shipped in v0.2.0 (2026-08-21): mDNS discovery, Noise-encrypted native API, manual-accept flow for discovered nodes, runs always-on in parallel with whichever of HA/SmartThings is the default provider. Also fixed a pre-existing bug where /api/iot/devices only ever showed one provider's devices at a time. Phase 5 (persistent push-based state via subscribe_states(), replacing the 15-min poll) not started.",
@@ -322,18 +332,23 @@
   {
     "id": "encrypt-secrets-at-rest",
     "milestone": "Encrypt integration secrets at rest",
-    "phase": "Future",
-    "product": ["Backend"],
-    "status": "Backburner",
-    "date": null,
-    "description": "Every integration credential (ha_token, st_pat, Spotify client secret, ESPHome PSK) is currently plaintext in the config/smarthome_devices tables. Scoped as its own item after the ESPHome PSK design deliberately chose plaintext-for-v1. Planning only, not started.",
+    "phase": "Present",
+    "product": [
+      "Backend"
+    ],
+    "status": "Shipped",
+    "date": "2026-08-22",
+    "description": "Fully implemented and committed (e4caa6f, on origin/main): Fernet encryption (services/common/secrets_utils.py) wired into ha_utils/st_utils/spotify_utils/esphome_utils, auto-provisioned key on a shared Docker volume, dual-read fallback so existing plaintext rows keep working. No longer staged — shipped alongside the Auth + RBAC commit.",
     "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/todo_encrypt_secrets_at_rest.md"
   },
   {
     "id": "kit-cloud-commerce-plan",
     "milestone": "Kit ordering / Cloud signup commerce plan",
     "phase": "Future",
-    "product": ["littl31.com", "Cloud"],
+    "product": [
+      "littl31.com",
+      "Cloud"
+    ],
     "status": "Backburner",
     "date": null,
     "description": "Phased plan to give the Kit and Cloud pricing sections a real path from visitor to paying customer \u2014 site currently has zero CTA/checkout links on either tier. Phase A: free waitlist/interest-capture forms. Phase B (gated on Kit waitlist signal): Stripe Checkout for the one-time Kit purchase. Phase C (gated on the Cloud relay being built): Stripe Checkout + Customer Portal + magic-link login alongside the relay's own subscriber identity. Planning only, not started.",
@@ -343,37 +358,59 @@
     "id": "repo-tooling-standardization",
     "milestone": "Repo tooling standardization (all 3 repos)",
     "phase": "Future",
-    "product": ["Backend", "Nexus Launcher", "littl31.com"],
-    "status": "Backburner",
-    "date": null,
-    "description": "Audit and bring pre-commit hooks, Dependabot, Aikido security scanning, and CI lint/test/build workflows to the same baseline across alfr3d, alfr3d_deck, and littl31 \u2014 alfr3d already has pre-commit + Dependabot + CI, the other two don't yet. Not started.",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/todo_repo_standardization.md"
+    "product": [
+      "Backend",
+      "Nexus Launcher",
+      "littl31.com"
+    ],
+    "status": "In Progress",
+    "date": "2026-08-24",
+    "description": "alfr3d_deck brought up to alfr3d's baseline: pre-commit-hooks (trailing-whitespace/end-of-file/yaml/large-files) + detect-secrets (fresh baseline, one expected finding -- keystore.properties.sample's changeme placeholders), Dependabot for gradle + github-actions. alfr3d_deck already had CI (build.yml, release.yml) -- ahead of alfr3d there, whose own ci.yml is actually .disabled (a stale claim in this todo corrected). littl31 and Aikido (needs external account signup) still open.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/commit/ad057618b2bd0a7f127ea44f505935bb25785c43"
   },
   {
     "id": "container-autostart",
     "milestone": "Container autostart on device boot",
-    "phase": "Future",
-    "product": ["Backend"],
-    "status": "Backburner",
-    "date": null,
-    "description": "Init scripts (systemd unit or Docker restart policies) so all ALFR3D containers start automatically on host boot, without a manual docker compose up. Not started.",
+    "phase": "Present",
+    "product": [
+      "Backend"
+    ],
+    "status": "In Progress",
+    "date": "2026-08-22",
+    "description": "systemd unit (setup/alfr3d.service) running docker compose up -d on boot, layered on Docker's own restart:unless-stopped policies (added to zookeeper/kafka/redis/mysql, which had all been missing them). Installed, enabled, and verified active on the NUC. Still open: an actual reboot test to confirm the full stack comes up unattended.",
     "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/todo_container_autostart.md"
+  },
+  {
+    "id": "camera-stream-self-heal-fix",
+    "milestone": "Camera stream self-heal fix (stalled-ffmpeg bug)",
+    "phase": "Present",
+    "product": [
+      "Backend"
+    ],
+    "status": "Shipped",
+    "date": "2026-08-22",
+    "description": "Fixed a bug where a stalled RTSP read left ffmpeg hung indefinitely (no timeout, no error logged), so the backend kept reporting the HLS stream as running and served a frozen frame for ~27h with no way to recover short of a manual restart. Added ffmpeg -timeout plus staleness detection in service_api/routes/stream.py that auto-restarts a hung stream within one playlist poll cycle.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/todo_camera_streaming.md"
   },
   {
     "id": "db-schema-diagram",
     "milestone": "DB schema ER diagram for README/wiki",
     "phase": "Future",
-    "product": ["Backend"],
-    "status": "Backburner",
-    "date": null,
-    "description": "Export the current MySQL schema and generate an up-to-date ER diagram (e.g. Mermaid erDiagram) for the README and Notion wiki \u2014 the last diagram (if any) predates recent migrations (personality/context, IoT, routines). Not started.",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/todo_db_schema_diagram.md"
+    "product": [
+      "Backend"
+    ],
+    "status": "Shipped",
+    "date": "2026-08-24",
+    "description": "Exported the live MySQL schema (mysqldump --no-data, 21 tables) and hand-transcribed it into a Mermaid erDiagram in the README, replacing the stale April db_arch.png screenshot. Renders natively in GitHub and Notion instead of going stale as an image again. Not set up as an automated/recurring regeneration -- re-run by hand whenever a migration meaningfully changes the schema.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/commit/56fe776c66f4b567fba98dc66228adb822a01451"
   },
   {
     "id": "hardware-enclosure",
     "milestone": "Hardware enclosure design",
     "phase": "Future",
-    "product": ["Backend"],
+    "product": [
+      "Backend"
+    ],
     "status": "Backburner",
     "date": null,
     "description": "Physical enclosure for the ALFR3D device + peripherals (mic/speaker/camera/sensors), matching the dark tactical/glassmorphic visual identity. Not currently scheduled \u2014 blocked on the hardware phase starting and a finalized bill of materials.",
@@ -383,7 +420,9 @@
     "id": "personality-ticks-probabilistic",
     "milestone": "Personality ticks shouldn't fire on every speak",
     "phase": "Future",
-    "product": ["Backend"],
+    "product": [
+      "Backend"
+    ],
     "status": "Backburner",
     "date": null,
     "description": "Personality quip \"ticks\" currently apply to every TTS speak action; should be probabilistic/occasional (random chance, cooldown, or context-based) so it doesn't feel like a bit every time. Newly scoped, not started.",
@@ -393,7 +432,9 @@
     "id": "camera-streaming-roadmap",
     "milestone": "Camera streaming roadmap (WebRTC / recording / CV)",
     "phase": "Future",
-    "product": ["Backend"],
+    "product": [
+      "Backend"
+    ],
     "status": "Backburner",
     "date": null,
     "description": "Three parked options beyond the already-shipped HLS pipeline: WebRTC for sub-500ms latency, recorded/archived playback, and computer-vision motion/person detection.",
@@ -403,7 +444,9 @@
     "id": "additional-ui-themes",
     "milestone": "Additional UI themes (Matrix, Steel/Graphite)",
     "phase": "Future",
-    "product": ["Backend"],
+    "product": [
+      "Backend"
+    ],
     "status": "Backburner",
     "date": null,
     "description": "Two more theme options for the existing theme-picker system, on top of the three already shipped (Cyan/Navy, Amber/Charcoal, Light/Teal).",
@@ -413,7 +456,9 @@
     "id": "multi-source-audio",
     "milestone": "Multi-source audio (beyond Spotify)",
     "phase": "Future",
-    "product": ["Backend"],
+    "product": [
+      "Backend"
+    ],
     "status": "Backburner",
     "date": null,
     "description": "Abstract audio-source interface so playback isn't Spotify-only \u2014 local library, Tidal, YouTube Music, radio \u2014 plus a loose future-ideas list (NLU voice control, Last.fm scrobbling, multi-room sync).",
@@ -423,7 +468,9 @@
     "id": "spotify-nowplaying-backend",
     "milestone": "Spotify now-playing exposure",
     "phase": "Future",
-    "product": ["Backend"],
+    "product": [
+      "Backend"
+    ],
     "status": "In Progress",
     "date": null,
     "description": "Daemon polls Spotify playback state, publishes change events, renders a situational-awareness card, exposes GET /api/music/now-playing. Code complete and unit-tested; not yet verified against a live Spotify-authorized deployment.",
@@ -433,7 +480,10 @@
     "id": "spotify-nowplaying-launcher-push",
     "milestone": "Spotify now-playing via launcher push",
     "phase": "Future",
-    "product": ["Backend", "Nexus Launcher"],
+    "product": [
+      "Backend",
+      "Nexus Launcher"
+    ],
     "status": "Backburner",
     "date": null,
     "description": "Have the launcher push on-device now-playing (any media session, not just Spotify) to the backend instead of only backend-side polling. Documented as a deferred fast-follow, not yet scoped.",
@@ -443,7 +493,10 @@
     "id": "spotify-playlist-deeplink",
     "milestone": "Spotify playlist recommendation deep-link",
     "phase": "Future",
-    "product": ["Backend", "Nexus Launcher"],
+    "product": [
+      "Backend",
+      "Nexus Launcher"
+    ],
     "status": "In Progress",
     "date": null,
     "description": "Resolve Alfr3d's mood/genre recommendation into one specific real Spotify playlist and wire the launcher's \u2018Play it\u2019 button to deep-link into it. Implemented on both sides and passing unit tests; not yet verified on-device against a live deployment (backend and launcher todo files both cover this).",
@@ -453,7 +506,9 @@
     "id": "llm-token-usage-display",
     "milestone": "Per-token LLM usage display",
     "phase": "Future",
-    "product": ["Backend"],
+    "product": [
+      "Backend"
+    ],
     "status": "Backburner",
     "date": null,
     "description": "Personality panel currently shows call-count usage only; per-token usage metadata from the LLM client isn't surfaced yet. Minor \u2014 a future-enhancement aside, not a scoped plan.",
@@ -482,5 +537,53 @@
     "date": "2026-08-21",
     "description": "bezier()'s returned easing closure read a module-scope C that was actually only declared inside runLogoAnimation()'s local scope, throwing ReferenceError whenever Snap invoked the easing function during the index-page splash logo animation. Hoisted config() to module scope to fix.",
     "source": "https://github.com/Littl3-1-Engineering/Littl31/commit/19adb02db40c6ff94390641850132263c79634db"
+  },
+  {
+    "id": "app-drawer-shared-cache",
+    "milestone": "App Drawer / Quick Search shared cache",
+    "phase": "Future",
+    "product": [
+      "Nexus Launcher"
+    ],
+    "status": "Shipped",
+    "date": "2026-08-24",
+    "description": "AppSearchSource was independently constructed by 4 different call sites (App Drawer, Quick Search, Recent Apps, Terminal), each paying its own PackageManager scan. Promoted to a companion-object singleton (getInstance, private constructor) shared by all four. Verified on-device: opening App Drawer first, then Quick Search, populated Top Apps with no reload delay. Pre-warming at startup (the design doc's other open question) not attempted.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/commit/f72c334b8d22b8f0fde5090c672a432adca0f40f"
+  },
+  {
+    "id": "onboarding-first-user",
+    "milestone": "First-run onboarding: account claim + email OTP",
+    "phase": "Future",
+    "product": [
+      "Backend"
+    ],
+    "status": "Backburner",
+    "date": null,
+    "description": "No detection today of \"nobody has claimed an account yet\" and no guided onboarding UI in either client — POST /api/auth/claim exists and is safe (NULL-password-only, rate-limited) but nothing surfaces it. Proposed: a setup-status detection endpoint plus onboarding UI in both clients, followed by an email OTP step. The OTP step is blocked on this codebase having zero SMTP/email capability today. Design doc only, not started: todo/todo_onboarding_first_user.md (not yet pushed to origin).",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d"
+  },
+  {
+    "id": "iot-central-control",
+    "milestone": "Centralize IoT/appliance control on Domain/Blueprint",
+    "phase": "Future",
+    "product": [
+      "Backend"
+    ],
+    "status": "In Progress",
+    "date": "2026-08-24",
+    "description": "Quick fix shipped: Music.jsx's Cast to Speakers section (HA media_player volume control) was unreachable unless Spotify was configured and authorized, despite having nothing to do with Spotify. Extracted into a shared CastToSpeakers component now rendered in all three Music-tab branches instead of only the fully-authorized one. Still open: confirming ControlBlade.jsx's media_player controls are wired to the generic IoT endpoint, and auditing for other feature-tab-stranded controls -- full consolidation onto Blueprint/ControlBlade is a separate scoping pass.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/commit/56fe776c66f4b567fba98dc66228adb822a01451"
+  },
+  {
+    "id": "user-management-crud",
+    "milestone": "User management: owner CRUD + self-service profile editing",
+    "phase": "Future",
+    "product": [
+      "Backend"
+    ],
+    "status": "Backburner",
+    "date": null,
+    "description": "Today CRUD on the user table is purely technoking-only with no per-row ownership check anywhere in the stack, and no self-service profile-editing UI exists in either client. Decided 2026-08-23: type is excluded from self-service edits; only admin/owner can change another user's type; technoking is a backdoor role reserved for Athos alone (already true in the seed data); owner is meant to become the real assignable admin role for everyone else, alongside resident/guest. Design doc only, not started: todo/todo_user_management.md (not yet pushed to origin).",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d"
   }
 ]
