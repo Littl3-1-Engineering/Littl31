@@ -302,7 +302,7 @@
     ],
     "status": "Shipped",
     "date": "2026-08-23",
-    "description": "Fully shipped and on-device verified, all 5 phases: backend (JWT login/refresh/logout, claim bootstrap, permission matrix on all 56 write routes), webapp login UI (Sign In/Out nav control, route-level view-only gating), Nexus Launcher login (Keystore-backed sign-in in Settings), and hardening (login/claim rate limiting, no username-enumeration, self-service + admin-assisted password change/reset). Confirmed end-to-end on a real device signed in as the athos seed account via wireless adb. A real production bug was found and fixed during that verification: werkzeug 3.1.6 defaults generate_password_hash() to scrypt, whose output didn't fit the password_hash VARCHAR(128) column — pinned to pbkdf2:sha256 instead.",
+    "description": "Fully shipped and on-device verified, all 5 phases: backend (JWT login/refresh/logout, claim bootstrap, permission matrix on all 56 write routes), webapp login UI (Sign In/Out nav control, route-level view-only gating), Nexus Launcher login (Keystore-backed sign-in in Settings), and hardening (login/claim rate limiting, no username-enumeration, self-service + admin-assisted password change/reset). Confirmed end-to-end on a real device signed in as the athos seed account via wireless adb. A real production bug was found and fixed during that verification: werkzeug 3.1.6 defaults generate_password_hash() to scrypt, whose output didn't fit the password_hash VARCHAR(128) column \u2014 pinned to pbkdf2:sha256 instead.",
     "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/todo_auth_rbac.md"
   },
   {
@@ -338,7 +338,7 @@
     ],
     "status": "Shipped",
     "date": "2026-08-22",
-    "description": "Fully implemented and committed (e4caa6f, on origin/main): Fernet encryption (services/common/secrets_utils.py) wired into ha_utils/st_utils/spotify_utils/esphome_utils, auto-provisioned key on a shared Docker volume, dual-read fallback so existing plaintext rows keep working. No longer staged — shipped alongside the Auth + RBAC commit.",
+    "description": "Fully implemented and committed (e4caa6f, on origin/main): Fernet encryption (services/common/secrets_utils.py) wired into ha_utils/st_utils/spotify_utils/esphome_utils, auto-provisioned key on a shared Docker volume, dual-read fallback so existing plaintext rows keep working. No longer staged \u2014 shipped alongside the Auth + RBAC commit.",
     "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/todo_encrypt_secrets_at_rest.md"
   },
   {
@@ -559,20 +559,32 @@
     ],
     "status": "Backburner",
     "date": null,
-    "description": "No detection today of \"nobody has claimed an account yet\" and no guided onboarding UI in either client — POST /api/auth/claim exists and is safe (NULL-password-only, rate-limited) but nothing surfaces it. Proposed: a setup-status detection endpoint plus onboarding UI in both clients, followed by an email OTP step. The OTP step is blocked on this codebase having zero SMTP/email capability today. Design doc only, not started: todo/todo_onboarding_first_user.md (not yet pushed to origin).",
+    "description": "No detection today of \"nobody has claimed an account yet\" and no guided onboarding UI in either client \u2014 POST /api/auth/claim exists and is safe (NULL-password-only, rate-limited) but nothing surfaces it. Proposed: a setup-status detection endpoint plus onboarding UI in both clients, followed by an email OTP step. The OTP step is blocked on this codebase having zero SMTP/email capability today. Design doc only, not started: todo/todo_onboarding_first_user.md (not yet pushed to origin).",
     "source": "https://github.com/Littl3-1-Engineering/alfr3d"
   },
   {
     "id": "iot-central-control",
     "milestone": "Centralize IoT/appliance control on Domain/Blueprint",
+    "phase": "Present",
+    "product": [
+      "Backend"
+    ],
+    "status": "Shipped",
+    "date": "2026-08-24",
+    "description": "Quick fix (Music.jsx cast-volume ungating) shipped 2026-08-24. Items 1+3 of the design also completed 2026-08-24: confirmed ControlBlade.jsx's media_player controls ARE wired to the generic /api/iot/devices/{id}/control endpoint, but found and fixed real param-mapping bugs on both the HA and ESPHome paths -- volume_set, set_brightness, and (HA-only) set_speed were sending values in the wrong shape/scale (e.g. 0-100 percent where HA needed a 0.0-1.0 volume_level float), so the right endpoint was silently receiving a broken payload. Audited for other feature-tab-stranded controls (item 3): none found -- Music.jsx's cast controls were the only other instance and are now fixed, and the routine engine's separate control path was never exposed to these bugs. Found one bigger adjacent gap while auditing: SmartThings devices aren't handled by the generic control endpoint at all -- split out into its own todo, see todo_smartthings_generic_control.md.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/commit/56fe776c66f4b567fba98dc66228adb822a01451"
+  },
+  {
+    "id": "smartthings-generic-control-gap",
+    "milestone": "SmartThings devices unsupported by generic IoT control endpoint",
     "phase": "Future",
     "product": [
       "Backend"
     ],
-    "status": "In Progress",
+    "status": "Backburner",
     "date": "2026-08-24",
-    "description": "Quick fix shipped: Music.jsx's Cast to Speakers section (HA media_player volume control) was unreachable unless Spotify was configured and authorized, despite having nothing to do with Spotify. Extracted into a shared CastToSpeakers component now rendered in all three Music-tab branches instead of only the fully-authorized one. Still open: confirming ControlBlade.jsx's media_player controls are wired to the generic IoT endpoint, and auditing for other feature-tab-stranded controls -- full consolidation onto Blueprint/ControlBlade is a separate scoping pass.",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d/commit/56fe776c66f4b567fba98dc66228adb822a01451"
+    "description": "Found 2026-08-24 while auditing ControlBlade.jsx's device-control wiring: POST /api/iot/devices/{id}/control only branches on source=='homeassistant' or 'esphome' -- a SmartThings device gets a 400 on every command despite todo_iot.md Phase 5 documenting this endpoint as the unified front door for HA+ST. Bigger than a missing branch: ST's command model is capability+command+args (not domain+service), and smarthome_devices.device_type for ST rows holds ST's raw deviceTypeName label rather than the normalized light/switch/fan/... vocabulary ControlBlade switches on, so ST devices likely render as a generic power toggle even once control is wired up. Needs its own scoping pass; see todo_smartthings_generic_control.md.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d"
   },
   {
     "id": "user-management-crud",
