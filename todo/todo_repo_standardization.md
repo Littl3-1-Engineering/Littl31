@@ -1,5 +1,5 @@
 # Todo: Repo Tooling Standardization (Cross-Repo)
 
-## Status: 🔲 Not started
+## Status: 🟡 pre-commit + Dependabot done 2026-08-24; Aikido and CI still open
 
-Tracked canonically in `alfr3d/todo/todo_repo_standardization.md` (path: `/home/athos/Projects/Alfr3d/alfr3d/todo/todo_repo_standardization.md`). This repo (`littl31`) needs pre-commit hooks, Dependabot config, Aikido security scanning, and a CI workflow brought in line with `alfr3d`'s baseline. See that file for the full task list.
+Tracked canonically in `alfr3d/todo/todo_repo_standardization.md` (path: `/home/athos/Projects/Alfr3d/alfr3d/todo/todo_repo_standardization.md`). Added `.pre-commit-config.yaml` (generic pre-commit-hooks set + detect-secrets, no black/flake8/ktlint since this is a plain Node/Pug/Stylus static-site build) and `.github/dependabot.yml` (`npm` + `github-actions` ecosystems — this repo already has `.github/workflows/deploy.yml`). Generated `.secrets.baseline` via a throwaway venv (repo's own `detect-secrets` CLI is broken the same way `alfr3d`'s is — `ModuleNotFoundError`); zero findings. `pre-commit run --all-files` auto-fixed 3 pre-existing files missing a trailing newline/trailing whitespace (`src/assets/fonts/audimat.svg`, `src/assets/images/logo.svg`, `src/js/scramble.js`) — trivial, kept. No CI test/lint workflow exists yet (only `deploy.yml`) and Aikido still isn't set up (needs a paid plan — see `alfr3d`'s note). See the canonical file for the full task list.
