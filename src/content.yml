@@ -32,7 +32,7 @@ home:
     - title: No ads, ever
       text: Excluded by policy, not by roadmap. Your home's data never leaves your network unless you decide it should.
     - title: Free core forever
-      text: The backend and the launcher's core stay free — always. You only pay for convenience you actually want.
+      text: ALFR3D Core is free and self-hosted today, on GitHub. Nexus Launcher's free core is coming soon — same promise, always free, no feature ceiling.
   about:
     title: Littl3.1 Engineering
     lines:
@@ -68,7 +68,7 @@ alfr3d:
     - title: Open source, actually
       text: "Licensed FSL-1.1-ALv2: you can run it, modify it, and never pay us. The one thing you can't do is resell hosted ALFR3D as a competing service — and even that restriction expires after two years, at which point the license converts to Apache 2.0."
     - title: The Relay commitment
-      text: "Relay access is included for the life of your Kit. If we ever discontinue the hosted relay, we'll open-source the relay server so you can run your own instead of losing the feature outright."
+      text: "Once it ships, Relay access will be included for the life of your Kit. If we ever discontinue the hosted relay, we'll open-source the relay server so you can run your own instead of losing the feature outright."
   products:
     - title: Alfr3d Kit
       id: p-kit
@@ -76,25 +76,25 @@ alfr3d:
       accent: amber
       wide: true
       badge:
-        text: Founding batch open — 100 units
-        accent: amber
+        text: Coming soon — founding batch of 100 planned
+        accent: gray
       quip: A butler, boxed and ready to ship. Numbered, not mass-produced.
       lines:
         - "A Raspberry Pi, pre-flashed with ALFR3D Core and shipped ready to plug in — no Docker Compose, no manual setup, just power and a network connection. Built to order, not stocked."
-        - "The lead way to get ALFR3D: every Kit ships with a lifetime Relay connection and Nexus Launcher Pro unlocked for free. The first 100 units are numbered, and come with a direct line to me for support instead of a ticket queue."
+        - "The lead way to get ALFR3D, once it ships: every Kit will include a lifetime Relay connection and Nexus Launcher Pro unlocked for free. The first 100 units will be numbered, with a direct line to me for support instead of a ticket queue."
       pricing:
         - amount: $399
           label: Founding 100 · one-time
           accent: amber
-          badge: Limited — first 100 only
-          info: 'A numbered unit (e.g. "#014 of 100"), lifetime Relay included for as long as you own the Kit, Nexus Launcher Pro unlocked free, and direct founder support. Once all 100 ship, this price is gone for good — it becomes the $449 steady-state price below.'
+          badge: Not yet available
+          info: 'Planned: a numbered unit (e.g. "#014 of 100"), lifetime Relay included for as long as you own the Kit, Nexus Launcher Pro unlocked free, and direct founder support. Once all 100 ship, this price goes away for good — it becomes the $449 steady-state price below. No hardware has shipped yet — this is the plan, not an open order.'
           cta:
-            text: → Reserve by email
-            href: 'mailto:athos@littl31.com?subject=Alfr3d%20Kit%20%E2%80%94%20Founding%20100%20reservation'
-          note: 'Ships by [date TBD — no ship date committed yet]'
+            text: → Join the founding-100 waitlist
+            href: 'mailto:athos@littl31.com?subject=Alfr3d%20Kit%20%E2%80%94%20Founding%20100%20waitlist'
+          note: 'Not yet available — no ship date set'
         - amount: $449
           label: Steady-state · one-time
-          info: The same Kit, same lifetime Relay, same free Nexus Launcher Pro — the ongoing price once all 100 founding units are gone.
+          info: The same Kit, same lifetime Relay, same free Nexus Launcher Pro — the planned ongoing price once all 100 founding units are gone. Not orderable yet.
           cta:
             text: → Join the waitlist
             href: 'mailto:athos@littl31.com?subject=Alfr3d%20Kit%20%E2%80%94%20waitlist'
@@ -102,24 +102,23 @@ alfr3d:
       id: p-launcher
       eyebrow: / NEXUS LAUNCHER
       accent: cyan
+      badge:
+        text: Coming soon — not yet on Google Play
+        accent: gray
       img: 'assets/images/nexus-launcher-radial.jpg'
       imgCaption: The Ambient Brief card, mid-gathering — real presence data, not a canned notification.
       quip: I've taken the liberty of arranging your applications. You're welcome.
       lines:
         - "A free-form spatial launcher for Android: no permanent dock, no fixed grid. Apps, the terminal, and ALFR3D surfaces open as free-floating windows on an infinite canvas — summoned by double-tap search or the Nexus Core's press-and-flow radial menu, with live situational-awareness cards updating right on the canvas."
-        - Free core, forever. A one-time unlock removes the ceiling — no subscription, because a launcher sitting on your own phone doesn't cost us a server bill to run.
+        - "In active development, not yet published. The plan: a free core, forever, with a one-time unlock that removes the ceiling — no subscription, because a launcher sitting on your own phone doesn't cost us a server bill to run."
       wide: true
       pricing:
-        - amount: Free
-          label: Core launcher, full spatial canvas, ALFR3D pairing
-          info: Free forever — the whole spatial canvas, Nexus Core radial menu, double-tap search, window manager, terminal, base theming. No trial timer, no feature ceiling that expires.
-        - amount: $5.99
-          label: Pro unlock · one-time, Play Billing
-          accent: orange
-          info: One-time purchase through Google Play Billing — not a subscription. Unlocks extra themes and icon packs, advanced window layouts (snap presets, multi-window save/restore), and layout backup & restore. Free automatically if you own an Alfr3d Kit or subscribe to Butler — no separate purchase needed.
+        - amount: Coming soon
+          label: Not yet published to Google Play
+          info: 'Planned at launch: a free core (full spatial canvas, Nexus Core radial menu, double-tap search, window manager, terminal, base theming — no trial timer, no expiring feature ceiling) plus a $5.99 one-time Pro unlock via Google Play Billing (extra themes/icon packs, advanced window layouts, backup & restore). Free automatically for Alfr3d Kit owners and Butler subscribers once live. Nothing is downloadable or purchasable yet.'
           cta:
             text: → Notify me on Google Play
-            href: 'mailto:athos@littl31.com?subject=Nexus%20Launcher%20Pro%20%E2%80%94%20notify%20me'
+            href: 'mailto:athos@littl31.com?subject=Nexus%20Launcher%20%E2%80%94%20notify%20me'
     - title: ALFR3D Core
       id: p-core
       eyebrow: / ALFR3D CORE
@@ -141,22 +140,25 @@ alfr3d:
       id: p-relay
       eyebrow: / RELAY
       accent: cyan
+      badge:
+        text: Coming soon — in development
+        accent: gray
       quip: I'll forward your calls when you're away. I still won't forward your secrets.
       lines:
         - "A thin, dumb-pipe relay for remote access — no port-forwarding, no plaintext ever passing through our servers. Reach your house from anywhere without opening your router to the internet."
-        - Included free for the life of your Kit, and free with a Butler subscription. Relay standalone is for Core users who just want remote access without anything else.
+        - "Not yet built. Once live, it'll be included free for the life of your Kit and free with a Butler subscription — standalone Relay will be for Core users who just want remote access without anything else."
       wide: true
       pricing:
         - amount: $2.99/mo
           label: Relay · monthly
-          info: Remote access only — no push, no hosted backups, no personality features. Included free with any Alfr3d Kit or a Butler subscription.
+          info: 'Planned pricing, not yet available. Remote access only — no push, no hosted backups, no personality features. Will be included free with any Alfr3d Kit or a Butler subscription.'
           cta:
             text: → Join the Relay waitlist
             href: 'mailto:athos@littl31.com?subject=Alfr3d%20Relay%20%E2%80%94%20waitlist'
         - amount: $29/yr
           label: Relay · annual
           badge: Save vs. monthly
-          info: Same Relay, billed yearly — about 19% off the monthly rate.
+          info: 'Planned pricing, not yet available. Same Relay, billed yearly — about 19% off the monthly rate.'
           cta:
             text: → Join the Relay waitlist
             href: 'mailto:athos@littl31.com?subject=Alfr3d%20Relay%20%E2%80%94%20waitlist%20(annual)'
@@ -165,22 +167,25 @@ alfr3d:
       eyebrow: / BUTLER
       right: true
       accent: amber
+      badge:
+        text: Coming soon — in development
+        accent: gray
       quip: I remember your errands, your appointments, and exactly how you like your coffee. Butler edition me, anyway.
       lines:
-        - "The one subscription: Relay's remote access, plus push notifications, hosted encrypted backups, and the personality/quips layer that makes ALFR3D feel less like a control panel and more like staff."
-        - Fair-use LLM usage included — generous, capped to keep it sustainable, not throttled to nudge you into a bigger plan. Priority support included.
+        - "Not yet built. The plan: one subscription bundling Relay's remote access, plus push notifications, hosted encrypted backups, and the personality/quips layer that makes ALFR3D feel less like a control panel and more like staff."
+        - Fair-use LLM usage will be included — generous, capped to keep it sustainable, not throttled to nudge you into a bigger plan. Priority support included.
       pricing:
         - amount: $99/yr
           label: Butler · annual
           accent: amber
           badge: Recommended
-          info: Works out to about $8.25/mo — two months free versus paying monthly. Relay + push + hosted encrypted backups + personality/quips (fair-use capped) + priority support.
+          info: 'Planned pricing, not yet available. Works out to about $8.25/mo — two months free versus paying monthly. Relay + push + hosted encrypted backups + personality/quips (fair-use capped) + priority support.'
           cta:
             text: → Join the Butler waitlist
             href: 'mailto:athos@littl31.com?subject=Alfr3d%20Butler%20%E2%80%94%20waitlist%20(annual)'
         - amount: $9.99/mo
           label: Butler · monthly
-          info: Same inclusions as annual, billed monthly.
+          info: 'Planned pricing, not yet available. Same inclusions as annual, billed monthly.'
           cta:
             text: → Join the Butler waitlist
             href: 'mailto:athos@littl31.com?subject=Alfr3d%20Butler%20%E2%80%94%20waitlist'
