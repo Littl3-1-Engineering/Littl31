@@ -412,7 +412,7 @@
     "status": "Planned",
     "date": "2026-08-22",
     "description": "Top GTM priority: pricing page currently has zero CTA/checkout links on either tier. Add Stripe Checkout for the Kit (Founding 100 preorder with published ship-by date) and Relay/Butler signup + Customer Portal.",
-    "source": "https://github.com/Littl3-1-Engineering/Littl31/blob/master/todo/todo_cloud_kit_commerce.md"
+    "source": "https://github.com/Littl3-1-Engineering/Littl31/blob/main/todo/todo_cloud_kit_commerce.md"
   },
   {
     "id": "db-schema-diagram",
@@ -659,6 +659,6 @@
     "status": "Backburner",
     "date": null,
     "description": "Phased plan to give the Kit and Cloud pricing sections a real path from visitor to paying customer — site currently has zero CTA/checkout links on either tier. Phase A: free waitlist/interest-capture forms. Phase B (gated on Kit waitlist signal): Stripe Checkout for the one-time Kit purchase. Phase C (gated on the Cloud relay being built): Stripe Checkout + Customer Portal + magic-link login alongside the relay's own subscriber identity. Planning only, not started.",
-    "source": "https://github.com/Littl3-1-Engineering/Littl31/blob/master/todo/todo_cloud_kit_commerce.md"
+    "source": "https://github.com/Littl3-1-Engineering/Littl31/blob/main/todo/todo_cloud_kit_commerce.md"
   }
 ]
