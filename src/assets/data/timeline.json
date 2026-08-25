@@ -551,18 +551,6 @@
     "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/commit/f72c334b8d22b8f0fde5090c672a432adca0f40f"
   },
   {
-    "id": "onboarding-first-user",
-    "milestone": "First-run onboarding: account claim + email OTP",
-    "phase": "Future",
-    "product": [
-      "Backend"
-    ],
-    "status": "Backburner",
-    "date": null,
-    "description": "No detection today of \"nobody has claimed an account yet\" and no guided onboarding UI in either client \u2014 POST /api/auth/claim exists and is safe (NULL-password-only, rate-limited) but nothing surfaces it. Proposed: a setup-status detection endpoint plus onboarding UI in both clients, followed by an email OTP step. The OTP step is blocked on this codebase having zero SMTP/email capability today. Design doc only, not started: todo/todo_onboarding_first_user.md (not yet pushed to origin).",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d"
-  },
-  {
     "id": "iot-central-control",
     "milestone": "Centralize IoT/appliance control on Domain/Blueprint",
     "phase": "Present",
@@ -571,7 +559,7 @@
     ],
     "status": "Shipped",
     "date": "2026-08-24",
-    "description": "Quick fix (Music.jsx cast-volume ungating) shipped 2026-08-24. Items 1+3 of the design also completed 2026-08-24: confirmed ControlBlade.jsx's media_player controls ARE wired to the generic /api/iot/devices/{id}/control endpoint, but found and fixed real param-mapping bugs on both the HA and ESPHome paths -- volume_set, set_brightness, and (HA-only) set_speed were sending values in the wrong shape/scale (e.g. 0-100 percent where HA needed a 0.0-1.0 volume_level float), so the right endpoint was silently receiving a broken payload. Audited for other feature-tab-stranded controls (item 3): none found -- Music.jsx's cast controls were the only other instance and are now fixed, and the routine engine's separate control path was never exposed to these bugs. Found one bigger adjacent gap while auditing: SmartThings devices aren't handled by the generic control endpoint at all -- split out into its own todo, see todo_smartthings_generic_control.md.",
+    "description": "Quick fix (Music.jsx cast-volume ungating) shipped 2026-08-24. Items 1+3 of the design also completed 2026-08-24: confirmed ControlBlade.jsx's media_player controls ARE wired to the generic /api/iot/devices/{id}/control endpoint, but found and fixed real param-mapping bugs on both the HA and ESPHome paths -- volume_set, set_brightness, and (HA-only) set_speed were sending values in the wrong shape/scale (e.g. 0-100 percent where HA needed a 0.0-1.0 volume_level float), so the right endpoint was silently receiving a broken payload. Audited for other feature-tab-stranded controls (item 3): none found -- Music.jsx's cast controls were the only other instance and are now fixed, and the routine engine's separate control path was never exposed to these bugs. Found one bigger adjacent gap while auditing: SmartThings devices aren't handled by the generic control endpoint at all -- split out into its own todo, see todo_smartthings_generic_control.md (now itself In Progress). Same-day follow-up: Domain.jsx and Blueprint.jsx were each independently mounting their own ControlBlade -- Domain's copy had no position at all and fell into normal document flow below the (very tall) Blueprint panel, while Blueprint's copy only rendered for devices with map coordinates, so a device click could show either one off-screen copy or two copies depending on whether it came from the map or a list view. Fixed by moving to a single page-owned ControlBlade that Blueprint feeds click coordinates into, anchored via useLayoutEffect and clamped to stay on-screen.",
     "source": "https://github.com/Littl3-1-Engineering/alfr3d/commit/56fe776c66f4b567fba98dc66228adb822a01451"
   },
   {
@@ -581,21 +569,96 @@
     "product": [
       "Backend"
     ],
-    "status": "Backburner",
+    "status": "In Progress",
     "date": "2026-08-24",
-    "description": "Found 2026-08-24 while auditing ControlBlade.jsx's device-control wiring: POST /api/iot/devices/{id}/control only branches on source=='homeassistant' or 'esphome' -- a SmartThings device gets a 400 on every command despite todo_iot.md Phase 5 documenting this endpoint as the unified front door for HA+ST. Bigger than a missing branch: ST's command model is capability+command+args (not domain+service), and smarthome_devices.device_type for ST rows holds ST's raw deviceTypeName label rather than the normalized light/switch/fan/... vocabulary ControlBlade switches on, so ST devices likely render as a generic power toggle even once control is wired up. Needs its own scoping pass; see todo_smartthings_generic_control.md.",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d"
+    "description": "Fixed 2026-08-24, same day it was found: control_iot_device() (routes/iot.py) now has a source=='smartthings' branch using a new st_utils.translate_generic_control_params() that mirrors the HA translator, mapping ControlBlade's generic command vocabulary to an ST (capability, command, args) triple. sync_st_devices() now also derives device_type via a new st_utils.normalize_st_device_type() from the device's capability list, instead of storing ST's raw deviceTypeName label -- confirmed nothing else in the codebase read that raw label. Both pieces are code-complete and committed; still needs verification against a live SmartThings device, which is the only reason this isn't Shipped yet.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/Neural-Blueprint/todo/todo_smartthings_generic_control.md"
   },
   {
     "id": "user-management-crud",
     "milestone": "User management: owner CRUD + self-service profile editing",
+    "phase": "Present",
+    "product": [
+      "Backend"
+    ],
+    "status": "Shipped",
+    "date": "2026-08-24",
+    "description": "Both halves shipped 2026-08-24. Self-service: PUT /api/users/{id} now accepts either an owner/technoking caller (full field set) or the caller editing their own row (restricted -- type excluded unconditionally, even for an owner editing their own row), plus a \"My Profile\" webapp page. Admin: PersonnelRoster.jsx/UserModal.jsx got a Reset Password action (generates a password client-side, calls the existing admin-reset-password endpoint, displays it once -- no email capability yet to deliver it another way) alongside the existing Add/Edit/Delete, and full role-gating -- every mutating control now hidden from non-owner/technoking viewers, roster stays visible read-only. Also fixed: owner was seeded in createTables.sql but had no backfill migration for pre-existing databases (0024_owner_user_type.py) and wasn't offered in either role dropdown -- both fixed, so owner is now a real, fully reachable admin role distinct from the technoking backdoor. Live-verified end to end against the real deployed stack with a throwaway test user. Remaining: Nexus Launcher parity (owner-administers-household on the launcher itself) is an explicit v2 decision, not yet scoped.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/Neural-Blueprint/todo/todo_household_admin_ui.md"
+  },
+  {
+    "id": "onboarding-first-user",
+    "milestone": "First-run onboarding: account claim + email OTP",
+    "phase": "Present",
+    "product": [
+      "Backend"
+    ],
+    "status": "In Progress",
+    "date": "2026-08-24",
+    "description": "Backend + both clients' claim/generate UI shipped 2026-08-24: GET /api/auth/setup-status detects \"nobody has claimed an account yet\", the webapp shows an onboarding modal (claim a seeded resident, or generate a new owner account) instead of the login modal when unclaimed, and the Nexus Launcher has the equivalent onboarding surface in Settings. The requested follow-on email-OTP step remains blocked: this codebase has zero SMTP/email-sending capability today, tracked as its own build-out in todo_email_service.md.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/Neural-Blueprint/todo/todo_onboarding_first_user.md"
+  },
+  {
+    "id": "pricing-strategy-revision-kit-butler",
+    "milestone": "Pricing strategy revision: Kit-first, Butler subscription",
+    "phase": "Present",
+    "product": [
+      "Backend",
+      "Cloud",
+      "littl31.com"
+    ],
+    "status": "Shipped",
+    "date": "2026-08-22",
+    "description": "Replaced 3-tier Cloud plan with Kit-first ladder: Core free, Launcher free+$5.99 unlock, Kit $399 Founding100/$449 steady, Relay standalone $2.99mo/$29yr, Butler $9.99mo/$99yr replaces Cloud/Cloud+. Kit unparked ahead of Cloud. Relay reframed as owned feature with 3yr min commitment and open-source fallback.",
+    "source": "https://www.littl31.com/alfr3d.html"
+  },
+  {
+    "id": "auth-rbac-launch-critical",
+    "milestone": "Auth + RBAC promoted to launch-critical",
     "phase": "Future",
     "product": [
       "Backend"
     ],
-    "status": "Backburner",
-    "date": null,
-    "description": "Today CRUD on the user table is purely technoking-only with no per-row ownership check anywhere in the stack, and no self-service profile-editing UI exists in either client. Decided 2026-08-23: type is excluded from self-service edits; only admin/owner can change another user's type; technoking is a backdoor role reserved for Athos alone (already true in the seed data); owner is meant to become the real assignable admin role for everyone else, alongside resident/guest. Design doc only, not started: todo/todo_user_management.md (not yet pushed to origin).",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d"
+    "status": "Shipped",
+    "date": "2026-08-22",
+    "description": "Reprioritized off backburner 2026-08-22 as a hard blocker for shipping the Alfr3d Kit and exposing the API through the Relay/Butler subscription. Now fully shipped -- see the main \"Auth + RBAC (JWT, role-based access)\" row for the completed Phases 0-5 detail.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/todo_auth_rbac.md"
+  },
+  {
+    "id": "secrets-at-rest-launch-critical",
+    "milestone": "Encrypt integration secrets at rest promoted to launch-critical",
+    "phase": "Future",
+    "product": [
+      "Backend"
+    ],
+    "status": "Shipped",
+    "date": "2026-08-22",
+    "description": "Reprioritized off backburner 2026-08-22 alongside Auth + RBAC. Now fully shipped and committed (e4caa6f) -- see the main \"Encrypt integration secrets at rest\" row for detail.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/todo_encrypt_secrets_at_rest.md"
+  },
+  {
+    "id": "kit-build-bom-validation",
+    "milestone": "Alfr3d Kit build + BOM validation",
+    "phase": "Future",
+    "product": [
+      "Backend"
+    ],
+    "status": "Planned",
+    "date": "2026-08-22",
+    "description": "Build one Kit end-to-end and time assembly before publishing the $399 Founding-100 price. Validates ~$252 landed-cost estimate (Pi 5 8GB, NVMe+HAT, PSU, enclosure, cooling, cabling, packaging, assembly labor, shipping, fees, support/DOA reserve) against a real build, not just parts pricing.",
+    "source": "https://app.notion.com/p/3c6d732b1d3481eba78bf03f263018f2"
+  },
+  {
+    "id": "littl31-commerce-stripe-checkout",
+    "milestone": "littl31.com commerce: Stripe Checkout + Founding 100 preorder",
+    "phase": "Future",
+    "product": [
+      "littl31.com",
+      "Cloud"
+    ],
+    "status": "Planned",
+    "date": "2026-08-22",
+    "description": "Top GTM priority: pricing page currently has zero CTA/checkout links on either tier. Add Stripe Checkout for the Kit (Founding 100 preorder with published ship-by date) and Relay/Butler signup + Customer Portal.",
+    "source": "https://github.com/Littl3-1-Engineering/Littl31/blob/master/todo/todo_cloud_kit_commerce.md"
   }
 ]
