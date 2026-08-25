@@ -135,29 +135,36 @@ mixin section(item, defaultAccent)
                     class='transition-opacity delay-100 duration-700 text-gray-300 leading-relaxed'
                   )= line
 
-              if item.pricing
-                .flex.flex-wrap.pt-2(class='gap-6')
-                  for tier in item.pricing
-                    - var tierAccent = tier.accent || accent
-                    .group.relative
-                      .window-frame.window-sm(class=`accent-${tierAccent}`)
-                        .window-body
-                          .window-content(class='px-6 py-4')
-                            .flex.items-center.gap-2
-                              div.font-bold(class=`accent-text-${tierAccent} text-3xl`)= tier.amount
-                              if tier.info
-                                button(
-                                  type='button',
-                                  aria-label=`More info — ${tier.label}`,
-                                  data-pricing-info-toggle,
-                                  class='flex-shrink-0 w-5 h-5 rounded-full border border-gray-500 text-gray-400 text-xs italic font-bold leading-none flex items-center justify-center hover:border-amber-400 hover:text-amber-400 focus:outline-none focus:border-amber-400 focus:text-amber-400 transition-colors'
-                                ) i
-                            div.text-xs.text-gray-400.mt-1= tier.label
-                      if tier.info
-                        .pricing-info-popover(
-                          data-pricing-info-popover,
-                          class=`info-popover accent-border-${tierAccent} absolute left-0 top-full mt-2 w-72 p-4 border text-sm text-gray-300 leading-relaxed opacity-0 pointer-events-none transition-opacity duration-200 z-20 group-hover:opacity-100 group-hover:pointer-events-auto`
-                        )= tier.info
+          if item.pricing
+            .flex.flex-wrap.pt-6(class='gap-6')
+              for tier in item.pricing
+                - var tierAccent = tier.accent || accent
+                .group.relative
+                  if tier.badge
+                    span.absolute.whitespace-nowrap(class=`accent-border-${tierAccent} accent-text-${tierAccent} text-xs tracking-widest uppercase border rounded-full px-3 py-1 bg-gray-900`, style='top: -0.85rem; left: 50%; transform: translateX(-50%); z-index: 10;')= tier.badge
+                  .window-frame.window-sm(class=`accent-${tierAccent}`)
+                    .window-body
+                      .window-content(class='px-6 py-4')
+                        .flex.items-center.gap-2
+                          div.font-bold(class=`accent-text-${tierAccent} text-3xl`)= tier.amount
+                          if tier.info
+                            button(
+                              type='button',
+                              aria-label=`More info — ${tier.label}`,
+                              data-pricing-info-toggle,
+                              class='flex-shrink-0 w-5 h-5 rounded-full border border-gray-500 text-gray-400 text-xs italic font-bold leading-none flex items-center justify-center hover:border-amber-400 hover:text-amber-400 focus:outline-none focus:border-amber-400 focus:text-amber-400 transition-colors'
+                            ) i
+                        div.text-xs.text-gray-400.mt-1= tier.label
+                        if tier.cta
+                          p.mt-3
+                            a.text-xs(href=tier.cta.href, class=`btn-glow accent-${tierAccent}`, style='padding: 0.4rem 1rem;')= tier.cta.text
+                        if tier.note
+                          p.text-xs.text-gray-500.mt-2.italic= tier.note
+                  if tier.info
+                    .pricing-info-popover(
+                      data-pricing-info-popover,
+                      class=`info-popover accent-border-${tierAccent} absolute left-0 top-full mt-2 w-72 p-4 border text-sm text-gray-300 leading-relaxed opacity-0 pointer-events-none transition-opacity duration-200 z-20 group-hover:opacity-100 group-hover:pointer-events-auto`
+                    )= tier.info
 
           if item.cta
             p.pt-2
