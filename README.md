@@ -6,12 +6,6 @@ Littl3.1 Engineering's product/marketing site — a static Pug/Stylus build depl
 
 Live at **[littl3-1-engineering.github.io/Littl31](https://littl3-1-engineering.github.io/Littl31/)**.
 
-## Pages
-
-- **Home** (`index.pug`) — pitch, highlights (self-hosted, no ads ever, free core forever), and an about/CTA into the Lab.
-- **ALFR3D** (`alfr3d.pug`) — the flagship product page: Nexus Launcher and ALFR3D Core detail cards with screenshots, pricing tiers (with an info-popover per tier) for Launcher Pro and ALFR3D Cloud/Cloud+, and an ALFR3D Kit teaser.
-- **Lab** (`lab.pug`) — R&D/workbench write-ups for one-off hardware builds (LED strips, goggles, tent lighting, an interactive whiteboard).
-
 ## Stack
 
 - [Pug](https://pugjs.org) templates, content driven by a single `src/content.yml` (compiled to JSON at build time)
@@ -20,9 +14,17 @@ Live at **[littl3-1-engineering.github.io/Littl31](https://littl3-1-engineering.
 - Vanilla JS (Browserify + Babel) — no framework
 - Deployed via [`gh-pages`](https://github.com/tschaub/gh-pages) to the `live` branch (custom domain `www.littl31.com`)
 
-## Build & run
+## Features
 
-Requires Node (the build has been verified on Node v22 against this toolchain).
+### Pages
+
+- **Home** (`index.pug`) — pitch, highlights (self-hosted, no ads ever, free core forever), and an about/CTA into the Lab.
+- **ALFR3D** (`alfr3d.pug`) — the flagship product page: Nexus Launcher and ALFR3D Core detail cards with screenshots, pricing tiers (with an info-popover per tier) for Launcher Pro and ALFR3D Cloud/Cloud+, and an ALFR3D Kit teaser.
+- **Lab** (`lab.pug`) — R&D/workbench write-ups for one-off hardware builds (LED strips, goggles, tent lighting, an interactive whiteboard).
+
+## Build & Run
+
+Requires Node (CI builds and deploys on Node 20 — see `.github/workflows/deploy.yml`).
 
 ```bash
 npm install
@@ -36,7 +38,7 @@ Editing `src/content.yml` covers most copy/pricing changes without touching a te
 
 ## Deployment
 
-Pushing to `master` triggers [`Deploy`](.github/workflows/deploy.yml): installs deps, runs `npm run build:prod`, and publishes `dist/` to the `live` branch via `gh-pages`, which GitHub Pages serves at the custom domain `www.littl31.com`. `npm run release` does the same thing locally if needed.
+Pushing to `main` triggers [`Deploy`](.github/workflows/deploy.yml): installs deps, runs `npm run build:prod`, and publishes `dist/` to the `live` branch via `gh-pages`, which GitHub Pages serves at the custom domain `www.littl31.com`. `npm run release` does the same thing locally if needed.
 
 ## License
 
