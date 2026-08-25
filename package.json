@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "description": "Automation Engineering",
   "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "dev": "run-p server watch",
     "deploy": "run-s build:prod release",

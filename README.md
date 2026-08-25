@@ -24,7 +24,7 @@ Live at **[littl3-1-engineering.github.io/Littl31](https://littl3-1-engineering.
 
 ## Build & Run
 
-Requires Node (CI builds and deploys on Node 20 — see `.github/workflows/deploy.yml`).
+Requires Node >=22 (`cssnano`'s dependency chain uses `Set.prototype.difference`, a Node 22+ builtin; CI is pinned accordingly in `.github/workflows/deploy.yml`).
 
 ```bash
 npm install
