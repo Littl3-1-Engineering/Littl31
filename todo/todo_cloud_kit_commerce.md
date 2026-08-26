@@ -1,6 +1,9 @@
 # Plan: Kit ordering, Cloud signup, customer accounts, ecommerce
 
-## Status: 🔲 TODO (not started — planning only, added 2026-08-21)
+## Status: 🟡 IN PROGRESS — generic Stripe Checkout/Portal/webhook infra deployed 2026-08-26
+(Cloudflare Pages Functions, see `functions/api/stripe/` + `AGENTS.md`'s "Serverless API"
+section), live at `https://api.littl31.com`. Still not wired to any pricing-card CTA, and the
+`STRIPE_SECRET_KEY`/`STRIPE_WEBHOOK_SECRET` production secrets aren't set yet.
 
 ## Goal
 Give the ALFR3D Kit and ALFR3D Cloud pricing sections on this site a real path from "interested

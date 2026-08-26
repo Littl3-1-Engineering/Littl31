@@ -1,0 +1,19 @@
+# Local-dev secrets for functions/api/stripe/* (Cloudflare Pages Functions).
+#
+# Copy this file to `.dev.vars` (gitignored, never commit it) and fill in real values from the
+# Stripe Dashboard's test-mode API keys page. `wrangler pages dev` loads `.dev.vars`
+# automatically. In production, set these as encrypted secrets on the Pages project instead
+# (dashboard, or `wrangler pages secret put <NAME> --project-name littl31-api`) — never in
+# wrangler.toml, which is committed.
+
+# Test-mode secret key (starts with sk_test_) for local dev; use the live key (sk_live_) only
+# as a production secret, never here.
+STRIPE_SECRET_KEY=sk_test_...
+
+# Signing secret for the webhook endpoint you register (or the one `stripe listen` prints when
+# forwarding events to http://localhost:8788/api/stripe/webhook for local testing).
+STRIPE_WEBHOOK_SECRET=whsec_...
+
+# Comma-separated allowed CORS origins for create-checkout-session / create-portal-session.
+# Defaults to the production + local-dev origins baked into functions/_shared/stripe.js if unset.
+ALLOWED_ORIGINS=http://localhost:8080
