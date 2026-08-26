@@ -4,3 +4,5 @@ dist
 yarn.lock
 CLAUDE.md
 AGENTS.md
+.dev.vars
+.wrangler
