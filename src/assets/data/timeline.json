@@ -274,9 +274,9 @@
     "product": [
       "Backend"
     ],
-    "status": "In Progress",
-    "date": "2026-08-22",
-    "description": "systemd unit (setup/alfr3d.service) running docker compose up -d on boot, layered on Docker's own restart:unless-stopped policies (added to zookeeper/kafka/redis/mysql, which had all been missing them). Installed, enabled, and verified active on the NUC (alfr3d@192.168.2.200). Still open: an actual reboot test of the NUC to confirm the full stack comes up unattended.",
+    "status": "Shipped",
+    "date": "2026-08-25",
+    "description": "systemd unit (setup/alfr3d.service) running docker compose up -d on boot, layered on Docker's own restart:unless-stopped policies (added to zookeeper/kafka/redis/mysql, which had all been missing them). Installed, enabled, and verified active on the NUC (alfr3d@192.168.2.200). Reboot-tested 2026-08-25 with explicit user go-ahead: all 12 containers back up unattended within 30s (mysql/kafka/redis/nginx healthy), /api/iot/status and the frontend both confirmed responding post-reboot.",
     "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/todo_container_autostart.md"
   },
   {
@@ -325,8 +325,8 @@
       "Backend"
     ],
     "status": "Shipped",
-    "date": "2026-08-24",
-    "description": "Quick fix (Music.jsx cast-volume ungating) shipped 2026-08-24. Items 1+3 of the design also completed 2026-08-24: confirmed ControlBlade.jsx's media_player controls ARE wired to the generic /api/iot/devices/{id}/control endpoint, but found and fixed real param-mapping bugs on both the HA and ESPHome paths -- volume_set, set_brightness, and (HA-only) set_speed were sending values in the wrong shape/scale (e.g. 0-100 percent where HA needed a 0.0-1.0 volume_level float), so the right endpoint was silently receiving a broken payload. Audited for other feature-tab-stranded controls (item 3): none found -- Music.jsx's cast controls were the only other instance and are now fixed, and the routine engine's separate control path was never exposed to these bugs. Found one bigger adjacent gap while auditing: SmartThings devices aren't handled by the generic control endpoint at all (400 on every command) -- split out into its own todo, see todo_smartthings_generic_control.md (now itself In Progress). Same-day follow-up: Domain.jsx and Blueprint.jsx were each independently mounting their own ControlBlade -- Domain's copy had no position at all and fell into normal document flow below the (very tall) Blueprint panel, while Blueprint's copy only rendered for devices with map coordinates, so a device click could show either one off-screen copy or two copies depending on whether it came from the map or a list view. Fixed by moving to a single page-owned ControlBlade that Blueprint feeds click coordinates into, anchored via useLayoutEffect and clamped to stay on-screen.",
+    "date": "2026-08-26",
+    "description": "Quick fix (Music.jsx cast-volume ungating) shipped 2026-08-24. Items 1+3 of the design also completed 2026-08-24: confirmed ControlBlade.jsx's media_player controls ARE wired to the generic /api/iot/devices/{id}/control endpoint, but found and fixed real param-mapping bugs on both the HA and ESPHome paths -- volume_set, set_brightness, and (HA-only) set_speed were sending values in the wrong shape/scale. Same-day follow-up fixed a duplicate/mispositioned ControlBlade-panel bug. Live-browser-verified 2026-08-25, which surfaced two more real bugs -- every control action 422'd, and so did removing an IoT-linked device, both because Blueprint.jsx's iot_-prefixed device ids were passed straight through to an endpoint declaring device_id: int. Fixed, merged to main via PR #152, and deployed + live-verified in production 2026-08-26: clicking a real HA-linked device sent the unprefixed id and returned 200 with the UI updating correctly. Remaining open item: SmartThings devices still aren't handled by the generic control endpoint (see todo_smartthings_generic_control.md) -- needs its own scoping pass.",
     "source": "https://github.com/Littl3-1-Engineering/alfr3d/commit/a6a6401164aed038ba705958f7dc6c3a8202258b"
   },
   {
@@ -338,7 +338,7 @@
     ],
     "status": "Shipped",
     "date": "2026-08-24",
-    "description": "Both halves shipped 2026-08-24. Self-service: PUT /api/users/{id} now accepts either an owner/technoking caller (full field set) or the caller editing their own row (restricted -- type excluded unconditionally, even for an owner editing their own row), plus a \"My Profile\" webapp page. Admin: PersonnelRoster.jsx/UserModal.jsx got a Reset Password action (generates a password client-side, calls the existing admin-reset-password endpoint, displays it once -- no email capability yet to deliver it another way) alongside the existing Add/Edit/Delete, and full role-gating -- every mutating control now hidden from non-owner/technoking viewers, roster stays visible read-only. Also fixed: owner was seeded in createTables.sql but had no backfill migration for pre-existing databases (0024_owner_user_type.py) and wasn't offered in either role dropdown -- both fixed, so owner is now a real, fully reachable admin role distinct from the technoking backdoor. Live-verified end to end against the real deployed stack with a throwaway test user. Remaining: Nexus Launcher parity (owner-administers-household on the launcher itself) is an explicit v2 decision, not yet scoped.",
+    "description": "Both halves shipped 2026-08-24. Self-service: PUT /api/users/{id} now accepts either an owner/technoking caller (full field set) or the caller editing their own row (restricted -- type excluded unconditionally, even for an owner editing their own row), plus a \"My Profile\" webapp page. Admin: PersonnelRoster.jsx/UserModal.jsx got a Reset Password action (generates a password client-side, calls the existing admin-reset-password endpoint, displays it once -- no email capability yet to deliver it another way) alongside the existing Add/Edit/Delete, and full role-gating -- every mutating control now hidden from non-owner/technoking viewers, roster stays visible read-only. Also fixed: owner was seeded in createTables.sql but had no backfill migration for pre-existing databases (0024_owner_user_type.py) and wasn't offered in either role dropdown -- both fixed, so owner is now a real, fully reachable admin role distinct from the technoking backdoor. Live-verified end to end against the real deployed stack with a throwaway test user. Migration 0024 formally run against the live production DB via alembic upgrade head 2026-08-25 (had been applied manually during the 2026-08-24 verification pass; this just records it properly in the migration chain). Remaining: Nexus Launcher parity (owner-administers-household on the launcher itself) is an explicit v2 decision, not yet scoped.",
     "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/Neural-Blueprint/todo/todo_household_admin_ui.md"
   },
   {
@@ -348,9 +348,9 @@
     "product": [
       "Backend"
     ],
-    "status": "In Progress",
-    "date": "2026-08-24",
-    "description": "Backend + both clients' claim/generate UI shipped 2026-08-24: GET /api/auth/setup-status detects \"nobody has claimed an account yet\", the webapp shows an onboarding modal (claim a seeded resident, or generate a new owner account) instead of the login modal when unclaimed, and the Nexus Launcher has the equivalent onboarding surface in Settings. The requested follow-on email-OTP step remains blocked: this codebase has zero SMTP/email-sending capability today, tracked as its own build-out in todo_email_service.md.",
+    "status": "Shipped",
+    "date": "2026-08-26",
+    "description": "Backend + both clients' claim/generate UI shipped 2026-08-24: GET /api/auth/setup-status detects \"nobody has claimed an account yet\", the webapp shows an onboarding modal (claim a seeded resident, or generate a new owner account) instead of the login modal when unclaimed, and the Nexus Launcher has the equivalent onboarding surface in Settings. The planned follow-on email-OTP step was investigated and decided against (2026-08-26): claim/bootstrap already require physical-device or local-network access, so an emailed code adds no real security, and household units don't send email at all. The one real gap -- solo-owner lockout with nobody else to help -- is covered instead by a new setup/reset_owner_password.py script, gated on host/docker compose exec access rather than email.",
     "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/Neural-Blueprint/todo/todo_onboarding_first_user.md"
   },
   {
@@ -484,9 +484,9 @@
       "Backend",
       "Nexus Launcher"
     ],
-    "status": "In Progress",
-    "date": null,
-    "description": "Resolve Alfr3d's mood/genre recommendation into one specific real Spotify playlist and wire the launcher's 'Play it' button to deep-link into it. Implemented on both sides and passing unit tests; not yet verified on-device against a live deployment (backend and launcher todo files both cover this).",
+    "status": "Shipped",
+    "date": "2026-08-25",
+    "description": "Resolves Alfr3d's mood/genre recommendation into one specific real Spotify playlist; the launcher's Ambient Brief \"Play it\" button deep-links into it. Implemented 2026-08-13, backend live-verified 2026-08-25 against a real household Spotify session end to end. Ambient Brief's recommendation card is the launcher surface for this data and works as designed.",
     "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/Neural-Blueprint/todo/todo_music_playlist_recommendation.md"
   },
   {
@@ -558,9 +558,9 @@
     "product": [
       "Backend"
     ],
-    "status": "In Progress",
-    "date": null,
-    "description": "Daemon polls Spotify playback state, publishes change events, renders a situational-awareness card, exposes GET /api/music/now-playing. Code complete and unit-tested; not yet verified against a live Spotify-authorized deployment.",
+    "status": "Shipped",
+    "date": "2026-08-25",
+    "description": "Daemon polls Spotify playback state, publishes change events, renders a situational-awareness card, exposes GET /api/music/now-playing. Live-verified 2026-08-25 end to end against the production box. No launcher UI is wired to this specific endpoint by design -- user decision 2026-08-25 to leave it as-is (the launcher push side, Option A, remains a documented, unscoped fast-follow).",
     "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/Neural-Blueprint/todo/todo_music_spotify.md"
   },
   {
@@ -660,5 +660,83 @@
     "date": null,
     "description": "Phased plan to give the Kit and Cloud pricing sections a real path from visitor to paying customer — site currently has zero CTA/checkout links on either tier. Phase A: free waitlist/interest-capture forms. Phase B (gated on Kit waitlist signal): Stripe Checkout for the one-time Kit purchase. Phase C (gated on the Cloud relay being built): Stripe Checkout + Customer Portal + magic-link login alongside the relay's own subscriber identity. Planning only, not started.",
     "source": "https://github.com/Littl3-1-Engineering/Littl31/blob/main/todo/todo_cloud_kit_commerce.md"
+  },
+  {
+    "id": "self-awareness-tts-presence",
+    "milestone": "Self-awareness: pronounce own name + don't self-greet",
+    "phase": "Future",
+    "product": [
+      "Backend"
+    ],
+    "status": "Backburner",
+    "date": "2026-08-26",
+    "description": "Two related identity bugs, scoped but not started: TTS reads ALFR3D's own leetspeak name literally instead of pronouncing it \"Alfred\", and the alfr3d system user's own offline-to-online transition triggers the same welcome-greeting flow as a real household member. Design sketch only, no code written.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/todo_self_awareness_tts_presence.md"
+  },
+  {
+    "id": "calendar-name-trim-utc-fix",
+    "milestone": "Calendar name-trim + UTC normalization fix",
+    "phase": "Present",
+    "product": [
+      "Backend"
+    ],
+    "status": "Shipped",
+    "date": "2026-08-26",
+    "description": "desired_calendars matched exact Google Calendar names, silently breaking on a stray trailing space (\"Cassiopeia \") and hardcoding a literal \"primary\" special-case instead of the account's real primary calendar name. Now trims both sides before matching. Also fixed: parsed event start/end datetimes are now converted to UTC before dropping tzinfo, instead of assuming the Z-suffix offset was already UTC.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/commit/90a920e13b17085f7a132313422a7c563b06be33"
+  },
+  {
+    "id": "pricing-simplification-3-skus",
+    "milestone": "Pricing simplification: cut standalone Relay tier, down to 3 SKUs",
+    "phase": "Present",
+    "product": [
+      "Backend",
+      "Cloud",
+      "littl31.com"
+    ],
+    "status": "Shipped",
+    "date": "2026-08-25",
+    "description": "Simplified from the Aug 22 revision: killed the standalone Relay tier ($2.99mo/$29yr), which existed mainly as an abuse-filter/optics play rather than a real product need. Relay access folded into Butler only. Result: exactly 3 paid SKUs to manage -- Nexus Pro (zero-admin, Play Billing), Kit (one-time), Butler ($9.99mo/$99yr, includes relay/push/backups/LLM personality/priority support).",
+    "source": "https://www.littl31.com/alfr3d.html"
+  },
+  {
+    "id": "hardware-pivot-n100",
+    "milestone": "Hardware pivot: Pi 5 → N100 mini PC, margin restored",
+    "phase": "Future",
+    "product": [
+      "Backend",
+      "Cloud"
+    ],
+    "status": "In Progress",
+    "date": "2026-08-26",
+    "description": "Switched Kit hardware plan from Raspberry Pi 5 to an N100 mini PC (e.g. Beelink Mini S12 Pro, 8GB/256GB) after the user flagged their own NUC as a cheaper reference point. A DIY mini-ITX build was evaluated and rejected as more expensive than a complete pre-built unit. Mini PC parts total ~$235 CAD vs $425 CAD for the Pi 5 tier, restoring $164-214 margin at $399/$449 pricing.",
+    "source": "https://app.notion.com/p/3c8d732b1d348120a467cb989dc6863a"
+  },
+  {
+    "id": "cad-bom-correction-cagr",
+    "milestone": "CAD BOM correction + revised CAGR/monetization strategy",
+    "phase": "Future",
+    "product": [
+      "Backend",
+      "Cloud"
+    ],
+    "status": "In Progress",
+    "date": "2026-08-26",
+    "description": "Recommended-tier Kit parts corrected from $191 (a USD-MSRP artifact) to ~$425 CAD verified Canadian pricing -- Founding-100 ($399) now underwater on parts alone before the N100 pivot above. Added a market CAGR range (12-20% working estimate) and a revised pricing/sales plan: budget-tier storage default, Founding-100 reframed as a small hand-assembled batch, Butler subscription as the primary margin engine. Realistic Year 1: 40-100 Kit units; Year 2: 150-400 cumulative.",
+    "source": "https://app.notion.com/p/3c8d732b1d348120a467cb989dc6863a"
+  },
+  {
+    "id": "cicd-security-aikido-cleanup",
+    "milestone": "Clean up GitHub CI/CD, security & Aikido CVEs (all repos)",
+    "phase": "Future",
+    "product": [
+      "Backend",
+      "Nexus Launcher",
+      "littl31.com"
+    ],
+    "status": "Backburner",
+    "date": null,
+    "description": "CI/CD + security cleanup across all three repos: re-enable alfr3d's disabled ci.yml, finish Aikido signup for littl31, and triage/remediate CVEs Aikido flags once scanning is live across alfr3d, alfr3d_deck, and Littl31. Distinct from Repo tooling standardization (pre-commit/detect-secrets/Dependabot baseline) -- this is the CI pipeline health + vulnerability remediation pass. Not started.",
+    "source": null
   }
 ]
