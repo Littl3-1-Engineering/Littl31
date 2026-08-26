@@ -67,6 +67,12 @@ signal **and** ALFR3D Cloud has actually shipped)
   footprint, not a full custom store/cart system.
 - Inventory, fulfillment, and liability are business decisions for the user to make before this
   phase starts, per the original monetization plan's own caveat.
+- **Purchase receipt emails belong here, not in `alfr3d`.** Investigated 2026-08-26 while building
+  `alfr3d/todo/todo_email_service.md`: a per-household Resend account can never send these (Kit
+  purchases happen before/without a running household unit), and there's no purchase event to
+  trigger a receipt from until Checkout itself exists — so build the two together. Use a single,
+  centrally-held Resend API key as a Cloudflare Pages secret on this project (not per-tenant DB
+  config, since there's no per-tenant DB here), triggered from the Checkout webhook handler.
 
 ### Phase C — Real Cloud signup + website customer accounts (gated: once the backend relay
 described in `alfr3d/todo/todo_cloud_relay.md` is far enough along to actually need real
