@@ -1,0 +1,10 @@
+# Cloudflare Pages project for functions/api/stripe/* — see todo/todo_cloud_kit_commerce.md.
+#
+# This is a separate Pages project from the main littl31.com site (still deployed to GitHub
+# Pages via `npm run deploy`, unchanged). Its static root (`public/`) is just a placeholder;
+# the actual content is the /api/stripe/* functions. Point a subdomain (e.g. api.littl31.com)
+# at this project's custom domain settings once it's deployed and tested.
+name = "littl31-api"
+compatibility_date = "2026-08-26"
+compatibility_flags = ["nodejs_compat"]
+pages_build_output_dir = "public"
