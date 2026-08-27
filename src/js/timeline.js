@@ -40,7 +40,7 @@ if (root) {
     roadmap: {
       accent: 'cyan',
       grouped: false,
-      match: (e) => e.phase === 'Future' && e.status === 'Backburner',
+      match: (e) => e.phase === 'Future' && (e.status === 'Backburner' || e.status === 'Planned'),
       sort: sortByDate('asc')
     }
   }
