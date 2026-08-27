@@ -108,54 +108,55 @@
     "source": "https://github.com/armageddion/cassiop3ia"
   },
   {
-    "id": "nexus-v0128",
-    "milestone": "Nexus Launcher v0.1.28",
-    "phase": "Present",
-    "product": [
-      "Nexus Launcher"
-    ],
-    "status": "Shipped",
-    "date": "2026-08-01",
-    "description": "Free spatial launcher + $5.99 Pro unlock live, CI builds debug APK on every push to main, signed-release workflow on version tags. Latest tag v0.1.29; a rotation-lock setting bumped the code to v0.1.30 (not yet tag-cut).",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck"
-  },
-  {
-    "id": "monetization-plan",
-    "milestone": "Monetization Plan published",
-    "phase": "Present",
-    "product": [
-      "Backend",
-      "Nexus Launcher",
-      "Cloud"
-    ],
-    "status": "Shipped",
-    "date": "2026-08-01",
-    "description": "Core free / Nexus Launcher free+$5.99 Pro / Cloud Phase 3 $5.99-$11.99 / Kit unscheduled, published on littl31.com/alfr3d.html.",
-    "source": "https://www.littl31.com/alfr3d.html"
-  },
-  {
-    "id": "littl31-current-site",
-    "milestone": "littl31.com — current live site",
-    "phase": "Present",
-    "product": [
-      "littl31.com"
-    ],
-    "status": "Shipped",
-    "date": "2026-08-01",
-    "description": "Product site for Littl3.1 Engineering with Alfr3d as flagship. Pages: index.html, alfr3d.html, lab.html.",
-    "source": "https://www.littl31.com"
-  },
-  {
-    "id": "consolidated-rewrite",
-    "milestone": "Consolidated rewrite (current repo)",
+    "id": "backend-v020-hardening",
+    "milestone": "Backend v0.2.0: Auth, secrets, IoT & reliability hardening",
     "phase": "Present",
     "product": [
       "Backend"
     ],
     "status": "Shipped",
-    "date": "2026-08-20",
-    "description": "Now Littl3-1-Engineering/alfr3d, 534 commits on main, latest tagged release v0.2.0. Described by its own README as \"the final resting place of Alfr3d after years of different architectures and repos.\"",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d"
+    "date": "2026-08-26",
+    "description": "Consolidated into today's Littl3-1-Engineering/alfr3d repo and shipped v0.1.8 through v0.2.0 in one sprint: full JWT Auth + RBAC across all 56 write routes with a household login UI, Fernet-encrypted integration secrets at rest, ESPHome as a new local-only IoT provider (mDNS discovery, Noise-encrypted API), and a device-registry-backed multi-camera streaming model. Also landed real production fixes along the way: a stalled-ffmpeg self-heal for camera streams, systemd autostart so all 12 containers survive a reboot unattended, owner-role user management with self-service profile editing, centralized IoT device control, first-run onboarding (account claim + owner generation), and a calendar name-trim/UTC-normalization fix. Also shipped: a Mermaid ER diagram of the live MySQL schema in the README, a now-playing Spotify endpoint (GET /api/music/now-playing) feeding a situational-awareness card, and a mood/genre recommendation resolver that deep-links to a real Spotify playlist.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/releases"
+  },
+  {
+    "id": "nexus-launcher-theming-rotation",
+    "milestone": "Nexus Launcher: v0.1.32, Custom Colors, rotation lock & write-action sign-in",
+    "phase": "Present",
+    "product": [
+      "Nexus Launcher"
+    ],
+    "status": "Shipped",
+    "date": "2026-08-21",
+    "description": "Free spatial launcher with a $5.99 Pro unlock went live, with CI building a debug APK on every push and a signed-release workflow on version tags. Since then (code now at v0.1.32; latest cut tag is still v0.1.29): user-defined Custom Colors theming via an in-app HSV picker, a Behavior-settings rotation-lock toggle that keeps the launcher upright in portrait regardless of device orientation, Keystore-backed sign-in gating for ALFR3D write actions, pinning the NUC's self-signed HTTPS cert, a shared App Drawer/Quick Search app-search cache, and an Ambient Brief \"Play it\" deep-link into the resolved Spotify playlist recommendation.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck"
+  },
+  {
+    "id": "littl31-site-launch-fixes",
+    "milestone": "littl31.com: site launch + copy & scroll-reveal fixes",
+    "phase": "Present",
+    "product": [
+      "littl31.com"
+    ],
+    "status": "Shipped",
+    "date": "2026-08-21",
+    "description": "Product site for Littl3.1 Engineering went live (index, alfr3d, lab pages), followed by real descriptive copy on the alfr3d.html product cards and a round of bug fixes: a Locomotive Scroll init crash that was silently blocking all scroll-reveal content sitewide, a stale scroll-trigger position after async image loads, a card layout restructure, and a ReferenceError in the splash logo animation caused by a mis-scoped easing closure.",
+    "source": "https://github.com/Littl3-1-Engineering/Littl31"
+  },
+  {
+    "id": "pricing-strategy-evolution",
+    "milestone": "Pricing strategy: monetization plan → Kit-first → 3 SKUs",
+    "phase": "Present",
+    "product": [
+      "Backend",
+      "Nexus Launcher",
+      "littl31.com",
+      "Cloud"
+    ],
+    "status": "Shipped",
+    "date": "2026-08-25",
+    "description": "Published the core monetization plan (Core free / Launcher free+Pro / Cloud / Kit), then revised it twice: first to a Kit-first ladder with a Butler subscription replacing the old Cloud tiers, then simplified again by cutting the standalone Relay tier — landing on exactly 3 paid SKUs (Nexus Pro, Kit, Butler).",
+    "source": "https://www.littl31.com/alfr3d.html"
   },
   {
     "id": "github-org-migration",
@@ -172,188 +173,6 @@
     "source": "https://github.com/Littl3-1-Engineering"
   },
   {
-    "id": "nexus-custom-colors",
-    "milestone": "Custom Colors theming (5th Pro feature)",
-    "phase": "Present",
-    "product": [
-      "Nexus Launcher"
-    ],
-    "status": "Shipped",
-    "date": "2026-08-20",
-    "description": "User-defined Primary/Action/Environmental accent colors via an in-app HSV picker, sharing the same palette-derivation code as the wallpaper-inferred theme. Backgrounds/glass/text stay fixed for legibility. Also fixed a hardcoded radial-menu wedge color bug for the launcher category on the two data-driven theme variants.",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/commit/360aafae472197b424a5ed9b84c60b050e907538"
-  },
-  {
-    "id": "cut-v018-tag",
-    "milestone": "v0.1.8 and v0.2.0 tagged releases",
-    "phase": "Present",
-    "product": [
-      "Backend"
-    ],
-    "status": "Shipped",
-    "date": "2026-08-21",
-    "description": "Both tags now cut. v0.1.8 \"Situational Awareness Registry\" and v0.2.0 \"Multi-Camera Registry\" (adds ESPHome as a local-only IoT provider, moves camera streaming to a device-registry-backed multi-camera model, unifies version numbering across every service).",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d/releases"
-  },
-  {
-    "id": "backend-v018",
-    "milestone": "Alfr3d Backend v0.2.0 feature set",
-    "phase": "Present",
-    "product": [
-      "Backend"
-    ],
-    "status": "Shipped",
-    "date": "2026-08-21",
-    "description": "Containerized microservices (Kafka, MySQL, Redis, FastAPI, React), Nexus/Domain/Matrix frontends, Spotify integration, RTSP/HLS camera streaming (now device-registry-backed, multi-camera), WHEN/IF/THEN automations, situational-awareness engine, IoT sync across Home Assistant/SmartThings/ESPHome. Tagged v0.2.0 \"Multi-Camera Registry\", 2026-08-21.",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d"
-  },
-  {
-    "id": "alfr3d-html-card-copy-scroll-fixes",
-    "milestone": "alfr3d.html card copy + scroll-reveal fixes",
-    "phase": "Present",
-    "product": [
-      "littl31.com"
-    ],
-    "status": "Shipped",
-    "date": "2026-08-21",
-    "description": "Added real descriptive paragraphs to the Nexus Launcher, Core, Cloud, and Kit cards (plus a 4th intro-hero line). Also fixed a Locomotive Scroll init crash that was silently blocking all scroll-reveal content sitewide, a stale scroll-trigger-position bug after async image loads, and restructured card layout so text sits beside its screenshot instead of stacking below it.",
-    "source": "https://github.com/Littl3-1-Engineering/Littl31/commit/1c8b5c3b7bb309273ae7a3cdbf016c08f0798fa7"
-  },
-  {
-    "id": "logo-anim-referenceerror-fix",
-    "milestone": "Fixed ReferenceError in logo animation",
-    "phase": "Present",
-    "product": [
-      "littl31.com"
-    ],
-    "status": "Shipped",
-    "date": "2026-08-21",
-    "description": "bezier()'s returned easing closure read a module-scope C that was actually only declared inside runLogoAnimation()'s local scope, throwing ReferenceError whenever Snap invoked the easing function during the index-page splash logo animation. Hoisted config() to module scope to fix.",
-    "source": "https://github.com/Littl3-1-Engineering/Littl31/commit/19adb02db40c6ff94390641850132263c79634db"
-  },
-  {
-    "id": "esphome-integration",
-    "milestone": "ESPHome IoT integration (Phases 0-4)",
-    "phase": "Present",
-    "product": [
-      "Backend"
-    ],
-    "status": "Shipped",
-    "date": "2026-08-21",
-    "description": "Shipped in v0.2.0 (2026-08-21): mDNS discovery, Noise-encrypted native API, manual-accept flow for discovered nodes, runs always-on in parallel with whichever of HA/SmartThings is the default provider. Also fixed a pre-existing bug where /api/iot/devices only ever showed one provider's devices at a time. Phase 5 (persistent push-based state via subscribe_states(), replacing the 15-min poll) not started.",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/todo_esphome.md"
-  },
-  {
-    "id": "nexus-rotation-lock",
-    "milestone": "Rotation lock setting",
-    "phase": "Present",
-    "product": [
-      "Nexus Launcher"
-    ],
-    "status": "Shipped",
-    "date": "2026-08-21",
-    "description": "New \"Lock screen rotation\" toggle in Behavior settings — launcher stays upright portrait regardless of device orientation when enabled; follows system auto-rotate when disabled (default). Verified on-device in both directions. Bumped to v0.1.30 in code; not yet tag-cut (latest tag v0.1.29).",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/blob/main/todo/todo_launcher_rotation_lock.md"
-  },
-  {
-    "id": "encrypt-secrets-at-rest",
-    "milestone": "Encrypt integration secrets at rest",
-    "phase": "Present",
-    "product": [
-      "Backend"
-    ],
-    "status": "Shipped",
-    "date": "2026-08-22",
-    "description": "Fully implemented and committed (e4caa6f, on origin/main): Fernet encryption (services/common/secrets_utils.py) wired into ha_utils/st_utils/spotify_utils/esphome_utils, auto-provisioned key on a shared Docker volume, dual-read fallback so existing plaintext rows keep working. No longer staged -- shipped alongside the Auth + RBAC commit.",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/todo_encrypt_secrets_at_rest.md"
-  },
-  {
-    "id": "container-autostart",
-    "milestone": "Container autostart on device boot",
-    "phase": "Present",
-    "product": [
-      "Backend"
-    ],
-    "status": "Shipped",
-    "date": "2026-08-25",
-    "description": "systemd unit (setup/alfr3d.service) running docker compose up -d on boot, layered on Docker's own restart:unless-stopped policies (added to zookeeper/kafka/redis/mysql, which had all been missing them). Installed, enabled, and verified active on the NUC (alfr3d@192.168.2.200). Reboot-tested 2026-08-25 with explicit user go-ahead: all 12 containers back up unattended within 30s (mysql/kafka/redis/nginx healthy), /api/iot/status and the frontend both confirmed responding post-reboot.",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/todo_container_autostart.md"
-  },
-  {
-    "id": "pricing-strategy-revision-kit-butler",
-    "milestone": "Pricing strategy revision: Kit-first, Butler subscription",
-    "phase": "Present",
-    "product": [
-      "Backend",
-      "Cloud",
-      "littl31.com"
-    ],
-    "status": "Shipped",
-    "date": "2026-08-22",
-    "description": "Replaced 3-tier Cloud plan with Kit-first ladder: Core free, Launcher free+$5.99 unlock, Kit $399 Founding100/$449 steady, Relay standalone $2.99mo/$29yr, Butler $9.99mo/$99yr replaces Cloud/Cloud+. Kit unparked ahead of Cloud. Relay reframed as owned feature with 3yr min commitment and open-source fallback.",
-    "source": "https://www.littl31.com/alfr3d.html"
-  },
-  {
-    "id": "camera-stream-self-heal-fix",
-    "milestone": "Camera stream self-heal fix (stalled-ffmpeg bug)",
-    "phase": "Present",
-    "product": [
-      "Backend"
-    ],
-    "status": "Shipped",
-    "date": "2026-08-22",
-    "description": "Fixed a bug where a stalled RTSP read left ffmpeg hung indefinitely (no timeout, no error logged), so the backend kept reporting the HLS stream as running and served a frozen frame for ~27h with no way to recover short of a manual restart. Added ffmpeg -timeout plus staleness detection in service_api/routes/stream.py that auto-restarts a hung stream within one playlist poll cycle. Found and fixed live against the NUC deployment.",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/todo_camera_streaming.md"
-  },
-  {
-    "id": "auth-rbac",
-    "milestone": "Auth + RBAC (JWT, role-based access)",
-    "phase": "Present",
-    "product": [
-      "Backend"
-    ],
-    "status": "Shipped",
-    "date": "2026-08-23",
-    "description": "Fully shipped and on-device verified, all 5 phases: backend (JWT login/refresh/logout, claim bootstrap, permission matrix on all 56 write routes), webapp login UI (Sign In/Out nav control, route-level view-only gating), Nexus Launcher login (Keystore-backed sign-in in Settings), and hardening (login/claim rate limiting, no username-enumeration, self-service + admin-assisted password change/reset). Confirmed end-to-end on a real device signed in as the athos seed account via wireless adb. A real production bug was found and fixed during that verification: werkzeug 3.1.6 defaults generate_password_hash() to scrypt, whose output didn't fit the password_hash VARCHAR(128) column -- pinned to pbkdf2:sha256 instead.",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/todo_auth_rbac.md"
-  },
-  {
-    "id": "iot-central-control",
-    "milestone": "Centralize IoT/appliance control on Domain/Blueprint",
-    "phase": "Present",
-    "product": [
-      "Backend"
-    ],
-    "status": "Shipped",
-    "date": "2026-08-26",
-    "description": "Quick fix (Music.jsx cast-volume ungating) shipped 2026-08-24. Items 1+3 of the design also completed 2026-08-24: confirmed ControlBlade.jsx's media_player controls ARE wired to the generic /api/iot/devices/{id}/control endpoint, but found and fixed real param-mapping bugs on both the HA and ESPHome paths -- volume_set, set_brightness, and (HA-only) set_speed were sending values in the wrong shape/scale. Same-day follow-up fixed a duplicate/mispositioned ControlBlade-panel bug. Live-browser-verified 2026-08-25, which surfaced two more real bugs -- every control action 422'd, and so did removing an IoT-linked device, both because Blueprint.jsx's iot_-prefixed device ids were passed straight through to an endpoint declaring device_id: int. Fixed, merged to main via PR #152, and deployed + live-verified in production 2026-08-26: clicking a real HA-linked device sent the unprefixed id and returned 200 with the UI updating correctly. Remaining open item: SmartThings devices still aren't handled by the generic control endpoint (see todo_smartthings_generic_control.md) -- needs its own scoping pass.",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d/commit/a6a6401164aed038ba705958f7dc6c3a8202258b"
-  },
-  {
-    "id": "user-management-crud",
-    "milestone": "User management: owner CRUD + self-service profile editing",
-    "phase": "Present",
-    "product": [
-      "Backend"
-    ],
-    "status": "Shipped",
-    "date": "2026-08-24",
-    "description": "Both halves shipped 2026-08-24. Self-service: PUT /api/users/{id} now accepts either an owner/technoking caller (full field set) or the caller editing their own row (restricted -- type excluded unconditionally, even for an owner editing their own row), plus a \"My Profile\" webapp page. Admin: PersonnelRoster.jsx/UserModal.jsx got a Reset Password action (generates a password client-side, calls the existing admin-reset-password endpoint, displays it once -- no email capability yet to deliver it another way) alongside the existing Add/Edit/Delete, and full role-gating -- every mutating control now hidden from non-owner/technoking viewers, roster stays visible read-only. Also fixed: owner was seeded in createTables.sql but had no backfill migration for pre-existing databases (0024_owner_user_type.py) and wasn't offered in either role dropdown -- both fixed, so owner is now a real, fully reachable admin role distinct from the technoking backdoor. Live-verified end to end against the real deployed stack with a throwaway test user. Migration 0024 formally run against the live production DB via alembic upgrade head 2026-08-25 (had been applied manually during the 2026-08-24 verification pass; this just records it properly in the migration chain). Remaining: Nexus Launcher parity (owner-administers-household on the launcher itself) is an explicit v2 decision, not yet scoped.",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/Neural-Blueprint/todo/todo_household_admin_ui.md"
-  },
-  {
-    "id": "onboarding-first-user",
-    "milestone": "First-run onboarding: account claim + email OTP",
-    "phase": "Present",
-    "product": [
-      "Backend"
-    ],
-    "status": "Shipped",
-    "date": "2026-08-26",
-    "description": "Backend + both clients' claim/generate UI shipped 2026-08-24: GET /api/auth/setup-status detects \"nobody has claimed an account yet\", the webapp shows an onboarding modal (claim a seeded resident, or generate a new owner account) instead of the login modal when unclaimed, and the Nexus Launcher has the equivalent onboarding surface in Settings. The planned follow-on email-OTP step was investigated and decided against (2026-08-26): claim/bootstrap already require physical-device or local-network access, so an emailed code adds no real security, and household units don't send email at all. The one real gap -- solo-owner lockout with nobody else to help -- is covered instead by a new setup/reset_owner_password.py script, gated on host/docker compose exec access rather than email.",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/Neural-Blueprint/todo/todo_onboarding_first_user.md"
-  },
-  {
     "id": "backend-license",
     "milestone": "Backend LICENSE — confirmed present (FSL-1.1-ALv2)",
     "phase": "Present",
@@ -364,30 +183,6 @@
     "date": null,
     "description": "Corrected: repo does have a LICENSE file (FSL-1.1-ALv2 text, matches the site). GitHub's NOASSERTION was a license-detector classification gap for a non-SPDX-standard license, not a missing file. No action needed.",
     "source": "https://github.com/Littl3-1-Engineering/alfr3d"
-  },
-  {
-    "id": "auth-rbac-launch-critical",
-    "milestone": "Auth + RBAC promoted to launch-critical",
-    "phase": "Future",
-    "product": [
-      "Backend"
-    ],
-    "status": "Shipped",
-    "date": "2026-08-22",
-    "description": "Reprioritized off backburner 2026-08-22 as a hard blocker for shipping the Alfr3d Kit and exposing the API through the Relay/Butler subscription. Now fully shipped -- see the main \"Auth + RBAC (JWT, role-based access)\" row for the completed Phases 0-5 detail.",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/todo_auth_rbac.md"
-  },
-  {
-    "id": "secrets-at-rest-launch-critical",
-    "milestone": "Encrypt integration secrets at rest promoted to launch-critical",
-    "phase": "Future",
-    "product": [
-      "Backend"
-    ],
-    "status": "Shipped",
-    "date": "2026-08-22",
-    "description": "Reprioritized off backburner 2026-08-22 alongside Auth + RBAC. Now fully shipped and committed (e4caa6f) -- see the main \"Encrypt integration secrets at rest\" row for detail.",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/todo_encrypt_secrets_at_rest.md"
   },
   {
     "id": "kit-build-bom-validation",
@@ -415,18 +210,6 @@
     "source": "https://github.com/Littl3-1-Engineering/Littl31/blob/main/todo/todo_cloud_kit_commerce.md"
   },
   {
-    "id": "db-schema-diagram",
-    "milestone": "DB schema ER diagram for README/wiki",
-    "phase": "Future",
-    "product": [
-      "Backend"
-    ],
-    "status": "Shipped",
-    "date": "2026-08-24",
-    "description": "Exported the live MySQL schema (mysqldump --no-data, 21 tables) and hand-transcribed it into a Mermaid erDiagram in the README, replacing the stale April db_arch.png screenshot. Renders natively in GitHub and Notion instead of going stale as an image again. Not set up as an automated/recurring regeneration -- re-run by hand whenever a migration meaningfully changes the schema.",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d/commit/56fe776c66f4b567fba98dc66228adb822a01451"
-  },
-  {
     "id": "repo-tooling-standardization",
     "milestone": "Repo tooling standardization (all 3 repos)",
     "phase": "Future",
@@ -439,18 +222,6 @@
     "date": "2026-08-24",
     "description": "alfr3d_deck brought up to alfr3d's baseline: pre-commit-hooks (trailing-whitespace/end-of-file/yaml/large-files) + detect-secrets (fresh baseline, one expected finding -- keystore.properties.sample's changeme placeholders), Dependabot for gradle + github-actions. alfr3d_deck already had CI (build.yml, release.yml) -- ahead of alfr3d there, whose own ci.yml is actually .disabled (a stale claim in this todo corrected). littl31 and Aikido (needs external account signup) still open.",
     "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/commit/ad057618b2bd0a7f127ea44f505935bb25785c43"
-  },
-  {
-    "id": "app-drawer-shared-cache",
-    "milestone": "App Drawer / Quick Search shared cache",
-    "phase": "Future",
-    "product": [
-      "Nexus Launcher"
-    ],
-    "status": "Shipped",
-    "date": "2026-08-24",
-    "description": "AppSearchSource was independently constructed by 4 different call sites (App Drawer, Quick Search, Recent Apps, Terminal), each paying its own PackageManager scan. Promoted to a companion-object singleton (getInstance, private constructor) shared by all four. Verified on-device: opening App Drawer first, then Quick Search, populated Top Apps with no reload delay. Pre-warming at startup (the design doc's other open question) not attempted.",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/commit/f72c334b8d22b8f0fde5090c672a432adca0f40f"
   },
   {
     "id": "smartthings-generic-control-gap",
@@ -475,19 +246,6 @@
     "date": null,
     "description": "Personality panel currently shows call-count usage only; per-token usage metadata from the LLM client isn't surfaced yet. Minor — a future-enhancement aside, not a scoped plan.",
     "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/Neural-Blueprint/todo/personality.md"
-  },
-  {
-    "id": "spotify-playlist-deeplink",
-    "milestone": "Spotify playlist recommendation deep-link",
-    "phase": "Future",
-    "product": [
-      "Backend",
-      "Nexus Launcher"
-    ],
-    "status": "Shipped",
-    "date": "2026-08-25",
-    "description": "Resolves Alfr3d's mood/genre recommendation into one specific real Spotify playlist; the launcher's Ambient Brief \"Play it\" button deep-links into it. Implemented 2026-08-13, backend live-verified 2026-08-25 against a real household Spotify session end to end. Ambient Brief's recommendation card is the launcher surface for this data and works as designed.",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/Neural-Blueprint/todo/todo_music_playlist_recommendation.md"
   },
   {
     "id": "nexus-cloud-pairing",
@@ -550,18 +308,6 @@
     "date": null,
     "description": "Two more theme options for the existing theme-picker system, on top of the three already shipped (Cyan/Navy, Amber/Charcoal, Light/Teal).",
     "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/Neural-Blueprint/todo/todo_customizations.md"
-  },
-  {
-    "id": "spotify-nowplaying-backend",
-    "milestone": "Spotify now-playing exposure",
-    "phase": "Future",
-    "product": [
-      "Backend"
-    ],
-    "status": "Shipped",
-    "date": "2026-08-25",
-    "description": "Daemon polls Spotify playback state, publishes change events, renders a situational-awareness card, exposes GET /api/music/now-playing. Live-verified 2026-08-25 end to end against the production box. No launcher UI is wired to this specific endpoint by design -- user decision 2026-08-25 to leave it as-is (the launcher push side, Option A, remains a documented, unscoped fast-follow).",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/Neural-Blueprint/todo/todo_music_spotify.md"
   },
   {
     "id": "play-store-publishing",
@@ -672,32 +418,6 @@
     "date": "2026-08-26",
     "description": "Two related identity bugs, scoped but not started: TTS reads ALFR3D's own leetspeak name literally instead of pronouncing it \"Alfred\", and the alfr3d system user's own offline-to-online transition triggers the same welcome-greeting flow as a real household member. Design sketch only, no code written.",
     "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/todo_self_awareness_tts_presence.md"
-  },
-  {
-    "id": "calendar-name-trim-utc-fix",
-    "milestone": "Calendar name-trim + UTC normalization fix",
-    "phase": "Present",
-    "product": [
-      "Backend"
-    ],
-    "status": "Shipped",
-    "date": "2026-08-26",
-    "description": "desired_calendars matched exact Google Calendar names, silently breaking on a stray trailing space (\"Cassiopeia \") and hardcoding a literal \"primary\" special-case instead of the account's real primary calendar name. Now trims both sides before matching. Also fixed: parsed event start/end datetimes are now converted to UTC before dropping tzinfo, instead of assuming the Z-suffix offset was already UTC.",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d/commit/90a920e13b17085f7a132313422a7c563b06be33"
-  },
-  {
-    "id": "pricing-simplification-3-skus",
-    "milestone": "Pricing simplification: cut standalone Relay tier, down to 3 SKUs",
-    "phase": "Present",
-    "product": [
-      "Backend",
-      "Cloud",
-      "littl31.com"
-    ],
-    "status": "Shipped",
-    "date": "2026-08-25",
-    "description": "Simplified from the Aug 22 revision: killed the standalone Relay tier ($2.99mo/$29yr), which existed mainly as an abuse-filter/optics play rather than a real product need. Relay access folded into Butler only. Result: exactly 3 paid SKUs to manage -- Nexus Pro (zero-admin, Play Billing), Kit (one-time), Butler ($9.99mo/$99yr, includes relay/push/backups/LLM personality/priority support).",
-    "source": "https://www.littl31.com/alfr3d.html"
   },
   {
     "id": "hardware-pivot-n100",
