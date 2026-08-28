@@ -116,19 +116,19 @@
     ],
     "status": "Shipped",
     "date": "2026-08-26",
-    "description": "Consolidated into today's Littl3-1-Engineering/alfr3d repo and shipped v0.1.8 through v0.2.0 in one sprint: full JWT Auth + RBAC across all 56 write routes with a household login UI, Fernet-encrypted integration secrets at rest, ESPHome as a new local-only IoT provider (mDNS discovery, Noise-encrypted API), and a device-registry-backed multi-camera streaming model. Also landed real production fixes along the way: a stalled-ffmpeg self-heal for camera streams, systemd autostart so all 12 containers survive a reboot unattended, owner-role user management with self-service profile editing, centralized IoT device control, first-run onboarding (account claim + owner generation), and a calendar name-trim/UTC-normalization fix. Also shipped: a Mermaid ER diagram of the live MySQL schema in the README, a now-playing Spotify endpoint (GET /api/music/now-playing) feeding a situational-awareness card, and a mood/genre recommendation resolver that deep-links to a real Spotify playlist.",
+    "description": "Consolidated into today's Littl3-1-Engineering/alfr3d repo and shipped v0.1.8 through v0.2.0 in one sprint: full JWT Auth + RBAC across all 56 write routes with a household login UI, Fernet-encrypted integration secrets at rest, ESPHome as a new local-only IoT provider (mDNS discovery, Noise-encrypted API), and a device-registry-backed multi-camera streaming model. Also landed real production fixes along the way: a stalled-ffmpeg self-heal for camera streams, systemd autostart so all 12 containers survive a reboot unattended, owner-role user management with self-service profile editing, centralized IoT device control, first-run onboarding (account claim + owner generation), and a calendar name-trim/UTC-normalization fix. Also shipped: a Mermaid ER diagram of the live MySQL schema in the README, a now-playing Spotify endpoint (GET /api/music/now-playing) feeding a situational-awareness card, and a mood/genre recommendation resolver that deep-links to a real Spotify playlist. A late-sprint gap surfaced and closed: two services (the daemon and the speak/TTS service) were left out of the secrets-at-rest volume wiring, logging repeated permission errors until both were wired in.",
     "source": "https://github.com/Littl3-1-Engineering/alfr3d/releases"
   },
   {
     "id": "nexus-launcher-theming-rotation",
-    "milestone": "Nexus Launcher: v0.1.32, Custom Colors, rotation lock & write-action sign-in",
+    "milestone": "Nexus Launcher: v0.1.33, Custom Colors, rotation lock & write-action sign-in",
     "phase": "Present",
     "product": [
       "Nexus Launcher"
     ],
     "status": "Shipped",
     "date": "2026-08-21",
-    "description": "Free spatial launcher with a $5.99 Pro unlock went live, with CI building a debug APK on every push and a signed-release workflow on version tags. Since then (code now at v0.1.32; latest cut tag is still v0.1.29): user-defined Custom Colors theming via an in-app HSV picker, a Behavior-settings rotation-lock toggle that keeps the launcher upright in portrait regardless of device orientation, Keystore-backed sign-in gating for ALFR3D write actions, pinning the NUC's self-signed HTTPS cert, a shared App Drawer/Quick Search app-search cache, and an Ambient Brief \"Play it\" deep-link into the resolved Spotify playlist recommendation.",
+    "description": "Free spatial launcher with a $5.99 Pro unlock went live, with CI building a debug APK on every push and a signed-release workflow on version tags (code and latest cut tag both now at v0.1.33). Since then: user-defined Custom Colors theming via an in-app HSV picker, a Behavior-settings rotation-lock toggle that keeps the launcher upright in portrait regardless of device orientation, Keystore-backed sign-in gating for ALFR3D write actions, pinning the NUC's self-signed HTTPS cert, a shared App Drawer/Quick Search app-search cache, an Ambient Brief \"Play it\" deep-link into the resolved Spotify playlist recommendation, and (2026-08-27) calendar events with a destination now hand off straight to the device's default maps app, replacing a Google Maps Directions dependency that needed a paid tier the household never actually configured.",
     "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck"
   },
   {
@@ -225,7 +225,7 @@
   },
   {
     "id": "smartthings-generic-control-gap",
-    "milestone": "SmartThings devices unsupported by generic IoT control endpoint",
+    "milestone": "SmartThings generic IoT control endpoint — fixed, pending live-device verification",
     "phase": "Future",
     "product": [
       "Backend"
@@ -365,7 +365,7 @@
     "product": [
       "Cloud"
     ],
-    "status": "In Progress",
+    "status": "Backburner",
     "date": null,
     "description": "Remote-access relay (no port forwarding) + push notifications; \"thin, dumb-pipe relay\" that never sees plaintext data. Now scoped into a phased plan in todo_cloud_relay.md: architecture spike -> subscriber/billing identity + Stripe -> relay/tunnel -> FCM push -> security review. Deliberately a separate identity system from household RBAC auth. Not yet built.",
     "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/todo_cloud_relay.md"
@@ -414,9 +414,9 @@
     "product": [
       "Backend"
     ],
-    "status": "Backburner",
-    "date": "2026-08-26",
-    "description": "Two related identity bugs, scoped but not started: TTS reads ALFR3D's own leetspeak name literally instead of pronouncing it \"Alfred\", and the alfr3d system user's own offline-to-online transition triggers the same welcome-greeting flow as a real household member. Design sketch only, no code written.",
+    "status": "In Progress",
+    "date": "2026-08-27",
+    "description": "Both identity bugs fixed 2026-08-27, not yet on-device verified: normalize_pronunciation() in service_speak regex-substitutes the leetspeak \"alfr3d\" to \"Alfred\" right before every TTS call, and update_user_state() in service_user now guards the welcome-greeting flow so the alfr3d system user never announces itself coming online like a household member (its presence-state row still updates normally). A closer look also found the guard is currently dead/defensive code -- no code path in the schema seed or the three runtime user-insert sites ever creates a row with username='alfr3d'.",
     "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/todo_self_awareness_tts_presence.md"
   },
   {
@@ -444,6 +444,109 @@
     "date": "2026-08-26",
     "description": "Recommended-tier Kit parts corrected from $191 (a USD-MSRP artifact) to ~$425 CAD verified Canadian pricing -- Founding-100 ($399) now underwater on parts alone before the N100 pivot above. Added a market CAGR range (12-20% working estimate) and a revised pricing/sales plan: budget-tier storage default, Founding-100 reframed as a small hand-assembled batch, Butler subscription as the primary margin engine. Realistic Year 1: 40-100 Kit units; Year 2: 150-400 cumulative.",
     "source": "https://app.notion.com/p/3c8d732b1d348120a467cb989dc6863a"
+  },
+  {
+    "id": "deck-household-composition",
+    "milestone": "Deck: Household composition awareness",
+    "phase": "Future",
+    "product": [
+      "Backend",
+      "Nexus Launcher"
+    ],
+    "status": "In Progress",
+    "date": "2026-08-28",
+    "description": "New situational-awareness card that reads household composition (who's home vs. away, known vs. unknown devices) and surfaces it with urgency-aware styling on the Ambient Brief. Backend check + Deck card both built and unit-tested; not yet verified on-device.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/pull/155"
+  },
+  {
+    "id": "deck-cross-surface-continuity",
+    "milestone": "Deck: Cross-surface continuity card",
+    "phase": "Future",
+    "product": [
+      "Backend",
+      "Nexus Launcher"
+    ],
+    "status": "In Progress",
+    "date": "2026-08-28",
+    "description": "New backend endpoint + routines/now-playing tracking so the launcher can surface a \"pick up where you left off\" card across surfaces (e.g. resume music paused elsewhere, or a routine edited on the web dashboard). Built and unit-tested; not yet verified on-device.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/pull/155"
+  },
+  {
+    "id": "deck-rhythm-break-anomaly",
+    "milestone": "Deck: Rhythm-break anomaly cards",
+    "phase": "Future",
+    "product": [
+      "Backend",
+      "Nexus Launcher"
+    ],
+    "status": "In Progress",
+    "date": "2026-08-28",
+    "description": "Learns each device's typical on/off rhythm from history and flags when something is still on well past its usual pattern (e.g. a light on much later than normal). Backend baseline computation + anomaly check built and unit-tested; not yet verified on-device and no real baseline data has accumulated yet.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/pull/155"
+  },
+  {
+    "id": "deck-attention-telemetry",
+    "milestone": "Deck: Attention telemetry as a focus signal",
+    "phase": "Future",
+    "product": [
+      "Backend",
+      "Nexus Launcher"
+    ],
+    "status": "In Progress",
+    "date": "2026-08-28",
+    "description": "Launcher reports rolling attention/dwell telemetry to a new backend endpoint, feeding focus and wind-down situational-awareness signals. Built and unit-tested on both sides; not yet verified on-device.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/pull/155"
+  },
+  {
+    "id": "deck-departure-time-prediction",
+    "milestone": "Deck: Departure-time prediction card",
+    "phase": "Future",
+    "product": [
+      "Backend",
+      "Nexus Launcher"
+    ],
+    "status": "Planned",
+    "date": "2026-08-28",
+    "description": "Predict a household member's usual departure time from history and surface it as an Ambient Brief card. Scoped alongside the other new situational-awareness cards; not yet built.",
+    "source": null
+  },
+  {
+    "id": "departure-anomaly-detection",
+    "milestone": "New feature: departure anomaly detection (\"usually gone by now, still home\")",
+    "phase": "Future",
+    "product": [
+      "Backend"
+    ],
+    "status": "Backburner",
+    "date": "2026-08-27",
+    "description": "Companion to rhythm-break anomaly detection: flag when a household member is still home well past when they'd usually have left. Idea only, not scoped.",
+    "source": null
+  },
+  {
+    "id": "explore-launcher-context-source",
+    "milestone": "Explore: Nexus Launcher as a new context source for Alfr3d",
+    "phase": "Future",
+    "product": [
+      "Backend",
+      "Nexus Launcher"
+    ],
+    "status": "Backburner",
+    "date": "2026-08-27",
+    "description": "Explore feeding the launcher's own on-device signals (attention/dwell, foreground app, etc.) back into the backend's situational-awareness engine as a new context source, alongside existing presence/device signals. Idea only, not scoped.",
+    "source": null
+  },
+  {
+    "id": "explore-free-routing-alternatives",
+    "milestone": "Explore free/open-source routing for travel guidance",
+    "phase": "Future",
+    "product": [
+      "Backend",
+      "Nexus Launcher"
+    ],
+    "status": "Backburner",
+    "date": "2026-08-27",
+    "description": "Google Maps Directions (paid tier, never actually configured) was removed 2026-08-27; the launcher's \"next event soon\" card now just hands off to the device's default maps app with no computed leave-by time or fuel-cost estimate. This explores reviving smarter guidance via a free/self-hostable routing source instead -- candidates: OSRM (self-hosted, MIT, no per-request billing), OpenRouteService, GraphHopper, Valhalla. None offer Google's real-time traffic layer. Exploration only, not started.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/todo_free_routing_alternatives.md"
   },
   {
     "id": "cicd-security-aikido-cleanup",
