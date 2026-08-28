@@ -13330,7 +13330,7 @@ if (root) {
       accent: 'cyan',
       grouped: false,
       match: function match(e) {
-        return e.phase === 'Future' && e.status === 'Backburner';
+        return e.phase === 'Future' && (e.status === 'Backburner' || e.status === 'Planned');
       },
       sort: sortByDate('asc')
     }
