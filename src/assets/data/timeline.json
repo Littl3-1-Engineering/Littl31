@@ -91,8 +91,8 @@
       "Backend"
     ],
     "status": "Shipped",
-    "date": null,
-    "description": "Repo explicitly describes itself as \"Successor to Project Alfr3d\" — a rebrand attempt that didn't end up replacing it. Undated.",
+    "date": "2018-02-01",
+    "description": "Repo explicitly describes itself as \"Successor to Project Alfr3d\" -- a rebrand attempt that didn't end up replacing it. Active Feb 2018 to Oct 2020 (239 commits, confirmed via GitHub commit history).",
     "source": "https://github.com/armageddion/b3na"
   },
   {
@@ -103,9 +103,46 @@
       "Backend"
     ],
     "status": "Shipped",
-    "date": null,
-    "description": "First Kafka message-bus architecture (topics speak/environment/device/user); direct architectural precursor to today's Kafka-based backend. Undated.",
+    "date": "2022-09-01",
+    "description": "First Kafka message-bus architecture (topics speak/environment/device/user) -- direct architectural precursor to today's Kafka-based backend. Active Sep 2022 through May 2026 (434 commits) -- notably overlapping with the start of the current consolidated rewrite rather than a clean handoff.",
     "source": "https://github.com/armageddion/cassiop3ia"
+  },
+  {
+    "id": "secrets-volume-fix",
+    "milestone": "Fix: secrets volume wiring gap (2 services affected)",
+    "phase": "Present",
+    "product": [
+      "Backend"
+    ],
+    "status": "Shipped",
+    "date": "2026-08-28",
+    "description": "Two backend services were missed when the secrets-at-rest volume was wired up, silently logging permission errors instead of failing loudly. Found and fixed on the live production box, then landed in the source of truth.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/docker-compose.yml"
+  },
+  {
+    "id": "onboarding-first-run",
+    "milestone": "First-run onboarding: account claim + owner bootstrap",
+    "phase": "Present",
+    "product": [
+      "Backend"
+    ],
+    "status": "Shipped",
+    "date": "2026-08-26",
+    "description": "New installs now detect \"nobody has claimed an account yet\" and walk through claiming a seeded resident or generating a new owner account, on both the webapp and the Nexus Launcher, instead of a bare login screen. An emailed one-time-code step was considered and deliberately dropped -- claiming already requires physical-device or local-network access, so it wouldn't add real security, and these are offline household units. Solo-owner lockout is instead covered by a host-level password-reset script.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/todo_auth_rbac.md"
+  },
+  {
+    "id": "hardware-pivot-n100",
+    "milestone": "Hardware pivot: Raspberry Pi 5 → N100 mini PC",
+    "phase": "Present",
+    "product": [
+      "Backend",
+      "Cloud"
+    ],
+    "status": "In Progress",
+    "date": "2026-08-26",
+    "description": "Alfr3d Kit's hardware base is switching from a Raspberry Pi 5 to an N100 mini PC after a cheaper reference point surfaced -- a bare DIY mini-ITX build turned out to cost more than a complete pre-built unit. The swap drops parts cost from ~$425 to ~$235 CAD, restoring the margin a Pi 5 + M.2 HAT build had eaten into, and simplifies assembly (no HAT/cooler/case fitting).",
+    "source": "https://app.notion.com/p/3c8d732b1d348120a467cb989dc6863a"
   },
   {
     "id": "backend-v020-hardening",
@@ -116,19 +153,31 @@
     ],
     "status": "Shipped",
     "date": "2026-08-26",
-    "description": "Consolidated into today's Littl3-1-Engineering/alfr3d repo and shipped v0.1.8 through v0.2.0 in one sprint: full JWT Auth + RBAC across all 56 write routes with a household login UI, Fernet-encrypted integration secrets at rest, ESPHome as a new local-only IoT provider (mDNS discovery, Noise-encrypted API), and a device-registry-backed multi-camera streaming model. Also landed real production fixes along the way: a stalled-ffmpeg self-heal for camera streams, systemd autostart so all 12 containers survive a reboot unattended, owner-role user management with self-service profile editing, centralized IoT device control, first-run onboarding (account claim + owner generation), and a calendar name-trim/UTC-normalization fix. Also shipped: a Mermaid ER diagram of the live MySQL schema in the README, a now-playing Spotify endpoint (GET /api/music/now-playing) feeding a situational-awareness card, and a mood/genre recommendation resolver that deep-links to a real Spotify playlist. A late-sprint gap surfaced and closed: two services (the daemon and the speak/TTS service) were left out of the secrets-at-rest volume wiring, logging repeated permission errors until both were wired in.",
+    "description": [
+      "Full JWT Auth + RBAC shipped and on-device verified across all 5 phases: backend login/refresh/logout, a permission matrix on all 56 write routes, webapp + Nexus Launcher sign-in, and hardening (rate limiting, no username enumeration, self-service/admin password reset).",
+      "Every integration credential (Home Assistant, SmartThings, Spotify, ESPHome) is now Fernet-encrypted at rest, with a zero-downtime dual-read fallback for existing plaintext rows.",
+      "ESPHome added as a new local-only IoT provider (mDNS discovery, Noise-encrypted API), alongside a device-registry-backed multi-camera streaming model -- tagged v0.2.0 \"Multi-Camera Registry\".",
+      "Household user management landed end to end: self-service profile editing plus a full owner/admin CRUD and password-reset UI for the roster.",
+      "Real production fixes along the way: a stalled-ffmpeg self-heal for camera streams, systemd autostart so all 12 containers survive a reboot unattended, and a calendar-sync bug (stray-space name matching, UTC handling).",
+      "Consolidated years of prior architectures into today's repo (Littl3-1-Engineering/alfr3d, 534+ commits) -- confirmed to still carry its FSL-1.1-ALv2 LICENSE file."
+    ],
     "source": "https://github.com/Littl3-1-Engineering/alfr3d/releases"
   },
   {
     "id": "nexus-launcher-theming-rotation",
-    "milestone": "Nexus Launcher: v0.1.33, Custom Colors, rotation lock & write-action sign-in",
+    "milestone": "Nexus Launcher: Pro unlock, theming, rotation lock & write-action sign-in",
     "phase": "Present",
     "product": [
       "Nexus Launcher"
     ],
     "status": "Shipped",
     "date": "2026-08-21",
-    "description": "Free spatial launcher with a $5.99 Pro unlock went live, with CI building a debug APK on every push and a signed-release workflow on version tags (code and latest cut tag both now at v0.1.33). Since then: user-defined Custom Colors theming via an in-app HSV picker, a Behavior-settings rotation-lock toggle that keeps the launcher upright in portrait regardless of device orientation, Keystore-backed sign-in gating for ALFR3D write actions, pinning the NUC's self-signed HTTPS cert, a shared App Drawer/Quick Search app-search cache, an Ambient Brief \"Play it\" deep-link into the resolved Spotify playlist recommendation, and (2026-08-27) calendar events with a destination now hand off straight to the device's default maps app, replacing a Google Maps Directions dependency that needed a paid tier the household never actually configured.",
+    "description": [
+      "Free spatial launcher with a $5.99 one-time Pro unlock live since v0.1.28, with CI building a debug APK on every push and a signed-release workflow on version tags.",
+      "Custom Colors theming: a 5th Pro feature, user-defined accent colors via an in-app HSV picker.",
+      "A rotation-lock setting keeps the launcher upright in portrait regardless of device orientation.",
+      "Write actions (device control, resident edits, running/editing a routine) now require sign-in, using Keystore-backed credential storage from the Auth + RBAC rollout."
+    ],
     "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck"
   },
   {
@@ -140,12 +189,16 @@
     ],
     "status": "Shipped",
     "date": "2026-08-21",
-    "description": "Product site for Littl3.1 Engineering went live (index, alfr3d, lab pages), followed by real descriptive copy on the alfr3d.html product cards and a round of bug fixes: a Locomotive Scroll init crash that was silently blocking all scroll-reveal content sitewide, a stale scroll-trigger position after async image loads, a card layout restructure, and a ReferenceError in the splash logo animation caused by a mis-scoped easing closure.",
-    "source": "https://github.com/Littl3-1-Engineering/Littl31"
+    "description": [
+      "Site live at littl31.com: index.html (pitch), alfr3d.html (product + pricing), lab.html (R&D showcase).",
+      "alfr3d.html got real descriptive copy for the Nexus Launcher, Core, Cloud, and Kit cards, plus a fix for a scroll-reveal crash that was silently blocking content sitewide.",
+      "Fixed a splash-logo animation crash on the homepage (a stray module-scope reference)."
+    ],
+    "source": "https://www.littl31.com"
   },
   {
     "id": "pricing-strategy-evolution",
-    "milestone": "Pricing strategy: monetization plan → Kit-first → 3 SKUs",
+    "milestone": "Pricing strategy: monetization plan → Kit-first → 3 SKUs → CAD-corrected",
     "phase": "Present",
     "product": [
       "Backend",
@@ -154,8 +207,13 @@
       "Cloud"
     ],
     "status": "Shipped",
-    "date": "2026-08-25",
-    "description": "Published the core monetization plan (Core free / Launcher free+Pro / Cloud / Kit), then revised it twice: first to a Kit-first ladder with a Butler subscription replacing the old Cloud tiers, then simplified again by cutting the standalone Relay tier — landing on exactly 3 paid SKUs (Nexus Pro, Kit, Butler).",
+    "date": "2026-08-26",
+    "description": [
+      "Monetization plan first published: Core free, Nexus Launcher free + $5.99 Pro unlock, Cloud tiers, Kit unscheduled.",
+      "Revised to a Kit-first ladder: Kit $399 Founding-100 / $449 steady-state, with a Butler subscription ($9.99/mo) replacing the old Cloud tiers.",
+      "Simplified further to exactly 3 paid SKUs by cutting the standalone Relay tier, folding remote access into Butler.",
+      "A CAD-verified parts cost check found the Kit underwater on margin at the earlier USD-based estimate -- prompted the hardware pivot above and a revised sales-volume estimate."
+    ],
     "source": "https://www.littl31.com/alfr3d.html"
   },
   {
@@ -169,20 +227,8 @@
     ],
     "status": "Shipped",
     "date": "2026-08-20",
-    "description": "All 3 repos (alfr3d, alfr3d_deck, Littl31) migrated from personal armageddion account to the Littl3-1-Engineering org.",
+    "description": "All 3 repos (alfr3d, alfr3d_deck, Littl31) migrated from the personal armageddion account to the Littl3-1-Engineering org.",
     "source": "https://github.com/Littl3-1-Engineering"
-  },
-  {
-    "id": "backend-license",
-    "milestone": "Backend LICENSE — confirmed present (FSL-1.1-ALv2)",
-    "phase": "Present",
-    "product": [
-      "Backend"
-    ],
-    "status": "Shipped",
-    "date": null,
-    "description": "Corrected: repo does have a LICENSE file (FSL-1.1-ALv2 text, matches the site). GitHub's NOASSERTION was a license-detector classification gap for a non-SPDX-standard license, not a missing file. No action needed.",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d"
   },
   {
     "id": "kit-build-bom-validation",
