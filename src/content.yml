@@ -94,10 +94,12 @@ alfr3d:
           note: 'Not yet available — no ship date set'
         - amount: $449
           label: Steady-state · one-time
+          badge: Not yet available
           info: The same Kit, same lifetime Relay, same free Nexus Launcher Pro — the planned ongoing price once all 100 founding units are gone. Not orderable yet.
           cta:
             text: → Join the waitlist
             href: 'mailto:athos@littl31.com?subject=Alfr3d%20Kit%20%E2%80%94%20waitlist'
+          note: 'Not yet available — no ship date set'
     - title: Nexus Launcher
       id: p-launcher
       eyebrow: / NEXUS LAUNCHER
