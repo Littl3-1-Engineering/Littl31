@@ -108,6 +108,19 @@ if (root) {
     return `<div class="flex flex-wrap gap-4 mt-6">${cards}</div>`
   }
 
+  // A grouped/summarized entry (several months-old milestones folded into
+  // one card, per the Documentation Sync Protocol) carries `description` as
+  // an array of bullet highlights instead of a single paragraph string —
+  // the 3 most recent entries in each phase always stay as plain-paragraph
+  // singles. Render whichever shape the entry actually has.
+  function entryDescription (entry) {
+    if (Array.isArray(entry.description)) {
+      const items = entry.description.map((line) => `<li>${escapeHtml(line)}</li>`).join('')
+      return `<ul class="list-disc list-inside space-y-1.5 text-gray-300 text-sm leading-relaxed mt-4">${items}</ul>`
+    }
+    return `<p class="text-gray-300 text-sm leading-relaxed mt-4">${escapeHtml(entry.description)}</p>`
+  }
+
   function entryCard (entry, accent) {
     return `
       <div class="window-frame window-sm accent-${accent}">
@@ -120,7 +133,7 @@ if (root) {
           <div class="window-content p-6 md:p-8">
             <h3 class="font-display font-bold text-white text-lg md:text-xl">${escapeHtml(entry.milestone)}</h3>
             <div class="flex flex-wrap gap-2 mt-3">${productChips(entry.product)}</div>
-            <p class="text-gray-300 text-sm leading-relaxed mt-4">${escapeHtml(entry.description)}</p>
+            ${entryDescription(entry)}
           </div>
         </div>
       </div>`
