@@ -13231,9 +13231,22 @@ if (root) {
       return "\n        <div class=\"window-frame window-sm accent-".concat(escapeHtml(accent), "\">\n          <div class=\"window-body\">\n            <div class=\"window-content px-6 py-4\">\n              <div class=\"font-bold accent-text-").concat(escapeHtml(accent), " text-2xl\">").concat(escapeHtml(tier.amount), "</div>\n              <div class=\"text-xs text-gray-400 mt-1\">").concat(escapeHtml(tier.label), "</div>\n            </div>\n          </div>\n        </div>");
     }).join('');
     return "<div class=\"flex flex-wrap gap-4 mt-6\">".concat(cards, "</div>");
+  }; // A grouped/summarized entry (several months-old milestones folded into
+  // one card, per the Documentation Sync Protocol) carries `description` as
+  // an array of bullet highlights instead of a single paragraph string —
+  // the 3 most recent entries in each phase always stay as plain-paragraph
+  // singles. Render whichever shape the entry actually has.
+  var entryDescription = function entryDescription(entry) {
+    if (Array.isArray(entry.description)) {
+      var items = entry.description.map(function (line) {
+        return "<li>".concat(escapeHtml(line), "</li>");
+      }).join('');
+      return "<ul class=\"list-disc list-inside space-y-1.5 text-gray-300 text-sm leading-relaxed mt-4\">".concat(items, "</ul>");
+    }
+    return "<p class=\"text-gray-300 text-sm leading-relaxed mt-4\">".concat(escapeHtml(entry.description), "</p>");
   };
   var entryCard = function entryCard(entry, accent) {
-    return "\n      <div class=\"window-frame window-sm accent-".concat(accent, "\">\n        <div class=\"window-body\">\n          <div class=\"window-titlebar\">\n            <span class=\"window-dot\"></span>\n            <span class=\"font-mono text-xs uppercase tracking-widest text-gray-300\">").concat(escapeHtml(formatDate(entry.date)), "</span>\n            <span class=\"font-mono text-xs uppercase tracking-widest text-gray-500\">\xB7 ").concat(escapeHtml(entry.status), "</span>\n          </div>\n          <div class=\"window-content p-6 md:p-8\">\n            <h3 class=\"font-display font-bold text-white text-lg md:text-xl\">").concat(escapeHtml(entry.milestone), "</h3>\n            <div class=\"flex flex-wrap gap-2 mt-3\">").concat(productChips(entry.product), "</div>\n            <p class=\"text-gray-300 text-sm leading-relaxed mt-4\">").concat(escapeHtml(entry.description), "</p>\n          </div>\n        </div>\n      </div>");
+    return "\n      <div class=\"window-frame window-sm accent-".concat(accent, "\">\n        <div class=\"window-body\">\n          <div class=\"window-titlebar\">\n            <span class=\"window-dot\"></span>\n            <span class=\"font-mono text-xs uppercase tracking-widest text-gray-300\">").concat(escapeHtml(formatDate(entry.date)), "</span>\n            <span class=\"font-mono text-xs uppercase tracking-widest text-gray-500\">\xB7 ").concat(escapeHtml(entry.status), "</span>\n          </div>\n          <div class=\"window-content p-6 md:p-8\">\n            <h3 class=\"font-display font-bold text-white text-lg md:text-xl\">").concat(escapeHtml(entry.milestone), "</h3>\n            <div class=\"flex flex-wrap gap-2 mt-3\">").concat(productChips(entry.product), "</div>\n            ").concat(entryDescription(entry), "\n          </div>\n        </div>\n      </div>");
   };
   var groupHeading = function groupHeading(product, accent) {
     return "<h3 class=\"font-display font-bold accent-text-".concat(accent, " text-2xl md:text-3xl border-b accent-border-").concat(accent, " border-opacity-40 pb-2 mb-6\">").concat(escapeHtml(product), "</h3>");
