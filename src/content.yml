@@ -140,32 +140,6 @@ alfr3d:
       cta:
         text: → View on GitHub
         href: 'https://github.com/Littl3-1-Engineering/alfr3d'
-    - title: Relay
-      id: p-relay
-      eyebrow: / RELAY
-      accent: cyan
-      badge:
-        text: Coming soon — in development
-        accent: gray
-      quip: I'll forward your calls when you're away. I still won't forward your secrets.
-      lines:
-        - "A thin, dumb-pipe relay for remote access — no port-forwarding, no plaintext ever passing through our servers. Reach your house from anywhere without opening your router to the internet."
-        - "Not yet built. Once live, it'll be included free for the life of your Kit and free with a Butler subscription — standalone Relay will be for Core users who just want remote access without anything else."
-      wide: true
-      pricing:
-        - amount: $2.99/mo
-          label: Relay · monthly
-          info: 'Planned pricing, not yet available. Remote access only — no push, no hosted backups, no personality features. Will be included free with any Alfr3d Kit or a Butler subscription.'
-          cta:
-            text: → Join the Relay waitlist
-            href: 'mailto:athos@littl31.com?subject=Alfr3d%20Relay%20%E2%80%94%20waitlist'
-        - amount: $29/yr
-          label: Relay · annual
-          badge: Save vs. monthly
-          info: 'Planned pricing, not yet available. Same Relay, billed yearly — about 19% off the monthly rate.'
-          cta:
-            text: → Join the Relay waitlist
-            href: 'mailto:athos@littl31.com?subject=Alfr3d%20Relay%20%E2%80%94%20waitlist%20(annual)'
     - title: Butler
       id: p-butler
       eyebrow: / BUTLER
@@ -177,6 +151,7 @@ alfr3d:
       quip: I remember your errands, your appointments, and exactly how you like your coffee. Butler edition me, anyway.
       lines:
         - "Not yet built. The plan: one subscription bundling Relay's remote access, plus push notifications, hosted encrypted backups, and the personality/quips layer that makes ALFR3D feel less like a control panel and more like staff."
+        - "Relay — a thin, dumb-pipe connection for remote access with no port-forwarding and no plaintext ever passing through our servers — isn't sold on its own. It's included in Butler, and included free for the life of any Alfr3d Kit."
         - Fair-use LLM usage will be included — generous, capped to keep it sustainable, not throttled to nudge you into a bigger plan. Priority support included.
       pricing:
         - amount: $99/yr
