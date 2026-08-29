@@ -91,7 +91,7 @@ alfr3d:
           cta:
             text: → Join the founding-100 waitlist
             href: 'mailto:athos@littl31.com?subject=Alfr3d%20Kit%20%E2%80%94%20Founding%20100%20waitlist'
-          note: 'Not yet available — no ship date set'
+          note: "Not yet available — target Q4 '26."
         - amount: $449
           label: Steady-state · one-time
           badge: Not yet available
@@ -99,13 +99,13 @@ alfr3d:
           cta:
             text: → Join the waitlist
             href: 'mailto:athos@littl31.com?subject=Alfr3d%20Kit%20%E2%80%94%20waitlist'
-          note: 'Not yet available — no ship date set'
+          note: "Not yet available — target Q4 '26."
     - title: Nexus Launcher
       id: p-launcher
       eyebrow: / NEXUS LAUNCHER
       accent: cyan
       badge:
-        text: Coming soon — not yet on Google Play
+        text: Coming soon — targeting Google Play in Q4 '26
         accent: gray
       img: 'assets/images/nexus-launcher-radial.jpg'
       imgCaption: The Ambient Brief card, mid-gathering — real presence data, not a canned notification.
@@ -117,10 +117,12 @@ alfr3d:
       pricing:
         - amount: Coming soon
           label: Not yet published to Google Play
+          badge: Not yet available
           info: 'Planned at launch: a free core (full spatial canvas, Nexus Core radial menu, double-tap search, window manager, terminal, base theming — no trial timer, no expiring feature ceiling) plus a $5.99 one-time Pro unlock via Google Play Billing (extra themes/icon packs, advanced window layouts, backup & restore). Free automatically for Alfr3d Kit owners and Butler subscribers once live. Nothing is downloadable or purchasable yet.'
           cta:
             text: → Notify me on Google Play
             href: 'mailto:athos@littl31.com?subject=Nexus%20Launcher%20%E2%80%94%20notify%20me'
+          note: "Not yet available — target Q4 '26."
     - title: ALFR3D Core
       id: p-core
       eyebrow: / ALFR3D CORE
