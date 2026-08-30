@@ -1,5 +1,42 @@
 [
   {
+    "id": "sa-roadmap-deployed-production",
+    "milestone": "Full situational-awareness roadmap deployed to production",
+    "phase": "Present",
+    "product": [
+      "Backend"
+    ],
+    "status": "Shipped",
+    "date": "2026-08-30",
+    "description": "A 12-item situational-awareness roadmap (event log, card feedback, calendar conferencing, a shared context frame, structured cards, per-resident/household anomaly detection, self-hosted routing, plus 3 items investigated and correctly stopped on real evidence -- no ESPHome node, no stable BLE identity, not enough event history yet) shipped to the household's real production box: a real database backup taken first, migrations applied, affected services rebuilt and redeployed, verified live end to end. Also cleared 20+ GB of stale Docker build cache found along the way.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/pull/156"
+  },
+  {
+    "id": "entity-baselines-generalized",
+    "milestone": "Learned baselines widened from appliances to residents & the household",
+    "phase": "Present",
+    "product": [
+      "Backend"
+    ],
+    "status": "Shipped",
+    "date": "2026-08-30",
+    "description": "The one learning mechanism in the system could only ever call an appliance's behavior unusual. It now also learns a household-level \"is today unusual\" baseline (typical wake/wind-down hours, how many devices are usually online) on top of the new per-resident departure baselines -- same underlying table, same 6-hourly compute job. Real hardware timing was measured on the production box first to make sure the new computation stayed cheap, and it does (about a second added to a job that already ran in well under a minute).",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/todo_generalize_entity_baselines.md"
+  },
+  {
+    "id": "self-hosted-routing",
+    "milestone": "Leave-by travel guidance rebuilt on self-hosted routing",
+    "phase": "Present",
+    "product": [
+      "Backend",
+      "Nexus Launcher"
+    ],
+    "status": "In Progress",
+    "date": "2026-08-30",
+    "description": "The travel-guidance card removed in August (it needed a paid Google Maps tier that was never configured) is back on different footing: a self-hosted OSRM routing engine plus the public, free Nominatim geocoding API -- no account, no API key, no request leaving the house. Measured directly on the production hardware: a real metro-area map preprocesses in under 2 minutes and serves routes from under 200MB of RAM. Backend live and deployed; the routing engine itself and the launcher's display of the computed leave-by time are still rolling out.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/todo_self_hosted_routing.md"
+  },
+  {
     "id": "alfred-cube",
     "milestone": "Alfred Cube",
     "phase": "Past",
@@ -108,43 +145,6 @@
     "source": "https://github.com/armageddion/cassiop3ia"
   },
   {
-    "id": "secrets-volume-fix",
-    "milestone": "Fix: secrets volume wiring gap (2 services affected)",
-    "phase": "Present",
-    "product": [
-      "Backend"
-    ],
-    "status": "Shipped",
-    "date": "2026-08-28",
-    "description": "Two backend services were missed when the secrets-at-rest volume was wired up, silently logging permission errors instead of failing loudly. Found and fixed on the live production box, then landed in the source of truth.",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/docker-compose.yml"
-  },
-  {
-    "id": "onboarding-first-run",
-    "milestone": "First-run onboarding: account claim + owner bootstrap",
-    "phase": "Present",
-    "product": [
-      "Backend"
-    ],
-    "status": "Shipped",
-    "date": "2026-08-26",
-    "description": "New installs now detect \"nobody has claimed an account yet\" and walk through claiming a seeded resident or generating a new owner account, on both the webapp and the Nexus Launcher, instead of a bare login screen. An emailed one-time-code step was considered and deliberately dropped -- claiming already requires physical-device or local-network access, so it wouldn't add real security, and these are offline household units. Solo-owner lockout is instead covered by a host-level password-reset script.",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/todo_auth_rbac.md"
-  },
-  {
-    "id": "hardware-pivot-n100",
-    "milestone": "Hardware pivot: Raspberry Pi 5 → N100 mini PC",
-    "phase": "Present",
-    "product": [
-      "Backend",
-      "Cloud"
-    ],
-    "status": "In Progress",
-    "date": "2026-08-26",
-    "description": "Alfr3d Kit's hardware base is switching from a Raspberry Pi 5 to an N100 mini PC after a cheaper reference point surfaced -- a bare DIY mini-ITX build turned out to cost more than a complete pre-built unit. The swap drops parts cost from ~$425 to ~$235 CAD, restoring the margin a Pi 5 + M.2 HAT build had eaten into, and simplifies assembly (no HAT/cooler/case fitting).",
-    "source": "https://app.notion.com/p/3c8d732b1d348120a467cb989dc6863a"
-  },
-  {
     "id": "backend-v020-hardening",
     "milestone": "Backend v0.2.0: Auth, secrets, IoT & reliability hardening",
     "phase": "Present",
@@ -159,7 +159,15 @@
       "ESPHome added as a new local-only IoT provider (mDNS discovery, Noise-encrypted API), alongside a device-registry-backed multi-camera streaming model -- tagged v0.2.0 \"Multi-Camera Registry\".",
       "Household user management landed end to end: self-service profile editing plus a full owner/admin CRUD and password-reset UI for the roster.",
       "Real production fixes along the way: a stalled-ffmpeg self-heal for camera streams, systemd autostart so all 12 containers survive a reboot unattended, and a calendar-sync bug (stray-space name matching, UTC handling).",
-      "Consolidated years of prior architectures into today's repo (Littl3-1-Engineering/alfr3d, 534+ commits) -- confirmed to still carry its FSL-1.1-ALv2 LICENSE file."
+      "Consolidated years of prior architectures into today's repo (Littl3-1-Engineering/alfr3d, 534+ commits) -- confirmed to still carry its FSL-1.1-ALv2 LICENSE file.",
+      "Two backend services were missed when the secrets-at-rest volume was wired up (found and fixed on the live production box).",
+      "First-run onboarding: new installs detect an unclaimed household and walk through claiming a seeded resident or bootstrapping a new owner account, on both the webapp and the Nexus Launcher, instead of a bare login screen.",
+      "A durable household event log (previously a 20-item RAM buffer, gone on restart) now backs everything downstream that needs real event history.",
+      "A card feedback loop: situational-awareness cards learn when a household ignores them (cooldown + repetition damping), with security-relevant cards exempt from ever being silenced.",
+      "A shared per-cycle context frame cut redundant DB reads across the 16+ situational-awareness rules by roughly a third and enabled a new empty-house-but-something's-on check.",
+      "Every situational-awareness card gained an additive structured `data` field alongside its display prose, so consumers stop having to regex facts out of it.",
+      "Calendar conferencing metadata (real Google Meet/Zoom links) now backs the \"call starting soon\" card as a confirmed-tier signal, not just a text guess.",
+      "Departure-anomaly detection shipped: a resident home well past their typical time with no calendar event explaining it -- the presence-history table this was assumed to need turned out to already exist in the data."
     ],
     "source": "https://github.com/Littl3-1-Engineering/alfr3d/releases"
   },
@@ -212,7 +220,8 @@
       "Monetization plan first published: Core free, Nexus Launcher free + $5.99 Pro unlock, Cloud tiers, Kit unscheduled.",
       "Revised to a Kit-first ladder: Kit $399 Founding-100 / $449 steady-state, with a Butler subscription ($9.99/mo) replacing the old Cloud tiers.",
       "Simplified further to exactly 3 paid SKUs by cutting the standalone Relay tier, folding remote access into Butler.",
-      "A CAD-verified parts cost check found the Kit underwater on margin at the earlier USD-based estimate -- prompted the hardware pivot above and a revised sales-volume estimate."
+      "A CAD-verified parts cost check found the Kit underwater on margin at the earlier USD-based estimate -- prompted the hardware pivot above and a revised sales-volume estimate.",
+      "Kit hardware base switched from a Raspberry Pi 5 to an N100 mini PC after a cheaper reference build surfaced, dropping parts cost from ~$425 to ~$235 CAD and restoring the margin the Pi 5 + M.2 HAT build had eaten into."
     ],
     "source": "https://www.littl31.com/alfr3d.html"
   },
@@ -466,19 +475,6 @@
     "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/todo_self_awareness_tts_presence.md"
   },
   {
-    "id": "hardware-pivot-n100",
-    "milestone": "Hardware pivot: Pi 5 → N100 mini PC, margin restored",
-    "phase": "Future",
-    "product": [
-      "Backend",
-      "Cloud"
-    ],
-    "status": "In Progress",
-    "date": "2026-08-26",
-    "description": "Switched Kit hardware plan from Raspberry Pi 5 to an N100 mini PC (e.g. Beelink Mini S12 Pro, 8GB/256GB) after the user flagged their own NUC as a cheaper reference point. A DIY mini-ITX build was evaluated and rejected as more expensive than a complete pre-built unit. Mini PC parts total ~$235 CAD vs $425 CAD for the Pi 5 tier, restoring $164-214 margin at $399/$449 pricing.",
-    "source": "https://app.notion.com/p/3c8d732b1d348120a467cb989dc6863a"
-  },
-  {
     "id": "cad-bom-correction-cagr",
     "milestone": "CAD BOM correction + revised CAGR/monetization strategy",
     "phase": "Future",
@@ -544,31 +540,6 @@
     "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/pull/155"
   },
   {
-    "id": "deck-departure-time-prediction",
-    "milestone": "Deck: Departure-time prediction card",
-    "phase": "Future",
-    "product": [
-      "Backend",
-      "Nexus Launcher"
-    ],
-    "status": "Planned",
-    "date": "2026-08-28",
-    "description": "Predict a household member's usual departure time from history and surface it as an Ambient Brief card. Scoped alongside the other new situational-awareness cards; not yet built.",
-    "source": null
-  },
-  {
-    "id": "departure-anomaly-detection",
-    "milestone": "New feature: departure anomaly detection (\"usually gone by now, still home\")",
-    "phase": "Future",
-    "product": [
-      "Backend"
-    ],
-    "status": "Backburner",
-    "date": "2026-08-27",
-    "description": "Companion to rhythm-break anomaly detection: flag when a household member is still home well past when they'd usually have left. Idea only, not scoped.",
-    "source": null
-  },
-  {
     "id": "explore-launcher-context-source",
     "milestone": "Explore: Nexus Launcher as a new context source for Alfr3d",
     "phase": "Future",
@@ -578,21 +549,8 @@
     ],
     "status": "Backburner",
     "date": "2026-08-27",
-    "description": "Explore feeding the launcher's own on-device signals (attention/dwell, foreground app, etc.) back into the backend's situational-awareness engine as a new context source, alongside existing presence/device signals. Idea only, not scoped.",
+    "description": "Explore feeding the launcher's own on-device signals (attention/dwell, foreground app, etc.) back into the backend's situational-awareness engine as a new context source, alongside existing presence/device signals. One candidate signal, BLE presence sensing, was investigated directly and set aside (see \"BLE presence sensing -- explored and set aside\" above) -- modern phones rotate their Bluetooth address, so nothing personally-carried stayed identifiable in a real scan. The rest of the signal list (WiFi leave/arrive, named context zones, car Bluetooth, etc.) remains unexplored.",
     "source": null
-  },
-  {
-    "id": "explore-free-routing-alternatives",
-    "milestone": "Explore free/open-source routing for travel guidance",
-    "phase": "Future",
-    "product": [
-      "Backend",
-      "Nexus Launcher"
-    ],
-    "status": "Backburner",
-    "date": "2026-08-27",
-    "description": "Google Maps Directions (paid tier, never actually configured) was removed 2026-08-27; the launcher's \"next event soon\" card now just hands off to the device's default maps app with no computed leave-by time or fuel-cost estimate. This explores reviving smarter guidance via a free/self-hostable routing source instead -- candidates: OSRM (self-hosted, MIT, no per-request billing), OpenRouteService, GraphHopper, Valhalla. None offer Google's real-time traffic layer. Exploration only, not started.",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/todo_free_routing_alternatives.md"
   },
   {
     "id": "cicd-security-aikido-cleanup",
@@ -607,5 +565,41 @@
     "date": null,
     "description": "CI/CD + security cleanup across all three repos: re-enable alfr3d's disabled ci.yml, finish Aikido signup for littl31, and triage/remediate CVEs Aikido flags once scanning is live across alfr3d, alfr3d_deck, and Littl31. Distinct from Repo tooling standardization (pre-commit/detect-secrets/Dependabot baseline) -- this is the CI pipeline health + vulnerability remediation pass. Not started.",
     "source": null
+  },
+  {
+    "id": "esphome-sa-signal-stopped",
+    "milestone": "ESPHome sensors as a situational-awareness signal",
+    "phase": "Future",
+    "product": [
+      "Backend"
+    ],
+    "status": "Backburner",
+    "date": "2026-08-30",
+    "description": "The ESPHome integration itself has existed since v0.2.0, but nothing in the rule engine reads a sensor yet, and this session's own investigation found zero real ESPHome devices on the household's network to validate against -- picked back up once real hardware exists to test with.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/todo_esphome_situational_awareness.md"
+  },
+  {
+    "id": "ble-presence-dead",
+    "milestone": "BLE presence sensing -- explored and set aside",
+    "phase": "Future",
+    "product": [
+      "Backend"
+    ],
+    "status": "Backburner",
+    "date": "2026-08-30",
+    "description": "The household's hardware can scan for BLE devices just fine, but real scans found no personal device (phone, watch) with a stable enough identity to track -- modern phones deliberately rotate their Bluetooth address. Only fixed smart-home gear (TVs, a smart light) stayed identifiable, which isn't useful as a presence signal. Set aside unless a wearable with a genuinely stable address enters the household.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/todo_ble_presence_sensing.md"
+  },
+  {
+    "id": "transition-learning-stopped",
+    "milestone": "\"What usually happens next\" pattern learning",
+    "phase": "Future",
+    "product": [
+      "Backend"
+    ],
+    "status": "Backburner",
+    "date": "2026-08-30",
+    "description": "A planned next step for the household event log -- noticing that one event usually follows another, and gently flagging it when it doesn't -- needs real weeks of history to learn from honestly. The event log itself is brand new, so this is queued rather than built against too little data.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/todo_transition_learning.md"
   }
 ]
