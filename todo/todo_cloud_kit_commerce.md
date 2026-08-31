@@ -1,9 +1,12 @@
 # Plan: Kit ordering, Cloud signup, customer accounts, ecommerce
 
-## Status: 🟡 IN PROGRESS — generic Stripe Checkout/Portal/webhook infra deployed 2026-08-26
-(Cloudflare Pages Functions, see `functions/api/stripe/` + `AGENTS.md`'s "Serverless API"
-section), live at `https://api.littl31.com`. Still not wired to any pricing-card CTA, and the
-`STRIPE_SECRET_KEY`/`STRIPE_WEBHOOK_SECRET` production secrets aren't set yet.
+## Status: 🟡 IN PROGRESS — Phase A done (2026-08-30); generic Stripe Checkout/Portal/webhook infra
+deployed 2026-08-26 (Cloudflare Pages Functions, see `functions/api/stripe/` + `AGENTS.md`'s
+"Serverless API" section), live at `https://api.littl31.com`, but still not wired to any
+pricing-card CTA — the `STRIPE_SECRET_KEY`/`STRIPE_WEBHOOK_SECRET` production secrets aren't set
+yet either. Phase A took the `mailto:` route below rather than a hosted form, so the Stripe infra
+and Phase A's interest-capture links are two independent, unconnected pieces of this doc's
+progress — don't conflate "a CTA exists" with "Stripe is wired."
 
 ## Goal
 Give the ALFR3D Kit and ALFR3D Cloud pricing sections on this site a real path from "interested
@@ -43,19 +46,25 @@ ecommerce/accounts only once each gate is met (Phase B/C).
 ## Design
 
 ### Phase A — Waitlist / interest capture (buildable now, static-site-compatible, $0)
-- Add two lightweight interest forms, styled like the existing pricing cards:
-  - On the Kit section: "Notify me when the Kit ships" (email only, maybe a free-text "what would
-    you use it for?" field for qualitative signal).
-  - On the ALFR3D Cloud pricing tiers: "Notify me when Cloud launches" per tier interest (Cloud vs
-    Cloud+), or a single combined form if per-tier granularity isn't worth the extra UI.
-- No backend needed: point form submission at a free-tier hosted form endpoint (e.g.
-  Formspree/Getform) or a `mailto:`/forwarding setup to `athos@littl31.com`. Tag/label submissions
-  by source (Kit vs Cloud, and tier if applicable) so the signal can be told apart later.
-- This *is* "ordering the Kit" and "signing up for Cloud" for now, in demand-signal form — it does
-  not commit to inventory, shipping, billing, or a working relay product, so it doesn't conflict
-  with the Kit's demand-gated status.
-- Small enough to build in one session as a natural fast-follow to this doc — flagged here, not
-  scheduled, since the user asked for planning only in this pass.
+
+**Done 2026-08-30.** Took the `mailto:` route (one of the two options this section originally
+named) rather than a hosted form: every priced tier in `src/content.yml`'s `products` list now has
+a `cta` with a `mailto:athos@littl31.com` href and a distinct, descriptive `subject=` query param,
+which is this implementation's version of "tag/label submissions by source" —
+- Kit founding-100 ($399): `subject=Alfr3d%20Kit%20%E2%80%94%20Founding%20100%20waitlist`
+- Kit steady-state ($449): `subject=Alfr3d%20Kit%20%E2%80%94%20waitlist`
+- Nexus Launcher: `subject=Nexus%20Launcher%20%E2%80%94%20notify%20me`
+- Butler annual: `subject=Alfr3d%20Butler%20%E2%80%94%20waitlist%20(annual)`
+- Butler monthly: `subject=Alfr3d%20Butler%20%E2%80%94%20waitlist`
+
+No free-text "what would you use it for?" field exists (mailto has no form fields to add one to) —
+if that qualitative signal matters, it would need switching to a hosted form (Formspree/Getform),
+which is a real follow-up, not done here. Also documented in `privacy.sections` (§2, `website`) and
+in the site's privacy policy copy, so this is live and disclosed, not just a placeholder.
+
+This *is* "ordering the Kit" and "signing up for Cloud" for now, in demand-signal form — it does
+not commit to inventory, shipping, billing, or a working relay product, so it doesn't conflict
+with the Kit's demand-gated status.
 
 ### Phase B — Real Kit ecommerce (gated: only start once the Phase A Kit waitlist shows real
 signal **and** ALFR3D Cloud has actually shipped)
