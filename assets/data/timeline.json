@@ -1,5 +1,17 @@
 [
   {
+    "id": "nexus-quick-controls",
+    "milestone": "Nexus quick-controls panel for favorite IoT devices",
+    "phase": "Present",
+    "product": [
+      "Backend"
+    ],
+    "status": "Shipped",
+    "date": "2026-08-31",
+    "description": "Clicking the Nexus Core now opens a top-center panel -- same slide-in language as the existing weather/clock/camera/project-tree side panels -- showing up to 10 favorited smarthome devices as compact toggle/dial tiles, reusing the same device-control endpoint as the Domain page's ControlBlade. A new per-user device_favorites table backs it, capped at 10 devices per user, with an in-panel edit mode to star/unstar. Live-verified end to end in the browser: sign-in gating, star/unstar, tile rendering, and the 10-device cap.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/commit/de9d74e9"
+  },
+  {
     "id": "sa-roadmap-deployed-production",
     "milestone": "Full situational-awareness roadmap deployed to production",
     "phase": "Present",
