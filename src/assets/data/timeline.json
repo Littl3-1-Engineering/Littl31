@@ -1,5 +1,23 @@
 [
   {
+    "id": "nexus-launcher-prelaunch-polish",
+    "milestone": "Nexus Launcher pre-launch polish + rebrand (v0.1.35)",
+    "phase": "Present",
+    "product": [
+      "Nexus Launcher"
+    ],
+    "status": "Shipped",
+    "date": "2026-09-03",
+    "description": [
+      "The launcher is now \"Alfr3d Nexus Launcher\" (renamed from \"Spatial Launcher\" in the in-app About/header copy), tagged v0.1.35.",
+      "A pre-submission pass cleared the Play Store technical and policy hygiene: targeting Android 16 (API 36) to meet Google's first-submission requirement, code shrinking and resource minification turned on for release builds and verified on a real device, and a privacy-policy gap closed (an every-15-minute attention-telemetry report to the backend that wasn't disclosed).",
+      "Store listing, screenshots, and release notes were rewritten to match everything shipped since the first draft.",
+      "Devices window gained the ability to delete a device (tap-to-arm confirm), plus fixes for a chip-row that wrapped instead of scrolling and a connection check that showed a false \"connected\" state on an http-to-https redirect.",
+      "What's left before it goes live is account-holder-only Play Console setup."
+    ],
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck"
+  },
+  {
     "id": "nexus-quick-controls",
     "milestone": "Nexus quick-controls panel for favorite IoT devices",
     "phase": "Present",
