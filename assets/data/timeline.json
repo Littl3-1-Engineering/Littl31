@@ -1,5 +1,17 @@
 [
   {
+    "id": "unified-time-of-day",
+    "milestone": "Alfr3d learned to tell time",
+    "phase": "Present",
+    "product": [
+      "Backend"
+    ],
+    "status": "Shipped",
+    "date": "2026-09-04",
+    "description": "Alfr3d greeted the house with \"Good morning!\" at 10pm. Six different parts of the system each did their own time-of-day math and disagreed, and the voice had no clock at all. They now share one source of truth, built from the household's own wake / sleep / sunrise / sunset routines: it decides when Alfr3d is awake enough to speak, tells the language model what time it actually is (so it won't wish you good morning at night), leads a welcome-home with the right greeting, and lets the small talk wind down in the last stretch before bed. Deployed and verified on the real house system.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/commit/3fa2f072"
+  },
+  {
     "id": "nexus-launcher-prelaunch-polish",
     "milestone": "Nexus Launcher pre-launch polish + rebrand (v0.1.35)",
     "phase": "Present",
