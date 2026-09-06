@@ -97,17 +97,23 @@ alfr3d:
         - "A Raspberry Pi, pre-flashed with ALFR3D Core and shipped ready to plug in — no Docker Compose, no manual setup, just power and a network connection. Built to order, not stocked."
         - "The lead way to get ALFR3D, once it ships: every Kit will include a lifetime Relay connection and Alfr3d Deck Pro unlocked for free. The first 100 units will be numbered, with a direct line to me for support instead of a ticket queue."
       pricing:
-        - amount: $399
+        - amounts:
+            USD: $400
+            CAD: C$550
+            EUR: "€350"
           scrip: "1,337 Scrip"
           label: Founding 100 · one-time
           accent: amber
           badge: Not yet available
-          info: 'Planned: a numbered unit (e.g. "#014 of 100"), lifetime Relay included for as long as you own the Kit, Alfr3d Deck Pro unlocked free, and direct founder support. Once all 100 ship, this price goes away for good — it becomes the $449 steady-state price below. No hardware has shipped yet — this is the plan, not an open order.'
+          info: 'Planned: a numbered unit (e.g. "#014 of 100"), lifetime Relay included for as long as you own the Kit, Alfr3d Deck Pro unlocked free, and direct founder support. Once all 100 ship, this price goes away for good — it becomes the $450 steady-state price below. No hardware has shipped yet — this is the plan, not an open order.'
           cta:
             text: → Join the founding-100 waitlist
             href: 'mailto:athos@littl31.com?subject=Alfr3d%20Kit%20%E2%80%94%20Founding%20100%20waitlist'
           note: "Not yet available — target Q4 '26."
-        - amount: $449
+        - amounts:
+            USD: $450
+            CAD: C$600
+            EUR: "€400"
           scrip: "1,437 Scrip"
           label: Steady-state · one-time
           badge: Not yet available
@@ -147,7 +153,7 @@ alfr3d:
         - amount: Coming soon
           label: Not yet published to Google Play
           badge: Not yet available
-          info: 'Planned at launch: a free core (full spatial canvas, Socket radial menu, double-tap search, window manager, terminal, base theming — no trial timer, no expiring feature ceiling) plus a $5.99 one-time Pro unlock via Google Play Billing (extra themes/icon packs, advanced window layouts, backup & restore). Free automatically for Alfr3d Kit owners and Uplink subscribers once live. Nothing is downloadable or purchasable yet.'
+          info: 'Planned at launch: a free core (full spatial canvas, Socket radial menu, double-tap search, window manager, terminal, base theming — no trial timer, no expiring feature ceiling) plus a $6 one-time Pro unlock via Google Play Billing (extra themes/icon packs, advanced window layouts, backup & restore). Free automatically for Alfr3d Kit owners and Uplink subscribers once live. Nothing is downloadable or purchasable yet.'
           cta:
             text: → Notify me on Google Play
             href: 'mailto:athos@littl31.com?subject=Alfr3d%20Deck%20%E2%80%94%20notify%20me'
@@ -183,16 +189,22 @@ alfr3d:
         - "Relay — a thin, dumb-pipe connection for remote access with no port-forwarding and no plaintext ever passing through our servers — isn't sold on its own. It's included in Uplink, and included free for the life of any Alfr3d Kit."
         - Fair-use LLM usage will be included — generous, capped to keep it sustainable, not throttled to nudge you into a bigger plan. Priority support included.
       pricing:
-        - amount: $99/yr
+        - amounts:
+            USD: $100/yr
+            CAD: C$150/yr
+            EUR: "€100/yr"
           scrip: "937 Scrip"
           label: Uplink · annual
           accent: amber
           badge: Recommended
-          info: 'Planned pricing, not yet available. Works out to about $8.25/mo — two months free versus paying monthly. Relay + push + hosted encrypted backups + personality/quips (fair-use capped) + priority support.'
+          info: 'Planned pricing, not yet available. Works out to about $8.33/mo — two months free versus paying monthly. Relay + push + hosted encrypted backups + personality/quips (fair-use capped) + priority support.'
           cta:
             text: → Join the Uplink waitlist
             href: 'mailto:athos@littl31.com?subject=Alfr3d%20Uplink%20%E2%80%94%20waitlist%20(annual)'
-        - amount: $9.99/mo
+        - amounts:
+            USD: $10/mo
+            CAD: C$14/mo
+            EUR: "€9/mo"
           scrip: "137 Scrip"
           label: Uplink · monthly
           info: 'Planned pricing, not yet available. Same inclusions as annual, billed monthly.'
