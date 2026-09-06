@@ -1,39 +1,57 @@
-// "Alfr3d Scrip" easter egg (Dial-In Plan C5): hover/tap a price and it
-// scrambles into a fictional Scrip amount plus its symbol, then snaps
-// back to the real, resting price. The symbol (a stylized seven-segment
-// "3" with an extended crossbar, per the finalized design on the
-// "Design Alfr3d Scrip currency symbol" Notion page) is a fixed sibling
-// SVG that fades in/out alongside the scrambled text rather than being
-// woven into the character-scramble itself. Real currency is always the
-// resting state, never Scrip.
+// Two things happen to each `[data-price-toggle]` price element:
+//
+// 1. Currency rotation (Dial-In Plan C5) — when the currency switcher
+//    (currency.js) fires `littl31:currencychange`, the displayed amount
+//    scramble-transitions from whichever currency was showing into the
+//    newly selected one (USD/CAD/EUR), using the same real, agreed price
+//    points baked into content.yml — never a live FX conversion.
+// 2. The "Alfr3d Scrip" easter egg — hover/tap scrambles into a fictional
+//    Scrip amount plus its symbol (a stylized seven-segment "3" with an
+//    extended crossbar, per the finalized design on the "Design Alfr3d
+//    Scrip currency symbol" Notion page), then snaps back to whichever
+//    real currency is currently active. Real currency is always the
+//    resting state, never Scrip.
 import { TextScramble } from './scramble.js'
+import { getActiveCurrency } from './currency.js'
 
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
-document.querySelectorAll('[data-scrip-toggle]').forEach((el) => {
-  const real = el.dataset.realPrice
-  const scrip = el.dataset.scripPrice
-  if (!real || !scrip) return
+function currencyKey (currency) {
+  return 'amount' + currency.charAt(0) + currency.slice(1).toLowerCase()
+}
 
+document.querySelectorAll('[data-price-toggle]').forEach((el) => {
+  const scrip = el.dataset.scripPrice
   const icon = el.parentElement && el.parentElement.querySelector('[data-scrip-symbol]')
   const fx = reduceMotion ? null : new TextScramble(el)
   let showingScrip = false
 
-  const swap = (toScrip) => {
-    if (toScrip === showingScrip) return
-    showingScrip = toScrip
-    const text = toScrip ? scrip : real
+  const currentAmount = () => el.dataset[currencyKey(getActiveCurrency())] || el.dataset.amountUsd
+
+  const render = (text) => {
     if (fx) fx.setText(text)
     else el.textContent = text
-    if (icon) icon.classList.toggle('opacity-0', !toScrip)
   }
 
-  el.addEventListener('mouseenter', () => swap(true))
-  el.addEventListener('mouseleave', () => swap(false))
-  el.addEventListener('focus', () => swap(true))
-  el.addEventListener('blur', () => swap(false))
-  el.addEventListener('touchstart', (e) => {
-    e.preventDefault()
-    swap(!showingScrip)
-  }, { passive: false })
+  if (scrip) {
+    const swapScrip = (toScrip) => {
+      if (toScrip === showingScrip) return
+      showingScrip = toScrip
+      render(toScrip ? scrip : currentAmount())
+      if (icon) icon.classList.toggle('opacity-0', !toScrip)
+    }
+
+    el.addEventListener('mouseenter', () => swapScrip(true))
+    el.addEventListener('mouseleave', () => swapScrip(false))
+    el.addEventListener('focus', () => swapScrip(true))
+    el.addEventListener('blur', () => swapScrip(false))
+    el.addEventListener('touchstart', (e) => {
+      e.preventDefault()
+      swapScrip(!showingScrip)
+    }, { passive: false })
+  }
+
+  window.addEventListener('littl31:currencychange', () => {
+    if (!showingScrip) render(currentAmount())
+  })
 })

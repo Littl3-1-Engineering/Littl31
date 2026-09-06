@@ -111,11 +111,14 @@ if (root) {
     if (!tiers || !tiers.length) return ''
     const cards = tiers.map((tier) => {
       const accent = tier.accent || 'amber'
+      // Tiers with currency variants (content.yml's `amounts` map) show USD
+      // here — this static summary view has no currency switcher of its own.
+      const amount = tier.amount || (tier.amounts && tier.amounts.USD) || ''
       return `
         <div class="window-frame window-sm accent-${escapeHtml(accent)}">
           <div class="window-body">
             <div class="window-content px-6 py-4">
-              <div class="font-bold accent-text-${escapeHtml(accent)} text-2xl">${escapeHtml(tier.amount)}</div>
+              <div class="font-bold accent-text-${escapeHtml(accent)} text-2xl">${escapeHtml(amount)}</div>
               <div class="text-xs text-gray-400 mt-1">${escapeHtml(tier.label)}</div>
             </div>
           </div>
