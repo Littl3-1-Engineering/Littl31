@@ -18,6 +18,22 @@ if (root) {
     Cloud: 'orange'
   }
 
+  // Every row in timeline.json is tagged with the product name that was
+  // current when it shipped (Notion-sourced, historically accurate — a
+  // rebrand milestone genuinely happened under the old name). This map is
+  // display-only: it renames what's shown on screen (chips, group
+  // headings) without changing PRODUCTS/PRODUCT_ACCENT/pricingByProduct
+  // keys or the data-filter values, all of which must keep matching the
+  // literal tags in the data.
+  const PRODUCT_DISPLAY = {
+    'Nexus Launcher': 'Alfr3d Deck',
+    Cloud: 'Alfr3d Uplink'
+  }
+
+  function displayName (product) {
+    return PRODUCT_DISPLAY[product] || product
+  }
+
   const STATES = {
     history: {
       accent: 'gray',
@@ -86,7 +102,7 @@ if (root) {
   function productChips (products) {
     return products.map((p) => {
       const accent = PRODUCT_ACCENT[p] || 'gray'
-      return `<span class="accent-border-${accent} accent-text-${accent} text-xs tracking-widest uppercase border rounded-full px-3 py-1 inline-block">${escapeHtml(p)}</span>`
+      return `<span class="accent-border-${accent} accent-text-${accent} text-xs tracking-widest uppercase border rounded-full px-3 py-1 inline-block">${escapeHtml(displayName(p))}</span>`
     }).join('')
   }
 
@@ -140,7 +156,7 @@ if (root) {
   }
 
   function groupHeading (product, accent) {
-    return `<h3 class="font-display font-bold accent-text-${accent} text-2xl md:text-3xl border-b accent-border-${accent} border-opacity-40 pb-2 mb-6">${escapeHtml(product)}</h3>`
+    return `<h3 class="font-display font-bold accent-text-${accent} text-2xl md:text-3xl border-b accent-border-${accent} border-opacity-40 pb-2 mb-6">${escapeHtml(displayName(product))}</h3>`
   }
 
   function render () {
