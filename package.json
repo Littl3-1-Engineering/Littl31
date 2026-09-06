@@ -65,7 +65,7 @@
     "pug-cli": "^1.0.0-alpha6",
     "replaceinfiles": "^1.1.4",
     "rimraf": "^6.1.3",
-    "stylus": "^0.54.8",
+    "stylus": "^0.64.0",
     "wrangler": "^4.127.1"
   },
   "overrides": {
