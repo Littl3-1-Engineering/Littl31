@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/style.27b0abab.css">
   <link rel="icon" type="image/png" href="assets/images/favicon.ico">
-  <script src="js/main.cc3220c3.js" defer></script>
+  <script src="js/main.dc49e0de.js" defer></script>
 </head>
 <body class="text-white grid-bg">
   <nav class="nav-glass fixed top-0 left-0 right-0 z-50">
@@ -56,13 +56,10 @@
         </div>
       </div>
     </section>
-    <div class="flex flex-col items-center gap-2 pb-4 px-8">
-      <div class="flex items-center justify-center gap-3" data-currency-switcher>
-        <button class="text-xs tracking-widest uppercase border rounded-full px-4 py-1.5 transition-colors accent-border-gray accent-text-gray" type="button" data-currency-option="USD" aria-pressed="true">USD</button>
-        <button class="text-xs tracking-widest uppercase border rounded-full px-4 py-1.5 transition-colors accent-border-gray accent-text-gray" type="button" data-currency-option="CAD" aria-pressed="false">CAD</button>
-        <button class="text-xs tracking-widest uppercase border rounded-full px-4 py-1.5 transition-colors accent-border-gray accent-text-gray" type="button" data-currency-option="EUR" aria-pressed="false">EUR</button>
-      </div>
-      <p class="text-center text-gray-500 text-xs hidden max-w-md" data-currency-note></p>
+    <div class="flex items-center justify-center gap-3 pb-4 px-8" data-currency-switcher>
+      <button class="text-xs tracking-widest uppercase border rounded-full px-4 py-1.5 transition-colors accent-border-gray accent-text-gray" type="button" data-currency-option="USD" aria-pressed="true">USD</button>
+      <button class="text-xs tracking-widest uppercase border rounded-full px-4 py-1.5 transition-colors accent-border-gray accent-text-gray" type="button" data-currency-option="CAD" aria-pressed="false">CAD</button>
+      <button class="text-xs tracking-widest uppercase border rounded-full px-4 py-1.5 transition-colors accent-border-gray accent-text-gray" type="button" data-currency-option="EUR" aria-pressed="false">EUR</button>
     </div>
     <section class="py-8" id="products" data-scroll-section>
       <div class="flex items-center justify-center p-4 md:p-8" id="p-kit">
@@ -87,15 +84,15 @@
                     <div class="window-body">
                       <div class="window-content px-6 py-4">
                         <div class="flex items-center gap-2">
-                          <div class="flex items-center gap-1.5">
-                            <svg class="scrip-symbol opacity-0 transition-opacity duration-200" data-scrip-symbol viewBox="0 0 40 65" width="14" height="23" aria-hidden="true">
-                              <rect x="6" y="0" width="28" height="6" fill="#22D3EE"></rect>
-                              <rect x="-4" y="22" width="48" height="6" fill="#22D3EE"></rect>
-                              <rect x="6" y="59" width="28" height="6" fill="#22D3EE"></rect>
-                              <rect x="34" y="6" width="6" height="19" fill="#22D3EE"></rect>
-                              <rect x="34" y="28" width="6" height="31" fill="#22D3EE"></rect>
+                          <div class="flex items-center accent-text-amber gap-1.5">
+                            <svg class="scrip-symbol opacity-0 transition-opacity duration-200" data-scrip-symbol viewBox="0 0 40 65" width="16" height="26" fill="currentColor" aria-hidden="true">
+                              <rect x="6" y="0" width="28" height="6"></rect>
+                              <rect x="-4" y="22" width="48" height="6"></rect>
+                              <rect x="6" y="59" width="28" height="6"></rect>
+                              <rect x="34" y="6" width="6" height="19"></rect>
+                              <rect x="34" y="28" width="6" height="31"></rect>
                             </svg>
-                            <div class="font-bold accent-text-amber text-3xl" tabindex="0" role="button" data-scrip-toggle data-real-price="$399" data-scrip-price="1,337 Scrip" aria-label="$399 — hover or tap for Alfr3d Scrip">$399</div>
+                            <div class="font-bold accent-text-amber text-3xl" tabindex="0" role="button" data-price-toggle data-amount-usd="$400" data-amount-cad="C$550" data-amount-eur="€350" data-scrip-price="1,337 Scrip" aria-label="$400 — switch currency above, or hover/tap for Alfr3d Scrip">$400</div>
                           </div>
                           <button class="flex-shrink-0 w-5 h-5 rounded-full border border-gray-500 text-gray-400 text-xs italic font-bold leading-none flex items-center justify-center hover:border-amber-400 hover:text-amber-400 focus:outline-none focus:border-amber-400 focus:text-amber-400 transition-colors" type="button" aria-label="More info — Founding 100 · one-time" data-pricing-info-toggle>i</button>
                         </div>
@@ -105,22 +102,22 @@
                       </div>
                     </div>
                   </div>
-                  <div class="pricing-info-popover info-popover accent-border-amber absolute left-0 top-full mt-2 w-72 p-4 border text-sm text-gray-300 leading-relaxed opacity-0 pointer-events-none transition-opacity duration-200 z-20 group-hover:opacity-100 group-hover:pointer-events-auto" data-pricing-info-popover>Planned: a numbered unit (e.g. &quot;#014 of 100&quot;), lifetime Relay included for as long as you own the Kit, Alfr3d Deck Pro unlocked free, and direct founder support. Once all 100 ship, this price goes away for good — it becomes the $449 steady-state price below. No hardware has shipped yet — this is the plan, not an open order.</div>
+                  <div class="pricing-info-popover info-popover accent-border-amber absolute left-0 top-full mt-2 w-72 p-4 border text-sm text-gray-300 leading-relaxed opacity-0 pointer-events-none transition-opacity duration-200 z-20 group-hover:opacity-100 group-hover:pointer-events-auto" data-pricing-info-popover>Planned: a numbered unit (e.g. &quot;#014 of 100&quot;), lifetime Relay included for as long as you own the Kit, Alfr3d Deck Pro unlocked free, and direct founder support. Once all 100 ship, this price goes away for good — it becomes the $450 steady-state price below. No hardware has shipped yet — this is the plan, not an open order.</div>
                 </div>
                 <div class="group relative"><span class="absolute whitespace-nowrap accent-border-amber accent-text-amber text-xs tracking-widest uppercase border rounded-full px-3 py-1 bg-gray-900" style="top: -0.85rem; left: 50%; transform: translateX(-50%); z-index: 10;">Not yet available</span>
                   <div class="window-frame window-sm accent-amber">
                     <div class="window-body">
                       <div class="window-content px-6 py-4">
                         <div class="flex items-center gap-2">
-                          <div class="flex items-center gap-1.5">
-                            <svg class="scrip-symbol opacity-0 transition-opacity duration-200" data-scrip-symbol viewBox="0 0 40 65" width="14" height="23" aria-hidden="true">
-                              <rect x="6" y="0" width="28" height="6" fill="#22D3EE"></rect>
-                              <rect x="-4" y="22" width="48" height="6" fill="#22D3EE"></rect>
-                              <rect x="6" y="59" width="28" height="6" fill="#22D3EE"></rect>
-                              <rect x="34" y="6" width="6" height="19" fill="#22D3EE"></rect>
-                              <rect x="34" y="28" width="6" height="31" fill="#22D3EE"></rect>
+                          <div class="flex items-center accent-text-amber gap-1.5">
+                            <svg class="scrip-symbol opacity-0 transition-opacity duration-200" data-scrip-symbol viewBox="0 0 40 65" width="16" height="26" fill="currentColor" aria-hidden="true">
+                              <rect x="6" y="0" width="28" height="6"></rect>
+                              <rect x="-4" y="22" width="48" height="6"></rect>
+                              <rect x="6" y="59" width="28" height="6"></rect>
+                              <rect x="34" y="6" width="6" height="19"></rect>
+                              <rect x="34" y="28" width="6" height="31"></rect>
                             </svg>
-                            <div class="font-bold accent-text-amber text-3xl" tabindex="0" role="button" data-scrip-toggle data-real-price="$449" data-scrip-price="1,437 Scrip" aria-label="$449 — hover or tap for Alfr3d Scrip">$449</div>
+                            <div class="font-bold accent-text-amber text-3xl" tabindex="0" role="button" data-price-toggle data-amount-usd="$450" data-amount-cad="C$600" data-amount-eur="€400" data-scrip-price="1,437 Scrip" aria-label="$450 — switch currency above, or hover/tap for Alfr3d Scrip">$450</div>
                           </div>
                           <button class="flex-shrink-0 w-5 h-5 rounded-full border border-gray-500 text-gray-400 text-xs italic font-bold leading-none flex items-center justify-center hover:border-amber-400 hover:text-amber-400 focus:outline-none focus:border-amber-400 focus:text-amber-400 transition-colors" type="button" aria-label="More info — Steady-state · one-time" data-pricing-info-toggle>i</button>
                         </div>
@@ -137,16 +134,7 @@
                     <div class="window-body">
                       <div class="window-content px-6 py-4">
                         <div class="flex items-center gap-2">
-                          <div class="flex items-center gap-1.5">
-                            <svg class="scrip-symbol opacity-0 transition-opacity duration-200" data-scrip-symbol viewBox="0 0 40 65" width="14" height="23" aria-hidden="true">
-                              <rect x="6" y="0" width="28" height="6" fill="#22D3EE"></rect>
-                              <rect x="-4" y="22" width="48" height="6" fill="#22D3EE"></rect>
-                              <rect x="6" y="59" width="28" height="6" fill="#22D3EE"></rect>
-                              <rect x="34" y="6" width="6" height="19" fill="#22D3EE"></rect>
-                              <rect x="34" y="28" width="6" height="31" fill="#22D3EE"></rect>
-                            </svg>
-                            <div class="font-bold accent-text-amber text-3xl" tabindex="0" role="button" data-scrip-toggle data-real-price="$1,500–$2,500" data-scrip-price="4,237 Scrip" aria-label="$1,500–$2,500 — hover or tap for Alfr3d Scrip">$1,500–$2,500</div>
-                          </div>
+                          <div class="font-bold accent-text-amber text-3xl">$1,500–$2,500</div>
                           <button class="flex-shrink-0 w-5 h-5 rounded-full border border-gray-500 text-gray-400 text-xs italic font-bold leading-none flex items-center justify-center hover:border-amber-400 hover:text-amber-400 focus:outline-none focus:border-amber-400 focus:text-amber-400 transition-colors" type="button" aria-label="More info — Concierge · one-time" data-pricing-info-toggle>i</button>
                         </div>
                         <div class="text-xs text-gray-400 mt-1">Concierge · one-time</div>
@@ -197,7 +185,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="pricing-info-popover info-popover accent-border-cyan absolute left-0 top-full mt-2 w-72 p-4 border text-sm text-gray-300 leading-relaxed opacity-0 pointer-events-none transition-opacity duration-200 z-20 group-hover:opacity-100 group-hover:pointer-events-auto" data-pricing-info-popover>Planned at launch: a free core (full spatial canvas, Socket radial menu, double-tap search, window manager, terminal, base theming — no trial timer, no expiring feature ceiling) plus a $5.99 one-time Pro unlock via Google Play Billing (extra themes/icon packs, advanced window layouts, backup &amp; restore). Free automatically for Alfr3d Kit owners and Uplink subscribers once live. Nothing is downloadable or purchasable yet.</div>
+                  <div class="pricing-info-popover info-popover accent-border-cyan absolute left-0 top-full mt-2 w-72 p-4 border text-sm text-gray-300 leading-relaxed opacity-0 pointer-events-none transition-opacity duration-200 z-20 group-hover:opacity-100 group-hover:pointer-events-auto" data-pricing-info-popover>Planned at launch: a free core (full spatial canvas, Socket radial menu, double-tap search, window manager, terminal, base theming — no trial timer, no expiring feature ceiling) plus a $6 one-time Pro unlock via Google Play Billing (extra themes/icon packs, advanced window layouts, backup &amp; restore). Free automatically for Alfr3d Kit owners and Uplink subscribers once live. Nothing is downloadable or purchasable yet.</div>
                 </div>
               </div>
             </div>
@@ -268,15 +256,15 @@
                     <div class="window-body">
                       <div class="window-content px-6 py-4">
                         <div class="flex items-center gap-2">
-                          <div class="flex items-center gap-1.5">
-                            <svg class="scrip-symbol opacity-0 transition-opacity duration-200" data-scrip-symbol viewBox="0 0 40 65" width="14" height="23" aria-hidden="true">
-                              <rect x="6" y="0" width="28" height="6" fill="#22D3EE"></rect>
-                              <rect x="-4" y="22" width="48" height="6" fill="#22D3EE"></rect>
-                              <rect x="6" y="59" width="28" height="6" fill="#22D3EE"></rect>
-                              <rect x="34" y="6" width="6" height="19" fill="#22D3EE"></rect>
-                              <rect x="34" y="28" width="6" height="31" fill="#22D3EE"></rect>
+                          <div class="flex items-center accent-text-amber gap-1.5">
+                            <svg class="scrip-symbol opacity-0 transition-opacity duration-200" data-scrip-symbol viewBox="0 0 40 65" width="16" height="26" fill="currentColor" aria-hidden="true">
+                              <rect x="6" y="0" width="28" height="6"></rect>
+                              <rect x="-4" y="22" width="48" height="6"></rect>
+                              <rect x="6" y="59" width="28" height="6"></rect>
+                              <rect x="34" y="6" width="6" height="19"></rect>
+                              <rect x="34" y="28" width="6" height="31"></rect>
                             </svg>
-                            <div class="font-bold accent-text-amber text-3xl" tabindex="0" role="button" data-scrip-toggle data-real-price="$99/yr" data-scrip-price="937 Scrip" aria-label="$99/yr — hover or tap for Alfr3d Scrip">$99/yr</div>
+                            <div class="font-bold accent-text-amber text-3xl" tabindex="0" role="button" data-price-toggle data-amount-usd="$100/yr" data-amount-cad="C$150/yr" data-amount-eur="€100/yr" data-scrip-price="937 Scrip" aria-label="$100/yr — switch currency above, or hover/tap for Alfr3d Scrip">$100/yr</div>
                           </div>
                           <button class="flex-shrink-0 w-5 h-5 rounded-full border border-gray-500 text-gray-400 text-xs italic font-bold leading-none flex items-center justify-center hover:border-amber-400 hover:text-amber-400 focus:outline-none focus:border-amber-400 focus:text-amber-400 transition-colors" type="button" aria-label="More info — Uplink · annual" data-pricing-info-toggle>i</button>
                         </div>
@@ -285,22 +273,22 @@
                       </div>
                     </div>
                   </div>
-                  <div class="pricing-info-popover info-popover accent-border-amber absolute left-0 top-full mt-2 w-72 p-4 border text-sm text-gray-300 leading-relaxed opacity-0 pointer-events-none transition-opacity duration-200 z-20 group-hover:opacity-100 group-hover:pointer-events-auto" data-pricing-info-popover>Planned pricing, not yet available. Works out to about $8.25/mo — two months free versus paying monthly. Relay + push + hosted encrypted backups + personality/quips (fair-use capped) + priority support.</div>
+                  <div class="pricing-info-popover info-popover accent-border-amber absolute left-0 top-full mt-2 w-72 p-4 border text-sm text-gray-300 leading-relaxed opacity-0 pointer-events-none transition-opacity duration-200 z-20 group-hover:opacity-100 group-hover:pointer-events-auto" data-pricing-info-popover>Planned pricing, not yet available. Works out to about $8.33/mo — two months free versus paying monthly. Relay + push + hosted encrypted backups + personality/quips (fair-use capped) + priority support.</div>
                 </div>
                 <div class="group relative">
                   <div class="window-frame window-sm accent-amber">
                     <div class="window-body">
                       <div class="window-content px-6 py-4">
                         <div class="flex items-center gap-2">
-                          <div class="flex items-center gap-1.5">
-                            <svg class="scrip-symbol opacity-0 transition-opacity duration-200" data-scrip-symbol viewBox="0 0 40 65" width="14" height="23" aria-hidden="true">
-                              <rect x="6" y="0" width="28" height="6" fill="#22D3EE"></rect>
-                              <rect x="-4" y="22" width="48" height="6" fill="#22D3EE"></rect>
-                              <rect x="6" y="59" width="28" height="6" fill="#22D3EE"></rect>
-                              <rect x="34" y="6" width="6" height="19" fill="#22D3EE"></rect>
-                              <rect x="34" y="28" width="6" height="31" fill="#22D3EE"></rect>
+                          <div class="flex items-center accent-text-amber gap-1.5">
+                            <svg class="scrip-symbol opacity-0 transition-opacity duration-200" data-scrip-symbol viewBox="0 0 40 65" width="16" height="26" fill="currentColor" aria-hidden="true">
+                              <rect x="6" y="0" width="28" height="6"></rect>
+                              <rect x="-4" y="22" width="48" height="6"></rect>
+                              <rect x="6" y="59" width="28" height="6"></rect>
+                              <rect x="34" y="6" width="6" height="19"></rect>
+                              <rect x="34" y="28" width="6" height="31"></rect>
                             </svg>
-                            <div class="font-bold accent-text-amber text-3xl" tabindex="0" role="button" data-scrip-toggle data-real-price="$9.99/mo" data-scrip-price="137 Scrip" aria-label="$9.99/mo — hover or tap for Alfr3d Scrip">$9.99/mo</div>
+                            <div class="font-bold accent-text-amber text-3xl" tabindex="0" role="button" data-price-toggle data-amount-usd="$10/mo" data-amount-cad="C$14/mo" data-amount-eur="€9/mo" data-scrip-price="137 Scrip" aria-label="$10/mo — switch currency above, or hover/tap for Alfr3d Scrip">$10/mo</div>
                           </div>
                           <button class="flex-shrink-0 w-5 h-5 rounded-full border border-gray-500 text-gray-400 text-xs italic font-bold leading-none flex items-center justify-center hover:border-amber-400 hover:text-amber-400 focus:outline-none focus:border-amber-400 focus:text-amber-400 transition-colors" type="button" aria-label="More info — Uplink · monthly" data-pricing-info-toggle>i</button>
                         </div>

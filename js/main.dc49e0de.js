@@ -12917,12 +12917,16 @@ function bezier(x1, y1, x2, y2) {
 },{"snapsvg":3}],5:[function(require,module,exports){
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getActiveCurrency = getActiveCurrency;
 // Currency toggle (Dial-In Plan C5): locale-detected default + a persistent
-// manual override, CAD/USD/EUR. Only USD has real, locked price points today
-// (Notion's own open-items list flags CAD/EUR as not yet reconciled) — so
-// switching to CAD or EUR shows a "coming soon" note instead of a converted
-// number. Never live-FX-converts; when real per-currency prices exist, wire
-// them into the tier markup and this file's `showComingSoon` branch goes away.
+// manual override, CAD/USD/EUR. All three now have real, agreed price
+// points (clean round numbers, never live-FX-converted — see content.yml).
+// Picking a currency here fires `littl31:currencychange`, which every
+// `[data-price-toggle]` element (see price-scrip.js) listens for and
+// scramble-transitions its displayed amount into.
 var STORAGE_KEY = 'littl31-currency';
 var SUPPORTED = ['USD', 'CAD', 'EUR'];
 function detectDefault() {
@@ -12934,47 +12938,58 @@ function detectDefault() {
   })) return 'EUR';
   return 'USD';
 }
-function currentCurrency() {
+function readStored() {
   try {
     var stored = localStorage.getItem(STORAGE_KEY);
     if (stored && SUPPORTED.includes(stored)) return stored;
   } catch (e) {
-    // localStorage unavailable (private mode, etc.) — fall through to detection.
+    // localStorage unavailable (private mode, etc.)
   }
-  return detectDefault();
+  return null;
 }
-function applyCurrency(currency, buttons, note) {
-  buttons.forEach(function (btn) {
-    var isActive = btn.dataset.currencyOption === currency;
-    btn.classList.toggle('accent-border-amber', isActive);
-    btn.classList.toggle('accent-text-amber', isActive);
-    btn.classList.toggle('accent-border-gray', !isActive);
-    btn.classList.toggle('accent-text-gray', !isActive);
-    btn.setAttribute('aria-pressed', String(isActive));
-  });
-  if (!note) return;
-  if (currency === 'USD') {
-    note.classList.add('hidden');
-    note.textContent = '';
-  } else {
-    note.classList.remove('hidden');
-    note.textContent = "".concat(currency, " pricing is coming soon \u2014 showing USD until real ").concat(currency, " prices are set.");
+var activeCurrency = readStored() || detectDefault();
+function getActiveCurrency() {
+  return activeCurrency;
+}
+function setActiveCurrency(currency) {
+  if (!SUPPORTED.includes(currency) || currency === activeCurrency) return;
+  activeCurrency = currency;
+  try {
+    localStorage.setItem(STORAGE_KEY, currency);
+  } catch (e) {
+    // localStorage unavailable — selection just won't persist this visit.
   }
+  window.dispatchEvent(new CustomEvent('littl31:currencychange', {
+    detail: {
+      currency: currency
+    }
+  }));
 }
 var switcher = document.querySelector('[data-currency-switcher]');
 if (switcher) {
+  var paintButtons = function paintButtons() {
+    buttons.forEach(function (btn) {
+      var isActive = btn.dataset.currencyOption === activeCurrency;
+      btn.classList.toggle('accent-border-amber', isActive);
+      btn.classList.toggle('accent-text-amber', isActive);
+      btn.classList.toggle('accent-border-gray', !isActive);
+      btn.classList.toggle('accent-text-gray', !isActive);
+      btn.setAttribute('aria-pressed', String(isActive));
+    });
+  };
   var buttons = Array.from(switcher.querySelectorAll('[data-currency-option]'));
-  var note = document.querySelector('[data-currency-note]');
-  applyCurrency(currentCurrency(), buttons, note);
+  paintButtons();
+  // Fire once on load so price elements initialize to the detected/stored
+  // currency instead of sitting on whatever was server-rendered (USD).
+  window.dispatchEvent(new CustomEvent('littl31:currencychange', {
+    detail: {
+      currency: activeCurrency
+    }
+  }));
   buttons.forEach(function (btn) {
     btn.addEventListener('click', function () {
-      var choice = btn.dataset.currencyOption;
-      try {
-        localStorage.setItem(STORAGE_KEY, choice);
-      } catch (e) {
-        // localStorage unavailable — selection just won't persist this visit.
-      }
-      applyCurrency(choice, buttons, note);
+      setActiveCurrency(btn.dataset.currencyOption);
+      paintButtons();
     });
   });
 }
@@ -12986,8 +13001,8 @@ require("./parallax.js");
 require("./scramble.js");
 require("./anim.js");
 require("./pricing-info.js");
-require("./price-scrip.js");
 require("./currency.js");
+require("./price-scrip.js");
 require("./nav.js");
 require("./timeline.js");
 
@@ -13080,51 +13095,68 @@ setTimeout(function () {
 "use strict";
 
 var _scramble = require("./scramble.js");
-// "Alfr3d Scrip" easter egg (Dial-In Plan C5): hover/tap a price and it
-// scrambles into a fictional Scrip amount plus its symbol, then snaps
-// back to the real, resting price. The symbol (a stylized seven-segment
-// "3" with an extended crossbar, per the finalized design on the
-// "Design Alfr3d Scrip currency symbol" Notion page) is a fixed sibling
-// SVG that fades in/out alongside the scrambled text rather than being
-// woven into the character-scramble itself. Real currency is always the
-// resting state, never Scrip.
+var _currency = require("./currency.js");
+// Two things happen to each `[data-price-toggle]` price element:
+//
+// 1. Currency rotation (Dial-In Plan C5) — when the currency switcher
+//    (currency.js) fires `littl31:currencychange`, the displayed amount
+//    scramble-transitions from whichever currency was showing into the
+//    newly selected one (USD/CAD/EUR), using the same real, agreed price
+//    points baked into content.yml — never a live FX conversion.
+// 2. The "Alfr3d Scrip" easter egg — hover/tap scrambles into a fictional
+//    Scrip amount plus its symbol (a stylized seven-segment "3" with an
+//    extended crossbar, per the finalized design on the "Design Alfr3d
+//    Scrip currency symbol" Notion page), then snaps back to whichever
+//    real currency is currently active. Real currency is always the
+//    resting state, never Scrip.
 
 var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-document.querySelectorAll('[data-scrip-toggle]').forEach(function (el) {
-  var real = el.dataset.realPrice;
+function currencyKey(currency) {
+  return 'amount' + currency.charAt(0) + currency.slice(1).toLowerCase();
+}
+document.querySelectorAll('[data-price-toggle]').forEach(function (el) {
   var scrip = el.dataset.scripPrice;
-  if (!real || !scrip) return;
   var icon = el.parentElement && el.parentElement.querySelector('[data-scrip-symbol]');
   var fx = reduceMotion ? null : new _scramble.TextScramble(el);
   var showingScrip = false;
-  var swap = function swap(toScrip) {
-    if (toScrip === showingScrip) return;
-    showingScrip = toScrip;
-    var text = toScrip ? scrip : real;
-    if (fx) fx.setText(text);else el.textContent = text;
-    if (icon) icon.classList.toggle('opacity-0', !toScrip);
+  var currentAmount = function currentAmount() {
+    return el.dataset[currencyKey((0, _currency.getActiveCurrency)())] || el.dataset.amountUsd;
   };
-  el.addEventListener('mouseenter', function () {
-    return swap(true);
-  });
-  el.addEventListener('mouseleave', function () {
-    return swap(false);
-  });
-  el.addEventListener('focus', function () {
-    return swap(true);
-  });
-  el.addEventListener('blur', function () {
-    return swap(false);
-  });
-  el.addEventListener('touchstart', function (e) {
-    e.preventDefault();
-    swap(!showingScrip);
-  }, {
-    passive: false
+  var render = function render(text) {
+    if (fx) fx.setText(text);else el.textContent = text;
+  };
+  if (scrip) {
+    var swapScrip = function swapScrip(toScrip) {
+      if (toScrip === showingScrip) return;
+      showingScrip = toScrip;
+      render(toScrip ? scrip : currentAmount());
+      if (icon) icon.classList.toggle('opacity-0', !toScrip);
+    };
+    el.addEventListener('mouseenter', function () {
+      return swapScrip(true);
+    });
+    el.addEventListener('mouseleave', function () {
+      return swapScrip(false);
+    });
+    el.addEventListener('focus', function () {
+      return swapScrip(true);
+    });
+    el.addEventListener('blur', function () {
+      return swapScrip(false);
+    });
+    el.addEventListener('touchstart', function (e) {
+      e.preventDefault();
+      swapScrip(!showingScrip);
+    }, {
+      passive: false
+    });
+  }
+  window.addEventListener('littl31:currencychange', function () {
+    if (!showingScrip) render(currentAmount());
   });
 });
 
-},{"./scramble.js":11}],10:[function(require,module,exports){
+},{"./currency.js":5,"./scramble.js":11}],10:[function(require,module,exports){
 "use strict";
 
 function closeAllPinned(except) {
@@ -13350,7 +13382,10 @@ if (root) {
     if (!tiers || !tiers.length) return '';
     var cards = tiers.map(function (tier) {
       var accent = tier.accent || 'amber';
-      return "\n        <div class=\"window-frame window-sm accent-".concat(escapeHtml(accent), "\">\n          <div class=\"window-body\">\n            <div class=\"window-content px-6 py-4\">\n              <div class=\"font-bold accent-text-").concat(escapeHtml(accent), " text-2xl\">").concat(escapeHtml(tier.amount), "</div>\n              <div class=\"text-xs text-gray-400 mt-1\">").concat(escapeHtml(tier.label), "</div>\n            </div>\n          </div>\n        </div>");
+      // Tiers with currency variants (content.yml's `amounts` map) show USD
+      // here — this static summary view has no currency switcher of its own.
+      var amount = tier.amount || tier.amounts && tier.amounts.USD || '';
+      return "\n        <div class=\"window-frame window-sm accent-".concat(escapeHtml(accent), "\">\n          <div class=\"window-body\">\n            <div class=\"window-content px-6 py-4\">\n              <div class=\"font-bold accent-text-").concat(escapeHtml(accent), " text-2xl\">").concat(escapeHtml(amount), "</div>\n              <div class=\"text-xs text-gray-400 mt-1\">").concat(escapeHtml(tier.label), "</div>\n            </div>\n          </div>\n        </div>");
     }).join('');
     return "<div class=\"flex flex-wrap gap-4 mt-6\">".concat(cards, "</div>");
   }; // A grouped/summarized entry (several months-old milestones folded into
