@@ -163,15 +163,29 @@ mixin section(item, defaultAccent)
                       .window-content(class='px-6 py-4')
                         .flex.items-center.gap-2
                           if tier.scrip
-                            div.font-bold(
-                              class=`accent-text-${tierAccent} text-3xl`,
-                              tabindex='0',
-                              role='button',
-                              data-scrip-toggle,
-                              data-real-price=tier.amount,
-                              data-scrip-price=tier.scrip,
-                              aria-label=`${tier.amount} — hover or tap for Alfr3d Scrip`
-                            )= tier.amount
+                            .flex.items-center(class='gap-1.5')
+                              svg.scrip-symbol(
+                                data-scrip-symbol,
+                                viewBox='0 0 40 65',
+                                width='14',
+                                height='23',
+                                class='opacity-0 transition-opacity duration-200',
+                                aria-hidden='true'
+                              )
+                                rect(x='6', y='0', width='28', height='6', fill='#22D3EE')
+                                rect(x='-4', y='22', width='48', height='6', fill='#22D3EE')
+                                rect(x='6', y='59', width='28', height='6', fill='#22D3EE')
+                                rect(x='34', y='6', width='6', height='19', fill='#22D3EE')
+                                rect(x='34', y='28', width='6', height='31', fill='#22D3EE')
+                              div.font-bold(
+                                class=`accent-text-${tierAccent} text-3xl`,
+                                tabindex='0',
+                                role='button',
+                                data-scrip-toggle,
+                                data-real-price=tier.amount,
+                                data-scrip-price=tier.scrip,
+                                aria-label=`${tier.amount} — hover or tap for Alfr3d Scrip`
+                              )= tier.amount
                           else
                             div.font-bold(class=`accent-text-${tierAccent} text-3xl`)= tier.amount
                           if tier.info
