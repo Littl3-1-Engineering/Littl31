@@ -12917,14 +12917,81 @@ function bezier(x1, y1, x2, y2) {
 },{"snapsvg":3}],5:[function(require,module,exports){
 "use strict";
 
+// Currency toggle (Dial-In Plan C5): locale-detected default + a persistent
+// manual override, CAD/USD/EUR. Only USD has real, locked price points today
+// (Notion's own open-items list flags CAD/EUR as not yet reconciled) — so
+// switching to CAD or EUR shows a "coming soon" note instead of a converted
+// number. Never live-FX-converts; when real per-currency prices exist, wire
+// them into the tier markup and this file's `showComingSoon` branch goes away.
+var STORAGE_KEY = 'littl31-currency';
+var SUPPORTED = ['USD', 'CAD', 'EUR'];
+function detectDefault() {
+  var locale = (navigator.language || 'en-US').toUpperCase();
+  if (locale.includes('CA')) return 'CAD';
+  var euCountryHints = ['DE', 'FR', 'ES', 'IT', 'NL', 'IE', 'PT', 'BE', 'AT', 'FI', 'GR'];
+  if (euCountryHints.some(function (code) {
+    return locale.endsWith('-' + code);
+  })) return 'EUR';
+  return 'USD';
+}
+function currentCurrency() {
+  try {
+    var stored = localStorage.getItem(STORAGE_KEY);
+    if (stored && SUPPORTED.includes(stored)) return stored;
+  } catch (e) {
+    // localStorage unavailable (private mode, etc.) — fall through to detection.
+  }
+  return detectDefault();
+}
+function applyCurrency(currency, buttons, note) {
+  buttons.forEach(function (btn) {
+    var isActive = btn.dataset.currencyOption === currency;
+    btn.classList.toggle('accent-border-amber', isActive);
+    btn.classList.toggle('accent-text-amber', isActive);
+    btn.classList.toggle('accent-border-gray', !isActive);
+    btn.classList.toggle('accent-text-gray', !isActive);
+    btn.setAttribute('aria-pressed', String(isActive));
+  });
+  if (!note) return;
+  if (currency === 'USD') {
+    note.classList.add('hidden');
+    note.textContent = '';
+  } else {
+    note.classList.remove('hidden');
+    note.textContent = "".concat(currency, " pricing is coming soon \u2014 showing USD until real ").concat(currency, " prices are set.");
+  }
+}
+var switcher = document.querySelector('[data-currency-switcher]');
+if (switcher) {
+  var buttons = Array.from(switcher.querySelectorAll('[data-currency-option]'));
+  var note = document.querySelector('[data-currency-note]');
+  applyCurrency(currentCurrency(), buttons, note);
+  buttons.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var choice = btn.dataset.currencyOption;
+      try {
+        localStorage.setItem(STORAGE_KEY, choice);
+      } catch (e) {
+        // localStorage unavailable — selection just won't persist this visit.
+      }
+      applyCurrency(choice, buttons, note);
+    });
+  });
+}
+
+},{}],6:[function(require,module,exports){
+"use strict";
+
 require("./parallax.js");
 require("./scramble.js");
 require("./anim.js");
 require("./pricing-info.js");
+require("./price-scrip.js");
+require("./currency.js");
 require("./nav.js");
 require("./timeline.js");
 
-},{"./anim.js":4,"./nav.js":6,"./parallax.js":7,"./pricing-info.js":8,"./scramble.js":9,"./timeline.js":10}],6:[function(require,module,exports){
+},{"./anim.js":4,"./currency.js":5,"./nav.js":7,"./parallax.js":8,"./price-scrip.js":9,"./pricing-info.js":10,"./scramble.js":11,"./timeline.js":12}],7:[function(require,module,exports){
 "use strict";
 
 var toggle = document.querySelector('[data-nav-toggle]');
@@ -12942,7 +13009,7 @@ if (toggle && menu) {
   });
 }
 
-},{}],7:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 "use strict";
 
 var _locomotiveScroll = _interopRequireDefault(require("locomotive-scroll"));
@@ -13009,7 +13076,51 @@ setTimeout(function () {
   });
 }, 500);
 
-},{"locomotive-scroll":2}],8:[function(require,module,exports){
+},{"locomotive-scroll":2}],9:[function(require,module,exports){
+"use strict";
+
+var _scramble = require("./scramble.js");
+// "Alfr3d Scrip" easter egg (Dial-In Plan C5): hover/tap a price and it
+// scrambles into a fictional Scrip amount, then snaps back to the real,
+// resting price. No symbol/glyph exists yet (tracked separately on the
+// Alfr3d Timeline) — this uses a plain-text "Scrip" placeholder so the
+// interaction can ship now and swap in a real glyph later with zero logic
+// changes. Real currency is always the resting state, never Scrip.
+
+var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+document.querySelectorAll('[data-scrip-toggle]').forEach(function (el) {
+  var real = el.dataset.realPrice;
+  var scrip = el.dataset.scripPrice;
+  if (!real || !scrip) return;
+  var fx = reduceMotion ? null : new _scramble.TextScramble(el);
+  var showingScrip = false;
+  var swap = function swap(toScrip) {
+    if (toScrip === showingScrip) return;
+    showingScrip = toScrip;
+    var text = toScrip ? scrip : real;
+    if (fx) fx.setText(text);else el.textContent = text;
+  };
+  el.addEventListener('mouseenter', function () {
+    return swap(true);
+  });
+  el.addEventListener('mouseleave', function () {
+    return swap(false);
+  });
+  el.addEventListener('focus', function () {
+    return swap(true);
+  });
+  el.addEventListener('blur', function () {
+    return swap(false);
+  });
+  el.addEventListener('touchstart', function (e) {
+    e.preventDefault();
+    swap(!showingScrip);
+  }, {
+    passive: false
+  });
+});
+
+},{"./scramble.js":11}],10:[function(require,module,exports){
 "use strict";
 
 function closeAllPinned(except) {
@@ -13044,9 +13155,13 @@ document.addEventListener('keydown', function (e) {
   if (e.key === 'Escape') closeAllPinned();
 });
 
-},{}],9:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.TextScramble = void 0;
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
 function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
@@ -13054,7 +13169,7 @@ function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), 
 function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
 function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 // https://codepen.io/soulwire/pen/mErPAK
-var TextScramble = /*#__PURE__*/function () {
+var TextScramble = exports.TextScramble = /*#__PURE__*/function () {
   function TextScramble(el) {
     _classCallCheck(this, TextScramble);
     this.el = el;
@@ -13175,7 +13290,7 @@ setTimeout(function () {
   }
 }, 5000);
 
-},{}],10:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 "use strict";
 
 // Timeline page (timeline.html) — fetches the static timeline.json asset
@@ -13185,6 +13300,9 @@ setTimeout(function () {
 
 var root = document.querySelector('[data-timeline-root]');
 if (root) {
+  var displayName = function displayName(product) {
+    return PRODUCT_DISPLAY[product] || product;
+  };
   var sortByDate = function sortByDate(direction) {
     var sign = direction === 'asc' ? 1 : -1;
     return function (a, b) {
@@ -13220,7 +13338,7 @@ if (root) {
   var productChips = function productChips(products) {
     return products.map(function (p) {
       var accent = PRODUCT_ACCENT[p] || 'gray';
-      return "<span class=\"accent-border-".concat(accent, " accent-text-").concat(accent, " text-xs tracking-widest uppercase border rounded-full px-3 py-1 inline-block\">").concat(escapeHtml(p), "</span>");
+      return "<span class=\"accent-border-".concat(accent, " accent-text-").concat(accent, " text-xs tracking-widest uppercase border rounded-full px-3 py-1 inline-block\">").concat(escapeHtml(displayName(p)), "</span>");
     }).join('');
   };
   var pricingTiers = function pricingTiers(product) {
@@ -13249,7 +13367,7 @@ if (root) {
     return "\n      <div class=\"window-frame window-sm accent-".concat(accent, "\">\n        <div class=\"window-body\">\n          <div class=\"window-titlebar\">\n            <span class=\"window-dot\"></span>\n            <span class=\"font-mono text-xs uppercase tracking-widest text-gray-300\">").concat(escapeHtml(formatDate(entry.date)), "</span>\n            <span class=\"font-mono text-xs uppercase tracking-widest text-gray-500\">\xB7 ").concat(escapeHtml(entry.status), "</span>\n          </div>\n          <div class=\"window-content p-6 md:p-8\">\n            <h3 class=\"font-display font-bold text-white text-lg md:text-xl\">").concat(escapeHtml(entry.milestone), "</h3>\n            <div class=\"flex flex-wrap gap-2 mt-3\">").concat(productChips(entry.product), "</div>\n            ").concat(entryDescription(entry), "\n          </div>\n        </div>\n      </div>");
   };
   var groupHeading = function groupHeading(product, accent) {
-    return "<h3 class=\"font-display font-bold accent-text-".concat(accent, " text-2xl md:text-3xl border-b accent-border-").concat(accent, " border-opacity-40 pb-2 mb-6\">").concat(escapeHtml(product), "</h3>");
+    return "<h3 class=\"font-display font-bold accent-text-".concat(accent, " text-2xl md:text-3xl border-b accent-border-").concat(accent, " border-opacity-40 pb-2 mb-6\">").concat(escapeHtml(displayName(product)), "</h3>");
   };
   var render = function render() {
     if (!entries) return;
@@ -13313,6 +13431,18 @@ if (root) {
     'Nexus Launcher': 'cyan',
     'littl31.com': 'amber',
     Cloud: 'orange'
+  };
+
+  // Every row in timeline.json is tagged with the product name that was
+  // current when it shipped (Notion-sourced, historically accurate — a
+  // rebrand milestone genuinely happened under the old name). This map is
+  // display-only: it renames what's shown on screen (chips, group
+  // headings) without changing PRODUCTS/PRODUCT_ACCENT/pricingByProduct
+  // keys or the data-filter values, all of which must keep matching the
+  // literal tags in the data.
+  var PRODUCT_DISPLAY = {
+    'Nexus Launcher': 'Alfr3d Deck',
+    Cloud: 'Alfr3d Uplink'
   };
   var STATES = {
     history: {
@@ -13383,4 +13513,4 @@ if (root) {
   });
 }
 
-},{}]},{},[5]);
+},{}]},{},[6]);

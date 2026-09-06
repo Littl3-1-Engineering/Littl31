@@ -2,11 +2,11 @@
 <head>
   <meta charset="utf-8">
   <title>ALFR3D by Littl3.1 Engineering — Self-Hosted Home Automation</title>
-  <meta name="description" content="ALFR3D is a self-hosted, local-first home-automation platform by Littl3.1 Engineering. No ads, no telemetry, your home stays yours.">
+  <meta name="description" content="ALFR3D is a self-hosted home butler that anticipates what you need — no ads, no telemetry, and it runs on hardware you own.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/style.27b0abab.css">
   <link rel="icon" type="image/png" href="assets/images/favicon.ico">
-  <script src="js/main.4b494753.js" defer></script>
+  <script src="js/main.0d00f13a.js" defer></script>
 </head>
 <body class="text-white grid-bg">
   <nav class="nav-glass fixed top-0 left-0 right-0 z-50">
@@ -18,6 +18,7 @@
       </button>
       <ul class="font-mono hidden md:flex items-center gap-8 text-xs uppercase tracking-widest" data-nav-menu>
         <li><a class="text-gray-300 transition-colors" href="alfr3d.html">ALFR3D</a></li>
+        <li><a class="text-gray-300 transition-colors" href="honesty.html">Honesty</a></li>
         <li><a class="text-gray-300 transition-colors" href="timeline.html">Timeline</a></li>
         <li><a class="text-gray-300 transition-colors" href="lab.html">Lab</a></li>
         <li><a class="text-gray-300 transition-colors" href="#contact">Contact</a></li>
@@ -40,12 +41,11 @@
         <div class="window-body">
           <div class="window-titlebar"><span class="window-dot"></span></div>
           <div class="window-content p-8 md:p-12">
-            <h2 class="font-display font-bold text-right accent-text-amber text-4xl md:text-6xl" data-scramble-intro data-scroll data-scroll-repeat data-scroll-speed="3" data-scroll-position="top" data-scroll-direction="horizontal">ALFR3D runs your home. You still own it.</h2>
+            <h2 class="font-display font-bold text-right accent-text-amber text-4xl md:text-6xl" data-scramble-intro data-scroll data-scroll-repeat data-scroll-speed="3" data-scroll-position="top" data-scroll-direction="horizontal">Alfr3d is the only home butler you own.</h2>
             <div class="w-full mt-12 flex justify-end">
               <div class="max-w-xl space-y-6" data-scroll>
-                <p class="opacity-0 transition-opacity delay-100 duration-700 text-gray-300 leading-relaxed" data-scroll data-scroll-repeat data-scroll-class="opacity-100">A self-hosted, local-first home-automation platform — a containerized backend that actually knows what day it is and what's playing, and Nexus Launcher, an Android home screen built to talk to it directly.</p>
+                <p class="opacity-0 transition-opacity delay-100 duration-700 text-gray-300 leading-relaxed" data-scroll data-scroll-repeat data-scroll-class="opacity-100">It notices a calendar event across town and quietly tells you when to leave — computed on your own hardware, from your own calendar, with no Google API key and no cloud call. That's not a notification bolted onto a control panel. That's the product.</p>
                 <p class="opacity-0 transition-opacity delay-100 duration-700 text-gray-300 leading-relaxed" data-scroll data-scroll-repeat data-scroll-class="opacity-100">No ad tier. Not now, not ever. That's not a pricing decision, it's a policy.</p>
-                <p class="pt-2"><a class="btn-glow accent-amber" href="alfr3d.html">→ See what ALFR3D can do</a></p>
               </div>
             </div>
           </div>
@@ -58,8 +58,8 @@
           <div class="window-body">
             <div class="window-titlebar"><span class="window-dot"></span></div>
             <div class="window-content p-6">
-              <h3 class="font-display font-bold accent-text-amber text-xl">Self-hosted</h3>
-              <p class="text-gray-300 mt-2 text-sm leading-relaxed">Runs on hardware you own — the platform costs nothing to run yourself, the way it should.</p>
+              <h3 class="font-display font-bold accent-text-amber text-xl">Anticipation</h3>
+              <p class="text-gray-300 mt-2 text-sm leading-relaxed">A 19-rule situational-awareness engine watches your calendar, your devices, and your household's own rhythm — surfacing exactly one thing worth knowing, before you'd think to ask.</p>
             </div>
           </div>
         </div>
@@ -67,8 +67,8 @@
           <div class="window-body">
             <div class="window-titlebar"><span class="window-dot"></span></div>
             <div class="window-content p-6">
-              <h3 class="font-display font-bold accent-text-amber text-xl">No ads, ever</h3>
-              <p class="text-gray-300 mt-2 text-sm leading-relaxed">Excluded by policy, not by roadmap. Your home's data never leaves your network unless you decide it should.</p>
+              <h3 class="font-display font-bold accent-text-amber text-xl">Character</h3>
+              <p class="text-gray-300 mt-2 text-sm leading-relaxed">A personality layer with a voice that stays coherent instead of wearing thin — quips and greetings, not a wall of notifications.</p>
             </div>
           </div>
         </div>
@@ -76,11 +76,20 @@
           <div class="window-body">
             <div class="window-titlebar"><span class="window-dot"></span></div>
             <div class="window-content p-6">
-              <h3 class="font-display font-bold accent-text-amber text-xl">Free core forever</h3>
-              <p class="text-gray-300 mt-2 text-sm leading-relaxed">ALFR3D Core is free and self-hosted today, on GitHub. Nexus Launcher's free core is coming soon — same promise, always free, no feature ceiling.</p>
+              <h3 class="font-display font-bold accent-text-amber text-xl">Ownership</h3>
+              <p class="text-gray-300 mt-2 text-sm leading-relaxed">It never phones home, never fakes a reading, never locks you in. Self-hosted by default, with a hosted layer you can opt into — never the other way around.</p>
             </div>
           </div>
         </div>
+      </div>
+    </section>
+    <section class="border-t border-gray-800 py-16 px-8" id="how-it-works" data-scroll-section>
+      <div class="max-w-screen-lg mx-auto flex items-center justify-between flex-wrap gap-8">
+        <div class="max-w-xl">
+          <h3 class="font-display font-bold text-white text-2xl">How it's actually built</h3>
+          <p class="text-gray-400 mt-2 text-sm leading-relaxed">Underneath all of that is a containerized microservices backend coordinating over Kafka, plus Alfr3d Deck, an Android home screen built to talk to it directly.</p>
+          <p class="text-gray-400 mt-2 text-sm leading-relaxed">This is the plumbing, not the pitch — proof it's real, not the reason to care.</p>
+        </div><a class="btn-glow accent-cyan" href="alfr3d.html">→ See what Alfr3d can do</a>
       </div>
     </section>
     <section class="border-t border-gray-800 py-16 px-8" id="about" data-scroll-section>
