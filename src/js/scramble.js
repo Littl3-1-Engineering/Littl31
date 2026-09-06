@@ -1,6 +1,6 @@
 // https://codepen.io/soulwire/pen/mErPAK
 
-class TextScramble {
+export class TextScramble {
   constructor(el) {
     this.el = el
     this.chars = '!<>-_\\/[]{}—=+*^?#________'
