@@ -39,6 +39,15 @@ body.text-white.grid-bg
                 h3.font-display.font-bold.accent-text-amber(class='text-xl')= chip.title
                 p.text-gray-300.mt-2(class='text-sm leading-relaxed')= chip.text
 
+    section#how-it-works.border-t.border-gray-800(data-scroll-section, class='py-16 px-8')
+      .max-w-screen-lg.mx-auto.flex.items-center.justify-between.flex-wrap(class='gap-8')
+        div.max-w-xl
+          h3.font-display.font-bold.text-white(class='text-2xl')= home.howItWorks.title
+          for line in home.howItWorks.lines
+            p.text-gray-400.mt-2(class='text-sm leading-relaxed')= line
+        if home.howItWorks.cta
+          a(href=home.howItWorks.cta.href, class='btn-glow accent-cyan')= home.howItWorks.cta.text
+
     section#about.border-t.border-gray-800(data-scroll-section, class='py-16 px-8')
       .max-w-screen-lg.mx-auto.flex.items-center.justify-between.flex-wrap(class='gap-8')
         div.max-w-xl

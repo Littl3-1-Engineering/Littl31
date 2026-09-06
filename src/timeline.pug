@@ -8,12 +8,15 @@ include mixins.pug
   // truth stays content.yml) — pulled out here and handed to timeline.js
   // as an inline JSON blob, keyed by product name, since that view is
   // rendered client-side from the fetched timeline.json rather than by
-  // Pug loops.
+  // Pug loops. Keys stay 'Nexus Launcher'/'Cloud' to match the literal
+  // Product tags timeline.json's rows actually carry (Notion-sourced,
+  // historically accurate) — timeline.js's PRODUCT_DISPLAY map handles
+  // showing the current names on screen without touching this join key.
   var launcherProduct = alfr3d.products.find(function (p) { return p.id === 'p-launcher' })
-  var cloudProduct = alfr3d.products.find(function (p) { return p.id === 'p-cloud' })
+  var uplinkProduct = alfr3d.products.find(function (p) { return p.id === 'p-butler' })
   var timelinePricing = {
     'Nexus Launcher': (launcherProduct && launcherProduct.pricing) || [],
-    'Cloud': (cloudProduct && cloudProduct.pricing) || []
+    'Cloud': (uplinkProduct && uplinkProduct.pricing) || []
   }
 
 head
@@ -48,9 +51,9 @@ body.text-white.grid-bg
         .flex.flex-wrap.justify-center(data-timeline-filters, class='gap-2 mb-10')
           button.timeline-filter-chip.is-active(type='button', data-filter='all') All
           button.timeline-filter-chip.accent-gray(type='button', data-filter='Backend') Backend
-          button.timeline-filter-chip.accent-cyan(type='button', data-filter='Nexus Launcher') Nexus Launcher
+          button.timeline-filter-chip.accent-cyan(type='button', data-filter='Nexus Launcher') Alfr3d Deck
           button.timeline-filter-chip.accent-amber(type='button', data-filter='littl31.com') littl31.com
-          button.timeline-filter-chip.accent-orange(type='button', data-filter='Cloud') Cloud
+          button.timeline-filter-chip.accent-orange(type='button', data-filter='Cloud') Alfr3d Uplink
 
         p.text-center.text-gray-500.text-sm(data-timeline-status, class='py-16') Loading timeline…
         div.hidden(data-timeline-results, class='space-y-10')

@@ -1,7 +1,7 @@
 
 meta:
   title: 'ALFR3D by Littl3.1 Engineering — Self-Hosted Home Automation'
-  description: ALFR3D is a self-hosted, local-first home-automation platform by Littl3.1 Engineering. No ads, no telemetry, your home stays yours.
+  description: ALFR3D is a self-hosted home butler that anticipates what you need — no ads, no telemetry, and it runs on hardware you own.
 
 brand:
   name: Littl3.1
@@ -10,6 +10,8 @@ brand:
 nav:
   - text: ALFR3D
     href: alfr3d.html
+  - text: Honesty
+    href: honesty.html
   - text: Timeline
     href: timeline.html
   - text: Lab
@@ -19,20 +21,25 @@ nav:
 
 home:
   pitch:
-    title: ALFR3D runs your home. You still own it.
+    title: Alfr3d is the only home butler you own.
+    lead: "It notices a calendar event across town and quietly tells you when to leave — computed on your own hardware, from your own calendar, with no Google API key and no cloud call. That's not a notification bolted onto a control panel. That's the product."
     lines:
-      - A self-hosted, local-first home-automation platform — a containerized backend that actually knows what day it is and what's playing, and Nexus Launcher, an Android home screen built to talk to it directly.
       - No ad tier. Not now, not ever. That's not a pricing decision, it's a policy.
-    cta:
-      text: → See what ALFR3D can do
-      href: alfr3d.html
   highlights:
-    - title: Self-hosted
-      text: Runs on hardware you own — the platform costs nothing to run yourself, the way it should.
-    - title: No ads, ever
-      text: Excluded by policy, not by roadmap. Your home's data never leaves your network unless you decide it should.
-    - title: Free core forever
-      text: ALFR3D Core is free and self-hosted today, on GitHub. Nexus Launcher's free core is coming soon — same promise, always free, no feature ceiling.
+    - title: Anticipation
+      text: A 19-rule situational-awareness engine watches your calendar, your devices, and your household's own rhythm — surfacing exactly one thing worth knowing, before you'd think to ask.
+    - title: Character
+      text: A personality layer with a voice that stays coherent instead of wearing thin — quips and greetings, not a wall of notifications.
+    - title: Ownership
+      text: It never phones home, never fakes a reading, never locks you in. Self-hosted by default, with a hosted layer you can opt into — never the other way around.
+  howItWorks:
+    title: How it's actually built
+    lines:
+      - Underneath all of that is a containerized microservices backend coordinating over Kafka, plus Alfr3d Deck, an Android home screen built to talk to it directly.
+      - This is the plumbing, not the pitch — proof it's real, not the reason to care.
+    cta:
+      text: → See what Alfr3d can do
+      href: alfr3d.html
   about:
     title: Littl3.1 Engineering
     lines:
@@ -48,17 +55,24 @@ footer:
 alfr3d:
   meta:
     title: 'ALFR3D : Self-Hosted Home Automation'
-    description: ALFR3D is a self-hosted, local-first home-automation platform by Littl3.1 Engineering. No ads, no telemetry, your home stays yours.
+    description: ALFR3D is a self-hosted home butler that anticipates what you need — no ads, no telemetry, and it runs on hardware you own.
   badges:
     - text: Open source · FSL-1.1-ALv2
       accent: amber
     - text: by Littl3.1 Engineering
       accent: orange
   intro:
-    title: Your house, your data, your rules.
+    title: It notices things before you ask.
+    lead: "Most \"smart home\" software is a stranger living in your house — competent, forgettable, indifferent to the particulars of you. Alfr3d isn't interested in being competent. It's interested in you: the drive that always takes longer than the map says, the lamp that stays on after the last person's left, the version of Tuesday that only looks like Tuesday from the outside. It learns the shape of an ordinary day in this house well enough to notice, quietly, the one moment that isn't — and it says so once, instead of piling on a wall of alerts. A few of the places that shows up:"
+    bullets:
+      - Leaves you enough time to get there — a leave-by time computed from your own calendar and a routing engine that runs on your own hardware, not a Google API key.
+      - Notices when the house is empty and something's still on — a light, a space heater, whatever got left running after everyone's gone.
+      - Knows when today isn't like your other Tuesdays — first activity two hours late, half the household still home at noon, whatever's actually unusual for you.
+      - Picks up where you left off — pause a track on one screen, find it waiting on the next.
+      - Goes quiet before bed — no idle chatter in the last stretch before your own Bedtime routine.
     lines:
-      - Home Assistant made self-hosting mainstream. Nabu Casa made it convenient. ALFR3D is built the same way — a real platform running on hardware you own, with a hosted layer you can opt into, never the other way around.
-      - A containerized microservices backend, a situational-awareness engine that actually knows what day it is and what's playing, and Nexus Launcher — an Android home screen built to talk to it directly.
+      - None of it is a spec sheet, and none of it is behind a subscription — it's just what Alfr3d Core already does today, free, forever, self-hosted, quietly getting to know the house it lives in.
+      - Home Assistant made self-hosting mainstream. Nabu Casa made it convenient. Alfr3d is built the same way — a real platform running on hardware you own, with a hosted layer you can opt into, never the other way around.
       - No ad tier. Not now, not ever. That's not a pricing decision, it's a policy.
       - It behaves like a butler, not a control panel — situational awareness, a personality layer, dashboards built to live on a wall, not hide in an app. The parts of "smart home" that usually stay locked behind someone else's cloud.
     cta:
@@ -81,28 +95,43 @@ alfr3d:
       quip: A butler, boxed and ready to ship. Numbered, not mass-produced.
       lines:
         - "A Raspberry Pi, pre-flashed with ALFR3D Core and shipped ready to plug in — no Docker Compose, no manual setup, just power and a network connection. Built to order, not stocked."
-        - "The lead way to get ALFR3D, once it ships: every Kit will include a lifetime Relay connection and Nexus Launcher Pro unlocked for free. The first 100 units will be numbered, with a direct line to me for support instead of a ticket queue."
+        - "The lead way to get ALFR3D, once it ships: every Kit will include a lifetime Relay connection and Alfr3d Deck Pro unlocked for free. The first 100 units will be numbered, with a direct line to me for support instead of a ticket queue."
       pricing:
         - amount: $399
+          scrip: "1,337 Scrip"
           label: Founding 100 · one-time
           accent: amber
           badge: Not yet available
-          info: 'Planned: a numbered unit (e.g. "#014 of 100"), lifetime Relay included for as long as you own the Kit, Nexus Launcher Pro unlocked free, and direct founder support. Once all 100 ship, this price goes away for good — it becomes the $449 steady-state price below. No hardware has shipped yet — this is the plan, not an open order.'
+          info: 'Planned: a numbered unit (e.g. "#014 of 100"), lifetime Relay included for as long as you own the Kit, Alfr3d Deck Pro unlocked free, and direct founder support. Once all 100 ship, this price goes away for good — it becomes the $449 steady-state price below. No hardware has shipped yet — this is the plan, not an open order.'
           cta:
             text: → Join the founding-100 waitlist
             href: 'mailto:athos@littl31.com?subject=Alfr3d%20Kit%20%E2%80%94%20Founding%20100%20waitlist'
           note: "Not yet available — target Q4 '26."
         - amount: $449
+          scrip: "1,437 Scrip"
           label: Steady-state · one-time
           badge: Not yet available
-          info: The same Kit, same lifetime Relay, same free Nexus Launcher Pro — the planned ongoing price once all 100 founding units are gone. Not orderable yet.
+          info: The same Kit, same lifetime Relay, same free Alfr3d Deck Pro — the planned ongoing price once all 100 founding units are gone. Not orderable yet.
           cta:
             text: → Join the waitlist
             href: 'mailto:athos@littl31.com?subject=Alfr3d%20Kit%20%E2%80%94%20waitlist'
           note: "Not yet available — target Q2 '27."
-    - title: Nexus Launcher
+        - amount: "$1,500–$2,500"
+          scrip: "4,237 Scrip"
+          label: Concierge · one-time
+          badge: Not yet available
+          info: >-
+            A higher-spec mini PC, a white-glove remote setup session, and a direct
+            line to me for the life of the unit. Runs alongside the Founding-100
+            cohort, not after it — there won't be a second window to buy into it at
+            this stage.
+          cta:
+            text: → Ask about Concierge
+            href: 'mailto:athos@littl31.com?subject=Alfr3d%20Kit%20%E2%80%94%20Concierge'
+          note: "Not yet available — runs alongside the Founding-100 window."
+    - title: Alfr3d Deck
       id: p-launcher
-      eyebrow: / NEXUS LAUNCHER
+      eyebrow: / ALFR3D DECK
       accent: cyan
       badge:
         text: Coming soon — targeting Google Play in Q4 '26
@@ -111,17 +140,17 @@ alfr3d:
       imgCaption: The Ambient Brief card, mid-gathering — real presence data, not a canned notification.
       quip: I've taken the liberty of arranging your applications. You're welcome.
       lines:
-        - "A free-form spatial launcher for Android: no permanent dock, no fixed grid. Apps, the terminal, and ALFR3D surfaces open as free-floating windows on an infinite canvas — summoned by double-tap search or the Nexus Core's press-and-flow radial menu, with live situational-awareness cards updating right on the canvas."
+        - "A free-form spatial launcher for Android: no permanent dock, no fixed grid. Apps, the terminal, and ALFR3D surfaces open as free-floating windows on an infinite canvas — summoned by double-tap search or Socket, Deck's press-and-flow radial menu, with live situational-awareness cards updating right on the canvas."
         - "In active development, not yet published. The plan: a free core, forever, with a one-time unlock that removes the ceiling — no subscription, because a launcher sitting on your own phone doesn't cost us a server bill to run."
       wide: true
       pricing:
         - amount: Coming soon
           label: Not yet published to Google Play
           badge: Not yet available
-          info: 'Planned at launch: a free core (full spatial canvas, Nexus Core radial menu, double-tap search, window manager, terminal, base theming — no trial timer, no expiring feature ceiling) plus a $5.99 one-time Pro unlock via Google Play Billing (extra themes/icon packs, advanced window layouts, backup & restore). Free automatically for Alfr3d Kit owners and Butler subscribers once live. Nothing is downloadable or purchasable yet.'
+          info: 'Planned at launch: a free core (full spatial canvas, Socket radial menu, double-tap search, window manager, terminal, base theming — no trial timer, no expiring feature ceiling) plus a $5.99 one-time Pro unlock via Google Play Billing (extra themes/icon packs, advanced window layouts, backup & restore). Free automatically for Alfr3d Kit owners and Uplink subscribers once live. Nothing is downloadable or purchasable yet.'
           cta:
             text: → Notify me on Google Play
-            href: 'mailto:athos@littl31.com?subject=Nexus%20Launcher%20%E2%80%94%20notify%20me'
+            href: 'mailto:athos@littl31.com?subject=Alfr3d%20Deck%20%E2%80%94%20notify%20me'
           note: "Not yet available — target Q4 '26."
     - title: ALFR3D Core
       id: p-core
@@ -140,51 +169,53 @@ alfr3d:
       cta:
         text: → View on GitHub
         href: 'https://github.com/Littl3-1-Engineering/alfr3d'
-    - title: Butler
+    - title: Alfr3d Uplink
       id: p-butler
-      eyebrow: / BUTLER
+      eyebrow: / ALFR3D UPLINK
       right: true
       accent: amber
       badge:
         text: Coming soon — in development
         accent: gray
-      quip: I remember your errands, your appointments, and exactly how you like your coffee. Butler edition me, anyway.
+      quip: I remember your errands, your appointments, and exactly how you like your coffee. That's the uplink talking.
       lines:
         - "Not yet built. The plan: one subscription bundling Relay's remote access, plus push notifications, hosted encrypted backups, and the personality/quips layer that makes ALFR3D feel less like a control panel and more like staff."
-        - "Relay — a thin, dumb-pipe connection for remote access with no port-forwarding and no plaintext ever passing through our servers — isn't sold on its own. It's included in Butler, and included free for the life of any Alfr3d Kit."
+        - "Relay — a thin, dumb-pipe connection for remote access with no port-forwarding and no plaintext ever passing through our servers — isn't sold on its own. It's included in Uplink, and included free for the life of any Alfr3d Kit."
         - Fair-use LLM usage will be included — generous, capped to keep it sustainable, not throttled to nudge you into a bigger plan. Priority support included.
       pricing:
         - amount: $99/yr
-          label: Butler · annual
+          scrip: "937 Scrip"
+          label: Uplink · annual
           accent: amber
           badge: Recommended
           info: 'Planned pricing, not yet available. Works out to about $8.25/mo — two months free versus paying monthly. Relay + push + hosted encrypted backups + personality/quips (fair-use capped) + priority support.'
           cta:
-            text: → Join the Butler waitlist
-            href: 'mailto:athos@littl31.com?subject=Alfr3d%20Butler%20%E2%80%94%20waitlist%20(annual)'
+            text: → Join the Uplink waitlist
+            href: 'mailto:athos@littl31.com?subject=Alfr3d%20Uplink%20%E2%80%94%20waitlist%20(annual)'
         - amount: $9.99/mo
-          label: Butler · monthly
+          scrip: "137 Scrip"
+          label: Uplink · monthly
           info: 'Planned pricing, not yet available. Same inclusions as annual, billed monthly.'
           cta:
-            text: → Join the Butler waitlist
-            href: 'mailto:athos@littl31.com?subject=Alfr3d%20Butler%20%E2%80%94%20waitlist'
+            text: → Join the Uplink waitlist
+            href: 'mailto:athos@littl31.com?subject=Alfr3d%20Uplink%20%E2%80%94%20waitlist'
 
 privacy:
   meta:
     title: 'Privacy Policy : Littl3.1 Engineering'
-    description: How Littl3.1 Engineering handles data across littl31.com, ALFR3D Core, Nexus Launcher, and the ALFR3D Kit, Relay, and Butler services once they launch.
+    description: How Littl3.1 Engineering handles data across littl31.com, ALFR3D Core, Alfr3d Deck, and the ALFR3D Kit, Relay, and Alfr3d Uplink services once they launch.
   intro:
     title: Your data stays where you put it.
     lines:
-      - 'Last updated: August 30, 2026.'
-      - This policy covers everything Littl3.1 Engineering operates — this website (littl31.com), ALFR3D Core, Nexus Launcher, and the ALFR3D Kit, Relay, and Butler services once they launch.
+      - 'Last updated: September 5, 2026.'
+      - This policy covers everything Littl3.1 Engineering operates — this website (littl31.com), ALFR3D Core, Alfr3d Deck, and the ALFR3D Kit, Relay, and Alfr3d Uplink services once they launch.
       - "The short version: we don't run ads, we don't sell data, and most of what ALFR3D does happens entirely on hardware you own. Where that's not true — Google Play billing, a future hosted relay — we say so plainly below."
   sections:
     - id: no-ads
       eyebrow: § 1
       title: No ads, ever
       lines:
-        - Littl3.1 Engineering does not run advertising, ad networks, or ad-tech tracking on littl31.com, ALFR3D Core, or Nexus Launcher, and never will. This isn't a pricing decision we might revisit — it's policy. We make money by selling hardware (the ALFR3D Kit) and optional subscriptions (Relay, Butler), never by selling attention or data.
+        - Littl3.1 Engineering does not run advertising, ad networks, or ad-tech tracking on littl31.com, ALFR3D Core, or Alfr3d Deck, and never will. This isn't a pricing decision we might revisit — it's policy. We make money by selling hardware (the ALFR3D Kit) and optional subscriptions (Relay, Alfr3d Uplink), never by selling attention or data.
     - id: website
       eyebrow: § 2
       title: littl31.com — this website
@@ -203,20 +234,20 @@ privacy:
         - Because ALFR3D Core is self-hosted, you're the one in control of retention and deletion — back it up, wipe it, or move it however you like. We can't do any of that for you, because we don't have a copy.
     - id: launcher
       eyebrow: § 4
-      title: Nexus Launcher — the Android app
+      title: Alfr3d Deck — the Android app
       lines:
-        - Nexus Launcher is a home-screen replacement for Android, currently in development and not yet published to Google Play. This is the policy that will apply once it ships.
+        - Alfr3d Deck is a home-screen replacement for Android, currently in development and not yet published to Google Play. This is the policy that will apply once it ships.
         - The launcher does not collect, transmit, sell, or share your personal data with us or any third party. Contacts, calendar, and file search results are read locally to power the Search Panel and never leave your device. The media-control window reads the OS's active media-session list (title, artist, app), never notification content. The "Lock" action uses Android's on-demand device-lock API only — no other device-admin policy is requested.
         - The only network requests the launcher makes are to an ALFR3D backend, if and only if you configure one yourself in Settings — the same self-hosted instance described above, under your control — and to your device's default browser when you explicitly choose to search the web.
-        - The one paid feature, Nexus Launcher Pro, is a one-time unlock purchased through Google Play Billing. Google processes that payment; we receive confirmation that you own the unlock, never your payment details.
+        - The one paid feature, Alfr3d Deck Pro, is a one-time unlock purchased through Google Play Billing. Google processes that payment; we receive confirmation that you own the unlock, never your payment details.
         - App-ranking data (which apps you use most) is stored locally on-device using Android's DataStore and is never transmitted anywhere. Uninstalling the launcher removes it.
     - id: hosted-services
       eyebrow: § 5
-      title: ALFR3D Kit, Relay, and Butler — not yet available
+      title: ALFR3D Kit, Relay, and Alfr3d Uplink — not yet available
       lines:
-        - None of these exist yet — the Kit hasn't shipped, and Relay and Butler haven't been built. Nothing in this section collects any data today; we're publishing our design commitments now so they're on record before launch, and we'll update this policy — with a new "last updated" date, at this same URL — before any of it goes live.
-        - Relay, the planned remote-access layer, is designed as a dumb pipe — an encrypted tunnel between your ALFR3D instance and your own client, relayed through our infrastructure without our servers ever seeing plaintext home data. Butler adds push notifications, hosted encrypted backups, and personality features on top.
-        - Subscribing to Relay or Butler will require a billing identity (an email and payment method, handled through Stripe) — deliberately kept separate from the login you use inside your own household's ALFR3D instance. Knowing you're a subscriber won't give us, or anyone at Littl3.1, access to your home data.
+        - None of these exist yet — the Kit hasn't shipped, and Relay and Alfr3d Uplink haven't been built. Nothing in this section collects any data today; we're publishing our design commitments now so they're on record before launch, and we'll update this policy — with a new "last updated" date, at this same URL — before any of it goes live.
+        - Relay, the planned remote-access layer, is designed as a dumb pipe — an encrypted tunnel between your ALFR3D instance and your own client, relayed through our infrastructure without our servers ever seeing plaintext home data. Alfr3d Uplink adds push notifications, hosted encrypted backups, and personality features on top.
+        - Subscribing to Relay or Alfr3d Uplink will require a billing identity (an email and payment method, handled through Stripe) — deliberately kept separate from the login you use inside your own household's ALFR3D instance. Knowing you're a subscriber won't give us, or anyone at Littl3.1, access to your home data.
     - id: children
       eyebrow: § 6
       title: Children's privacy
@@ -226,7 +257,7 @@ privacy:
       eyebrow: § 7
       title: Your data, your control
       lines:
-        - For anything self-hosted — ALFR3D Core, and by extension Nexus Launcher's optional backend connection — you already hold all the data. Export it, delete it, or move it however you like; we have no copy to act on.
+        - For anything self-hosted — ALFR3D Core, and by extension Alfr3d Deck's optional backend connection — you already hold all the data. Export it, delete it, or move it however you like; we have no copy to act on.
         - For anything that does touch us directly — an email you send us, a future Stripe subscription — email athos@littl31.com and we'll act on a request to access, correct, or delete it.
         - Littl3.1 Engineering is a registered business in Ontario, Canada, and this policy applies to visitors and users wherever they're located.
     - id: changes
@@ -239,6 +270,47 @@ privacy:
       title: Questions
       lines:
         - Email athos@littl31.com — that's a real inbox we read, not a support ticket queue.
+
+honesty:
+  meta:
+    title: "What Alfr3d Won't Pretend To Do : Littl3.1 Engineering"
+    description: What we investigated and deliberately didn't ship in Alfr3d's situational-awareness engine, and the standing principles that govern everything it does ship.
+  intro:
+    title: We tell you what we killed, too.
+    lines:
+      - Most "AI butler" claims in this category are vaporware. Alfr3d's situational-awareness engine has 19 rules live in production — and three more that were investigated and deliberately not shipped, on real evidence, published here before anyone had to ask.
+      - This isn't a compliance page. It's the cheapest, most honest proof of the ownership thesis we have — a system that tells you what it can't do yet is more trustworthy than one that quietly fakes it.
+  sections:
+    - id: esphome
+      eyebrow: KILLED · SA-9
+      title: Room-level sensors from ESPHome
+      lines:
+        - "The plan: extend situational awareness into per-room presence and environment data from ESPHome nodes on your network. The integration itself is built through Phase 4 — most of the engineering work is already done."
+        - Why it's not live — there's no real ESPHome node on the household's own network to validate it against. Rather than ship an untested integration wired into zero real rules, this stays parked until real hardware exists to test it on.
+        - "Re-entry: the moment a real ESPHome node is reachable on the LAN, this picks back up — most of the work is already sitting there waiting."
+    - id: ble-presence
+      eyebrow: KILLED · SA-8
+      title: Room-level presence via Bluetooth
+      lines:
+        - "The plan: detect which room someone's actually in over BLE, without a camera or microphone in the room — the privacy-respecting way to do presence."
+        - Why it's dead — the household's real Bluetooth adapter is genuinely capable. Two real passive scans found zero stably-identifiable personal devices. Modern phones randomize their BLE MAC address specifically to prevent this kind of tracking — a feature, not a bug, and one Alfr3d isn't going to fight.
+        - "Re-entry: not without new hardware that solves identity a different way. It isn't on the roadmap absent that."
+    - id: transition-learning
+      eyebrow: STOPPED · SA-12
+      title: Predicting what happens next
+      lines:
+        - "The plan: move from noticing what's unusual today to actually anticipating what happens next — conditional patterns mined from your own household's history, not a model trained on anyone else's."
+        - Why it's stopped — this needs real history to mine, and the household event log (itself a very recent addition) only held about 10 hours of real data when this was checked. Shipping a "prediction" feature on 10 hours of history would mean faking a confidence it doesn't have.
+        - "Re-entry: once the event log holds at least four continuous weeks of real history. This is the single highest-value item on the whole roadmap once it's viable — the actual definition of anticipation, not just noticing."
+    - id: principles
+      eyebrow: STANDING RULES
+      title: What governs everything that does ship
+      lines:
+        - No fabricated data. If a card can't be computed from something real, it doesn't render — silence over a fake reading, always.
+        - Nothing here actuates anything. Every card in the situational-awareness engine is informational. None of it flips a switch on its own.
+        - Learned state is inspectable and resettable. A system that learns about your household has to be one you can correct or wipe, not a black box.
+        - Observation, never concern. Cards note that something's unusual — they don't ask if you're alright. That's a promise this product can't keep, so it doesn't make it.
+        - Household-local, always. No cross-household aggregation, no upload, no training on your data. What Alfr3d learns about your house stays on your Kit.
 
 timeline:
   meta:
