@@ -204,19 +204,19 @@ alfr3d:
 privacy:
   meta:
     title: 'Privacy Policy : Littl3.1 Engineering'
-    description: How Littl3.1 Engineering handles data across littl31.com, ALFR3D Core, Nexus Launcher, and the ALFR3D Kit, Relay, and Butler services once they launch.
+    description: How Littl3.1 Engineering handles data across littl31.com, ALFR3D Core, Alfr3d Deck, and the ALFR3D Kit, Relay, and Alfr3d Uplink services once they launch.
   intro:
     title: Your data stays where you put it.
     lines:
-      - 'Last updated: August 30, 2026.'
-      - This policy covers everything Littl3.1 Engineering operates — this website (littl31.com), ALFR3D Core, Nexus Launcher, and the ALFR3D Kit, Relay, and Butler services once they launch.
+      - 'Last updated: September 5, 2026.'
+      - This policy covers everything Littl3.1 Engineering operates — this website (littl31.com), ALFR3D Core, Alfr3d Deck, and the ALFR3D Kit, Relay, and Alfr3d Uplink services once they launch.
       - "The short version: we don't run ads, we don't sell data, and most of what ALFR3D does happens entirely on hardware you own. Where that's not true — Google Play billing, a future hosted relay — we say so plainly below."
   sections:
     - id: no-ads
       eyebrow: § 1
       title: No ads, ever
       lines:
-        - Littl3.1 Engineering does not run advertising, ad networks, or ad-tech tracking on littl31.com, ALFR3D Core, or Nexus Launcher, and never will. This isn't a pricing decision we might revisit — it's policy. We make money by selling hardware (the ALFR3D Kit) and optional subscriptions (Relay, Butler), never by selling attention or data.
+        - Littl3.1 Engineering does not run advertising, ad networks, or ad-tech tracking on littl31.com, ALFR3D Core, or Alfr3d Deck, and never will. This isn't a pricing decision we might revisit — it's policy. We make money by selling hardware (the ALFR3D Kit) and optional subscriptions (Relay, Alfr3d Uplink), never by selling attention or data.
     - id: website
       eyebrow: § 2
       title: littl31.com — this website
@@ -235,20 +235,20 @@ privacy:
         - Because ALFR3D Core is self-hosted, you're the one in control of retention and deletion — back it up, wipe it, or move it however you like. We can't do any of that for you, because we don't have a copy.
     - id: launcher
       eyebrow: § 4
-      title: Nexus Launcher — the Android app
+      title: Alfr3d Deck — the Android app
       lines:
-        - Nexus Launcher is a home-screen replacement for Android, currently in development and not yet published to Google Play. This is the policy that will apply once it ships.
+        - Alfr3d Deck is a home-screen replacement for Android, currently in development and not yet published to Google Play. This is the policy that will apply once it ships.
         - The launcher does not collect, transmit, sell, or share your personal data with us or any third party. Contacts, calendar, and file search results are read locally to power the Search Panel and never leave your device. The media-control window reads the OS's active media-session list (title, artist, app), never notification content. The "Lock" action uses Android's on-demand device-lock API only — no other device-admin policy is requested.
         - The only network requests the launcher makes are to an ALFR3D backend, if and only if you configure one yourself in Settings — the same self-hosted instance described above, under your control — and to your device's default browser when you explicitly choose to search the web.
-        - The one paid feature, Nexus Launcher Pro, is a one-time unlock purchased through Google Play Billing. Google processes that payment; we receive confirmation that you own the unlock, never your payment details.
+        - The one paid feature, Alfr3d Deck Pro, is a one-time unlock purchased through Google Play Billing. Google processes that payment; we receive confirmation that you own the unlock, never your payment details.
         - App-ranking data (which apps you use most) is stored locally on-device using Android's DataStore and is never transmitted anywhere. Uninstalling the launcher removes it.
     - id: hosted-services
       eyebrow: § 5
-      title: ALFR3D Kit, Relay, and Butler — not yet available
+      title: ALFR3D Kit, Relay, and Alfr3d Uplink — not yet available
       lines:
-        - None of these exist yet — the Kit hasn't shipped, and Relay and Butler haven't been built. Nothing in this section collects any data today; we're publishing our design commitments now so they're on record before launch, and we'll update this policy — with a new "last updated" date, at this same URL — before any of it goes live.
-        - Relay, the planned remote-access layer, is designed as a dumb pipe — an encrypted tunnel between your ALFR3D instance and your own client, relayed through our infrastructure without our servers ever seeing plaintext home data. Butler adds push notifications, hosted encrypted backups, and personality features on top.
-        - Subscribing to Relay or Butler will require a billing identity (an email and payment method, handled through Stripe) — deliberately kept separate from the login you use inside your own household's ALFR3D instance. Knowing you're a subscriber won't give us, or anyone at Littl3.1, access to your home data.
+        - None of these exist yet — the Kit hasn't shipped, and Relay and Alfr3d Uplink haven't been built. Nothing in this section collects any data today; we're publishing our design commitments now so they're on record before launch, and we'll update this policy — with a new "last updated" date, at this same URL — before any of it goes live.
+        - Relay, the planned remote-access layer, is designed as a dumb pipe — an encrypted tunnel between your ALFR3D instance and your own client, relayed through our infrastructure without our servers ever seeing plaintext home data. Alfr3d Uplink adds push notifications, hosted encrypted backups, and personality features on top.
+        - Subscribing to Relay or Alfr3d Uplink will require a billing identity (an email and payment method, handled through Stripe) — deliberately kept separate from the login you use inside your own household's ALFR3D instance. Knowing you're a subscriber won't give us, or anyone at Littl3.1, access to your home data.
     - id: children
       eyebrow: § 6
       title: Children's privacy
@@ -258,7 +258,7 @@ privacy:
       eyebrow: § 7
       title: Your data, your control
       lines:
-        - For anything self-hosted — ALFR3D Core, and by extension Nexus Launcher's optional backend connection — you already hold all the data. Export it, delete it, or move it however you like; we have no copy to act on.
+        - For anything self-hosted — ALFR3D Core, and by extension Alfr3d Deck's optional backend connection — you already hold all the data. Export it, delete it, or move it however you like; we have no copy to act on.
         - For anything that does touch us directly — an email you send us, a future Stripe subscription — email athos@littl31.com and we'll act on a request to access, correct, or delete it.
         - Littl3.1 Engineering is a registered business in Ontario, Canada, and this policy applies to visitors and users wherever they're located.
     - id: changes
