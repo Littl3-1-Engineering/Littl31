@@ -13081,17 +13081,20 @@ setTimeout(function () {
 
 var _scramble = require("./scramble.js");
 // "Alfr3d Scrip" easter egg (Dial-In Plan C5): hover/tap a price and it
-// scrambles into a fictional Scrip amount, then snaps back to the real,
-// resting price. No symbol/glyph exists yet (tracked separately on the
-// Alfr3d Timeline) — this uses a plain-text "Scrip" placeholder so the
-// interaction can ship now and swap in a real glyph later with zero logic
-// changes. Real currency is always the resting state, never Scrip.
+// scrambles into a fictional Scrip amount plus its symbol, then snaps
+// back to the real, resting price. The symbol (a stylized seven-segment
+// "3" with an extended crossbar, per the finalized design on the
+// "Design Alfr3d Scrip currency symbol" Notion page) is a fixed sibling
+// SVG that fades in/out alongside the scrambled text rather than being
+// woven into the character-scramble itself. Real currency is always the
+// resting state, never Scrip.
 
 var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 document.querySelectorAll('[data-scrip-toggle]').forEach(function (el) {
   var real = el.dataset.realPrice;
   var scrip = el.dataset.scripPrice;
   if (!real || !scrip) return;
+  var icon = el.parentElement && el.parentElement.querySelector('[data-scrip-symbol]');
   var fx = reduceMotion ? null : new _scramble.TextScramble(el);
   var showingScrip = false;
   var swap = function swap(toScrip) {
@@ -13099,6 +13102,7 @@ document.querySelectorAll('[data-scrip-toggle]').forEach(function (el) {
     showingScrip = toScrip;
     var text = toScrip ? scrip : real;
     if (fx) fx.setText(text);else el.textContent = text;
+    if (icon) icon.classList.toggle('opacity-0', !toScrip);
   };
   el.addEventListener('mouseenter', function () {
     return swap(true);
