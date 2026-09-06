@@ -2,11 +2,11 @@
 <head>
   <meta charset="utf-8">
   <title>ALFR3D : Self-Hosted Home Automation</title>
-  <meta name="description" content="ALFR3D is a self-hosted, local-first home-automation platform by Littl3.1 Engineering. No ads, no telemetry, your home stays yours.">
+  <meta name="description" content="ALFR3D is a self-hosted home butler that anticipates what you need — no ads, no telemetry, and it runs on hardware you own.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/style.27b0abab.css">
   <link rel="icon" type="image/png" href="assets/images/favicon.ico">
-  <script src="js/main.4b494753.js" defer></script>
+  <script src="js/main.0d00f13a.js" defer></script>
 </head>
 <body class="text-white grid-bg">
   <nav class="nav-glass fixed top-0 left-0 right-0 z-50">
@@ -18,6 +18,7 @@
       </button>
       <ul class="font-mono hidden md:flex items-center gap-8 text-xs uppercase tracking-widest" data-nav-menu>
         <li><a class="text-gray-300 transition-colors" href="alfr3d.html">ALFR3D</a></li>
+        <li><a class="text-gray-300 transition-colors" href="honesty.html">Honesty</a></li>
         <li><a class="text-gray-300 transition-colors" href="timeline.html">Timeline</a></li>
         <li><a class="text-gray-300 transition-colors" href="lab.html">Lab</a></li>
         <li><a class="text-gray-300 transition-colors" href="#contact">Contact</a></li>
@@ -33,11 +34,19 @@
         <div class="window-body">
           <div class="window-titlebar"><span class="window-dot"></span></div>
           <div class="window-content p-8 md:p-12">
-            <h2 class="font-display font-bold text-right accent-text-amber text-4xl md:text-6xl" data-scramble-intro data-scroll data-scroll-repeat data-scroll-speed="3" data-scroll-position="top" data-scroll-direction="horizontal">Your house, your data, your rules.</h2>
+            <h2 class="font-display font-bold text-right accent-text-amber text-4xl md:text-6xl" data-scramble-intro data-scroll data-scroll-repeat data-scroll-speed="3" data-scroll-position="top" data-scroll-direction="horizontal">It notices things before you ask.</h2>
             <div class="w-full mt-12 flex justify-end">
               <div class="max-w-xl space-y-6" data-scroll>
-                <p class="opacity-0 transition-opacity delay-100 duration-700 text-gray-300 leading-relaxed" data-scroll data-scroll-repeat data-scroll-class="opacity-100">Home Assistant made self-hosting mainstream. Nabu Casa made it convenient. ALFR3D is built the same way — a real platform running on hardware you own, with a hosted layer you can opt into, never the other way around.</p>
-                <p class="opacity-0 transition-opacity delay-100 duration-700 text-gray-300 leading-relaxed" data-scroll data-scroll-repeat data-scroll-class="opacity-100">A containerized microservices backend, a situational-awareness engine that actually knows what day it is and what's playing, and Nexus Launcher — an Android home screen built to talk to it directly.</p>
+                <p class="opacity-0 transition-opacity delay-100 duration-700 text-gray-300 leading-relaxed" data-scroll data-scroll-repeat data-scroll-class="opacity-100">Most &quot;smart home&quot; software is a stranger living in your house — competent, forgettable, indifferent to the particulars of you. Alfr3d isn't interested in being competent. It's interested in you: the drive that always takes longer than the map says, the lamp that stays on after the last person's left, the version of Tuesday that only looks like Tuesday from the outside. It learns the shape of an ordinary day in this house well enough to notice, quietly, the one moment that isn't — and it says so once, instead of piling on a wall of alerts. A few of the places that shows up:</p>
+                <ul class="opacity-0 transition-opacity delay-100 duration-700 text-gray-300 text-sm md:text-base leading-relaxed list-disc list-inside space-y-2" data-scroll data-scroll-repeat data-scroll-class="opacity-100">
+                  <li>Leaves you enough time to get there — a leave-by time computed from your own calendar and a routing engine that runs on your own hardware, not a Google API key.</li>
+                  <li>Notices when the house is empty and something's still on — a light, a space heater, whatever got left running after everyone's gone.</li>
+                  <li>Knows when today isn't like your other Tuesdays — first activity two hours late, half the household still home at noon, whatever's actually unusual for you.</li>
+                  <li>Picks up where you left off — pause a track on one screen, find it waiting on the next.</li>
+                  <li>Goes quiet before bed — no idle chatter in the last stretch before your own Bedtime routine.</li>
+                </ul>
+                <p class="opacity-0 transition-opacity delay-100 duration-700 text-gray-300 leading-relaxed" data-scroll data-scroll-repeat data-scroll-class="opacity-100">None of it is a spec sheet, and none of it is behind a subscription — it's just what Alfr3d Core already does today, free, forever, self-hosted, quietly getting to know the house it lives in.</p>
+                <p class="opacity-0 transition-opacity delay-100 duration-700 text-gray-300 leading-relaxed" data-scroll data-scroll-repeat data-scroll-class="opacity-100">Home Assistant made self-hosting mainstream. Nabu Casa made it convenient. Alfr3d is built the same way — a real platform running on hardware you own, with a hosted layer you can opt into, never the other way around.</p>
                 <p class="opacity-0 transition-opacity delay-100 duration-700 text-gray-300 leading-relaxed" data-scroll data-scroll-repeat data-scroll-class="opacity-100">No ad tier. Not now, not ever. That's not a pricing decision, it's a policy.</p>
                 <p class="opacity-0 transition-opacity delay-100 duration-700 text-gray-300 leading-relaxed" data-scroll data-scroll-repeat data-scroll-class="opacity-100">It behaves like a butler, not a control panel — situational awareness, a personality layer, dashboards built to live on a wall, not hide in an app. The parts of &quot;smart home&quot; that usually stay locked behind someone else's cloud.</p>
                 <p class="pt-2"><a class="btn-glow accent-amber" href="timeline.html">→ See the full timeline</a></p>
@@ -47,6 +56,14 @@
         </div>
       </div>
     </section>
+    <div class="flex flex-col items-center gap-2 pb-4 px-8">
+      <div class="flex items-center justify-center gap-3" data-currency-switcher>
+        <button class="text-xs tracking-widest uppercase border rounded-full px-4 py-1.5 transition-colors accent-border-gray accent-text-gray" type="button" data-currency-option="USD" aria-pressed="true">USD</button>
+        <button class="text-xs tracking-widest uppercase border rounded-full px-4 py-1.5 transition-colors accent-border-gray accent-text-gray" type="button" data-currency-option="CAD" aria-pressed="false">CAD</button>
+        <button class="text-xs tracking-widest uppercase border rounded-full px-4 py-1.5 transition-colors accent-border-gray accent-text-gray" type="button" data-currency-option="EUR" aria-pressed="false">EUR</button>
+      </div>
+      <p class="text-center text-gray-500 text-xs hidden max-w-md" data-currency-note></p>
+    </div>
     <section class="py-8" id="products" data-scroll-section>
       <div class="flex items-center justify-center p-4 md:p-8" id="p-kit">
         <div class="max-w-screen-lg w-full relative window-frame accent-amber">
@@ -61,7 +78,7 @@
               <div class="w-full mt-10 flex justify-start">
                 <div class="max-w-2xl space-y-6">
                   <p class="opacity-0 transition-opacity delay-100 duration-700 text-gray-300 leading-relaxed" data-scroll data-scroll-repeat data-scroll-class="opacity-100">A Raspberry Pi, pre-flashed with ALFR3D Core and shipped ready to plug in — no Docker Compose, no manual setup, just power and a network connection. Built to order, not stocked.</p>
-                  <p class="opacity-0 transition-opacity delay-100 duration-700 text-gray-300 leading-relaxed" data-scroll data-scroll-repeat data-scroll-class="opacity-100">The lead way to get ALFR3D, once it ships: every Kit will include a lifetime Relay connection and Nexus Launcher Pro unlocked for free. The first 100 units will be numbered, with a direct line to me for support instead of a ticket queue.</p>
+                  <p class="opacity-0 transition-opacity delay-100 duration-700 text-gray-300 leading-relaxed" data-scroll data-scroll-repeat data-scroll-class="opacity-100">The lead way to get ALFR3D, once it ships: every Kit will include a lifetime Relay connection and Alfr3d Deck Pro unlocked for free. The first 100 units will be numbered, with a direct line to me for support instead of a ticket queue.</p>
                 </div>
               </div>
               <div class="flex flex-wrap pt-6 gap-6">
@@ -70,7 +87,7 @@
                     <div class="window-body">
                       <div class="window-content px-6 py-4">
                         <div class="flex items-center gap-2">
-                          <div class="font-bold accent-text-amber text-3xl">$399</div>
+                          <div class="font-bold accent-text-amber text-3xl" tabindex="0" role="button" data-scrip-toggle data-real-price="$399" data-scrip-price="1,337 Scrip" aria-label="$399 — hover or tap for Alfr3d Scrip">$399</div>
                           <button class="flex-shrink-0 w-5 h-5 rounded-full border border-gray-500 text-gray-400 text-xs italic font-bold leading-none flex items-center justify-center hover:border-amber-400 hover:text-amber-400 focus:outline-none focus:border-amber-400 focus:text-amber-400 transition-colors" type="button" aria-label="More info — Founding 100 · one-time" data-pricing-info-toggle>i</button>
                         </div>
                         <div class="text-xs text-gray-400 mt-1">Founding 100 · one-time</div>
@@ -79,14 +96,14 @@
                       </div>
                     </div>
                   </div>
-                  <div class="pricing-info-popover info-popover accent-border-amber absolute left-0 top-full mt-2 w-72 p-4 border text-sm text-gray-300 leading-relaxed opacity-0 pointer-events-none transition-opacity duration-200 z-20 group-hover:opacity-100 group-hover:pointer-events-auto" data-pricing-info-popover>Planned: a numbered unit (e.g. &quot;#014 of 100&quot;), lifetime Relay included for as long as you own the Kit, Nexus Launcher Pro unlocked free, and direct founder support. Once all 100 ship, this price goes away for good — it becomes the $449 steady-state price below. No hardware has shipped yet — this is the plan, not an open order.</div>
+                  <div class="pricing-info-popover info-popover accent-border-amber absolute left-0 top-full mt-2 w-72 p-4 border text-sm text-gray-300 leading-relaxed opacity-0 pointer-events-none transition-opacity duration-200 z-20 group-hover:opacity-100 group-hover:pointer-events-auto" data-pricing-info-popover>Planned: a numbered unit (e.g. &quot;#014 of 100&quot;), lifetime Relay included for as long as you own the Kit, Alfr3d Deck Pro unlocked free, and direct founder support. Once all 100 ship, this price goes away for good — it becomes the $449 steady-state price below. No hardware has shipped yet — this is the plan, not an open order.</div>
                 </div>
                 <div class="group relative"><span class="absolute whitespace-nowrap accent-border-amber accent-text-amber text-xs tracking-widest uppercase border rounded-full px-3 py-1 bg-gray-900" style="top: -0.85rem; left: 50%; transform: translateX(-50%); z-index: 10;">Not yet available</span>
                   <div class="window-frame window-sm accent-amber">
                     <div class="window-body">
                       <div class="window-content px-6 py-4">
                         <div class="flex items-center gap-2">
-                          <div class="font-bold accent-text-amber text-3xl">$449</div>
+                          <div class="font-bold accent-text-amber text-3xl" tabindex="0" role="button" data-scrip-toggle data-real-price="$449" data-scrip-price="1,437 Scrip" aria-label="$449 — hover or tap for Alfr3d Scrip">$449</div>
                           <button class="flex-shrink-0 w-5 h-5 rounded-full border border-gray-500 text-gray-400 text-xs italic font-bold leading-none flex items-center justify-center hover:border-amber-400 hover:text-amber-400 focus:outline-none focus:border-amber-400 focus:text-amber-400 transition-colors" type="button" aria-label="More info — Steady-state · one-time" data-pricing-info-toggle>i</button>
                         </div>
                         <div class="text-xs text-gray-400 mt-1">Steady-state · one-time</div>
@@ -95,7 +112,23 @@
                       </div>
                     </div>
                   </div>
-                  <div class="pricing-info-popover info-popover accent-border-amber absolute left-0 top-full mt-2 w-72 p-4 border text-sm text-gray-300 leading-relaxed opacity-0 pointer-events-none transition-opacity duration-200 z-20 group-hover:opacity-100 group-hover:pointer-events-auto" data-pricing-info-popover>The same Kit, same lifetime Relay, same free Nexus Launcher Pro — the planned ongoing price once all 100 founding units are gone. Not orderable yet.</div>
+                  <div class="pricing-info-popover info-popover accent-border-amber absolute left-0 top-full mt-2 w-72 p-4 border text-sm text-gray-300 leading-relaxed opacity-0 pointer-events-none transition-opacity duration-200 z-20 group-hover:opacity-100 group-hover:pointer-events-auto" data-pricing-info-popover>The same Kit, same lifetime Relay, same free Alfr3d Deck Pro — the planned ongoing price once all 100 founding units are gone. Not orderable yet.</div>
+                </div>
+                <div class="group relative"><span class="absolute whitespace-nowrap accent-border-amber accent-text-amber text-xs tracking-widest uppercase border rounded-full px-3 py-1 bg-gray-900" style="top: -0.85rem; left: 50%; transform: translateX(-50%); z-index: 10;">Not yet available</span>
+                  <div class="window-frame window-sm accent-amber">
+                    <div class="window-body">
+                      <div class="window-content px-6 py-4">
+                        <div class="flex items-center gap-2">
+                          <div class="font-bold accent-text-amber text-3xl" tabindex="0" role="button" data-scrip-toggle data-real-price="$1,500–$2,500" data-scrip-price="4,237 Scrip" aria-label="$1,500–$2,500 — hover or tap for Alfr3d Scrip">$1,500–$2,500</div>
+                          <button class="flex-shrink-0 w-5 h-5 rounded-full border border-gray-500 text-gray-400 text-xs italic font-bold leading-none flex items-center justify-center hover:border-amber-400 hover:text-amber-400 focus:outline-none focus:border-amber-400 focus:text-amber-400 transition-colors" type="button" aria-label="More info — Concierge · one-time" data-pricing-info-toggle>i</button>
+                        </div>
+                        <div class="text-xs text-gray-400 mt-1">Concierge · one-time</div>
+                        <p class="mt-3"><a class="text-xs btn-glow accent-amber" href="mailto:athos@littl31.com?subject=Alfr3d%20Kit%20%E2%80%94%20Concierge" style="padding: 0.4rem 1rem;">→ Ask about Concierge</a></p>
+                        <p class="text-xs text-gray-500 mt-2 italic">Not yet available — runs alongside the Founding-100 window.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="pricing-info-popover info-popover accent-border-amber absolute left-0 top-full mt-2 w-72 p-4 border text-sm text-gray-300 leading-relaxed opacity-0 pointer-events-none transition-opacity duration-200 z-20 group-hover:opacity-100 group-hover:pointer-events-auto" data-pricing-info-popover>A higher-spec mini PC, a white-glove remote setup session, and a direct line to me for the life of the unit. Runs alongside the Founding-100 cohort, not after it — there won't be a second window to buy into it at this stage.</div>
                 </div>
               </div>
             </div>
@@ -106,10 +139,10 @@
         <div class="max-w-screen-lg w-full relative window-frame accent-cyan">
           <div class="window-tab"></div>
           <div class="window-body">
-            <div class="window-titlebar"><span class="window-dot"></span><span class="font-mono text-xs uppercase tracking-widest text-gray-300">/ NEXUS LAUNCHER</span>
+            <div class="window-titlebar"><span class="window-dot"></span><span class="font-mono text-xs uppercase tracking-widest text-gray-300">/ ALFR3D DECK</span>
             </div>
             <div class="window-content p-8 md:p-12">
-              <h2 class="font-display font-bold accent-text-cyan text-4xl md:text-6xl" data-scroll data-scroll-repeat data-scroll-speed="-1" data-scroll-position="top" data-scroll-direction="horizontal" data-scroll-target="#p-launcher">Nexus Launcher</h2>
+              <h2 class="font-display font-bold accent-text-cyan text-4xl md:text-6xl" data-scroll data-scroll-repeat data-scroll-speed="-1" data-scroll-position="top" data-scroll-direction="horizontal" data-scroll-target="#p-launcher">Alfr3d Deck</h2>
               <hr class="my-4 accent-border-cyan border-t-2 opacity-40">
               <p class="font-mono italic accent-text-cyan text-xs md:text-sm opacity-80">“I've taken the liberty of arranging your applications. You're welcome.”</p><span class="inline-block mt-2 accent-border-gray accent-text-gray text-xs tracking-widest uppercase border rounded-full px-4 py-2">Coming soon — targeting Google Play in Q4 '26</span>
               <div class="w-full mt-12 flex flex-col gap-8 md:items-start md:flex-row ">
@@ -118,7 +151,7 @@
                   <p class="font-mono text-gray-500 mt-3 text-xs leading-relaxed">The Ambient Brief card, mid-gathering — real presence data, not a canned notification.</p>
                 </div>
                 <div class="w-full md:w-1/2 space-y-6">
-                  <p class="opacity-0 transition-opacity delay-100 duration-700 text-gray-300 leading-relaxed" data-scroll data-scroll-repeat data-scroll-class="opacity-100">A free-form spatial launcher for Android: no permanent dock, no fixed grid. Apps, the terminal, and ALFR3D surfaces open as free-floating windows on an infinite canvas — summoned by double-tap search or the Nexus Core's press-and-flow radial menu, with live situational-awareness cards updating right on the canvas.</p>
+                  <p class="opacity-0 transition-opacity delay-100 duration-700 text-gray-300 leading-relaxed" data-scroll data-scroll-repeat data-scroll-class="opacity-100">A free-form spatial launcher for Android: no permanent dock, no fixed grid. Apps, the terminal, and ALFR3D surfaces open as free-floating windows on an infinite canvas — summoned by double-tap search or Socket, Deck's press-and-flow radial menu, with live situational-awareness cards updating right on the canvas.</p>
                   <p class="opacity-0 transition-opacity delay-100 duration-700 text-gray-300 leading-relaxed" data-scroll data-scroll-repeat data-scroll-class="opacity-100">In active development, not yet published. The plan: a free core, forever, with a one-time unlock that removes the ceiling — no subscription, because a launcher sitting on your own phone doesn't cost us a server bill to run.</p>
                 </div>
               </div>
@@ -132,12 +165,12 @@
                           <button class="flex-shrink-0 w-5 h-5 rounded-full border border-gray-500 text-gray-400 text-xs italic font-bold leading-none flex items-center justify-center hover:border-amber-400 hover:text-amber-400 focus:outline-none focus:border-amber-400 focus:text-amber-400 transition-colors" type="button" aria-label="More info — Not yet published to Google Play" data-pricing-info-toggle>i</button>
                         </div>
                         <div class="text-xs text-gray-400 mt-1">Not yet published to Google Play</div>
-                        <p class="mt-3"><a class="text-xs btn-glow accent-cyan" href="mailto:athos@littl31.com?subject=Nexus%20Launcher%20%E2%80%94%20notify%20me" style="padding: 0.4rem 1rem;">→ Notify me on Google Play</a></p>
+                        <p class="mt-3"><a class="text-xs btn-glow accent-cyan" href="mailto:athos@littl31.com?subject=Alfr3d%20Deck%20%E2%80%94%20notify%20me" style="padding: 0.4rem 1rem;">→ Notify me on Google Play</a></p>
                         <p class="text-xs text-gray-500 mt-2 italic">Not yet available — target Q4 '26.</p>
                       </div>
                     </div>
                   </div>
-                  <div class="pricing-info-popover info-popover accent-border-cyan absolute left-0 top-full mt-2 w-72 p-4 border text-sm text-gray-300 leading-relaxed opacity-0 pointer-events-none transition-opacity duration-200 z-20 group-hover:opacity-100 group-hover:pointer-events-auto" data-pricing-info-popover>Planned at launch: a free core (full spatial canvas, Nexus Core radial menu, double-tap search, window manager, terminal, base theming — no trial timer, no expiring feature ceiling) plus a $5.99 one-time Pro unlock via Google Play Billing (extra themes/icon packs, advanced window layouts, backup &amp; restore). Free automatically for Alfr3d Kit owners and Butler subscribers once live. Nothing is downloadable or purchasable yet.</div>
+                  <div class="pricing-info-popover info-popover accent-border-cyan absolute left-0 top-full mt-2 w-72 p-4 border text-sm text-gray-300 leading-relaxed opacity-0 pointer-events-none transition-opacity duration-200 z-20 group-hover:opacity-100 group-hover:pointer-events-auto" data-pricing-info-popover>Planned at launch: a free core (full spatial canvas, Socket radial menu, double-tap search, window manager, terminal, base theming — no trial timer, no expiring feature ceiling) plus a $5.99 one-time Pro unlock via Google Play Billing (extra themes/icon packs, advanced window layouts, backup &amp; restore). Free automatically for Alfr3d Kit owners and Uplink subscribers once live. Nothing is downloadable or purchasable yet.</div>
                 </div>
               </div>
             </div>
@@ -189,16 +222,16 @@
         <div class="max-w-screen-lg w-full relative window-frame accent-amber">
           <div class="window-tab"></div>
           <div class="window-body">
-            <div class="window-titlebar"><span class="window-dot"></span><span class="font-mono text-xs uppercase tracking-widest text-gray-300">/ BUTLER</span>
+            <div class="window-titlebar"><span class="window-dot"></span><span class="font-mono text-xs uppercase tracking-widest text-gray-300">/ ALFR3D UPLINK</span>
             </div>
             <div class="window-content p-8 md:p-12">
-              <h2 class="font-display font-bold accent-text-amber text-4xl md:text-6xl" data-scroll data-scroll-repeat data-scroll-speed="-1" data-scroll-position="top" data-scroll-direction="horizontal" data-scroll-target="#p-butler">Butler</h2>
+              <h2 class="font-display font-bold accent-text-amber text-4xl md:text-6xl" data-scroll data-scroll-repeat data-scroll-speed="-1" data-scroll-position="top" data-scroll-direction="horizontal" data-scroll-target="#p-butler">Alfr3d Uplink</h2>
               <hr class="my-4 accent-border-amber border-t-2 opacity-40">
-              <p class="font-mono italic accent-text-amber text-xs md:text-sm opacity-80">“I remember your errands, your appointments, and exactly how you like your coffee. Butler edition me, anyway.”</p><span class="inline-block mt-2 accent-border-gray accent-text-gray text-xs tracking-widest uppercase border rounded-full px-4 py-2">Coming soon — in development</span>
+              <p class="font-mono italic accent-text-amber text-xs md:text-sm opacity-80">“I remember your errands, your appointments, and exactly how you like your coffee. That's the uplink talking.”</p><span class="inline-block mt-2 accent-border-gray accent-text-gray text-xs tracking-widest uppercase border rounded-full px-4 py-2">Coming soon — in development</span>
               <div class="w-full mt-10 flex justify-end">
                 <div class="max-w-md space-y-6">
                   <p class="opacity-0 transition-opacity delay-100 duration-700 text-gray-300 leading-relaxed" data-scroll data-scroll-repeat data-scroll-class="opacity-100">Not yet built. The plan: one subscription bundling Relay's remote access, plus push notifications, hosted encrypted backups, and the personality/quips layer that makes ALFR3D feel less like a control panel and more like staff.</p>
-                  <p class="opacity-0 transition-opacity delay-100 duration-700 text-gray-300 leading-relaxed" data-scroll data-scroll-repeat data-scroll-class="opacity-100">Relay — a thin, dumb-pipe connection for remote access with no port-forwarding and no plaintext ever passing through our servers — isn't sold on its own. It's included in Butler, and included free for the life of any Alfr3d Kit.</p>
+                  <p class="opacity-0 transition-opacity delay-100 duration-700 text-gray-300 leading-relaxed" data-scroll data-scroll-repeat data-scroll-class="opacity-100">Relay — a thin, dumb-pipe connection for remote access with no port-forwarding and no plaintext ever passing through our servers — isn't sold on its own. It's included in Uplink, and included free for the life of any Alfr3d Kit.</p>
                   <p class="opacity-0 transition-opacity delay-100 duration-700 text-gray-300 leading-relaxed" data-scroll data-scroll-repeat data-scroll-class="opacity-100">Fair-use LLM usage will be included — generous, capped to keep it sustainable, not throttled to nudge you into a bigger plan. Priority support included.</p>
                 </div>
               </div>
@@ -208,11 +241,11 @@
                     <div class="window-body">
                       <div class="window-content px-6 py-4">
                         <div class="flex items-center gap-2">
-                          <div class="font-bold accent-text-amber text-3xl">$99/yr</div>
-                          <button class="flex-shrink-0 w-5 h-5 rounded-full border border-gray-500 text-gray-400 text-xs italic font-bold leading-none flex items-center justify-center hover:border-amber-400 hover:text-amber-400 focus:outline-none focus:border-amber-400 focus:text-amber-400 transition-colors" type="button" aria-label="More info — Butler · annual" data-pricing-info-toggle>i</button>
+                          <div class="font-bold accent-text-amber text-3xl" tabindex="0" role="button" data-scrip-toggle data-real-price="$99/yr" data-scrip-price="937 Scrip" aria-label="$99/yr — hover or tap for Alfr3d Scrip">$99/yr</div>
+                          <button class="flex-shrink-0 w-5 h-5 rounded-full border border-gray-500 text-gray-400 text-xs italic font-bold leading-none flex items-center justify-center hover:border-amber-400 hover:text-amber-400 focus:outline-none focus:border-amber-400 focus:text-amber-400 transition-colors" type="button" aria-label="More info — Uplink · annual" data-pricing-info-toggle>i</button>
                         </div>
-                        <div class="text-xs text-gray-400 mt-1">Butler · annual</div>
-                        <p class="mt-3"><a class="text-xs btn-glow accent-amber" href="mailto:athos@littl31.com?subject=Alfr3d%20Butler%20%E2%80%94%20waitlist%20(annual)" style="padding: 0.4rem 1rem;">→ Join the Butler waitlist</a></p>
+                        <div class="text-xs text-gray-400 mt-1">Uplink · annual</div>
+                        <p class="mt-3"><a class="text-xs btn-glow accent-amber" href="mailto:athos@littl31.com?subject=Alfr3d%20Uplink%20%E2%80%94%20waitlist%20(annual)" style="padding: 0.4rem 1rem;">→ Join the Uplink waitlist</a></p>
                       </div>
                     </div>
                   </div>
@@ -223,11 +256,11 @@
                     <div class="window-body">
                       <div class="window-content px-6 py-4">
                         <div class="flex items-center gap-2">
-                          <div class="font-bold accent-text-amber text-3xl">$9.99/mo</div>
-                          <button class="flex-shrink-0 w-5 h-5 rounded-full border border-gray-500 text-gray-400 text-xs italic font-bold leading-none flex items-center justify-center hover:border-amber-400 hover:text-amber-400 focus:outline-none focus:border-amber-400 focus:text-amber-400 transition-colors" type="button" aria-label="More info — Butler · monthly" data-pricing-info-toggle>i</button>
+                          <div class="font-bold accent-text-amber text-3xl" tabindex="0" role="button" data-scrip-toggle data-real-price="$9.99/mo" data-scrip-price="137 Scrip" aria-label="$9.99/mo — hover or tap for Alfr3d Scrip">$9.99/mo</div>
+                          <button class="flex-shrink-0 w-5 h-5 rounded-full border border-gray-500 text-gray-400 text-xs italic font-bold leading-none flex items-center justify-center hover:border-amber-400 hover:text-amber-400 focus:outline-none focus:border-amber-400 focus:text-amber-400 transition-colors" type="button" aria-label="More info — Uplink · monthly" data-pricing-info-toggle>i</button>
                         </div>
-                        <div class="text-xs text-gray-400 mt-1">Butler · monthly</div>
-                        <p class="mt-3"><a class="text-xs btn-glow accent-amber" href="mailto:athos@littl31.com?subject=Alfr3d%20Butler%20%E2%80%94%20waitlist" style="padding: 0.4rem 1rem;">→ Join the Butler waitlist</a></p>
+                        <div class="text-xs text-gray-400 mt-1">Uplink · monthly</div>
+                        <p class="mt-3"><a class="text-xs btn-glow accent-amber" href="mailto:athos@littl31.com?subject=Alfr3d%20Uplink%20%E2%80%94%20waitlist" style="padding: 0.4rem 1rem;">→ Join the Uplink waitlist</a></p>
                       </div>
                     </div>
                   </div>
