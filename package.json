@@ -60,7 +60,7 @@
     "npm-run-all": "^4.1.5",
     "onchange": "^7.1.0",
     "postcss": "^8.2.1",
-    "postcss-cli": "^8.3.1",
+    "postcss-cli": "^11.0.1",
     "pug": "^3.0.0",
     "pug-cli": "^1.0.0-alpha6",
     "replaceinfiles": "^1.1.4",
