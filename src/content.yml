@@ -63,7 +63,7 @@ alfr3d:
       accent: orange
   intro:
     title: It notices things before you ask.
-    lead: "Most \"smart home\" software waits for a command. Alfr3d doesn't — a 19-rule situational-awareness engine watches your calendar, your devices, and your household's own rhythm, and surfaces exactly one thing worth knowing, right when it's worth knowing it. That's the product. Everything else is how it's built."
+    lead: "Most \"smart home\" software is a stranger living in your house — competent, forgettable, indifferent to the particulars of you. Alfr3d isn't interested in being competent. It's interested in you: the drive that always takes longer than the map says, the lamp that stays on after the last person's left, the version of Tuesday that only looks like Tuesday from the outside. It learns the shape of an ordinary day in this house well enough to notice, quietly, the one moment that isn't — and it says so once, instead of piling on a wall of alerts. A few of the places that shows up:"
     bullets:
       - Leaves you enough time to get there — a leave-by time computed from your own calendar and a routing engine that runs on your own hardware, not a Google API key.
       - Notices when the house is empty and something's still on — a light, a space heater, whatever got left running after everyone's gone.
@@ -71,9 +71,8 @@ alfr3d:
       - Picks up where you left off — pause a track on one screen, find it waiting on the next.
       - Goes quiet before bed — no idle chatter in the last stretch before your own Bedtime routine.
     lines:
-      - None of the above is behind a subscription. It's what Alfr3d Core already does today — free, forever, self-hosted.
-      - Home Assistant made self-hosting mainstream. Nabu Casa made it convenient. ALFR3D is built the same way — a real platform running on hardware you own, with a hosted layer you can opt into, never the other way around.
-      - A containerized microservices backend and Alfr3d Deck, an Android home screen built to talk to it directly.
+      - None of it is a spec sheet, and none of it is behind a subscription — it's just what Alfr3d Core already does today, free, forever, self-hosted, quietly getting to know the house it lives in.
+      - Home Assistant made self-hosting mainstream. Nabu Casa made it convenient. Alfr3d is built the same way — a real platform running on hardware you own, with a hosted layer you can opt into, never the other way around.
       - No ad tier. Not now, not ever. That's not a pricing decision, it's a policy.
       - It behaves like a butler, not a control panel — situational awareness, a personality layer, dashboards built to live on a wall, not hide in an app. The parts of "smart home" that usually stay locked behind someone else's cloud.
     cta:
