@@ -58,6 +58,22 @@ mixin introHero(item, accent)
           )= item.title
           .w-full.mt-12.flex.justify-end
             div.max-w-xl.space-y-6(data-scroll)
+              if item.lead
+                p.opacity-0(
+                  data-scroll,
+                  data-scroll-repeat,
+                  data-scroll-class='opacity-100',
+                  class='transition-opacity delay-100 duration-700 text-gray-300 leading-relaxed'
+                )= item.lead
+              if item.bullets
+                ul.opacity-0(
+                  data-scroll,
+                  data-scroll-repeat,
+                  data-scroll-class='opacity-100',
+                  class='transition-opacity delay-100 duration-700 text-gray-300 text-sm md:text-base leading-relaxed list-disc list-inside space-y-2'
+                )
+                  for bullet in item.bullets
+                    li= bullet
               for line in item.lines
                 p.opacity-0(
                   data-scroll,
@@ -146,7 +162,18 @@ mixin section(item, defaultAccent)
                     .window-body
                       .window-content(class='px-6 py-4')
                         .flex.items-center.gap-2
-                          div.font-bold(class=`accent-text-${tierAccent} text-3xl`)= tier.amount
+                          if tier.scrip
+                            div.font-bold(
+                              class=`accent-text-${tierAccent} text-3xl`,
+                              tabindex='0',
+                              role='button',
+                              data-scrip-toggle,
+                              data-real-price=tier.amount,
+                              data-scrip-price=tier.scrip,
+                              aria-label=`${tier.amount} — hover or tap for Alfr3d Scrip`
+                            )= tier.amount
+                          else
+                            div.font-bold(class=`accent-text-${tierAccent} text-3xl`)= tier.amount
                           if tier.info
                             button(
                               type='button',

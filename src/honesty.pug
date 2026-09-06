@@ -1,0 +1,25 @@
+doctype html
+
+include mixins.pug
+
+head
+  meta(charset='utf-8')
+  title #{honesty.meta.title}
+  meta(name='description' content=honesty.meta.description)
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  link(rel='stylesheet' href='css/style.css')
+  link(rel="icon" type="image/png" href='assets/images/favicon.ico')
+  script(src='js/main.js', defer)
+
+body.text-white.grid-bg
+  +navBar(nav, brand)
+
+  main(class='pt-24', data-scroll-container)
+
+    +introHero(honesty.intro, 'gray')
+
+    section#honesty-sections(data-scroll-section, class='py-8')
+      for item in honesty.sections
+        +section(item, 'gray')
+
+    +siteFooter(footer, { href: 'index.html', text: '← Littl3.1 Engineering' })
