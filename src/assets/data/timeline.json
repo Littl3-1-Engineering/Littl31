@@ -1,5 +1,61 @@
 [
   {
+    "id": "deck-background-sync",
+    "milestone": "Nexus Launcher keeps up with the house in the background",
+    "phase": "Present",
+    "product": [
+      "Nexus Launcher",
+      "Backend"
+    ],
+    "status": "Shipped",
+    "date": "2026-09-07",
+    "description": "Until now the launcher only talked to Alfr3d while one of its windows was open and the screen was on. It now checks in roughly every half hour on its own -- only on a charged-enough battery, backing off politely when the network is bad -- so weather, who's home, and the situational-awareness cards are already current the moment you pick the device up. When a genuinely new card appears while the screen is off (say, \"the garage light is still on\"), it raises exactly one quiet notification that the next card replaces rather than stacks. There's a Background Sync card in Settings to turn it off or sync on demand. Verified on a real device against the live house system, including two bugs found and fixed in the process.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/commit/4044106"
+  },
+  {
+    "id": "nexus-radial-menu-reorg",
+    "milestone": "Nexus Launcher radial menu tidied up",
+    "phase": "Present",
+    "product": [
+      "Nexus Launcher"
+    ],
+    "status": "Shipped",
+    "date": "2026-09-06",
+    "description": "The spatial launcher's radial menu was reorganised so the common destinations sit one level shallower: the terminal moved in with the apps, and Settings and Search now sit directly under System next to Power instead of behind an extra submenu. The top ring stays four choices and nothing is more than three steps deep. The in-app About text was also rewritten in a rougher, more first-person voice.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/commit/706c60a"
+  },
+  {
+    "id": "owner-form-of-address",
+    "milestone": "Alfr3d can be told what to call you",
+    "phase": "Present",
+    "product": [
+      "Backend",
+      "Nexus Launcher"
+    ],
+    "status": "Shipped",
+    "date": "2026-09-04",
+    "description": "Alfr3d's language model was never told who it was speaking to, so its more formal moods fell back on a generic, gendered \"sir or madam\". Each resident can now set a preferred form of address -- a first name, \"boss\", \"Dr. Athos\", whatever -- from the web UI or the launcher's Residents editor. The voice uses it occasionally rather than every line, falls back to the username if it's unset, and \"sir\"/\"madam\" are now banned outright. The field is stored per person so it's ready when Alfr3d can tell residents apart by voice.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/commit/12a77fdf"
+  },
+  {
+    "id": "nexus-shell-terminal",
+    "milestone": "NEXUS SHELL: a real terminal inside the launcher",
+    "phase": "Present",
+    "product": [
+      "Nexus Launcher"
+    ],
+    "status": "Shipped",
+    "date": "2026-09-04",
+    "description": [
+      "The launcher's terminal grew from a toy into a genuine command line, shipped in five phases and verified on a real device at each step.",
+      "It can manage the device: list, launch and inspect installed apps, and read device and settings state.",
+      "It has a working filesystem CLI for moving around and inspecting files.",
+      "It reaches into Alfr3d itself: control devices, tail the live event stream, and read the current context and mood card (falling back to a local estimate, honestly labelled, when Alfr3d's own mood card isn't present).",
+      "It can drive the launcher's own window manager -- list, focus and close windows, and save or restore named layouts (Pro-gated to match the existing layout-presets feature). Building this surfaced and fixed a real latent bug in closing a minimised window."
+    ],
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/commit/23c1578"
+  },
+  {
     "id": "unified-time-of-day",
     "milestone": "Alfr3d learned to tell time",
     "phase": "Present",
@@ -28,6 +84,21 @@
       "What's left before it goes live is account-holder-only Play Console setup."
     ],
     "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck"
+  },
+  {
+    "id": "backend-early-sept-polish",
+    "milestone": "Voice restraint + two more UI themes",
+    "phase": "Present",
+    "product": [
+      "Backend"
+    ],
+    "status": "Shipped",
+    "date": "2026-09-01",
+    "description": [
+      "Alfr3d's personality quirks -- the little verbal tics and swapped-in quips -- were firing on every single thing it said, which made the bit wear thin fast. They're now occasional, roughly one utterance in eight, on both the language-model path and the no-model fallback path.",
+      "Two more dashboard themes shipped alongside the existing three: Matrix (green terminal) and Steel/Graphite."
+    ],
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/commit/13362ef5"
   },
   {
     "id": "nexus-quick-controls",
@@ -395,18 +466,6 @@
     "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/Neural-Blueprint/todo/todo_music.md"
   },
   {
-    "id": "additional-ui-themes",
-    "milestone": "Additional UI themes (Matrix, Steel/Graphite)",
-    "phase": "Future",
-    "product": [
-      "Backend"
-    ],
-    "status": "Backburner",
-    "date": null,
-    "description": "Two more theme options for the existing theme-picker system, on top of the three already shipped (Cyan/Navy, Amber/Charcoal, Light/Teal).",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/Neural-Blueprint/todo/todo_customizations.md"
-  },
-  {
     "id": "play-store-publishing",
     "milestone": "Nexus Launcher Play Store publishing",
     "phase": "Future",
@@ -466,18 +525,6 @@
     "date": null,
     "description": "Remote-access relay (no port forwarding) + push notifications; \"thin, dumb-pipe relay\" that never sees plaintext data. Now scoped into a phased plan in todo_cloud_relay.md: architecture spike -> subscriber/billing identity + Stripe -> relay/tunnel -> FCM push -> security review. Deliberately a separate identity system from household RBAC auth. Not yet built.",
     "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/todo_cloud_relay.md"
-  },
-  {
-    "id": "personality-ticks-probabilistic",
-    "milestone": "Personality ticks shouldn't fire on every speak",
-    "phase": "Future",
-    "product": [
-      "Backend"
-    ],
-    "status": "Backburner",
-    "date": null,
-    "description": "Personality quip \"ticks\" currently apply to every TTS speak action; should be probabilistic/occasional (random chance, cooldown, or context-based) so it doesn't feel like a bit every time. Newly scoped, not started.",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/personality.md"
   },
   {
     "id": "hardware-enclosure",
