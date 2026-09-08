@@ -38,7 +38,7 @@
     "functions:deploy": "wrangler pages deploy public --project-name=littl31-api"
   },
   "dependencies": {
-    "locomotive-scroll": "^4.0.6",
+    "locomotive-scroll": "^5.0.1",
     "snapsvg": "^0.5.1",
     "stripe": "^22.6.0",
     "tailwindcss": "^2.0.2"
