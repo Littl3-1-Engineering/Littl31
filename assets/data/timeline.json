@@ -372,10 +372,10 @@
       "littl31.com",
       "Cloud"
     ],
-    "status": "Planned",
-    "date": "2026-08-22",
-    "description": "Top GTM priority: pricing page currently has zero CTA/checkout links on either tier. Add Stripe Checkout for the Kit (Founding 100 preorder with published ship-by date) and Relay/Butler signup + Customer Portal.",
-    "source": "https://github.com/Littl3-1-Engineering/Littl31/blob/main/todo/todo_cloud_kit_commerce.md"
+    "status": "In Progress",
+    "date": "2026-09-09",
+    "description": "Top GTM priority: give the Kit and Cloud pricing tiers a real visitor-to-customer path -- every rendered CTA is still a mailto: waitlist link. Backend checkout wiring staged 2026-09-09: create-checkout-session now sells only catalogued products (kit-founding, kit-steady, uplink-annual, uplink-monthly) through a server-side product-key -> STRIPE_PRICE_* map in functions/_shared/catalog.js, never a caller-supplied price ID, so test-to-live is an env-var change. Each of those four tiers in content.yml carries a dormant checkout block that no template reads yet. Still gated, nothing charges a card: no Stripe Prices or secrets set, no checkout frontend, no subscriber storage (webhook.js cases remain stubs pending the Cloud relay identity store). Remaining: create the Stripe Prices (multi-currency), set the Pages secrets, build the checkout frontend + success/cancel states, wire the webhook to subscriber storage, update pricing copy + privacy policy section 2.",
+    "source": "https://github.com/Littl3-1-Engineering/littl31/commit/cc14e72"
   },
   {
     "id": "repo-tooling-standardization",
