@@ -6,7 +6,7 @@
     "product": [
       "littl31.com"
     ],
-    "status": "In Progress",
+    "status": "Shipped",
     "date": "2026-09-09",
     "description": "The site now leads with what Alfr3d is -- \"the only home butler you own\" -- instead of a category label that read like a lesser Home Assistant, and that shift carries into the page titles and a new \"Getting Alfr3d\" section on the home page that points to the full lineup and pricing. Every feature claim on the product page was checked against what the situational-awareness engine actually does in production: the \"leave by now\" example was reworded so it no longer implies live-traffic knowledge it doesn't have, and a line that implied every feature is already running was softened, since the self-hosted routing behind the leave-by card still has to be switched on per household. The home page also carries a dormant slot for a short screen recording of that leave-by card in action, to drop in once it's captured.",
     "source": "https://github.com/Littl3-1-Engineering/Littl31/commit/2bbae5c6"
