@@ -23,6 +23,16 @@ body.text-white.grid-bg
 
     +introHero(home.pitch, 'amber')
 
+    if home.demo && home.demo.clip
+      section#anticipation.border-t.border-gray-800(data-scroll-section, class='py-16 px-8')
+        .max-w-screen-lg.mx-auto
+          h3.font-display.font-bold.accent-text-amber(class='text-2xl')= home.demo.title
+          .mt-6.overflow-hidden(class='accent-border-amber border rounded-lg')
+            video.w-full(autoplay, loop, muted, playsinline, poster=home.demo.poster)
+              source(src=home.demo.clip, type='video/mp4')
+          if home.demo.caption
+            p.font-mono.text-gray-500.mt-3(class='text-xs leading-relaxed')= home.demo.caption
+
     section#highlights(data-scroll-section, class='py-16 px-8')
       .max-w-screen-lg.mx-auto.grid(class='grid-cols-1 md:grid-cols-3 gap-6')
         for chip in home.highlights
@@ -47,6 +57,15 @@ body.text-white.grid-bg
             p.text-gray-400.mt-2(class='text-sm leading-relaxed')= line
         if home.howItWorks.cta
           a(href=home.howItWorks.cta.href, class='btn-glow accent-cyan')= home.howItWorks.cta.text
+
+    section#get.border-t.border-gray-800(data-scroll-section, class='py-16 px-8')
+      .max-w-screen-lg.mx-auto.flex.items-center.justify-between.flex-wrap(class='gap-8')
+        div.max-w-xl
+          h3.font-display.font-bold.text-white(class='text-2xl')= home.getIt.title
+          for line in home.getIt.lines
+            p.text-gray-400.mt-2(class='text-sm leading-relaxed')= line
+        if home.getIt.cta
+          a(href=home.getIt.cta.href, class='btn-glow accent-amber')= home.getIt.cta.text
 
     section#about.border-t.border-gray-800(data-scroll-section, class='py-16 px-8')
       .max-w-screen-lg.mx-auto.flex.items-center.justify-between.flex-wrap(class='gap-8')
