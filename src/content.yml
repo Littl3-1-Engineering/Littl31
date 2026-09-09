@@ -110,6 +110,11 @@ alfr3d:
             text: → Join the founding-100 waitlist
             href: 'mailto:athos@littl31.com?subject=Alfr3d%20Kit%20%E2%80%94%20Founding%20100%20waitlist'
           note: "Not yet available — target Q4 '26."
+          # Dormant: maps this tier to functions/_shared/catalog.js. Not read by any template
+          # yet — the CTA above is still the live mailto. See todo/todo_cloud_kit_commerce.md.
+          checkout:
+            product: kit-founding
+            mode: payment
         - amounts:
             USD: $450
             CAD: C$600
@@ -122,6 +127,9 @@ alfr3d:
             text: → Join the waitlist
             href: 'mailto:athos@littl31.com?subject=Alfr3d%20Kit%20%E2%80%94%20waitlist'
           note: "Not yet available — target Q2 '27."
+          checkout:
+            product: kit-steady
+            mode: payment
         - amount: "$1,500–$2,500"
           scrip: "4,237 Scrip"
           label: Concierge · one-time
@@ -201,6 +209,9 @@ alfr3d:
           cta:
             text: → Join the Uplink waitlist
             href: 'mailto:athos@littl31.com?subject=Alfr3d%20Uplink%20%E2%80%94%20waitlist%20(annual)'
+          checkout:
+            product: uplink-annual
+            mode: subscription
         - amounts:
             USD: $10/mo
             CAD: C$14/mo
@@ -211,6 +222,9 @@ alfr3d:
           cta:
             text: → Join the Uplink waitlist
             href: 'mailto:athos@littl31.com?subject=Alfr3d%20Uplink%20%E2%80%94%20waitlist'
+          checkout:
+            product: uplink-monthly
+            mode: subscription
 
 privacy:
   meta:

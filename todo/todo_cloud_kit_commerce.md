@@ -8,6 +8,18 @@ yet either. Phase A took the `mailto:` route below rather than a hosted form, so
 and Phase A's interest-capture links are two independent, unconnected pieces of this doc's
 progress — don't conflate "a CTA exists" with "Stripe is wired."
 
+**2026-09-09 — backend checkout wiring staged (frontend deliberately NOT touched; not shipping
+yet).** `create-checkout-session.js` now takes a stable product *key* resolved through a new
+`functions/_shared/catalog.js` (keys → `STRIPE_PRICE_*` env var + payment/subscription mode)
+instead of a raw price ID, so the route can only sell catalogued products and test→live is an
+env-var change. Catalogued: `kit-founding`, `kit-steady`, `uplink-annual`, `uplink-monthly`
+(Deck Pro = Google Play not Stripe; Kit Concierge = quote range, stays mailto). Each of those
+four tiers in `src/content.yml` gained a dormant `checkout: { product, mode }` block that **no
+template reads** — the rendered CTA is still the `mailto:` link, copy + `privacy.pug` §2
+unchanged. `.dev.vars.example` + `AGENTS.md` document the flip-live steps. Still gated: no
+`STRIPE_PRICE_*` vars set, no Stripe secrets, no frontend, no subscriber storage — Uplink/Relay
+aren't built (Phase C gate unchanged).
+
 ## Goal
 Give the ALFR3D Kit and ALFR3D Cloud pricing sections on this site a real path from "interested
 visitor" to "paying customer," phased so early steps cost nothing and commit to nothing, and later
