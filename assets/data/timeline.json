@@ -653,6 +653,19 @@
     "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/pull/155"
   },
   {
+    "id": "device-location-reporting",
+    "milestone": "Alfr3d learns your comings and goings -- with your consent",
+    "phase": "Future",
+    "product": [
+      "Backend",
+      "Nexus Launcher"
+    ],
+    "status": "In Progress",
+    "date": "2026-09-10",
+    "description": "With your explicit, opt-in consent, Alfr3d can learn your movements away from home -- not just whether you are on the house Wi-Fi -- so it comes to understand your daily rhythm well enough to anticipate when you are heading out or have the house ready for your return. It is off by default and stays that way until you deliberately turn it on. The location is approximate, never precise tracking; it goes only to your own Alfr3d server and is never sent to Littl3.1 Engineering or anyone else; the launcher reads it only while you are using your phone, never in the background; and switching it off stops collection and clears anything still queued. The data pipeline is live end to end today -- the situational-awareness features that learn from it come next.",
+    "source": "https://app.notion.com/p/3d7d732b1d3481069e89ffd41deb1527"
+  },
+  {
     "id": "explore-launcher-context-source",
     "milestone": "Explore: Nexus Launcher as a new context source for Alfr3d",
     "phase": "Future",
