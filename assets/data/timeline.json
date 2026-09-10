@@ -1,5 +1,17 @@
 [
   {
+    "id": "leave-by-card-live",
+    "milestone": "The \"leave by now\" card is live in a real house",
+    "phase": "Present",
+    "product": [
+      "Backend"
+    ],
+    "status": "Shipped",
+    "date": "2026-09-10",
+    "description": "The leave-by travel card fired for the first time in an actual household: a real calendar event with an address, a real drive time computed on the self-hosted routing engine, a real \"leave by 10:18 AM\" on the dashboard -- no staging, no mock-up. Two fixes got it there. Alfr3d now re-checks the calendar every fifteen minutes on its own, so an event you just added shows up without waiting for a restart. And event times now read in the household's own timezone instead of UTC -- a 5pm event created in a European calendar had been showing as 3pm on a North American screen. Deployed to the house the same day.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/todo_leave_by_demo.md"
+  },
+  {
     "id": "site-dial-in-positioning",
     "milestone": "littl31.com leads with the butler, not the category",
     "phase": "Present",
@@ -156,9 +168,9 @@
       "Backend",
       "Nexus Launcher"
     ],
-    "status": "In Progress",
+    "status": "Shipped",
     "date": "2026-08-30",
-    "description": "The travel-guidance card removed in August (it needed a paid Google Maps tier that was never configured) is back on different footing: a self-hosted OSRM routing engine plus the public, free Nominatim geocoding API -- no account, no API key, no request leaving the house. Measured directly on the production hardware: a real metro-area map preprocesses in under 2 minutes and serves routes from under 200MB of RAM. Backend live and deployed; the routing engine itself and the launcher's display of the computed leave-by time are still rolling out.",
+    "description": "The travel-guidance card removed in August (it needed a paid Google Maps tier that was never configured) is back on different footing: a self-hosted OSRM routing engine plus the public, free Nominatim geocoding API -- no account, no API key, no request leaving the house. Measured directly on the production hardware: a real metro-area map preprocesses in under 2 minutes and serves routes from under 200MB of RAM. Backend, the routing engine, and the launcher's leave-by display all shipped and deployed; the card fired in a live household for the first time on 2026-09-10.",
     "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/todo_self_hosted_routing.md"
   },
   {
