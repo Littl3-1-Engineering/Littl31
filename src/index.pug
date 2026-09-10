@@ -27,8 +27,8 @@ body.text-white.grid-bg
       section#anticipation.border-t.border-gray-800(data-scroll-section, class='py-16 px-8')
         .max-w-screen-lg.mx-auto
           h3.font-display.font-bold.accent-text-amber(class='text-2xl')= home.demo.title
-          .mt-6.overflow-hidden(class='accent-border-amber border rounded-lg')
-            video.w-full(autoplay, loop, muted, playsinline, poster=home.demo.poster)
+          .mt-6.mx-auto.overflow-hidden(class='accent-border-amber border rounded-lg max-w-xs sm:max-w-sm')
+            video.w-full.block(autoplay, loop, muted, playsinline, poster=home.demo.poster)
               source(src=home.demo.clip, type='video/mp4')
           if home.demo.caption
             p.font-mono.text-gray-500.mt-3(class='text-xs leading-relaxed')= home.demo.caption
