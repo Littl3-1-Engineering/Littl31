@@ -31,8 +31,8 @@ home:
   # shot-list + the OSRM routing provisioning it depends on: todo/todo_site_dial_in.md
   demo:
     title: Here's one it just did.
-    clip:
-    poster:
+    clip: assets/vid/leave-by-demo.mp4
+    poster: assets/images/leave-by-demo-poster.jpg
     caption: "A calendar event across town, a leave-by time worked out on the household's own hardware — no Google API key, no per-trip cloud call. One card, the whole thesis."
   highlights:
     - title: Anticipation
@@ -82,17 +82,13 @@ alfr3d:
     title: It notices things before you ask.
     lead: "Most smart-home software is a rental cop who memorized the building — knows every hallway, cares about none of them. Alfr3d isn't here to know the building. It's here to know you: the appointment across town you still haven't left for, the lamp still burning after the house has gone quiet, the Tuesday that only looks like a Tuesday from the street. It learns the shape of an ordinary day well enough to catch the one that isn't — then says so, once, like an adult, instead of drowning you in a push-notification fire drill. A few places that shows up, no theory required:"
     bullets:
-      # Bullet 1 (leave-by) is SA-6 / check_travel: the rule ships and runs every
-      # cycle, but produces a card only once self-hosted OSRM routing is provisioned
-      # for the household's region (todo/todo_site_dial_in.md). Once that's verified
-      # firing, drop this comment and the hedge in `lines[0]` below.
       - "Gets you out the door on time. A leave-by time pulled from your own calendar, run through a routing engine sitting on your own hardware — not somebody else's API key with a meter running."
       - "Notices what you forgot. The house empties out, the space heater doesn't. Alfr3d does."
       - "Knows your Tuesdays. First activity two hours late, half the house still home at noon — whatever's actually off, for you, not for some hypothetical median family."
       - "Follows you across the house. Pause it in the kitchen, it's waiting in the bedroom."
       - "Shuts up before bed. No idle commentary in the final stretch before your own Bedtime routine kicks in."
     lines:
-      - "None of it's a spec sheet. None of it's a subscription. It's what Alfr3d Core already does — free, forever, self-hosted, quietly getting to know the house it lives in."
+      - "None of it's a spec sheet. None of it's a subscription. It's what Alfr3d Core already does, today, for free, forever, self-hosted — quietly getting to know the house it lives in."
       - "Home Assistant made self-hosting mainstream. Nabu Casa made it convenient. Alfr3d makes it cool: a real platform on hardware you own, with a hosted layer you can opt into — never the other way around."
       - "No ad tier. Not now. Not ever. That's not a pricing decision. That's a policy."
       - "Alfr3d is a butler, not a control panel — situational awareness, a personality that doesn't wear out its welcome, dashboards built to hang on a wall, not hide inside an app. The parts of \"smart home\" everyone else keeps locked behind their own cloud."
