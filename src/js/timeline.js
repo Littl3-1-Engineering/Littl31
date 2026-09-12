@@ -127,11 +127,13 @@ if (root) {
     return `<div class="flex flex-wrap gap-4 mt-6">${cards}</div>`
   }
 
-  // A grouped/summarized entry (several months-old milestones folded into
-  // one card, per the Documentation Sync Protocol) carries `description` as
-  // an array of bullet highlights instead of a single paragraph string —
-  // the 3 most recent entries in each phase always stay as plain-paragraph
-  // singles. Render whichever shape the entry actually has.
+  // A grouped/summarized entry (a whole month's milestones for one product
+  // folded into one card, per the Documentation Sync Protocol) carries
+  // `description` as an array of bullet highlights instead of a single
+  // paragraph string. Convention: every month up to (not including) the
+  // current one is folded into one monthly card per product; the current
+  // month's entries stay ungrouped, one per commit/milestone. Render
+  // whichever shape the entry actually has.
   function entryDescription (entry) {
     if (Array.isArray(entry.description)) {
       const items = entry.description.map((line) => `<li>${escapeHtml(line)}</li>`).join('')

@@ -111,7 +111,7 @@ alfr3d:
         accent: gray
       quip: A butler, boxed and ready to ship. Numbered, not mass-produced.
       lines:
-        - "A Raspberry Pi, pre-flashed with ALFR3D Core and shipped ready to plug in — no Docker Compose, no manual setup, just power and a network connection. Built to order, not stocked."
+        - "Dedicated hardware — a small, purpose-built mini PC, pre-flashed with ALFR3D Core and shipped ready to plug in — no Docker Compose, no manual setup, just power and a network connection. Built to order, not stocked."
         - "The lead way to get ALFR3D, once it ships: every Kit will include a lifetime Relay connection and Alfr3d Deck Pro unlocked for free. The first 100 units will be numbered, with a direct line to me for support instead of a ticket queue."
       pricing:
         - amounts:
