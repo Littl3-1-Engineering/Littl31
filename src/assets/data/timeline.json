@@ -37,6 +37,20 @@
     "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/commit/4044106"
   },
   {
+    "id": "pricing-rounding-2026-09-06",
+    "milestone": "Pricing rounded to whole numbers -- every \".99\" ending dropped",
+    "phase": "Present",
+    "product": [
+      "littl31.com",
+      "Nexus Launcher",
+      "Cloud"
+    ],
+    "status": "Shipped",
+    "date": "2026-09-06",
+    "description": "Every \".99\"-ending price across the live lineup was rounded to a whole number -- the site's honesty-first positioning (bragging about what got killed in honesty.html) sat oddly next to $X.99 psychology pricing. Nexus Launcher Pro unlock $5.99 -> $6 one-time; Kit Founding-100 $399 -> $400; Kit Steady-state $449 -> $450; Uplink $9.99/mo -> $10/mo and $99/yr -> $100/yr. Shipped the same day as real CAD/USD/EUR currency-rotation on the pricing switcher.",
+    "source": "https://github.com/Littl3-1-Engineering/Littl31/commit/edb0977"
+  },
+  {
     "id": "nexus-radial-menu-reorg",
     "milestone": "Nexus Launcher radial menu tidied up",
     "phase": "Present",
