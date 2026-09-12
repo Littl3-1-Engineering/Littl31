@@ -125,53 +125,74 @@
     "source": "https://github.com/Littl3-1-Engineering/alfr3d/commit/13362ef5"
   },
   {
-    "id": "nexus-quick-controls",
-    "milestone": "Nexus quick-controls panel for favorite IoT devices",
+    "id": "backend-2026-08",
+    "milestone": "Backend: August 2026 in review",
     "phase": "Present",
     "product": [
       "Backend"
     ],
     "status": "Shipped",
     "date": "2026-08-31",
-    "description": "Clicking the Nexus Core now opens a top-center panel -- same slide-in language as the existing weather/clock/camera/project-tree side panels -- showing up to 10 favorited smarthome devices as compact toggle/dial tiles, reusing the same device-control endpoint as the Domain page's ControlBlade. A new per-user device_favorites table backs it, capped at 10 devices per user, with an in-panel edit mode to star/unstar. Live-verified end to end in the browser: sign-in gating, star/unstar, tile rendering, and the 10-device cap.",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d/commit/de9d74e9"
-  },
-  {
-    "id": "sa-roadmap-deployed-production",
-    "milestone": "Full situational-awareness roadmap deployed to production",
-    "phase": "Present",
-    "product": [
-      "Backend"
+    "description": [
+      "Full JWT Auth + RBAC shipped across all 5 phases: backend login/refresh/logout, a permission matrix on all 56 write routes, webapp + Nexus Launcher sign-in, rate limiting, no username enumeration, self-service/admin password reset -- tagged v0.2.0.",
+      "Every integration credential (Home Assistant, SmartThings, Spotify, ESPHome) is now Fernet-encrypted at rest, with a zero-downtime dual-read fallback for existing plaintext rows.",
+      "ESPHome added as a new local-only IoT provider, alongside a device-registry-backed multi-camera streaming model.",
+      "Household user management landed end to end: self-service profile editing, full owner/admin CRUD and password-reset, and first-run onboarding for new installs.",
+      "A durable household event log replaced a 20-item RAM buffer; a card feedback loop lets situational-awareness cards learn when a household ignores them; a shared per-cycle context frame cut redundant DB reads by about a third.",
+      "Learned baselines widened from single appliances to per-resident departure times and a household-level \"is today unusual\" check.",
+      "A 12-item situational-awareness roadmap deployed to production in one pass -- event log, card feedback, calendar conferencing, structured cards, anomaly detection, self-hosted routing, plus 3 items investigated and correctly stopped on real evidence.",
+      "Leave-by travel guidance rebuilt on a self-hosted OSRM routing engine plus the free Nominatim geocoding API -- no Google API key, no per-trip cloud call.",
+      "A Nexus quick-controls panel shipped: up to 10 favorited smarthome devices as toggle/dial tiles, opened from the Nexus Core.",
+      "Repos migrated to the Littl3-1-Engineering GitHub org, and the Kit's hardware base switched from a Raspberry Pi 5 to an N100 mini PC, restoring margin after a CAD-verified cost check."
     ],
-    "status": "Shipped",
-    "date": "2026-08-30",
-    "description": "A 12-item situational-awareness roadmap (event log, card feedback, calendar conferencing, a shared context frame, structured cards, per-resident/household anomaly detection, self-hosted routing, plus 3 items investigated and correctly stopped on real evidence -- no ESPHome node, no stable BLE identity, not enough event history yet) shipped to the household's real production box: a real database backup taken first, migrations applied, affected services rebuilt and redeployed, verified live end to end. Also cleared 20+ GB of stale Docker build cache found along the way.",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d/pull/156"
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/releases"
   },
   {
-    "id": "entity-baselines-generalized",
-    "milestone": "Learned baselines widened from appliances to residents & the household",
+    "id": "nexus-launcher-2026-08",
+    "milestone": "Nexus Launcher: August 2026 in review",
     "phase": "Present",
     "product": [
-      "Backend"
-    ],
-    "status": "Shipped",
-    "date": "2026-08-30",
-    "description": "The one learning mechanism in the system could only ever call an appliance's behavior unusual. It now also learns a household-level \"is today unusual\" baseline (typical wake/wind-down hours, how many devices are usually online) on top of the new per-resident departure baselines -- same underlying table, same 6-hourly compute job. Real hardware timing was measured on the production box first to make sure the new computation stayed cheap, and it does (about a second added to a job that already ran in well under a minute).",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/todo_generalize_entity_baselines.md"
-  },
-  {
-    "id": "self-hosted-routing",
-    "milestone": "Leave-by travel guidance rebuilt on self-hosted routing",
-    "phase": "Present",
-    "product": [
-      "Backend",
       "Nexus Launcher"
     ],
     "status": "Shipped",
     "date": "2026-08-30",
-    "description": "The travel-guidance card removed in August (it needed a paid Google Maps tier that was never configured) is back on different footing: a self-hosted OSRM routing engine plus the public, free Nominatim geocoding API -- no account, no API key, no request leaving the house. Measured directly on the production hardware: a real metro-area map preprocesses in under 2 minutes and serves routes from under 200MB of RAM. Backend, the routing engine, and the launcher's leave-by display all shipped and deployed; the card fired in a live household for the first time on 2026-09-10.",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/todo_self_hosted_routing.md"
+    "description": [
+      "Free spatial launcher with a $5.99 one-time Pro unlock live since v0.1.28 -- CI builds a debug APK on every push, with a signed-release workflow on version tags.",
+      "Custom Colors theming shipped as a 5th Pro feature: user-defined accent colors via an in-app HSV picker.",
+      "Added a rotation-lock setting and required sign-in (Keystore-backed credentials) for write actions -- device control, resident edits, running or editing a routine.",
+      "Gained the leave-by travel-guidance display, backed by the new self-hosted routing engine.",
+      "Repo migrated to the Littl3-1-Engineering GitHub org."
+    ],
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck"
+  },
+  {
+    "id": "littl31-2026-08",
+    "milestone": "littl31.com: August 2026 in review",
+    "phase": "Present",
+    "product": [
+      "littl31.com"
+    ],
+    "status": "Shipped",
+    "date": "2026-08-26",
+    "description": [
+      "Site launched at littl31.com: index.html (pitch), alfr3d.html (product + pricing), lab.html (R&D showcase).",
+      "alfr3d.html got real descriptive copy for the Launcher, Core, Cloud, and Kit cards, plus a fix for a scroll-reveal crash that had been silently blocking content sitewide; a splash-logo animation crash on the homepage was also fixed.",
+      "Pricing strategy evolved across the month: from the original Core/Launcher/Cloud plan, to a Kit-first ladder ($399 Founding-100 / $449 steady-state plus a Butler subscription), to a simplified 3-SKU lineup -- then a CAD-verified parts-cost check found the Kit underwater on margin, prompting a hardware pivot from a Raspberry Pi 5 to a cheaper N100 mini PC.",
+      "Repos migrated to the Littl3-1-Engineering GitHub org."
+    ],
+    "source": "https://www.littl31.com/alfr3d.html"
+  },
+  {
+    "id": "cloud-2026-08",
+    "milestone": "Alfr3d Uplink: August 2026 in review",
+    "phase": "Present",
+    "product": [
+      "Cloud"
+    ],
+    "status": "Shipped",
+    "date": "2026-08-26",
+    "description": "Pricing strategy evolved across the month: Cloud and Cloud+ were retired as tier names, folded into a new Relay + Butler ladder, then simplified further by folding Relay into Butler. A CAD-verified cost check on the Kit (which bundles free Relay for life) prompted a hardware pivot from a Raspberry Pi 5 to a cheaper N100 mini PC to protect margin.",
+    "source": "https://www.littl31.com/alfr3d.html"
   },
   {
     "id": "alfred-cube",
@@ -282,101 +303,6 @@
     "source": "https://github.com/armageddion/cassiop3ia"
   },
   {
-    "id": "backend-v020-hardening",
-    "milestone": "Backend v0.2.0: Auth, secrets, IoT & reliability hardening",
-    "phase": "Present",
-    "product": [
-      "Backend"
-    ],
-    "status": "Shipped",
-    "date": "2026-08-26",
-    "description": [
-      "Full JWT Auth + RBAC shipped and on-device verified across all 5 phases: backend login/refresh/logout, a permission matrix on all 56 write routes, webapp + Nexus Launcher sign-in, and hardening (rate limiting, no username enumeration, self-service/admin password reset).",
-      "Every integration credential (Home Assistant, SmartThings, Spotify, ESPHome) is now Fernet-encrypted at rest, with a zero-downtime dual-read fallback for existing plaintext rows.",
-      "ESPHome added as a new local-only IoT provider (mDNS discovery, Noise-encrypted API), alongside a device-registry-backed multi-camera streaming model -- tagged v0.2.0 \"Multi-Camera Registry\".",
-      "Household user management landed end to end: self-service profile editing plus a full owner/admin CRUD and password-reset UI for the roster.",
-      "Real production fixes along the way: a stalled-ffmpeg self-heal for camera streams, systemd autostart so all 12 containers survive a reboot unattended, and a calendar-sync bug (stray-space name matching, UTC handling).",
-      "Consolidated years of prior architectures into today's repo (Littl3-1-Engineering/alfr3d, 534+ commits) -- confirmed to still carry its FSL-1.1-ALv2 LICENSE file.",
-      "Two backend services were missed when the secrets-at-rest volume was wired up (found and fixed on the live production box).",
-      "First-run onboarding: new installs detect an unclaimed household and walk through claiming a seeded resident or bootstrapping a new owner account, on both the webapp and the Nexus Launcher, instead of a bare login screen.",
-      "A durable household event log (previously a 20-item RAM buffer, gone on restart) now backs everything downstream that needs real event history.",
-      "A card feedback loop: situational-awareness cards learn when a household ignores them (cooldown + repetition damping), with security-relevant cards exempt from ever being silenced.",
-      "A shared per-cycle context frame cut redundant DB reads across the 16+ situational-awareness rules by roughly a third and enabled a new empty-house-but-something's-on check.",
-      "Every situational-awareness card gained an additive structured `data` field alongside its display prose, so consumers stop having to regex facts out of it.",
-      "Calendar conferencing metadata (real Google Meet/Zoom links) now backs the \"call starting soon\" card as a confirmed-tier signal, not just a text guess.",
-      "Departure-anomaly detection shipped: a resident home well past their typical time with no calendar event explaining it -- the presence-history table this was assumed to need turned out to already exist in the data."
-    ],
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d/releases"
-  },
-  {
-    "id": "nexus-launcher-theming-rotation",
-    "milestone": "Nexus Launcher: Pro unlock, theming, rotation lock & write-action sign-in",
-    "phase": "Present",
-    "product": [
-      "Nexus Launcher"
-    ],
-    "status": "Shipped",
-    "date": "2026-08-21",
-    "description": [
-      "Free spatial launcher with a $5.99 one-time Pro unlock live since v0.1.28, with CI building a debug APK on every push and a signed-release workflow on version tags.",
-      "Custom Colors theming: a 5th Pro feature, user-defined accent colors via an in-app HSV picker.",
-      "A rotation-lock setting keeps the launcher upright in portrait regardless of device orientation.",
-      "Write actions (device control, resident edits, running/editing a routine) now require sign-in, using Keystore-backed credential storage from the Auth + RBAC rollout."
-    ],
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck"
-  },
-  {
-    "id": "littl31-site-launch-fixes",
-    "milestone": "littl31.com: site launch + copy & scroll-reveal fixes",
-    "phase": "Present",
-    "product": [
-      "littl31.com"
-    ],
-    "status": "Shipped",
-    "date": "2026-08-21",
-    "description": [
-      "Site live at littl31.com: index.html (pitch), alfr3d.html (product + pricing), lab.html (R&D showcase).",
-      "alfr3d.html got real descriptive copy for the Nexus Launcher, Core, Cloud, and Kit cards, plus a fix for a scroll-reveal crash that was silently blocking content sitewide.",
-      "Fixed a splash-logo animation crash on the homepage (a stray module-scope reference)."
-    ],
-    "source": "https://www.littl31.com"
-  },
-  {
-    "id": "pricing-strategy-evolution",
-    "milestone": "Pricing strategy: monetization plan → Kit-first → 3 SKUs → CAD-corrected",
-    "phase": "Present",
-    "product": [
-      "Backend",
-      "Nexus Launcher",
-      "littl31.com",
-      "Cloud"
-    ],
-    "status": "Shipped",
-    "date": "2026-08-26",
-    "description": [
-      "Monetization plan first published: Core free, Nexus Launcher free + $5.99 Pro unlock, Cloud tiers, Kit unscheduled.",
-      "Revised to a Kit-first ladder: Kit $399 Founding-100 / $449 steady-state, with a Butler subscription ($9.99/mo) replacing the old Cloud tiers.",
-      "Simplified further to exactly 3 paid SKUs by cutting the standalone Relay tier, folding remote access into Butler.",
-      "A CAD-verified parts cost check found the Kit underwater on margin at the earlier USD-based estimate -- prompted the hardware pivot above and a revised sales-volume estimate.",
-      "Kit hardware base switched from a Raspberry Pi 5 to an N100 mini PC after a cheaper reference build surfaced, dropping parts cost from ~$425 to ~$235 CAD and restoring the margin the Pi 5 + M.2 HAT build had eaten into."
-    ],
-    "source": "https://www.littl31.com/alfr3d.html"
-  },
-  {
-    "id": "github-org-migration",
-    "milestone": "GitHub org migration to Littl3-1-Engineering",
-    "phase": "Present",
-    "product": [
-      "Backend",
-      "Nexus Launcher",
-      "littl31.com"
-    ],
-    "status": "Shipped",
-    "date": "2026-08-20",
-    "description": "All 3 repos (alfr3d, alfr3d_deck, Littl31) migrated from the personal armageddion account to the Littl3-1-Engineering org.",
-    "source": "https://github.com/Littl3-1-Engineering"
-  },
-  {
     "id": "kit-build-bom-validation",
     "milestone": "Alfr3d Kit build + BOM validation",
     "phase": "Future",
@@ -385,7 +311,7 @@
     ],
     "status": "Planned",
     "date": "2026-08-22",
-    "description": "Build one Kit end-to-end and time assembly before publishing the $399 Founding-100 price. Validates ~$252 landed-cost estimate (Pi 5 8GB, NVMe+HAT, PSU, enclosure, cooling, cabling, packaging, assembly labor, shipping, fees, support/DOA reserve) against a real build, not just parts pricing.",
+    "description": "Build one Kit end-to-end and time assembly before publishing the $400 Founding-100 price. Validates the current ~$235 CAD parts-cost estimate (N100 mini PC, NVMe SSD, PSU, enclosure, cooling, cabling, packaging) plus assembly labor, shipping, fees, and a support/DOA reserve against a real build, not just parts pricing.",
     "source": "https://app.notion.com/p/3c6d732b1d3481eba78bf03f263018f2"
   },
   {
@@ -526,19 +452,6 @@
     "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/Neural-Blueprint/todo/todo_camera_streaming.md"
   },
   {
-    "id": "alfr3d-kit",
-    "milestone": "Alfr3d Kit",
-    "phase": "Future",
-    "product": [
-      "Backend",
-      "Cloud"
-    ],
-    "status": "Backburner",
-    "date": null,
-    "description": "Pre-flashed Raspberry Pi appliance, built to order. Parked until Alfr3d Cloud proves demand. Not yet scheduled.",
-    "source": "https://www.littl31.com/alfr3d.html"
-  },
-  {
     "id": "alfr3d-cloud-phase3",
     "milestone": "Alfr3d Cloud (Phase 3)",
     "phase": "Future",
@@ -655,14 +568,14 @@
   {
     "id": "device-location-reporting",
     "milestone": "Alfr3d learns your comings and goings -- with your consent",
-    "phase": "Future",
+    "phase": "Present",
     "product": [
       "Backend",
       "Nexus Launcher"
     ],
-    "status": "In Progress",
+    "status": "Shipped",
     "date": "2026-09-10",
-    "description": "With your explicit, opt-in consent, Alfr3d can learn your movements away from home -- not just whether you are on the house Wi-Fi -- so it comes to understand your daily rhythm well enough to anticipate when you are heading out or have the house ready for your return. It is off by default and stays that way until you deliberately turn it on. The location is approximate, never precise tracking; it goes only to your own Alfr3d server and is never sent to Littl3.1 Engineering or anyone else; the launcher reads it only while you are using your phone, never in the background; and switching it off stops collection and clears anything still queued. The data pipeline is live end to end today -- the situational-awareness features that learn from it come next.",
+    "description": "With your explicit, opt-in consent, Alfr3d can learn your movements away from home -- not just whether you are on the house Wi-Fi -- so it comes to understand your daily rhythm well enough to anticipate when you are heading out or have the house ready for your return. It is off by default and stays that way until you deliberately turn it on. The location is approximate, never precise tracking; it goes only to your own Alfr3d server and is never sent to Littl3.1 Engineering or anyone else; the launcher reads it only while you are using your phone, never in the background; and switching it off stops collection and clears anything still queued. Shipped, deployed, and live-verified against real production data -- released as Alfr3d Deck v0.2.2.",
     "source": "https://app.notion.com/p/3d7d732b1d3481069e89ffd41deb1527"
   },
   {
