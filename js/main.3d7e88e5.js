@@ -13388,11 +13388,13 @@ if (root) {
       return "\n        <div class=\"window-frame window-sm accent-".concat(escapeHtml(accent), "\">\n          <div class=\"window-body\">\n            <div class=\"window-content px-6 py-4\">\n              <div class=\"font-bold accent-text-").concat(escapeHtml(accent), " text-2xl\">").concat(escapeHtml(amount), "</div>\n              <div class=\"text-xs text-gray-400 mt-1\">").concat(escapeHtml(tier.label), "</div>\n            </div>\n          </div>\n        </div>");
     }).join('');
     return "<div class=\"flex flex-wrap gap-4 mt-6\">".concat(cards, "</div>");
-  }; // A grouped/summarized entry (several months-old milestones folded into
-  // one card, per the Documentation Sync Protocol) carries `description` as
-  // an array of bullet highlights instead of a single paragraph string —
-  // the 3 most recent entries in each phase always stay as plain-paragraph
-  // singles. Render whichever shape the entry actually has.
+  }; // A grouped/summarized entry (a whole month's milestones for one product
+  // folded into one card, per the Documentation Sync Protocol) carries
+  // `description` as an array of bullet highlights instead of a single
+  // paragraph string. Convention: every month up to (not including) the
+  // current one is folded into one monthly card per product; the current
+  // month's entries stay ungrouped, one per commit/milestone. Render
+  // whichever shape the entry actually has.
   var entryDescription = function entryDescription(entry) {
     if (Array.isArray(entry.description)) {
       var items = entry.description.map(function (line) {
