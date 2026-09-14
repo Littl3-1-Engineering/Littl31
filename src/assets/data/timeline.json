@@ -425,7 +425,7 @@
   },
   {
     "id": "nexus-cloud-pairing",
-    "milestone": "Nexus Launcher Cloud pairing",
+    "milestone": "Alfr3d Deck Cloud pairing",
     "phase": "Future",
     "product": [
       "Deck",
@@ -475,7 +475,7 @@
   },
   {
     "id": "play-store-publishing",
-    "milestone": "Nexus Launcher Play Store publishing",
+    "milestone": "Alfr3d Deck Play Store publishing",
     "phase": "Future",
     "product": [
       "Deck"
@@ -638,7 +638,7 @@
   },
   {
     "id": "explore-launcher-context-source",
-    "milestone": "Explore: Nexus Launcher as a new context source for Alfr3d",
+    "milestone": "Explore: Alfr3d Deck as a new context source for situational awareness",
     "phase": "Future",
     "product": [
       "Backend",
