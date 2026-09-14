@@ -8,14 +8,13 @@ include mixins.pug
   // truth stays content.yml) — pulled out here and handed to timeline.js
   // as an inline JSON blob, keyed by product name, since that view is
   // rendered client-side from the fetched timeline.json rather than by
-  // Pug loops. Keys stay 'Nexus Launcher'/'Cloud' to match the literal
-  // Product tags timeline.json's rows actually carry (Notion-sourced,
-  // historically accurate) — timeline.js's PRODUCT_DISPLAY map handles
-  // showing the current names on screen without touching this join key.
+  // Pug loops. Keys are the current canonical product tags timeline.js
+  // normalizes every row onto ('Deck'/'Cloud') — see PRODUCT_ALIASES
+  // there for how legacy 'Nexus Launcher' rows resolve onto 'Deck'.
   var launcherProduct = alfr3d.products.find(function (p) { return p.id === 'p-launcher' })
   var uplinkProduct = alfr3d.products.find(function (p) { return p.id === 'p-butler' })
   var timelinePricing = {
-    'Nexus Launcher': (launcherProduct && launcherProduct.pricing) || [],
+    'Deck': (launcherProduct && launcherProduct.pricing) || [],
     'Cloud': (uplinkProduct && uplinkProduct.pricing) || []
   }
 
@@ -51,7 +50,7 @@ body.text-white.grid-bg
         .flex.flex-wrap.justify-center(data-timeline-filters, class='gap-2 mb-10')
           button.timeline-filter-chip.is-active(type='button', data-filter='all') All
           button.timeline-filter-chip.accent-gray(type='button', data-filter='Backend') Backend
-          button.timeline-filter-chip.accent-cyan(type='button', data-filter='Nexus Launcher') Alfr3d Deck
+          button.timeline-filter-chip.accent-cyan(type='button', data-filter='Deck') Alfr3d Deck
           button.timeline-filter-chip.accent-amber(type='button', data-filter='littl31.com') littl31.com
           button.timeline-filter-chip.accent-orange(type='button', data-filter='Cloud') Alfr3d Uplink
 
