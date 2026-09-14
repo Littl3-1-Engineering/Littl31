@@ -23,6 +23,7 @@ head
   title #{timeline.meta.title}
   meta(name='description' content=timeline.meta.description)
   meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  meta(http-equiv='Content-Security-Policy' content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self'; font-src 'self'; media-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'")
   link(rel='stylesheet' href='css/style.css')
   link(rel="icon" type="image/png" href='assets/images/favicon.ico')
   script(src='js/main.js', defer)
