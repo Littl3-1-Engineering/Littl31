@@ -4,7 +4,7 @@
   <title>What Alfr3d Won't Pretend To Do : Littl3.1 Engineering</title>
   <meta name="description" content="What we investigated and deliberately didn't ship in Alfr3d's situational-awareness engine, and the standing principles that govern everything it does ship.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="css/style.fcf58af5.css">
+  <link rel="stylesheet" href="css/style.27b0abab.css">
   <link rel="icon" type="image/png" href="assets/images/favicon.ico">
   <script src="js/main.0593c6be.js" defer></script>
 </head>
@@ -55,7 +55,7 @@
               <hr class="my-4 accent-border-gray border-t-2 opacity-40">
               <div class="w-full mt-10 flex justify-start">
                 <div class="max-w-md space-y-6">
-                  <p class="opacity-0 transition-opacity delay-100 duration-700 text-gray-300 leading-relaxed" data-scroll data-scroll-repeat data-scroll-class="opacity-100">The plan: extend situational awareness into per-room presence and environment data from ESPHome nodes on your network. The integration itself is built through Phase 4 — most of the engineering work is already done.</p>
+                  <p class="opacity-0 transition-opacity delay-100 duration-700 text-gray-300 leading-relaxed" data-scroll data-scroll-repeat data-scroll-class="opacity-100">The plan: extend situational awareness into per-room presence and environment data from ESPHome nodes on your network. The integration itself is fully built — discovery, schema, API routes, frontend, and push-based state are all shipped.</p>
                   <p class="opacity-0 transition-opacity delay-100 duration-700 text-gray-300 leading-relaxed" data-scroll data-scroll-repeat data-scroll-class="opacity-100">Why it's not live — there's no real ESPHome node on the household's own network to validate it against. Rather than ship an untested integration wired into zero real rules, this stays parked until real hardware exists to test it on.</p>
                   <p class="opacity-0 transition-opacity delay-100 duration-700 text-gray-300 leading-relaxed" data-scroll data-scroll-repeat data-scroll-class="opacity-100">Re-entry: the moment a real ESPHome node is reachable on the LAN, this picks back up — most of the work is already sitting there waiting.</p>
                 </div>
@@ -96,7 +96,7 @@
               <div class="w-full mt-10 flex justify-start">
                 <div class="max-w-md space-y-6">
                   <p class="opacity-0 transition-opacity delay-100 duration-700 text-gray-300 leading-relaxed" data-scroll data-scroll-repeat data-scroll-class="opacity-100">The plan: move from noticing what's unusual today to actually anticipating what happens next — conditional patterns mined from your own household's history, not a model trained on anyone else's.</p>
-                  <p class="opacity-0 transition-opacity delay-100 duration-700 text-gray-300 leading-relaxed" data-scroll data-scroll-repeat data-scroll-class="opacity-100">Why it's stopped — this needs real history to mine, and the household event log (itself a very recent addition) only held about 10 hours of real data when this was checked. Shipping a &quot;prediction&quot; feature on 10 hours of history would mean faking a confidence it doesn't have.</p>
+                  <p class="opacity-0 transition-opacity delay-100 duration-700 text-gray-300 leading-relaxed" data-scroll data-scroll-repeat data-scroll-class="opacity-100">Why it's stopped — this needs real history to mine, and the household event log (itself a recent addition) hasn't yet accumulated the weeks of real history the job needs. Shipping a &quot;prediction&quot; feature on too little history would mean faking a confidence it doesn't have.</p>
                   <p class="opacity-0 transition-opacity delay-100 duration-700 text-gray-300 leading-relaxed" data-scroll data-scroll-repeat data-scroll-class="opacity-100">Re-entry: once the event log holds at least four continuous weeks of real history. This is the single highest-value item on the whole roadmap once it's viable — the actual definition of anticipation, not just noticing.</p>
                 </div>
               </div>
