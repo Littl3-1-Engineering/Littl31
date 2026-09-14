@@ -13329,6 +13329,12 @@ setTimeout(function () {
 },{}],12:[function(require,module,exports){
 "use strict";
 
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 // Timeline page (timeline.html) — fetches the static timeline.json asset
 // at runtime and renders/filters it client-side. Self-guarded: on any
 // other page `root` is null and the whole module is a no-op, same
@@ -13336,6 +13342,9 @@ setTimeout(function () {
 
 var root = document.querySelector('[data-timeline-root]');
 if (root) {
+  var normalizeProduct = function normalizeProduct(product) {
+    return PRODUCT_ALIASES[product] || product;
+  };
   var displayName = function displayName(product) {
     return PRODUCT_DISPLAY[product] || product;
   };
@@ -13462,27 +13471,30 @@ if (root) {
     });
     render();
   };
-  var PRODUCTS = ['Backend', 'Nexus Launcher', 'littl31.com', 'Cloud'];
+  var PRODUCTS = ['Backend', 'Deck', 'littl31.com', 'Cloud'];
 
   // Fixed per-product accent, used both for the entry-card product chips
   // and (statically, in timeline.pug) for the filter chips themselves —
   // keep these two in sync if either changes.
   var PRODUCT_ACCENT = {
     Backend: 'gray',
-    'Nexus Launcher': 'cyan',
+    Deck: 'cyan',
     'littl31.com': 'amber',
     Cloud: 'orange'
   };
 
-  // Every row in timeline.json is tagged with the product name that was
-  // current when it shipped (Notion-sourced, historically accurate — a
-  // rebrand milestone genuinely happened under the old name). This map is
-  // display-only: it renames what's shown on screen (chips, group
-  // headings) without changing PRODUCTS/PRODUCT_ACCENT/pricingByProduct
-  // keys or the data-filter values, all of which must keep matching the
-  // literal tags in the data.
+  // A row in timeline.json is tagged with the product name that was current
+  // when it shipped (Notion-sourced, historically accurate) — rows from
+  // before the Sep 2026 rename still carry the old "Nexus Launcher" tag.
+  // normalizeProduct() maps that legacy tag onto the current canonical key
+  // ("Deck") once, right after fetch, so every downstream lookup (PRODUCTS
+  // matching/grouping, PRODUCT_ACCENT, filter chips) only ever sees current
+  // keys — the raw historical tag stays in the JSON data untouched.
+  var PRODUCT_ALIASES = {
+    'Nexus Launcher': 'Deck'
+  };
   var PRODUCT_DISPLAY = {
-    'Nexus Launcher': 'Alfr3d Deck',
+    Deck: 'Alfr3d Deck',
     Cloud: 'Alfr3d Uplink'
   };
   var STATES = {
@@ -13545,7 +13557,11 @@ if (root) {
     if (!res.ok) throw new Error("HTTP ".concat(res.status));
     return res.json();
   }).then(function (data) {
-    entries = data;
+    entries = data.map(function (e) {
+      return _objectSpread(_objectSpread({}, e), {}, {
+        product: e.product.map(normalizeProduct)
+      });
+    });
     render();
   })["catch"](function (err) {
     statusEl.textContent = 'Could not load the timeline right now — please try again later.';
