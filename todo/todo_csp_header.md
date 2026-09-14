@@ -1,6 +1,6 @@
 # Todo: Set a Content-Security-Policy header on littl31.com
 
-## Status: 🟢 Option A shipped and live (2026-09-14) — Option B (Cloudflare Transform Rule for `frame-ancestors`/reporting) still open
+## Status: 🟢 Both Option A and Option B shipped and live (2026-09-14)
 
 ## Source
 
@@ -78,8 +78,19 @@ finding, then Option B when there's time at the Cloudflare dashboard for full co
   `timeline`, `privacy` (spot-checked). Since this is a `<meta>` tag not a header, `curl -I` alone
   won't show it — check the body, not the headers. Still need to re-run/confirm the actual Aikido
   scan clears the finding (scan itself not re-triggered from this session).
-- [ ] Follow up with a Cloudflare Transform Rule for `frame-ancestors` (Option B) if/when there's
-  dashboard time — not blocking Option A.
+- [x] Follow up with a Cloudflare Transform Rule for `frame-ancestors` (Option B). Shipped
+  2026-09-14, same session — Aikido separately flagged this as its own finding ("Missing
+  Anti-clickjacking header", risk 50) before this got to it organically. Created via the
+  Cloudflare API (zone `6b5f6ddc53763840d8ed1627ea189430`, `littl31.com`, Free plan — Transform
+  Rules are available on Free) rather than the dashboard: a
+  `http_response_headers_transform`-phase rule (`Security response headers`, rule id
+  `012c46b7e8bd478babc550655ef9a170`) scoped to `http.host eq "www.littl31.com"` (not zone-wide —
+  deliberately leaves `api.littl31.com` untouched) that sets `X-Frame-Options: DENY` and
+  `Content-Security-Policy: frame-ancestors 'none'` on every response. Confirmed live via
+  `curl -sI https://www.littl31.com/`. Multiple CSP delivery mechanisms (this header + the Option
+  A meta tag) are enforced together by the browser (each source can only add restrictions), so no
+  conflict — the header covers `frame-ancestors` (meta-tag-incompatible), the meta tag covers
+  everything else.
 
 ## Related
 
