@@ -1,6 +1,6 @@
 # Todo: Set a Content-Security-Policy header on littl31.com
 
-## Status: 🟡 Option A implemented, awaiting build verification sign-off + deploy — opened 2026-09-11 from an Aikido finding
+## Status: 🟢 Option A shipped and live (2026-09-14) — Option B (Cloudflare Transform Rule for `frame-ancestors`/reporting) still open
 
 ## Source
 
@@ -68,9 +68,16 @@ finding, then Option B when there's time at the Cloudflare dashboard for full co
   load with zero `Refused`/`Content Security`/violation console messages. Spot-checked `index`
   (scramble title, fonts, grid bg) and `timeline` (fetches `assets/data/timeline.json` via
   `connect-src 'self'`, tab switching, inline-styled pricing badges) visually — both correct.
-- [ ] Deploy and re-run the Aikido scan (or `curl -I https://www.littl31.com`) to confirm the
-  finding clears. **Not deployed yet** — `npm run deploy` (`build:prod` + `gh-pages -d dist -b
-  live`) pushes straight to the live site, holding off for an explicit go-ahead.
+- [x] Deploy and re-run the Aikido scan (or `curl -I https://www.littl31.com`) to confirm the
+  finding clears. Shipped 2026-09-14: pushed to `main` (commit `f471a19`), which the existing
+  `.github/workflows/deploy.yml` `Deploy` workflow auto-builds and pushes to `live` on every push
+  to `main` — no manual `npm run deploy` needed (that command raced the CI deploy locally and
+  correctly failed with "fetch first" since CI had already pushed a newer commit; not a real
+  conflict, just a stale local `gh-pages` cache). Confirmed live via
+  `curl -s https://www.littl31.com/ | grep Content-Security-Policy` — meta tag present on `index`,
+  `timeline`, `privacy` (spot-checked). Since this is a `<meta>` tag not a header, `curl -I` alone
+  won't show it — check the body, not the headers. Still need to re-run/confirm the actual Aikido
+  scan clears the finding (scan itself not re-triggered from this session).
 - [ ] Follow up with a Cloudflare Transform Rule for `frame-ancestors` (Option B) if/when there's
   dashboard time — not blocking Option A.
 
