@@ -1,5 +1,49 @@
 [
   {
+    "id": "sa-retention-2-years",
+    "milestone": "Alfr3d's memory of the household now spans two years",
+    "phase": "Present",
+    "product": [
+      "Backend"
+    ],
+    "status": "Shipped",
+    "date": "2026-09-13",
+    "description": "Alfr3d used to forget most of what it noticed about the household after 90 to 180 days -- not long enough to compare this winter to last summer, when routines shift with daylight and school schedules. Its situational-awareness history (arrivals and departures, attention patterns, app interactions, device locations) now keeps two full years, with disk growth tracked over time so that horizon keeps being trustworthy.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/todo_sa_data_retention_3yr.md"
+  },
+  {
+    "id": "context-exchange-protocol",
+    "milestone": "Alfr3d's brain and its launcher stopped guessing separately",
+    "phase": "Present",
+    "product": [
+      "Backend",
+      "Deck"
+    ],
+    "status": "Shipped",
+    "date": "2026-09-12",
+    "description": "Alfr3d's brain and Alfr3d Deck each used to guess the time of day, whether you were busy, and what your phone was doing -- separately, and the guesses didn't always agree. A wind-down suggestion firing at the wrong hour on a real Saturday evening exposed just how far apart they could get: over three hours, in one real case. Now each fact is owned by whichever side actually knows it -- the brain is the source of truth for time-of-day and routines, the Deck is the source of truth for its own battery, do-not-disturb, and connection state -- and the two share what they know instead of re-deriving it independently. If one side can't be reached, the other falls back to its own best estimate rather than showing nothing. Deployed to the house and confirmed working the same day.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/todo_context_exchange_protocol.md"
+  },
+  {
+    "id": "deck-rebrand-and-reliability-sept-2026",
+    "milestone": "The launcher has a new name: Alfr3d Deck",
+    "phase": "Present",
+    "product": [
+      "Deck"
+    ],
+    "status": "Shipped",
+    "date": "2026-09-12",
+    "description": [
+      "\"Nexus\" now belongs to the web dashboard alone, so the launcher dropped the name it used to share with it -- it's Alfr3d Deck now, its radial thumb-menu is Socket, and its terminal is Alfr3d Shell.",
+      "First-launch setup was rebuilt: a five-step walkthrough for permissions, connecting to the house, and setting Alfr3d Deck as your home screen, verified end to end on a real phone.",
+      "Long-press any app, anywhere in the launcher, for a real context menu -- app info and uninstall -- instead of nothing happening.",
+      "The app list now survives being killed by the system in the background, so opening the app drawer after a cold start no longer means waiting through a fresh scan.",
+      "Found and fixed a real crash: reinstalling the launcher, or restoring it onto a new phone, could crash on every launch afterward because Android's backup system was restoring encrypted sign-in data whose key doesn't survive a reinstall. It now recovers on its own instead of getting stuck.",
+      "Moved to a newer Android build toolchain to stay ahead of Google's requirements."
+    ],
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/pull/25"
+  },
+  {
     "id": "leave-by-card-live",
     "milestone": "The \"leave by now\" card is live in a real house",
     "phase": "Present",
@@ -384,7 +428,7 @@
     "milestone": "Nexus Launcher Cloud pairing",
     "phase": "Future",
     "product": [
-      "Nexus Launcher",
+      "Deck",
       "Cloud"
     ],
     "status": "Backburner",
@@ -398,7 +442,7 @@
     "phase": "Future",
     "product": [
       "Backend",
-      "Nexus Launcher"
+      "Deck"
     ],
     "status": "Backburner",
     "date": null,
@@ -434,7 +478,7 @@
     "milestone": "Nexus Launcher Play Store publishing",
     "phase": "Future",
     "product": [
-      "Nexus Launcher"
+      "Deck"
     ],
     "status": "In Progress",
     "date": null,
@@ -530,12 +574,12 @@
   {
     "id": "deck-household-composition",
     "milestone": "Deck: Household composition awareness",
-    "phase": "Future",
+    "phase": "Present",
     "product": [
       "Backend",
       "Nexus Launcher"
     ],
-    "status": "In Progress",
+    "status": "Shipped",
     "date": "2026-08-28",
     "description": "New situational-awareness card that reads household composition (who's home vs. away, known vs. unknown devices) and surfaces it with urgency-aware styling on the Ambient Brief. Backend check + Deck card both built and unit-tested; not yet verified on-device.",
     "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/pull/155"
@@ -543,12 +587,12 @@
   {
     "id": "deck-cross-surface-continuity",
     "milestone": "Deck: Cross-surface continuity card",
-    "phase": "Future",
+    "phase": "Present",
     "product": [
       "Backend",
       "Nexus Launcher"
     ],
-    "status": "In Progress",
+    "status": "Shipped",
     "date": "2026-08-28",
     "description": "New backend endpoint + routines/now-playing tracking so the launcher can surface a \"pick up where you left off\" card across surfaces (e.g. resume music paused elsewhere, or a routine edited on the web dashboard). Built and unit-tested; not yet verified on-device.",
     "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/pull/155"
@@ -556,12 +600,12 @@
   {
     "id": "deck-rhythm-break-anomaly",
     "milestone": "Deck: Rhythm-break anomaly cards",
-    "phase": "Future",
+    "phase": "Present",
     "product": [
       "Backend",
       "Nexus Launcher"
     ],
-    "status": "In Progress",
+    "status": "Shipped",
     "date": "2026-08-28",
     "description": "Learns each device's typical on/off rhythm from history and flags when something is still on well past its usual pattern (e.g. a light on much later than normal). Backend baseline computation + anomaly check built and unit-tested; not yet verified on-device and no real baseline data has accumulated yet.",
     "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/pull/155"
@@ -569,12 +613,12 @@
   {
     "id": "deck-attention-telemetry",
     "milestone": "Deck: Attention telemetry as a focus signal",
-    "phase": "Future",
+    "phase": "Present",
     "product": [
       "Backend",
       "Nexus Launcher"
     ],
-    "status": "In Progress",
+    "status": "Shipped",
     "date": "2026-08-28",
     "description": "Launcher reports rolling attention/dwell telemetry to a new backend endpoint, feeding focus and wind-down situational-awareness signals. Built and unit-tested on both sides; not yet verified on-device.",
     "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/pull/155"
@@ -585,7 +629,7 @@
     "phase": "Present",
     "product": [
       "Backend",
-      "Nexus Launcher"
+      "Deck"
     ],
     "status": "Shipped",
     "date": "2026-09-10",
@@ -598,7 +642,7 @@
     "phase": "Future",
     "product": [
       "Backend",
-      "Nexus Launcher"
+      "Deck"
     ],
     "status": "Backburner",
     "date": "2026-08-27",
@@ -611,7 +655,7 @@
     "phase": "Future",
     "product": [
       "Backend",
-      "Nexus Launcher",
+      "Deck",
       "littl31.com"
     ],
     "status": "Backburner",
@@ -654,5 +698,17 @@
     "date": "2026-08-30",
     "description": "A planned next step for the household event log -- noticing that one event usually follows another, and gently flagging it when it doesn't -- needs real weeks of history to learn from honestly. The event log itself is brand new, so this is queued rather than built against too little data.",
     "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/todo_transition_learning.md"
+  },
+  {
+    "id": "littl31-csp-header",
+    "milestone": "Locking down the site with a Content-Security-Policy header",
+    "phase": "Future",
+    "product": [
+      "littl31.com"
+    ],
+    "status": "Planned",
+    "date": "2026-09-11",
+    "description": "A routine security scan flagged that the site doesn't set a Content-Security-Policy header -- the standard first line of defense against a compromised script running attacker code in a visitor's browser. The site is static and hosted on GitHub Pages, which doesn't support custom response headers, so this needs a fix at the Cloudflare layer in front of it rather than a code change. Not started yet.",
+    "source": "https://github.com/Littl3-1-Engineering/Littl31/blob/main/todo/todo_csp_header.md"
   }
 ]
