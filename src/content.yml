@@ -329,7 +329,7 @@ honesty:
       eyebrow: KILLED · SA-9
       title: Room-level sensors from ESPHome
       lines:
-        - "The plan: extend situational awareness into per-room presence and environment data from ESPHome nodes on your network. The integration itself is built through Phase 4 — most of the engineering work is already done."
+        - "The plan: extend situational awareness into per-room presence and environment data from ESPHome nodes on your network. The integration itself is fully built — discovery, schema, API routes, frontend, and push-based state are all shipped."
         - Why it's not live — there's no real ESPHome node on the household's own network to validate it against. Rather than ship an untested integration wired into zero real rules, this stays parked until real hardware exists to test it on.
         - "Re-entry: the moment a real ESPHome node is reachable on the LAN, this picks back up — most of the work is already sitting there waiting."
     - id: ble-presence
@@ -344,7 +344,7 @@ honesty:
       title: Predicting what happens next
       lines:
         - "The plan: move from noticing what's unusual today to actually anticipating what happens next — conditional patterns mined from your own household's history, not a model trained on anyone else's."
-        - Why it's stopped — this needs real history to mine, and the household event log (itself a very recent addition) only held about 10 hours of real data when this was checked. Shipping a "prediction" feature on 10 hours of history would mean faking a confidence it doesn't have.
+        - Why it's stopped — this needs real history to mine, and the household event log (itself a recent addition) hasn't yet accumulated the weeks of real history the job needs. Shipping a "prediction" feature on too little history would mean faking a confidence it doesn't have.
         - "Re-entry: once the event log holds at least four continuous weeks of real history. This is the single highest-value item on the whole roadmap once it's viable — the actual definition of anticipation, not just noticing."
     - id: principles
       eyebrow: STANDING RULES
