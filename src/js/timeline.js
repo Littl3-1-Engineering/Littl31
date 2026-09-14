@@ -6,27 +6,35 @@
 const root = document.querySelector('[data-timeline-root]')
 
 if (root) {
-  const PRODUCTS = ['Backend', 'Nexus Launcher', 'littl31.com', 'Cloud']
+  const PRODUCTS = ['Backend', 'Deck', 'littl31.com', 'Cloud']
 
   // Fixed per-product accent, used both for the entry-card product chips
   // and (statically, in timeline.pug) for the filter chips themselves —
   // keep these two in sync if either changes.
   const PRODUCT_ACCENT = {
     Backend: 'gray',
-    'Nexus Launcher': 'cyan',
+    Deck: 'cyan',
     'littl31.com': 'amber',
     Cloud: 'orange'
   }
 
-  // Every row in timeline.json is tagged with the product name that was
-  // current when it shipped (Notion-sourced, historically accurate — a
-  // rebrand milestone genuinely happened under the old name). This map is
-  // display-only: it renames what's shown on screen (chips, group
-  // headings) without changing PRODUCTS/PRODUCT_ACCENT/pricingByProduct
-  // keys or the data-filter values, all of which must keep matching the
-  // literal tags in the data.
+  // A row in timeline.json is tagged with the product name that was current
+  // when it shipped (Notion-sourced, historically accurate) — rows from
+  // before the Sep 2026 rename still carry the old "Nexus Launcher" tag.
+  // normalizeProduct() maps that legacy tag onto the current canonical key
+  // ("Deck") once, right after fetch, so every downstream lookup (PRODUCTS
+  // matching/grouping, PRODUCT_ACCENT, filter chips) only ever sees current
+  // keys — the raw historical tag stays in the JSON data untouched.
+  const PRODUCT_ALIASES = {
+    'Nexus Launcher': 'Deck'
+  }
+
+  function normalizeProduct (product) {
+    return PRODUCT_ALIASES[product] || product
+  }
+
   const PRODUCT_DISPLAY = {
-    'Nexus Launcher': 'Alfr3d Deck',
+    Deck: 'Alfr3d Deck',
     Cloud: 'Alfr3d Uplink'
   }
 
@@ -237,7 +245,7 @@ if (root) {
       return res.json()
     })
     .then((data) => {
-      entries = data
+      entries = data.map((e) => ({ ...e, product: e.product.map(normalizeProduct) }))
       render()
     })
     .catch((err) => {
