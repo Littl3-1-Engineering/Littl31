@@ -1,5 +1,29 @@
 [
   {
+    "id": "climate-advisory-shipped",
+    "milestone": "Alfr3d can now tell you when a room feels off",
+    "phase": "Present",
+    "product": [
+      "Backend"
+    ],
+    "status": "Shipped",
+    "date": "2026-09-16",
+    "description": "The temperature and humidity readings from that first real ESPHome sensor now do something: if a room gets too warm, too cold, too humid, or too dry, Alfr3d says so on the dashboard. It only speaks up when the sensor's connection is actually current, so a stale reading from a flaky Wi-Fi link can't trigger a false alert.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/commit/4f0a22ae"
+  },
+  {
+    "id": "climate-deviation-learned",
+    "milestone": "Alfr3d learned what's normal for your house, hour by hour",
+    "phase": "Present",
+    "product": [
+      "Backend"
+    ],
+    "status": "Shipped",
+    "date": "2026-09-16",
+    "description": "The comfort alerts above used fixed, one-size-fits-all thresholds because Alfr3d had never kept a history of what a room's temperature and humidity actually look like at different times of day. It does now -- every reading from a real sensor is recorded, and a new alert compares the current reading against what's typical for that specific hour, not a flat number. A cool morning no longer looks the same as a cool afternoon. Deployed to the house the same day, right after a full database backup; the fixed-threshold alert fired live within minutes of the update, and the new history started filling in immediately. This more precise alert will stay quiet for a while until enough history builds up to trust it.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/commit/9d3a379a"
+  },
+  {
     "id": "esphome-first-real-sensor",
     "milestone": "Alfr3d's ESPHome support met its first real sensor",
     "phase": "Present",
@@ -688,18 +712,6 @@
     "source": null
   },
   {
-    "id": "esphome-sa-signal-stopped",
-    "milestone": "ESPHome sensors as a situational-awareness signal",
-    "phase": "Future",
-    "product": [
-      "Backend"
-    ],
-    "status": "Backburner",
-    "date": "2026-08-30",
-    "description": "The ESPHome integration itself has existed since v0.2.0, but nothing in the rule engine reads a sensor yet, and this session's own investigation found zero real ESPHome devices on the household's network to validate against -- picked back up once real hardware exists to test with.",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/todo_esphome_situational_awareness.md"
-  },
-  {
     "id": "ble-presence-dead",
     "milestone": "BLE presence sensing -- explored and set aside",
     "phase": "Future",
@@ -707,8 +719,8 @@
       "Backend"
     ],
     "status": "Backburner",
-    "date": "2026-08-30",
-    "description": "The household's hardware can scan for BLE devices just fine, but real scans found no personal device (phone, watch) with a stable enough identity to track -- modern phones deliberately rotate their Bluetooth address. Only fixed smart-home gear (TVs, a smart light) stayed identifiable, which isn't useful as a presence signal. Set aside unless a wearable with a genuinely stable address enters the household.",
+    "date": "2026-09-16",
+    "description": "The household's hardware can scan for BLE devices just fine, but real scans found no personal device (phone, watch) with a stable enough identity to track -- modern phones deliberately rotate their Bluetooth address. Only fixed smart-home gear (TVs, a smart light) stayed identifiable, which isn't useful as a presence signal. Re-checked again a few weeks later, just in case -- same result, same devices, same verdict. Set aside unless a wearable with a genuinely stable address enters the household.",
     "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/todo_ble_presence_sensing.md"
   },
   {
