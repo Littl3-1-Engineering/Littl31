@@ -1,5 +1,29 @@
 [
   {
+    "id": "esphome-first-real-sensor",
+    "milestone": "Alfr3d's ESPHome support met its first real sensor",
+    "phase": "Present",
+    "product": [
+      "Backend"
+    ],
+    "status": "Shipped",
+    "date": "2026-09-15",
+    "description": "ESPHome -- the open, cloud-free firmware many cheap smart sensors run -- has been supported since August, but never actually tested against a real device. The first one to join a real household, a temperature and humidity sensor, immediately surfaced a real bug: the scan that finds ESPHome devices on the network was running from the wrong place internally, and would have silently found nothing on any real home network. Fixed, and a way to add a device by its network address directly was added for networks where the automatic scan still can't reach it. Live temperature, humidity, and signal readings are now flowing from a real sensor in a real house for the first time. Shipped in v0.4.4.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/releases/tag/v0.4.4"
+  },
+  {
+    "id": "esphome-sensor-display-crash-fix",
+    "milestone": "A live sensor reading could have crashed its own display -- fixed first",
+    "phase": "Present",
+    "product": [
+      "Backend"
+    ],
+    "status": "Shipped",
+    "date": "2026-09-15",
+    "description": "Found while getting that first real ESPHome sensor onto the dashboard: opening its control panel to see the live reading would have crashed the panel outright, because the sensor's data was stored in a shape the display code didn't expect. Caught and fixed in the same session, before any real user ran into it.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/commit/66fe1360"
+  },
+  {
     "id": "sa-retention-2-years",
     "milestone": "Alfr3d's memory of the household now spans two years",
     "phase": "Present",
