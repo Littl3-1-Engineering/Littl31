@@ -1,5 +1,18 @@
 [
   {
+    "id": "guest-decay-shipped",
+    "milestone": "Alfr3d notices when a guest has quietly become part of the household",
+    "phase": "Present",
+    "product": [
+      "Backend",
+      "Deck"
+    ],
+    "status": "Shipped",
+    "date": "2026-09-18",
+    "description": "Alfr3d used to treat every guest the same, whether they'd dropped by for an hour or been staying for weeks -- the same headcount card, the same flat lift to the house's music energy, day after day. It now tracks how long a guest has been continuously staying, and that influence fades the longer they're around: a brand-new guest still lifts the mood the way it always has, but a guest who's clearly settled in stops reading as a party starting, and can even nudge things back toward an ordinary quiet day. Past about two weeks of an unbroken stay, Alfr3d suggests actually addressing it -- promoting them to a resident, or having the conversation -- rather than quietly letting it drift. Deployed to the house the same day, right after a full database backup.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/releases/tag/v0.5.0"
+  },
+  {
     "id": "climate-advisory-shipped",
     "milestone": "Alfr3d can now tell you when a room feels off",
     "phase": "Present",
