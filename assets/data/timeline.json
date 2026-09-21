@@ -1,5 +1,18 @@
 [
   {
+    "id": "cyber-hud-rings-shipped",
+    "milestone": "The dashboard's loading spinners became something with a personality",
+    "phase": "Present",
+    "product": [
+      "Backend",
+      "Deck"
+    ],
+    "status": "Shipped",
+    "date": "2026-09-20",
+    "description": "Every generic loading spinner and plain circular button outline across the web dashboard and the Deck launcher's radial menu was replaced with the same family of animated rings -- three shapes that mean something specific (acquiring a lock, syncing with the backend, working something out) and five more that just tell menu items apart. The rings never sit perfectly still, and only really freeze when something's actually wrong, so a resting screen still reads as alive rather than idle. People who prefer reduced motion get the same information through colour alone, with the spinning turned off. The design is a from-scratch recreation of a set of animated HUD buttons by designer Goran Spasojevic, credited in both apps.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/releases/tag/v0.4.6"
+  },
+  {
     "id": "guest-decay-shipped",
     "milestone": "Alfr3d notices when a guest has quietly become part of the household",
     "phase": "Present",
@@ -35,6 +48,18 @@
     "date": "2026-09-16",
     "description": "The comfort alerts above used fixed, one-size-fits-all thresholds because Alfr3d had never kept a history of what a room's temperature and humidity actually look like at different times of day. It does now -- every reading from a real sensor is recorded, and a new alert compares the current reading against what's typical for that specific hour, not a flat number. A cool morning no longer looks the same as a cool afternoon. Deployed to the house the same day, right after a full database backup; the fixed-threshold alert fired live within minutes of the update, and the new history started filling in immediately. This more precise alert will stay quiet for a while until enough history builds up to trust it.",
     "source": "https://github.com/Littl3-1-Engineering/alfr3d/commit/9d3a379a"
+  },
+  {
+    "id": "ntfy-relay-removed",
+    "milestone": "A leftover integration was quietly broadcasting household activity -- removed",
+    "phase": "Present",
+    "product": [
+      "Backend"
+    ],
+    "status": "Shipped",
+    "date": "2026-09-16",
+    "description": "An old integration had kept forwarding a copy of the household's live activity feed to a public notification service, unauthenticated -- anyone who found the right address could have watched it happen in real time. It was dead code left over from a phone-notification experiment the household stopped using years ago. Found and removed the same day it was noticed.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/commit/bc553e6f"
   },
   {
     "id": "esphome-first-real-sensor",
