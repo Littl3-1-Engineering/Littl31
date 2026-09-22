@@ -142,6 +142,19 @@
     "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/pull/25"
   },
   {
+    "id": "device-location-reporting",
+    "milestone": "Alfr3d learns your comings and goings -- with your consent",
+    "phase": "Present",
+    "product": [
+      "Backend",
+      "Deck"
+    ],
+    "status": "Shipped",
+    "date": "2026-09-10",
+    "description": "With your explicit, opt-in consent, Alfr3d can learn your movements away from home -- not just whether you are on the house Wi-Fi -- so it comes to understand your daily rhythm well enough to anticipate when you are heading out or have the house ready for your return. It is off by default and stays that way until you deliberately turn it on. The location is approximate, never precise tracking; it goes only to your own Alfr3d server and is never sent to Littl3.1 Engineering or anyone else; the launcher reads it only while you are using your phone, never in the background; and switching it off stops collection and clears anything still queued. Shipped, deployed, and live-verified against real production data -- released as Alfr3d Deck v0.2.2.",
+    "source": "https://app.notion.com/p/3d7d732b1d3481069e89ffd41deb1527"
+  },
+  {
     "id": "leave-by-card-live",
     "milestone": "The \"leave by now\" card is live in a real house",
     "phase": "Present",
@@ -320,6 +333,25 @@
       "Repo migrated to the Littl3-1-Engineering GitHub org."
     ],
     "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck"
+  },
+  {
+    "id": "sa-cards-2026-08",
+    "milestone": "Situational awareness cards: August 2026 in review",
+    "phase": "Present",
+    "product": [
+      "Backend",
+      "Nexus Launcher"
+    ],
+    "status": "Shipped",
+    "date": "2026-08-28",
+    "description": [
+      "Household composition awareness: a card reading who's home versus away, and known versus unknown devices, surfaced on the Ambient Brief with urgency-aware styling.",
+      "Cross-surface continuity: a new backend endpoint plus routines and now-playing tracking, so the launcher can offer to pick up where you left off -- resuming music paused elsewhere, or a routine edited on the web dashboard.",
+      "Rhythm-break anomalies: learns each device's typical on/off rhythm from history and flags anything still on well past its usual pattern, such as a light left on much later than normal.",
+      "Attention telemetry: the launcher reports rolling attention and dwell telemetry to a new backend endpoint, feeding the focus and wind-down signals.",
+      "All four were built and unit-tested on both sides, but none was verified on-device, and the rhythm-break baselines had no real data accumulated yet."
+    ],
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/pull/155"
   },
   {
     "id": "littl31-2026-08",
@@ -668,71 +700,6 @@
     "date": "2026-08-26",
     "description": "Recommended-tier Kit parts corrected from $191 (a USD-MSRP artifact) to ~$425 CAD verified Canadian pricing -- Founding-100 ($399) now underwater on parts alone before the N100 pivot above. Added a market CAGR range (12-20% working estimate) and a revised pricing/sales plan: budget-tier storage default, Founding-100 reframed as a small hand-assembled batch, Butler subscription as the primary margin engine. Realistic Year 1: 40-100 Kit units; Year 2: 150-400 cumulative.",
     "source": "https://app.notion.com/p/3c8d732b1d348120a467cb989dc6863a"
-  },
-  {
-    "id": "deck-household-composition",
-    "milestone": "Deck: Household composition awareness",
-    "phase": "Present",
-    "product": [
-      "Backend",
-      "Nexus Launcher"
-    ],
-    "status": "Shipped",
-    "date": "2026-08-28",
-    "description": "New situational-awareness card that reads household composition (who's home vs. away, known vs. unknown devices) and surfaces it with urgency-aware styling on the Ambient Brief. Backend check + Deck card both built and unit-tested; not yet verified on-device.",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/pull/155"
-  },
-  {
-    "id": "deck-cross-surface-continuity",
-    "milestone": "Deck: Cross-surface continuity card",
-    "phase": "Present",
-    "product": [
-      "Backend",
-      "Nexus Launcher"
-    ],
-    "status": "Shipped",
-    "date": "2026-08-28",
-    "description": "New backend endpoint + routines/now-playing tracking so the launcher can surface a \"pick up where you left off\" card across surfaces (e.g. resume music paused elsewhere, or a routine edited on the web dashboard). Built and unit-tested; not yet verified on-device.",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/pull/155"
-  },
-  {
-    "id": "deck-rhythm-break-anomaly",
-    "milestone": "Deck: Rhythm-break anomaly cards",
-    "phase": "Present",
-    "product": [
-      "Backend",
-      "Nexus Launcher"
-    ],
-    "status": "Shipped",
-    "date": "2026-08-28",
-    "description": "Learns each device's typical on/off rhythm from history and flags when something is still on well past its usual pattern (e.g. a light on much later than normal). Backend baseline computation + anomaly check built and unit-tested; not yet verified on-device and no real baseline data has accumulated yet.",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/pull/155"
-  },
-  {
-    "id": "deck-attention-telemetry",
-    "milestone": "Deck: Attention telemetry as a focus signal",
-    "phase": "Present",
-    "product": [
-      "Backend",
-      "Nexus Launcher"
-    ],
-    "status": "Shipped",
-    "date": "2026-08-28",
-    "description": "Launcher reports rolling attention/dwell telemetry to a new backend endpoint, feeding focus and wind-down situational-awareness signals. Built and unit-tested on both sides; not yet verified on-device.",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/pull/155"
-  },
-  {
-    "id": "device-location-reporting",
-    "milestone": "Alfr3d learns your comings and goings -- with your consent",
-    "phase": "Present",
-    "product": [
-      "Backend",
-      "Deck"
-    ],
-    "status": "Shipped",
-    "date": "2026-09-10",
-    "description": "With your explicit, opt-in consent, Alfr3d can learn your movements away from home -- not just whether you are on the house Wi-Fi -- so it comes to understand your daily rhythm well enough to anticipate when you are heading out or have the house ready for your return. It is off by default and stays that way until you deliberately turn it on. The location is approximate, never precise tracking; it goes only to your own Alfr3d server and is never sent to Littl3.1 Engineering or anyone else; the launcher reads it only while you are using your phone, never in the background; and switching it off stops collection and clears anything still queued. Shipped, deployed, and live-verified against real production data -- released as Alfr3d Deck v0.2.2.",
-    "source": "https://app.notion.com/p/3d7d732b1d3481069e89ffd41deb1527"
   },
   {
     "id": "explore-launcher-context-source",
