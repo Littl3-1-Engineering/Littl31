@@ -9,14 +9,14 @@ include mixins.pug
   // as an inline JSON blob, keyed by product name, since that view is
   // rendered client-side from the fetched timeline.json rather than by
   // Pug loops. Keys are the current canonical product tags timeline.js
-  // normalizes every row onto ('Deck'/'Cloud') — see PRODUCT_ALIASES
+  // normalizes every row onto ('Deck'/'Uplink') — see PRODUCT_ALIASES
   // there, now a fallback only: the data itself was migrated off the
-  // legacy 'Nexus Launcher' tag on 2026-09-22.
+  // legacy 'Nexus Launcher' and 'Cloud' tags on 2026-09-22.
   var launcherProduct = alfr3d.products.find(function (p) { return p.id === 'p-launcher' })
   var uplinkProduct = alfr3d.products.find(function (p) { return p.id === 'p-butler' })
   var timelinePricing = {
     'Deck': (launcherProduct && launcherProduct.pricing) || [],
-    'Cloud': (uplinkProduct && uplinkProduct.pricing) || []
+    'Uplink': (uplinkProduct && uplinkProduct.pricing) || []
   }
 
 head
@@ -54,7 +54,7 @@ body.text-white.grid-bg
           button.timeline-filter-chip.accent-gray(type='button', data-filter='Backend') Backend
           button.timeline-filter-chip.accent-cyan(type='button', data-filter='Deck') Alfr3d Deck
           button.timeline-filter-chip.accent-amber(type='button', data-filter='littl31.com') littl31.com
-          button.timeline-filter-chip.accent-orange(type='button', data-filter='Cloud') Alfr3d Uplink
+          button.timeline-filter-chip.accent-orange(type='button', data-filter='Uplink') Alfr3d Uplink
 
         p.text-center.text-gray-500.text-sm(data-timeline-status, class='py-16') Loading timeline…
         div.hidden(data-timeline-results, class='space-y-10')

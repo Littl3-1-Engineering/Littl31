@@ -6,7 +6,7 @@
 const root = document.querySelector('[data-timeline-root]')
 
 if (root) {
-  const PRODUCTS = ['Backend', 'Deck', 'littl31.com', 'Cloud']
+  const PRODUCTS = ['Backend', 'Deck', 'littl31.com', 'Uplink']
 
   // Fixed per-product accent, used both for the entry-card product chips
   // and (statically, in timeline.pug) for the filter chips themselves —
@@ -15,7 +15,7 @@ if (root) {
     Backend: 'gray',
     Deck: 'cyan',
     'littl31.com': 'amber',
-    Cloud: 'orange'
+    Uplink: 'orange'
   }
 
   // timeline.json used to carry the product name that was current when each
@@ -23,12 +23,14 @@ if (root) {
   // no longer true: Notion itself normalised those rows to "Deck" (the tag
   // is not even a valid Product option there any more), so on 2026-09-22 the
   // JSON was migrated to match its upstream and no row carries the old tag.
+  // The same applies to 'Cloud', renamed to 'Uplink' in Notion and here on 2026-09-22.
   // normalizeProduct() is kept as a fallback, applied once right after fetch,
   // so a stale or hand-edited row still resolves onto a current canonical key
   // rather than silently dropping out of PRODUCTS matching/grouping,
   // PRODUCT_ACCENT and the filter chips.
   const PRODUCT_ALIASES = {
-    'Nexus Launcher': 'Deck'
+    'Nexus Launcher': 'Deck',
+    Cloud: 'Uplink'
   }
 
   function normalizeProduct (product) {
@@ -37,7 +39,7 @@ if (root) {
 
   const PRODUCT_DISPLAY = {
     Deck: 'Alfr3d Deck',
-    Cloud: 'Alfr3d Uplink'
+    Uplink: 'Alfr3d Uplink'
   }
 
   function displayName (product) {
