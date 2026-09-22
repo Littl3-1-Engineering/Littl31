@@ -13483,13 +13483,15 @@ if (root) {
     Cloud: 'orange'
   };
 
-  // A row in timeline.json is tagged with the product name that was current
-  // when it shipped (Notion-sourced, historically accurate) — rows from
-  // before the Sep 2026 rename still carry the old "Nexus Launcher" tag.
-  // normalizeProduct() maps that legacy tag onto the current canonical key
-  // ("Deck") once, right after fetch, so every downstream lookup (PRODUCTS
-  // matching/grouping, PRODUCT_ACCENT, filter chips) only ever sees current
-  // keys — the raw historical tag stays in the JSON data untouched.
+  // timeline.json used to carry the product name that was current when each
+  // row shipped, so pre-Sep-2026 rows were tagged "Nexus Launcher". That is
+  // no longer true: Notion itself normalised those rows to "Deck" (the tag
+  // is not even a valid Product option there any more), so on 2026-09-22 the
+  // JSON was migrated to match its upstream and no row carries the old tag.
+  // normalizeProduct() is kept as a fallback, applied once right after fetch,
+  // so a stale or hand-edited row still resolves onto a current canonical key
+  // rather than silently dropping out of PRODUCTS matching/grouping,
+  // PRODUCT_ACCENT and the filter chips.
   var PRODUCT_ALIASES = {
     'Nexus Launcher': 'Deck'
   };
