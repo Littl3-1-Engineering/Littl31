@@ -198,7 +198,7 @@
     "product": [
       "littl31.com",
       "Deck",
-      "Cloud"
+      "Uplink"
     ],
     "status": "Shipped",
     "date": "2026-09-06",
@@ -375,7 +375,7 @@
     "milestone": "Alfr3d Uplink: August 2026 in review",
     "phase": "Present",
     "product": [
-      "Cloud"
+      "Uplink"
     ],
     "status": "Shipped",
     "date": "2026-08-26",
@@ -508,7 +508,7 @@
     "phase": "Future",
     "product": [
       "littl31.com",
-      "Cloud"
+      "Uplink"
     ],
     "status": "In Progress",
     "date": "2026-09-09",
@@ -559,7 +559,7 @@
     "phase": "Future",
     "product": [
       "Deck",
-      "Cloud"
+      "Uplink"
     ],
     "status": "Backburner",
     "date": null,
@@ -644,7 +644,7 @@
     "milestone": "Alfr3d Uplink (Phase 3)",
     "phase": "Future",
     "product": [
-      "Cloud"
+      "Uplink"
     ],
     "status": "Backburner",
     "date": null,
@@ -669,7 +669,7 @@
     "phase": "Future",
     "product": [
       "littl31.com",
-      "Cloud"
+      "Uplink"
     ],
     "status": "Backburner",
     "date": null,
@@ -694,7 +694,7 @@
     "phase": "Future",
     "product": [
       "Backend",
-      "Cloud"
+      "Uplink"
     ],
     "status": "In Progress",
     "date": "2026-08-26",
