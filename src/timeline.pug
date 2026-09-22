@@ -10,7 +10,8 @@ include mixins.pug
   // rendered client-side from the fetched timeline.json rather than by
   // Pug loops. Keys are the current canonical product tags timeline.js
   // normalizes every row onto ('Deck'/'Cloud') — see PRODUCT_ALIASES
-  // there for how legacy 'Nexus Launcher' rows resolve onto 'Deck'.
+  // there, now a fallback only: the data itself was migrated off the
+  // legacy 'Nexus Launcher' tag on 2026-09-22.
   var launcherProduct = alfr3d.products.find(function (p) { return p.id === 'p-launcher' })
   var uplinkProduct = alfr3d.products.find(function (p) { return p.id === 'p-butler' })
   var timelinePricing = {

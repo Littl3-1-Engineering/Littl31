@@ -180,10 +180,10 @@
   },
   {
     "id": "deck-background-sync",
-    "milestone": "Nexus Launcher keeps up with the house in the background",
+    "milestone": "Deck keeps up with the house in the background",
     "phase": "Present",
     "product": [
-      "Nexus Launcher",
+      "Deck",
       "Backend"
     ],
     "status": "Shipped",
@@ -197,20 +197,20 @@
     "phase": "Present",
     "product": [
       "littl31.com",
-      "Nexus Launcher",
+      "Deck",
       "Cloud"
     ],
     "status": "Shipped",
     "date": "2026-09-06",
-    "description": "Every \".99\"-ending price across the live lineup was rounded to a whole number -- the site's honesty-first positioning (bragging about what got killed in honesty.html) sat oddly next to $X.99 psychology pricing. Nexus Launcher Pro unlock $5.99 -> $6 one-time; Kit Founding-100 $399 -> $400; Kit Steady-state $449 -> $450; Uplink $9.99/mo -> $10/mo and $99/yr -> $100/yr. Shipped the same day as real CAD/USD/EUR currency-rotation on the pricing switcher.",
+    "description": "Every \".99\"-ending price across the live lineup was rounded to a whole number -- the site's honesty-first positioning (bragging about what got killed in honesty.html) sat oddly next to $X.99 psychology pricing. Deck Pro unlock $5.99 -> $6 one-time; Kit Founding-100 $399 -> $400; Kit Steady-state $449 -> $450; Uplink $9.99/mo -> $10/mo and $99/yr -> $100/yr. Shipped the same day as real CAD/USD/EUR currency-rotation on the pricing switcher.",
     "source": "https://github.com/Littl3-1-Engineering/Littl31/commit/edb0977"
   },
   {
     "id": "nexus-radial-menu-reorg",
-    "milestone": "Nexus Launcher radial menu tidied up",
+    "milestone": "Deck radial menu tidied up",
     "phase": "Present",
     "product": [
-      "Nexus Launcher"
+      "Deck"
     ],
     "status": "Shipped",
     "date": "2026-09-06",
@@ -223,7 +223,7 @@
     "phase": "Present",
     "product": [
       "Backend",
-      "Nexus Launcher"
+      "Deck"
     ],
     "status": "Shipped",
     "date": "2026-09-04",
@@ -235,7 +235,7 @@
     "milestone": "NEXUS SHELL: a real terminal inside the launcher",
     "phase": "Present",
     "product": [
-      "Nexus Launcher"
+      "Deck"
     ],
     "status": "Shipped",
     "date": "2026-09-04",
@@ -261,16 +261,16 @@
     "source": "https://github.com/Littl3-1-Engineering/alfr3d/commit/3fa2f072"
   },
   {
-    "id": "nexus-launcher-prelaunch-polish",
-    "milestone": "Nexus Launcher pre-launch polish + rebrand (v0.1.35)",
+    "id": "deck-prelaunch-polish",
+    "milestone": "Deck pre-launch polish + rebrand (v0.1.35)",
     "phase": "Present",
     "product": [
-      "Nexus Launcher"
+      "Deck"
     ],
     "status": "Shipped",
     "date": "2026-09-03",
     "description": [
-      "The launcher is now \"Alfr3d Nexus Launcher\" (renamed from \"Spatial Launcher\" in the in-app About/header copy), tagged v0.1.35.",
+      "The launcher was renamed from \"Spatial Launcher\" to \"Alfr3d Nexus Launcher\" in the in-app About/header copy, tagged v0.1.35 -- it became Alfr3d Deck in the later Sep 2026 rename.",
       "A pre-submission pass cleared the Play Store technical and policy hygiene: targeting Android 16 (API 36) to meet Google's first-submission requirement, code shrinking and resource minification turned on for release builds and verified on a real device, and a privacy-policy gap closed (an every-15-minute attention-telemetry report to the backend that wasn't disclosed).",
       "Store listing, screenshots, and release notes were rewritten to match everything shipped since the first draft.",
       "Devices window gained the ability to delete a device (tap-to-arm confirm), plus fixes for a chip-row that wrapped instead of scrolling and a connection check that showed a false \"connected\" state on an http-to-https redirect.",
@@ -303,7 +303,7 @@
     "status": "Shipped",
     "date": "2026-08-31",
     "description": [
-      "Full JWT Auth + RBAC shipped across all 5 phases: backend login/refresh/logout, a permission matrix on all 56 write routes, webapp + Nexus Launcher sign-in, rate limiting, no username enumeration, self-service/admin password reset -- tagged v0.2.0.",
+      "Full JWT Auth + RBAC shipped across all 5 phases: backend login/refresh/logout, a permission matrix on all 56 write routes, webapp + Deck sign-in, rate limiting, no username enumeration, self-service/admin password reset -- tagged v0.2.0.",
       "Every integration credential (Home Assistant, SmartThings, Spotify, ESPHome) is now Fernet-encrypted at rest, with a zero-downtime dual-read fallback for existing plaintext rows.",
       "ESPHome added as a new local-only IoT provider, alongside a device-registry-backed multi-camera streaming model.",
       "Household user management landed end to end: self-service profile editing, full owner/admin CRUD and password-reset, and first-run onboarding for new installs.",
@@ -317,11 +317,11 @@
     "source": "https://github.com/Littl3-1-Engineering/alfr3d/releases"
   },
   {
-    "id": "nexus-launcher-2026-08",
-    "milestone": "Nexus Launcher: August 2026 in review",
+    "id": "deck-2026-08",
+    "milestone": "Deck: August 2026 in review",
     "phase": "Present",
     "product": [
-      "Nexus Launcher"
+      "Deck"
     ],
     "status": "Shipped",
     "date": "2026-08-30",
@@ -340,7 +340,7 @@
     "phase": "Present",
     "product": [
       "Backend",
-      "Nexus Launcher"
+      "Deck"
     ],
     "status": "Shipped",
     "date": "2026-08-28",
@@ -521,7 +521,7 @@
     "phase": "Future",
     "product": [
       "Backend",
-      "Nexus Launcher",
+      "Deck",
       "littl31.com"
     ],
     "status": "In Progress",
