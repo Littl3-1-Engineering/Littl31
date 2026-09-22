@@ -21,7 +21,7 @@
     ],
     "status": "Shipped",
     "date": "2026-09-20",
-    "description": "Every generic loading spinner and plain circular button outline across the web dashboard and the Deck launcher's radial menu was replaced with the same family of animated rings -- three shapes that mean something specific (acquiring a lock, syncing with the backend, working something out) and five more that just tell menu items apart. The rings never sit perfectly still, and only really freeze when something's actually wrong, so a resting screen still reads as alive rather than idle. People who prefer reduced motion get the same information through colour alone, with the spinning turned off. The design is a from-scratch recreation of a set of animated HUD buttons by designer Goran Spasojevic, credited in both apps.",
+    "description": "Every generic loading spinner and plain circular button outline across the web dashboard and the Deck's Socket radial menu was replaced with the same family of animated rings -- three shapes that mean something specific (acquiring a lock, syncing with the backend, working something out) and five more that just tell menu items apart. The rings never sit perfectly still, and only really freeze when something's actually wrong, so a resting screen still reads as alive rather than idle. People who prefer reduced motion get the same information through colour alone, with the spinning turned off. The design is a from-scratch recreation of a set of animated HUD buttons by designer Goran Spasojevic, credited in both apps.",
     "source": "https://github.com/Littl3-1-Engineering/alfr3d/releases/tag/v0.4.6"
   },
   {
@@ -206,15 +206,15 @@
     "source": "https://github.com/Littl3-1-Engineering/Littl31/commit/edb0977"
   },
   {
-    "id": "nexus-radial-menu-reorg",
-    "milestone": "Deck radial menu tidied up",
+    "id": "socket-menu-reorg",
+    "milestone": "Socket, the Deck's radial menu, tidied up",
     "phase": "Present",
     "product": [
       "Deck"
     ],
     "status": "Shipped",
     "date": "2026-09-06",
-    "description": "The spatial launcher's radial menu was reorganised so the common destinations sit one level shallower: the terminal moved in with the apps, and Settings and Search now sit directly under System next to Power instead of behind an extra submenu. The top ring stays four choices and nothing is more than three steps deep. The in-app About text was also rewritten in a rougher, more first-person voice.",
+    "description": "Socket, the Deck's radial menu, was reorganised so the common destinations sit one level shallower: Alfr3d Shell moved in with the apps, and Settings and Search now sit directly under System next to Power instead of behind an extra submenu. The top ring stays four choices and nothing is more than three steps deep. The in-app About text was also rewritten in a rougher, more first-person voice.",
     "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/commit/706c60a"
   },
   {
@@ -231,8 +231,8 @@
     "source": "https://github.com/Littl3-1-Engineering/alfr3d/commit/12a77fdf"
   },
   {
-    "id": "nexus-shell-terminal",
-    "milestone": "NEXUS SHELL: a real terminal inside the launcher",
+    "id": "alfr3d-shell-terminal",
+    "milestone": "ALFR3D SHELL: a real terminal inside the Deck",
     "phase": "Present",
     "product": [
       "Deck"
@@ -240,7 +240,7 @@
     "status": "Shipped",
     "date": "2026-09-04",
     "description": [
-      "The launcher's terminal grew from a toy into a genuine command line, shipped in five phases and verified on a real device at each step.",
+      "The Deck's terminal, Alfr3d Shell, grew from a toy into a genuine command line, shipped in five phases and verified on a real device at each step.",
       "It can manage the device: list, launch and inspect installed apps, and read device and settings state.",
       "It has a working filesystem CLI for moving around and inspecting files.",
       "It reaches into Alfr3d itself: control devices, tail the live event stream, and read the current context and mood card (falling back to a local estimate, honestly labelled, when Alfr3d's own mood card isn't present).",
@@ -554,7 +554,7 @@
     "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/Neural-Blueprint/todo/personality.md"
   },
   {
-    "id": "nexus-cloud-pairing",
+    "id": "deck-cloud-pairing",
     "milestone": "Alfr3d Deck Cloud pairing",
     "phase": "Future",
     "product": [
