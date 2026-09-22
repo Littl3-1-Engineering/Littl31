@@ -371,7 +371,7 @@
     "source": "https://www.littl31.com/alfr3d.html"
   },
   {
-    "id": "cloud-2026-08",
+    "id": "uplink-2026-08",
     "milestone": "Alfr3d Uplink: August 2026 in review",
     "phase": "Present",
     "product": [
@@ -512,7 +512,7 @@
     ],
     "status": "In Progress",
     "date": "2026-09-09",
-    "description": "Top GTM priority: give the Kit and Cloud pricing tiers a real visitor-to-customer path -- every rendered CTA is still a mailto: waitlist link. Backend checkout wiring staged 2026-09-09: create-checkout-session now sells only catalogued products (kit-founding, kit-steady, uplink-annual, uplink-monthly) through a server-side product-key -> STRIPE_PRICE_* map in functions/_shared/catalog.js, never a caller-supplied price ID, so test-to-live is an env-var change. Each of those four tiers in content.yml carries a dormant checkout block that no template reads yet. Still gated, nothing charges a card: no Stripe Prices or secrets set, no checkout frontend, no subscriber storage (webhook.js cases remain stubs pending the Cloud relay identity store). Remaining: create the Stripe Prices (multi-currency), set the Pages secrets, build the checkout frontend + success/cancel states, wire the webhook to subscriber storage, update pricing copy + privacy policy section 2.",
+    "description": "Top GTM priority: give the Kit and Uplink pricing tiers a real visitor-to-customer path -- every rendered CTA is still a mailto: waitlist link. Backend checkout wiring staged 2026-09-09: create-checkout-session now sells only catalogued products (kit-founding, kit-steady, uplink-annual, uplink-monthly) through a server-side product-key -> STRIPE_PRICE_* map in functions/_shared/catalog.js, never a caller-supplied price ID, so test-to-live is an env-var change. Each of those four tiers in content.yml carries a dormant checkout block that no template reads yet. Still gated, nothing charges a card: no Stripe Prices or secrets set, no checkout frontend, no subscriber storage (webhook.js cases remain stubs pending the Uplink relay identity store). Remaining: create the Stripe Prices (multi-currency), set the Pages secrets, build the checkout frontend + success/cancel states, wire the webhook to subscriber storage, update pricing copy + privacy policy section 2.",
     "source": "https://github.com/Littl3-1-Engineering/littl31/commit/cc14e72"
   },
   {
@@ -555,7 +555,7 @@
   },
   {
     "id": "deck-cloud-pairing",
-    "milestone": "Alfr3d Deck Cloud pairing",
+    "milestone": "Alfr3d Deck + Uplink pairing",
     "phase": "Future",
     "product": [
       "Deck",
@@ -563,7 +563,7 @@
     ],
     "status": "Backburner",
     "date": null,
-    "description": "Push notifications to the launcher; depends on Alfr3d Cloud Phase 3 shipping first.",
+    "description": "Push notifications to the launcher; depends on Alfr3d Uplink Phase 3 shipping first.",
     "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck"
   },
   {
@@ -640,8 +640,8 @@
     "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/Neural-Blueprint/todo/todo_camera_streaming.md"
   },
   {
-    "id": "alfr3d-cloud-phase3",
-    "milestone": "Alfr3d Cloud (Phase 3)",
+    "id": "alfr3d-uplink-phase3",
+    "milestone": "Alfr3d Uplink (Phase 3)",
     "phase": "Future",
     "product": [
       "Cloud"
@@ -664,8 +664,8 @@
     "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/todo_hardware_enclosure.md"
   },
   {
-    "id": "kit-cloud-commerce-plan",
-    "milestone": "Kit ordering / Cloud signup commerce plan",
+    "id": "kit-uplink-commerce-plan",
+    "milestone": "Kit ordering / Uplink signup commerce plan",
     "phase": "Future",
     "product": [
       "littl31.com",
@@ -673,7 +673,7 @@
     ],
     "status": "Backburner",
     "date": null,
-    "description": "Phased plan to give the Kit and Cloud pricing sections a real path from visitor to paying customer — site currently has zero CTA/checkout links on either tier. Phase A: free waitlist/interest-capture forms. Phase B (gated on Kit waitlist signal): Stripe Checkout for the one-time Kit purchase. Phase C (gated on the Cloud relay being built): Stripe Checkout + Customer Portal + magic-link login alongside the relay's own subscriber identity. Planning only, not started.",
+    "description": "Phased plan to give the Kit and Uplink pricing sections a real path from visitor to paying customer — site currently has zero CTA/checkout links on either tier. Phase A: free waitlist/interest-capture forms. Phase B (gated on Kit waitlist signal): Stripe Checkout for the one-time Kit purchase. Phase C (gated on the Uplink relay being built): Stripe Checkout + Customer Portal + magic-link login alongside the relay's own subscriber identity. Planning only, not started.",
     "source": "https://github.com/Littl3-1-Engineering/Littl31/blob/main/todo/todo_cloud_kit_commerce.md"
   },
   {
