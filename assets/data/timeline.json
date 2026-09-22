@@ -1,5 +1,17 @@
 [
   {
+    "id": "container-health-honest",
+    "milestone": "The dashboard stopped crying wolf about a perfectly healthy Kafka",
+    "phase": "Present",
+    "product": [
+      "Backend"
+    ],
+    "status": "Shipped",
+    "date": "2026-09-22",
+    "description": "The system-health panel had been flashing one of Alfr3d's core services as CRITICAL, at zero percent health, roughly one refresh in seven -- while the service was in perfect shape the whole time. Two things were wrong. The panel read processor load in a unit that could exceed its own maximum on a multi-core machine, so a brief spike wrapped around into an alarm. More fundamentally, it was treating \"working hard\" as \"about to die\", which is exactly backwards for a service whose job is to handle bursts. Health now comes from each container's own self-test rather than being inferred from how busy it looks, so a component can be under load and still read as green, and a bar that fills up means work getting done rather than something going wrong. Along the way, every container that had no self-test got one -- thirteen of thirteen now report a real verdict, where only five did before -- and three services that had quietly dropped off the panel entirely, invisible for ten days, are back on it.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/releases/tag/v0.4.8"
+  },
+  {
     "id": "cyber-hud-rings-shipped",
     "milestone": "The dashboard's loading spinners became something with a personality",
     "phase": "Present",
