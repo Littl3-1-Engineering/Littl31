@@ -1,5 +1,17 @@
 [
   {
+    "id": "self-service-updates-shipped",
+    "milestone": "Alfr3d can now update itself, safely, without anyone SSHing in",
+    "phase": "Present",
+    "product": [
+      "Backend"
+    ],
+    "status": "Shipped",
+    "date": "2026-09-27",
+    "description": "Until now, updating Alfr3d meant SSHing into the house system and running commands by hand -- something only the original developer could do. It now notices when a newer version is available and shows it right on the dashboard; an authorized household member can apply it with one click, after re-entering their password and reading what changed. A full database backup is taken automatically first, and if the new version doesn't come up healthy, Alfr3d automatically reverts itself back to the version that was working -- no manual recovery needed. The whole mechanism was tested end-to-end on an isolated practice copy of the house system, including deliberately breaking a test update to confirm the safety net actually catches it, before it ever touched the real one. Shipped as v0.4.9 and deployed to the house the same day.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/releases/tag/v0.4.9"
+  },
+  {
     "id": "container-health-honest",
     "milestone": "The dashboard stopped crying wolf about a perfectly healthy Kafka",
     "phase": "Present",
