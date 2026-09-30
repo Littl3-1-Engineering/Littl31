@@ -4,7 +4,9 @@ Canonical plan: Notion "🎯 Dial-In Plan — Positioning, Product & Launch Exec
 (`https://app.notion.com/p/3d2d732b1d3481888a34cec36a76c7f5`). This file tracks only the
 site-repo side of Workstream A (A1–A3) and the infra A3 depends on.
 
-## Status: 🟡 A1/A2 copy pass done 2026-09-09; A3 blocked on OSRM provisioning (user-side)
+## Status: 🟢 A1/A2 copy pass done 2026-09-09; **A3 shipped 2026-09-10** — the leave-by
+card fired on a real event and the clip is live on the home page. Only the clip's *reuse*
+(Play Store listing video, waitlist replies) is still outstanding.
 
 ### A1 — index.html hero narrative — ✅ copy done
 - `<title>` was "ALFR3D by Littl3.1 Engineering — Self-Hosted Home Automation" (led with the
@@ -40,6 +42,8 @@ site-repo side of Workstream A (A1–A3) and the infra A3 depends on.
   container is opt-in (`docker compose --profile routing`) and `alfr3d/routing_data/` has
   never been provisioned. Dropped ", today"; left a comment on `intro.bullets` pointing
   here. Restore the unqualified present tense once A3's step 1 below is verified firing.
+  **✅ Restored 2026-09-10** — `check_travel()` fired live, the hedge comment is deleted, and
+  `intro.lines[0]` reads ", today," again. This bullet is historical.
 - Backend cross-check (all 19 `DISPLAY_RULES` in `alfr3d/services/service_daemon/alfr3ddaemon.py`):
   bullets 2–5 map cleanly to live rules — `check_empty_house_still_on`,
   `check_household_unusual_day` + `check_departure_anomaly`, `check_cross_surface_continuity`,
@@ -49,9 +53,39 @@ site-repo side of Workstream A (A1–A3) and the infra A3 depends on.
 - Concierge tier copy ("higher-spec mini PC") left untouched — frozen pending the patron/VIP
   reframe decision (Dial-In Plan §7 TODO callout).
 
-### A3 — hero anticipation moment (leave-by demo clip) — 🔴 scaffolded, blocked on Athos
+### A3 — hero anticipation moment (leave-by demo clip) — ✅ done 2026-09-10
 
-Embed slot is built and **dormant**: `index.pug` renders `#anticipation` (a `<video autoplay
+**Shipped.** Steps 1-5 and 7 below are all complete — see `alfr3d/todo/todo_leave_by_demo.md`
+for the full account:
+
+- **Step 1 (the blocker):** the OSRM routing container was provisioned on the NUC 2026-08-30 and
+  verified end to end. It is no longer opt-in-but-unprovisioned; `todo_self_hosted_routing.md`
+  is 🟢.
+- **Steps 2-4:** `check_travel()` fired live for the first time 2026-09-10 on a real synced
+  Google Calendar event (`Dentist`, Port Credit) — `Leave by 12:12 PM for Dentist` / `17 min
+  drive to Dentist`, a real OSRM route, no staging. Both surfaces were recorded while the card
+  was up; the Deck recording (24 s) became the hero clip, the web dashboard GIF is a secondary
+  asset.
+- **Step 5:** `src/assets/vid/leave-by-demo.mp4` (720×1600 H.264, faststart, ~1 MB) +
+  `src/assets/images/leave-by-demo-poster.jpg`; `home.demo.clip` / `.poster` set in
+  `content.yml`; `index.pug`'s `#anticipation` video constrained to phone width
+  (`max-w-xs sm:max-w-sm` — the dormant stub had assumed a landscape clip). Built and verified
+  rendering.
+- **Step 7:** `alfr3d.html`'s `intro.lines[0]` is back to unqualified present tense
+  ("…already does, today, for free, forever, self-hosted…") and the SA-6 hedge comment on
+  `intro.bullets` is deleted. The A2 "Hedged" bullet above is therefore historical.
+
+**Still open — step 6 only:** reuse the same clip for the Play Store listing video and paste it
+into every waitlist reply. The Play Store side is tracked in
+`alfr3d_deck/todo/todo_play_store_launch_polish.md` §5, which is gated on manual Play Console
+setup.
+
+---
+
+_Original plan, kept for the record — the "to light it up" recipe below is what was actually
+followed:_
+
+Embed slot was built and **dormant**: `index.pug` renders `#anticipation` (a `<video autoplay
 loop muted playsinline>` in an amber window-frame) only when `home.demo.clip` is set in
 `content.yml`. `home.demo.title` / `.caption` are already written. Until a file is dropped in,
 the home page flows straight from pitch to pillars — no "coming soon" placeholder.
