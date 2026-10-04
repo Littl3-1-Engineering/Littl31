@@ -775,5 +775,105 @@
     "date": "2026-09-11",
     "description": "A routine security scan flagged that the site doesn't set a Content-Security-Policy header -- the standard first line of defense against a compromised script running attacker code in a visitor's browser. The site is static and hosted on GitHub Pages, which doesn't support custom response headers, so this needs a fix at the Cloudflare layer in front of it rather than a code change. Not started yet.",
     "source": "https://github.com/Littl3-1-Engineering/Littl31/blob/main/todo/todo_csp_header.md"
+  },
+  {
+    "id": "speak-on-deck-when-away",
+    "milestone": "Speaking up on your phone even when nobody's home",
+    "phase": "Future",
+    "product": [
+      "Backend",
+      "Deck"
+    ],
+    "status": "Backburner",
+    "date": "2026-10-03",
+    "description": "If you've turned on spoken notifications on your phone, ALFR3D should still generate speech and send notifications to it when no one is home to hear them, instead of staying silent. Designed, not started.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/tree/main/todo"
+  },
+  {
+    "id": "kanji-wisdom-quotes",
+    "milestone": "Wise quotes in kanji, tucked into a corner of the screen",
+    "phase": "Future",
+    "product": [
+      "Deck",
+      "Backend"
+    ],
+    "status": "Backburner",
+    "date": "2026-10-03",
+    "description": "A small, quiet corner of both the phone launcher and the web interface will show a rotating wise quote in kanji script, styled to match the rest of the interface. Designed, not started.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/tree/main/todo"
+  },
+  {
+    "id": "compact-settings-redesign",
+    "milestone": "Redesigning the compact settings screen",
+    "phase": "Future",
+    "product": [
+      "Deck"
+    ],
+    "status": "Backburner",
+    "date": "2026-10-03",
+    "description": "The compact one-window settings mode on the launcher is getting a proper design pass in Figma before more building: narrow screens, every theme and accessibility sizes. Not started.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/tree/main/todo"
+  },
+  {
+    "id": "backend-settings-in-deck",
+    "milestone": "ALFR3D's own settings, reachable from the phone launcher",
+    "phase": "Future",
+    "product": [
+      "Deck",
+      "Backend"
+    ],
+    "status": "Backburner",
+    "date": "2026-10-03",
+    "description": "Household settings that live in the web interface today will also be reachable from the launcher's Settings, respecting each person's role. Designed, not started.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/tree/main/todo"
+  },
+  {
+    "id": "device-controls-refresh",
+    "milestone": "Cleaner look and animation for device controls",
+    "phase": "Future",
+    "product": [
+      "Deck"
+    ],
+    "status": "Backburner",
+    "date": "2026-10-03",
+    "description": "Smart-home device controls are getting a visual refresh: smoother, quieter animations and a cyan-only palette, with magenta kept strictly for faults. Not started.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/tree/main/todo"
+  },
+  {
+    "id": "theme-sync",
+    "milestone": "One theme across the web interface and the phone launcher",
+    "phase": "Future",
+    "product": [
+      "Deck",
+      "Backend"
+    ],
+    "status": "Backburner",
+    "date": "2026-10-03",
+    "description": "Pick a theme once and have it follow you between the web interface and the launcher. Designed, not started.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/tree/main/todo"
+  },
+  {
+    "id": "shell-prompt-activity-log",
+    "milestone": "A terminal that knows who you are and what just changed",
+    "phase": "Future",
+    "product": [
+      "Deck"
+    ],
+    "status": "Backburner",
+    "date": "2026-10-03",
+    "description": "The launcher's built-in terminal will show a real user@host prompt (your signed-in user and your home's name) and log changes made elsewhere in the app, like a setting change, as if you'd typed the command. Designed, not started.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/tree/main/todo"
+  },
+  {
+    "id": "local-time-event-log",
+    "milestone": "Event log times in your own timezone",
+    "phase": "Future",
+    "product": [
+      "Deck"
+    ],
+    "status": "Backburner",
+    "date": "2026-10-03",
+    "description": "The scrolling activity log over the wallpaper currently shows times in UTC. It will show your phone's local time instead. Not started.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/tree/main/todo"
   }
 ]
