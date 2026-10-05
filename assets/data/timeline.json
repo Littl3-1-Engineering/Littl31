@@ -635,8 +635,8 @@
       "Backend"
     ],
     "status": "Backburner",
-    "date": null,
-    "description": "Attribute calendar/Gmail integrations to individual household members instead of one shared global account. Blocked on Auth + RBAC landing first.",
+    "date": "2026-10-05",
+    "description": "Attribute calendar/Gmail integrations to individual household members instead of one shared global account. The login and permissions groundwork is in place, so this is parked by choice rather than blocked: two household-privacy questions still need a decision first, whether members see each other's calendars by default and whether another member's mail can be announced aloud in a shared room.",
     "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/Neural-Blueprint/todo/todo_multiuser_integrations.md"
   },
   {
