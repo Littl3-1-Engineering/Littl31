@@ -766,14 +766,14 @@
   },
   {
     "id": "littl31-csp-header",
-    "milestone": "Locking down the site with a Content-Security-Policy header",
-    "phase": "Future",
+    "milestone": "Locking down the site with security headers",
+    "phase": "Present",
     "product": [
       "littl31.com"
     ],
-    "status": "Planned",
-    "date": "2026-09-11",
-    "description": "A routine security scan flagged that the site doesn't set a Content-Security-Policy header -- the standard first line of defense against a compromised script running attacker code in a visitor's browser. The site is static and hosted on GitHub Pages, which doesn't support custom response headers, so this needs a fix at the Cloudflare layer in front of it rather than a code change. Not started yet.",
+    "status": "Shipped",
+    "date": "2026-09-14",
+    "description": "A routine security scan flagged that the site set neither a Content-Security-Policy nor an anti-framing header. Both are now live: a Content-Security-Policy on every page limits the site to loading only its own resources, and a rule at the Cloudflare layer in front of the site (GitHub Pages can't set custom headers itself) stops other sites from embedding it in a frame. The same day also tightened the site's build pipeline permissions and scrubbed an accidentally committed third-party page snapshot from the repository history.",
     "source": "https://github.com/Littl3-1-Engineering/Littl31/blob/main/todo/todo_csp_header.md"
   },
   {
@@ -867,13 +867,13 @@
   {
     "id": "local-time-event-log",
     "milestone": "Event log times in your own timezone",
-    "phase": "Future",
+    "phase": "Present",
     "product": [
       "Deck"
     ],
-    "status": "Backburner",
-    "date": "2026-10-03",
-    "description": "The scrolling activity log over the wallpaper currently shows times in UTC. It will show your phone's local time instead. Not started.",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/tree/main/todo"
+    "status": "Shipped",
+    "date": "2026-10-05",
+    "description": "The scrolling activity log over the wallpaper, the status screen and the built-in terminal now show event times in your phone's own timezone instead of UTC, and keep up if you travel. The web interface got the same treatment, and the backend stopped sending a few malformed timestamps that made some entries hard to read. Deployed and checked on a real phone.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/blob/main/todo/todo_ambient_log_local_timezone.md"
   }
 ]
