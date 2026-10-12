@@ -875,5 +875,17 @@
     "date": "2026-10-05",
     "description": "The scrolling activity log over the wallpaper, the status screen and the built-in terminal now show event times in your phone's own timezone instead of UTC, and keep up if you travel. The web interface got the same treatment, and the backend stopped sending a few malformed timestamps that made some entries hard to read. Deployed and checked on a real phone.",
     "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/blob/main/todo/todo_ambient_log_local_timezone.md"
+  },
+  {
+    "id": "sa-learning-foundation",
+    "milestone": "Alfr3d is learning what's normal for each person and the house",
+    "phase": "Present",
+    "product": [
+      "Backend"
+    ],
+    "status": "In Progress",
+    "date": "2026-10-12",
+    "description": "After a weekday spent out when nobody was expected to be, Alfr3d couldn't tell it was unusual. Situational awareness now sits on a learning foundation: two years of household history is cleaned and shaped into data Alfr3d learns from, producing learned routines for who is home when, room climate, activity and the household's typical day, each with a confidence score. Drift detection notices when a routine genuinely changes. On top of that, one shared engine combines those signals into judgments like 'someone is away unusually', 'a day off nobody planned' and 'an unusual day for the household', and it checks the calendar: a booked event explains an absence, while an empty calendar makes a day at home more surprising. It all runs quietly beside the existing rules for now; switching the rules over comes after a week of comparison.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/sa/SA_ROADMAP.md"
   }
 ]
