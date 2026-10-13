@@ -841,16 +841,15 @@
   },
   {
     "id": "theme-sync",
-    "milestone": "One theme across the web interface and the phone launcher",
-    "phase": "Future",
+    "milestone": "One theme across the web interface and the phone launcher: web and backend",
+    "phase": "Present",
     "product": [
-      "Deck",
       "Backend"
     ],
-    "status": "Backburner",
-    "date": "2026-10-03",
-    "description": "Pick a theme once and have it follow you between the web interface and the launcher. Designed, not started.",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/tree/main/todo"
+    "status": "Shipped",
+    "date": "2026-10-13",
+    "description": "Pick a theme once and it follows your account. The web interface now saves your theme and applies it on every browser you sign in to, and picks up changes made on your phone straight away. Live on the household's server.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/commit/55ab354e"
   },
   {
     "id": "shell-prompt-activity-log",
@@ -887,5 +886,17 @@
     "date": "2026-10-12",
     "description": "After a weekday spent out when nobody was expected to be, Alfr3d couldn't tell it was unusual. Situational awareness now sits on a learning foundation: two years of household history is cleaned and shaped into data Alfr3d learns from, producing learned routines for who is home when, room climate, activity and the household's typical day, each with a confidence score. Drift detection notices when a routine genuinely changes. One shared engine combines those signals into judgments like 'someone is away unusually', 'a day off nobody planned' and 'an unusual day for the household', and it checks the calendar: a booked event explains an absence, while an empty calendar makes a day at home more surprising. Checking the new judgments against the old rules turned up real flaws, so they were reworked: whether someone has stayed unusually long is now judged against that person's own past stays, and a day off against their own past days, so a part-time resident's ordinary day at home no longer looks suspicious. The household's 'unusual day' is the first old rule switched over, and it copes with phone naps and with devices being retired. The rest runs quietly beside the existing rules until their comparison, which is now kept across restarts, shows they agree.",
     "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/sa/SA_ROADMAP.md"
+  },
+  {
+    "id": "theme-sync-deck",
+    "milestone": "One theme across the web interface and the phone launcher: launcher side",
+    "phase": "Present",
+    "product": [
+      "Deck"
+    ],
+    "status": "In Progress",
+    "date": "2026-10-13",
+    "description": "The launcher follows your account's theme for Deep Cyan, Tactical Amber and Light, with a Settings switch to turn it off; wallpaper and custom-colour themes stay on the phone. Built and tested, but not yet installed on a phone, so changes from the web may take up to 30 minutes to show up there.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/commit/d63dfcd"
   }
 ]
