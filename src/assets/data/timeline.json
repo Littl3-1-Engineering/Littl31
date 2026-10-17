@@ -1,5 +1,17 @@
 [
   {
+    "id": "deck-live-on-google-play",
+    "milestone": "Alfr3d Deck is live on Google Play",
+    "phase": "Present",
+    "product": [
+      "Deck"
+    ],
+    "status": "Shipped",
+    "date": "2026-10-17",
+    "description": "The Android home screen is now a download away: free core, with a $6 one-time Pro unlock through Google Play Billing -- no subscription. Getting here meant standing up a proper company developer account, clearing Google's review of the sensitive permissions, and rebuilding the built-in file explorer on Android's own folder picker so the app no longer needs blanket access to every file on the phone.",
+    "source": "https://play.google.com/store/apps/details?id=com.alfr3d.launcher"
+  },
+  {
     "id": "self-service-updates-shipped",
     "milestone": "Alfr3d can now update itself, safely, without anyone SSHing in",
     "phase": "Present",
@@ -614,18 +626,6 @@
     "date": null,
     "description": "Abstract audio-source interface so playback isn't Spotify-only — local library, Tidal, YouTube Music, radio — plus a loose future-ideas list (NLU voice control, Last.fm scrobbling, multi-room sync).",
     "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/Neural-Blueprint/todo/todo_music.md"
-  },
-  {
-    "id": "play-store-publishing",
-    "milestone": "Alfr3d Deck Play Store publishing",
-    "phase": "Future",
-    "product": [
-      "Deck"
-    ],
-    "status": "In Progress",
-    "date": null,
-    "description": "Signing, Gradle Play Publisher, and gated CI already wired up; blocked on manual account-holder steps: Play developer enrollment, Play Console app entry, first manual release upload, sensitive-permission declarations + demo video, hosted privacy policy URL, CI service account for future automated releases.",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck"
   },
   {
     "id": "multiuser-integrations",
