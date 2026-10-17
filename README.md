@@ -1,6 +1,7 @@
 # Littl3.1
 
 [![Deploy](https://github.com/Littl3-1-Engineering/Littl31/actions/workflows/deploy.yml/badge.svg)](https://github.com/Littl3-1-Engineering/Littl31/actions/workflows/deploy.yml)
+[![Get it on Google Play](https://img.shields.io/badge/Google_Play-Alfr3d_Deck-3DDC84?logo=googleplay&logoColor=white)](https://play.google.com/store/apps/details?id=com.alfr3d.launcher)
 
 Littl3.1 Engineering's product/marketing site — a static Pug/Stylus build deployed to GitHub Pages. Showcases [ALFR3D](https://github.com/Littl3-1-Engineering/alfr3d) (self-hosted home automation) and [Nexus Launcher](https://github.com/Littl3-1-Engineering/alfr3d_deck) (its companion Android launcher) as the flagship product, plus a "Lab" page of one-off hardware/LED builds.
 
