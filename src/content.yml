@@ -169,14 +169,14 @@ alfr3d:
       imgCaption: The Ambient Brief card, mid-gathering — real presence data, not a canned notification.
       quip: I've taken the liberty of arranging your applications. You're welcome.
       lines:
-        - "A free-form spatial launcher for Android: no permanent dock, no fixed grid. Apps, the terminal, and ALFR3D surfaces open as free-floating windows on an infinite canvas — summoned by double-tap search or Socket, Deck's press-and-flow radial menu, with live situational-awareness cards updating right on the canvas."
+        - "A free-form spatial launcher for Android: no permanent dock, no fixed grid. Apps, search, and ALFR3D surfaces open as free-floating windows on an infinite canvas — summoned by double-tap search or Socket, Deck's press-and-flow radial menu, with live situational-awareness cards updating right on the canvas."
         - "Live on Google Play. A free core, forever, with a one-time unlock that removes the ceiling — no subscription, because a launcher sitting on your own phone doesn't cost us a server bill to run."
       wide: true
       pricing:
         - amount: Free
           label: On Google Play · $6 one-time Pro unlock
           badge: Live
-          info: 'A free core (full spatial canvas, Socket radial menu, double-tap search, window manager, terminal, base theming — no trial timer, no expiring feature ceiling) plus a $6 one-time Pro unlock via Google Play Billing (extra themes/icon packs, advanced window layouts, backup & restore). Free automatically for Alfr3d Kit owners and Uplink subscribers (Kit and Uplink are not yet available).'
+          info: 'A free core (full spatial canvas, Socket radial menu, double-tap search, window manager, base theming — no trial timer, no expiring feature ceiling) plus a $6 one-time Pro unlock via Google Play Billing (extra themes/icon packs, advanced window layouts, backup & restore). Free automatically for Alfr3d Kit owners and Uplink subscribers (Kit and Uplink are not yet available).'
           cta:
             text: → Get it on Google Play
             href: 'https://play.google.com/store/apps/details?id=com.alfr3d.launcher'
