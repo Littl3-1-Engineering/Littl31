@@ -36,7 +36,7 @@ home:
     caption: "A calendar event across town, a leave-by time worked out on the household's own hardware — no Google API key, no per-trip cloud call. One card, the whole thesis."
   highlights:
     - title: Anticipation
-      text: A 19-rule situational-awareness engine watches your calendar, your devices, and your household's own rhythm — surfacing exactly one thing worth knowing, before you'd think to ask.
+      text: A two-layer learning system studies your calendar, your devices, and your household's own rhythm — first learning what's normal for each, then weighing those signals against each other by how much it trusts them — surfacing exactly one thing worth knowing, before you'd think to ask.
     - title: Character
       text: A personality layer with a voice that stays coherent instead of wearing thin — quips and greetings, not a wall of notifications.
     - title: Ownership
@@ -322,7 +322,7 @@ honesty:
   intro:
     title: We tell you what we killed, too.
     lines:
-      - Most "AI butler" claims in this category are vaporware. Alfr3d's situational-awareness engine has 19 rules live in production — and three more that were investigated and deliberately not shipped, on real evidence, published here before anyone had to ask.
+      - Most "AI butler" claims in this category are vaporware. Alfr3d's situational-awareness engine is a two-layer learning system running in production — and three more that were investigated and deliberately not shipped, on real evidence, published here before anyone had to ask.
       - This isn't a compliance page. It's the cheapest, most honest proof of the ownership thesis we have — a system that tells you what it can't do yet is more trustworthy than one that quietly fakes it.
   sections:
     - id: esphome
