@@ -12,312 +12,6 @@
     "source": "https://play.google.com/store/apps/details?id=com.alfr3d.launcher"
   },
   {
-    "id": "self-service-updates-shipped",
-    "milestone": "Alfr3d can now update itself, safely, without anyone SSHing in",
-    "phase": "Present",
-    "product": [
-      "Backend"
-    ],
-    "status": "Shipped",
-    "date": "2026-09-27",
-    "description": "Until now, updating Alfr3d meant SSHing into the house system and running commands by hand -- something only the original developer could do. It now notices when a newer version is available and shows it right on the dashboard; an authorized household member can apply it with one click, after re-entering their password and reading what changed. A full database backup is taken automatically first, and if the new version doesn't come up healthy, Alfr3d automatically reverts itself back to the version that was working -- no manual recovery needed. The whole mechanism was tested end-to-end on an isolated practice copy of the house system, including deliberately breaking a test update to confirm the safety net actually catches it, before it ever touched the real one. Shipped as v0.4.9 and deployed to the house the same day.",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d/releases/tag/v0.4.9"
-  },
-  {
-    "id": "container-health-honest",
-    "milestone": "The dashboard stopped crying wolf about a perfectly healthy Kafka",
-    "phase": "Present",
-    "product": [
-      "Backend"
-    ],
-    "status": "Shipped",
-    "date": "2026-09-22",
-    "description": "The system-health panel had been flashing one of Alfr3d's core services as CRITICAL, at zero percent health, roughly one refresh in seven -- while the service was in perfect shape the whole time. Two things were wrong. The panel read processor load in a unit that could exceed its own maximum on a multi-core machine, so a brief spike wrapped around into an alarm. More fundamentally, it was treating \"working hard\" as \"about to die\", which is exactly backwards for a service whose job is to handle bursts. Health now comes from each container's own self-test rather than being inferred from how busy it looks, so a component can be under load and still read as green, and a bar that fills up means work getting done rather than something going wrong. Along the way, every container that had no self-test got one -- thirteen of thirteen now report a real verdict, where only five did before -- and three services that had quietly dropped off the panel entirely, invisible for ten days, are back on it.",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d/releases/tag/v0.4.8"
-  },
-  {
-    "id": "cyber-hud-rings-shipped",
-    "milestone": "The dashboard's loading spinners became something with a personality",
-    "phase": "Present",
-    "product": [
-      "Backend",
-      "Deck"
-    ],
-    "status": "Shipped",
-    "date": "2026-09-20",
-    "description": "Every generic loading spinner and plain circular button outline across the web dashboard and the Deck's Socket radial menu was replaced with the same family of animated rings -- three shapes that mean something specific (acquiring a lock, syncing with the backend, working something out) and five more that just tell menu items apart. The rings never sit perfectly still, and only really freeze when something's actually wrong, so a resting screen still reads as alive rather than idle. People who prefer reduced motion get the same information through colour alone, with the spinning turned off. The design is a from-scratch recreation of a set of animated HUD buttons by designer Goran Spasojevic, credited in both apps.",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d/releases/tag/v0.4.6"
-  },
-  {
-    "id": "guest-decay-shipped",
-    "milestone": "Alfr3d notices when a guest has quietly become part of the household",
-    "phase": "Present",
-    "product": [
-      "Backend",
-      "Deck"
-    ],
-    "status": "Shipped",
-    "date": "2026-09-18",
-    "description": "Alfr3d used to treat every guest the same, whether they'd dropped by for an hour or been staying for weeks -- the same headcount card, the same flat lift to the house's music energy, day after day. It now tracks how long a guest has been continuously staying, and that influence fades the longer they're around: a brand-new guest still lifts the mood the way it always has, but a guest who's clearly settled in stops reading as a party starting, and can even nudge things back toward an ordinary quiet day. Past about two weeks of an unbroken stay, Alfr3d suggests actually addressing it -- promoting them to a resident, or having the conversation -- rather than quietly letting it drift. Deployed to the house the same day, right after a full database backup.",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d/releases/tag/v0.4.5"
-  },
-  {
-    "id": "climate-advisory-shipped",
-    "milestone": "Alfr3d can now tell you when a room feels off",
-    "phase": "Present",
-    "product": [
-      "Backend"
-    ],
-    "status": "Shipped",
-    "date": "2026-09-16",
-    "description": "The temperature and humidity readings from that first real ESPHome sensor now do something: if a room gets too warm, too cold, too humid, or too dry, Alfr3d says so on the dashboard. It only speaks up when the sensor's connection is actually current, so a stale reading from a flaky Wi-Fi link can't trigger a false alert.",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d/commit/4f0a22ae"
-  },
-  {
-    "id": "climate-deviation-learned",
-    "milestone": "Alfr3d learned what's normal for your house, hour by hour",
-    "phase": "Present",
-    "product": [
-      "Backend"
-    ],
-    "status": "Shipped",
-    "date": "2026-09-16",
-    "description": "The comfort alerts above used fixed, one-size-fits-all thresholds because Alfr3d had never kept a history of what a room's temperature and humidity actually look like at different times of day. It does now -- every reading from a real sensor is recorded, and a new alert compares the current reading against what's typical for that specific hour, not a flat number. A cool morning no longer looks the same as a cool afternoon. Deployed to the house the same day, right after a full database backup; the fixed-threshold alert fired live within minutes of the update, and the new history started filling in immediately. This more precise alert will stay quiet for a while until enough history builds up to trust it.",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d/commit/9d3a379a"
-  },
-  {
-    "id": "ntfy-relay-removed",
-    "milestone": "A leftover integration was quietly broadcasting household activity -- removed",
-    "phase": "Present",
-    "product": [
-      "Backend"
-    ],
-    "status": "Shipped",
-    "date": "2026-09-16",
-    "description": "An old integration had kept forwarding a copy of the household's live activity feed to a public notification service, unauthenticated -- anyone who found the right address could have watched it happen in real time. It was dead code left over from a phone-notification experiment the household stopped using years ago. Found and removed the same day it was noticed.",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d/commit/bc553e6f"
-  },
-  {
-    "id": "esphome-first-real-sensor",
-    "milestone": "Alfr3d's ESPHome support met its first real sensor",
-    "phase": "Present",
-    "product": [
-      "Backend"
-    ],
-    "status": "Shipped",
-    "date": "2026-09-15",
-    "description": "ESPHome -- the open, cloud-free firmware many cheap smart sensors run -- has been supported since August, but never actually tested against a real device. The first one to join a real household, a temperature and humidity sensor, immediately surfaced a real bug: the scan that finds ESPHome devices on the network was running from the wrong place internally, and would have silently found nothing on any real home network. Fixed, and a way to add a device by its network address directly was added for networks where the automatic scan still can't reach it. Live temperature, humidity, and signal readings are now flowing from a real sensor in a real house for the first time. Shipped in v0.4.4.",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d/releases/tag/v0.4.4"
-  },
-  {
-    "id": "esphome-sensor-display-crash-fix",
-    "milestone": "A live sensor reading could have crashed its own display -- fixed first",
-    "phase": "Present",
-    "product": [
-      "Backend"
-    ],
-    "status": "Shipped",
-    "date": "2026-09-15",
-    "description": "Found while getting that first real ESPHome sensor onto the dashboard: opening its control panel to see the live reading would have crashed the panel outright, because the sensor's data was stored in a shape the display code didn't expect. Caught and fixed in the same session, before any real user ran into it.",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d/commit/66fe1360"
-  },
-  {
-    "id": "sa-retention-2-years",
-    "milestone": "Alfr3d's memory of the household now spans two years",
-    "phase": "Present",
-    "product": [
-      "Backend"
-    ],
-    "status": "Shipped",
-    "date": "2026-09-13",
-    "description": "Alfr3d used to forget most of what it noticed about the household after 90 to 180 days -- not long enough to compare this winter to last summer, when routines shift with daylight and school schedules. Its situational-awareness history (arrivals and departures, attention patterns, app interactions, device locations) now keeps two full years, with disk growth tracked over time so that horizon keeps being trustworthy.",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/todo_sa_data_retention_3yr.md"
-  },
-  {
-    "id": "context-exchange-protocol",
-    "milestone": "Alfr3d's brain and its launcher stopped guessing separately",
-    "phase": "Present",
-    "product": [
-      "Backend",
-      "Deck"
-    ],
-    "status": "Shipped",
-    "date": "2026-09-12",
-    "description": "Alfr3d's brain and Alfr3d Deck each used to guess the time of day, whether you were busy, and what your phone was doing -- separately, and the guesses didn't always agree. A wind-down suggestion firing at the wrong hour on a real Saturday evening exposed just how far apart they could get: over three hours, in one real case. Now each fact is owned by whichever side actually knows it -- the brain is the source of truth for time-of-day and routines, the Deck is the source of truth for its own battery, do-not-disturb, and connection state -- and the two share what they know instead of re-deriving it independently. If one side can't be reached, the other falls back to its own best estimate rather than showing nothing. Deployed to the house and confirmed working the same day.",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/todo_context_exchange_protocol.md"
-  },
-  {
-    "id": "deck-rebrand-and-reliability-sept-2026",
-    "milestone": "The launcher has a new name: Alfr3d Deck",
-    "phase": "Present",
-    "product": [
-      "Deck"
-    ],
-    "status": "Shipped",
-    "date": "2026-09-12",
-    "description": [
-      "\"Nexus\" now belongs to the web dashboard alone, so the launcher dropped the name it used to share with it -- it's Alfr3d Deck now, its radial thumb-menu is Socket, and its terminal is Alfr3d Shell.",
-      "First-launch setup was rebuilt: a five-step walkthrough for permissions, connecting to the house, and setting Alfr3d Deck as your home screen, verified end to end on a real phone.",
-      "Long-press any app, anywhere in the launcher, for a real context menu -- app info and uninstall -- instead of nothing happening.",
-      "The app list now survives being killed by the system in the background, so opening the app drawer after a cold start no longer means waiting through a fresh scan.",
-      "Found and fixed a real crash: reinstalling the launcher, or restoring it onto a new phone, could crash on every launch afterward because Android's backup system was restoring encrypted sign-in data whose key doesn't survive a reinstall. It now recovers on its own instead of getting stuck.",
-      "Moved to a newer Android build toolchain to stay ahead of Google's requirements."
-    ],
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/pull/25"
-  },
-  {
-    "id": "device-location-reporting",
-    "milestone": "Alfr3d learns your comings and goings -- with your consent",
-    "phase": "Present",
-    "product": [
-      "Backend",
-      "Deck"
-    ],
-    "status": "Shipped",
-    "date": "2026-09-10",
-    "description": "With your explicit, opt-in consent, Alfr3d can learn your movements away from home -- not just whether you are on the house Wi-Fi -- so it comes to understand your daily rhythm well enough to anticipate when you are heading out or have the house ready for your return. It is off by default and stays that way until you deliberately turn it on. The location is approximate, never precise tracking; it goes only to your own Alfr3d server and is never sent to Littl3.1 Engineering or anyone else; the launcher reads it only while you are using your phone, never in the background; and switching it off stops collection and clears anything still queued. Shipped, deployed, and live-verified against real production data -- released as Alfr3d Deck v0.2.2.",
-    "source": "https://app.notion.com/p/3d7d732b1d3481069e89ffd41deb1527"
-  },
-  {
-    "id": "leave-by-card-live",
-    "milestone": "The \"leave by now\" card is live in a real house",
-    "phase": "Present",
-    "product": [
-      "Backend"
-    ],
-    "status": "Shipped",
-    "date": "2026-09-10",
-    "description": "The leave-by travel card fired for the first time in an actual household: a real calendar event with an address, a real drive time computed on the self-hosted routing engine, a real \"leave by 10:18 AM\" on the dashboard -- no staging, no mock-up. Two fixes got it there. Alfr3d now re-checks the calendar every fifteen minutes on its own, so an event you just added shows up without waiting for a restart. And event times now read in the household's own timezone instead of UTC -- a 5pm event created in a European calendar had been showing as 3pm on a North American screen. Deployed to the house the same day.",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/todo_leave_by_demo.md"
-  },
-  {
-    "id": "site-dial-in-positioning",
-    "milestone": "littl31.com leads with the butler, not the category",
-    "phase": "Present",
-    "product": [
-      "littl31.com"
-    ],
-    "status": "Shipped",
-    "date": "2026-09-09",
-    "description": "The site now leads with what Alfr3d is -- \"the only home butler you own\" -- instead of a category label that read like a lesser Home Assistant, and that shift carries into the page titles and a new \"Getting Alfr3d\" section on the home page that points to the full lineup and pricing. Every feature claim on the product page was checked against what the situational-awareness engine actually does in production: the \"leave by now\" example was reworded so it no longer implies live-traffic knowledge it doesn't have, and a line that implied every feature is already running was softened, since the self-hosted routing behind the leave-by card still has to be switched on per household. The home page also carries a dormant slot for a short screen recording of that leave-by card in action, to drop in once it's captured.",
-    "source": "https://github.com/Littl3-1-Engineering/Littl31/commit/2bbae5c6"
-  },
-  {
-    "id": "deck-background-sync",
-    "milestone": "Deck keeps up with the house in the background",
-    "phase": "Present",
-    "product": [
-      "Deck",
-      "Backend"
-    ],
-    "status": "Shipped",
-    "date": "2026-09-07",
-    "description": "Until now the launcher only talked to Alfr3d while one of its windows was open and the screen was on. It now checks in roughly every half hour on its own -- only on a charged-enough battery, backing off politely when the network is bad -- so weather, who's home, and the situational-awareness cards are already current the moment you pick the device up. When a genuinely new card appears while the screen is off (say, \"the garage light is still on\"), it raises exactly one quiet notification that the next card replaces rather than stacks. There's a Background Sync card in Settings to turn it off or sync on demand. Verified on a real device against the live house system, including two bugs found and fixed in the process.",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/commit/4044106"
-  },
-  {
-    "id": "pricing-rounding-2026-09-06",
-    "milestone": "Pricing rounded to whole numbers -- every \".99\" ending dropped",
-    "phase": "Present",
-    "product": [
-      "littl31.com",
-      "Deck",
-      "Uplink"
-    ],
-    "status": "Shipped",
-    "date": "2026-09-06",
-    "description": "Every \".99\"-ending price across the live lineup was rounded to a whole number -- the site's honesty-first positioning (bragging about what got killed in honesty.html) sat oddly next to $X.99 psychology pricing. Deck Pro unlock $5.99 -> $6 one-time; Kit Founding-100 $399 -> $400; Kit Steady-state $449 -> $450; Uplink $9.99/mo -> $10/mo and $99/yr -> $100/yr. Shipped the same day as real CAD/USD/EUR currency-rotation on the pricing switcher.",
-    "source": "https://github.com/Littl3-1-Engineering/Littl31/commit/edb0977"
-  },
-  {
-    "id": "socket-menu-reorg",
-    "milestone": "Socket, the Deck's radial menu, tidied up",
-    "phase": "Present",
-    "product": [
-      "Deck"
-    ],
-    "status": "Shipped",
-    "date": "2026-09-06",
-    "description": "Socket, the Deck's radial menu, was reorganised so the common destinations sit one level shallower: Alfr3d Shell moved in with the apps, and Settings and Search now sit directly under System next to Power instead of behind an extra submenu. The top ring stays four choices and nothing is more than three steps deep. The in-app About text was also rewritten in a rougher, more first-person voice.",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/commit/706c60a"
-  },
-  {
-    "id": "owner-form-of-address",
-    "milestone": "Alfr3d can be told what to call you",
-    "phase": "Present",
-    "product": [
-      "Backend",
-      "Deck"
-    ],
-    "status": "Shipped",
-    "date": "2026-09-04",
-    "description": "Alfr3d's language model was never told who it was speaking to, so its more formal moods fell back on a generic, gendered \"sir or madam\". Each resident can now set a preferred form of address -- a first name, \"boss\", \"Dr. Athos\", whatever -- from the web UI or the launcher's Residents editor. The voice uses it occasionally rather than every line, falls back to the username if it's unset, and \"sir\"/\"madam\" are now banned outright. The field is stored per person so it's ready when Alfr3d can tell residents apart by voice.",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d/commit/12a77fdf"
-  },
-  {
-    "id": "alfr3d-shell-terminal",
-    "milestone": "ALFR3D SHELL: a real terminal inside the Deck",
-    "phase": "Present",
-    "product": [
-      "Deck"
-    ],
-    "status": "Shipped",
-    "date": "2026-09-04",
-    "description": [
-      "The Deck's terminal, Alfr3d Shell, grew from a toy into a genuine command line, shipped in five phases and verified on a real device at each step.",
-      "It can manage the device: list, launch and inspect installed apps, and read device and settings state.",
-      "It has a working filesystem CLI for moving around and inspecting files.",
-      "It reaches into Alfr3d itself: control devices, tail the live event stream, and read the current context and mood card (falling back to a local estimate, honestly labelled, when Alfr3d's own mood card isn't present).",
-      "It can drive the launcher's own window manager -- list, focus and close windows, and save or restore named layouts (Pro-gated to match the existing layout-presets feature). Building this surfaced and fixed a real latent bug in closing a minimised window."
-    ],
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/commit/23c1578"
-  },
-  {
-    "id": "unified-time-of-day",
-    "milestone": "Alfr3d learned to tell time",
-    "phase": "Present",
-    "product": [
-      "Backend"
-    ],
-    "status": "Shipped",
-    "date": "2026-09-04",
-    "description": "Alfr3d greeted the house with \"Good morning!\" at 10pm. Six different parts of the system each did their own time-of-day math and disagreed, and the voice had no clock at all. They now share one source of truth, built from the household's own wake / sleep / sunrise / sunset routines: it decides when Alfr3d is awake enough to speak, tells the language model what time it actually is (so it won't wish you good morning at night), leads a welcome-home with the right greeting, and lets the small talk wind down in the last stretch before bed. Deployed and verified on the real house system.",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d/commit/3fa2f072"
-  },
-  {
-    "id": "deck-prelaunch-polish",
-    "milestone": "Deck pre-launch polish + rebrand (v0.1.35)",
-    "phase": "Present",
-    "product": [
-      "Deck"
-    ],
-    "status": "Shipped",
-    "date": "2026-09-03",
-    "description": [
-      "The launcher was renamed from \"Spatial Launcher\" to \"Alfr3d Nexus Launcher\" in the in-app About/header copy, tagged v0.1.35 -- it became Alfr3d Deck in the later Sep 2026 rename.",
-      "A pre-submission pass cleared the Play Store technical and policy hygiene: targeting Android 16 (API 36) to meet Google's first-submission requirement, code shrinking and resource minification turned on for release builds and verified on a real device, and a privacy-policy gap closed (an every-15-minute attention-telemetry report to the backend that wasn't disclosed).",
-      "Store listing, screenshots, and release notes were rewritten to match everything shipped since the first draft.",
-      "Devices window gained the ability to delete a device (tap-to-arm confirm), plus fixes for a chip-row that wrapped instead of scrolling and a connection check that showed a false \"connected\" state on an http-to-https redirect.",
-      "What's left before it goes live is account-holder-only Play Console setup."
-    ],
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck"
-  },
-  {
-    "id": "backend-early-sept-polish",
-    "milestone": "Voice restraint + two more UI themes",
-    "phase": "Present",
-    "product": [
-      "Backend"
-    ],
-    "status": "Shipped",
-    "date": "2026-09-01",
-    "description": [
-      "Alfr3d's personality quirks -- the little verbal tics and swapped-in quips -- were firing on every single thing it said, which made the bit wear thin fast. They're now occasional, roughly one utterance in eight, on both the language-model path and the no-model fallback path.",
-      "Two more dashboard themes shipped alongside the existing three: Matrix (green terminal) and Steel/Graphite."
-    ],
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d/commit/13362ef5"
-  },
-  {
     "id": "backend-2026-08",
     "milestone": "Backend: August 2026 in review",
     "phase": "Present",
@@ -403,7 +97,7 @@
     ],
     "status": "Shipped",
     "date": "2026-08-26",
-    "description": "Pricing strategy evolved across the month: Cloud and Cloud+ were retired as tier names, folded into a new Relay + Butler ladder, then simplified further by folding Relay into Butler. A CAD-verified cost check on the Kit (which bundles free Relay for life) prompted a hardware pivot from a Raspberry Pi 5 to a cheaper N100 mini PC to protect margin.",
+    "description": "Pricing strategy evolved across the month: Cloud and Cloud+ were retired as tier names, folded into a new Relay + Butler ladder, then simplified further by folding Relay into Butler. A CAD-verified cost check on the Kit (which bundles free Relay for life) prompted a hardware pivot from a Raspberry Pi 5 to a cheaper N100 mini PC to protect margin. The corrected Canadian-dollar parts costs and a revised market-growth range (12-20%) also reset the first-year Kit sales estimate to 40-100 units.",
     "source": "https://www.littl31.com/alfr3d.html"
   },
   {
@@ -521,7 +215,7 @@
     "product": [
       "Backend"
     ],
-    "status": "Planned",
+    "status": "In Progress",
     "date": "2026-08-22",
     "description": "Build one Kit end-to-end and time assembly before publishing the $400 Founding-100 price. Validates the current ~$235 CAD parts-cost estimate (N100 mini PC, NVMe SSD, PSU, enclosure, cooling, cabling, packaging) plus assembly labor, shipping, fees, and a support/DOA reserve against a real build, not just parts pricing.",
     "source": "https://app.notion.com/p/3c6d732b1d3481eba78bf03f263018f2"
@@ -548,21 +242,21 @@
       "Deck",
       "littl31.com"
     ],
-    "status": "In Progress",
-    "date": "2026-08-24",
-    "description": "alfr3d_deck brought up to alfr3d's baseline: pre-commit-hooks (trailing-whitespace/end-of-file/yaml/large-files) + detect-secrets (fresh baseline, one expected finding -- keystore.properties.sample's changeme placeholders), Dependabot for gradle + github-actions. alfr3d_deck already had CI (build.yml, release.yml) -- ahead of alfr3d there, whose own ci.yml is actually .disabled (a stale claim in this todo corrected). littl31 and Aikido (needs external account signup) still open.",
+    "status": "Backburner",
+    "date": "2026-10-21",
+    "description": "Pre-commit checks, secret scanning, dependency updates, linting and CI are now in place on all three repos. Only Aikido security scanning remains, blocked on a paid plan.",
     "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/commit/ad057618b2bd0a7f127ea44f505935bb25785c43"
   },
   {
     "id": "smartthings-generic-control-gap",
-    "milestone": "SmartThings generic IoT control endpoint — fixed, pending live-device verification",
+    "milestone": "SmartThings device control",
     "phase": "Future",
     "product": [
       "Backend"
     ],
-    "status": "In Progress",
-    "date": "2026-08-24",
-    "description": "Fixed 2026-08-24, same day it was found: control_iot_device() (routes/iot.py) now has a source=='smartthings' branch using a new st_utils.translate_generic_control_params() that mirrors the HA translator, mapping ControlBlade's generic command vocabulary to an ST (capability, command, args) triple. sync_st_devices() now also derives device_type via a new st_utils.normalize_st_device_type() from the device's capability list, instead of storing ST's raw deviceTypeName label -- confirmed nothing else in the codebase read that raw label. Both pieces are code-complete and committed; still needs verification against a live SmartThings device, which is the only reason this isn't Shipped yet.",
+    "status": "Backburner",
+    "date": "2026-09-15",
+    "description": "Generic device control now has a SmartThings path alongside Home Assistant, but nobody in the household owns a SmartThings device, so it has never run against real hardware. Parked until one shows up.",
     "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/todo_smartthings_generic_control.md"
   },
   {
@@ -683,35 +377,10 @@
       "littl31.com",
       "Uplink"
     ],
-    "status": "Backburner",
+    "status": "In Progress",
     "date": null,
     "description": "Phased plan to give the Kit and Uplink pricing sections a real path from visitor to paying customer — site currently has zero CTA/checkout links on either tier. Phase A: free waitlist/interest-capture forms. Phase B (gated on Kit waitlist signal): Stripe Checkout for the one-time Kit purchase. Phase C (gated on the Uplink relay being built): Stripe Checkout + Customer Portal + magic-link login alongside the relay's own subscriber identity. Planning only, not started.",
     "source": "https://github.com/Littl3-1-Engineering/Littl31/blob/main/todo/todo_cloud_kit_commerce.md"
-  },
-  {
-    "id": "self-awareness-tts-presence",
-    "milestone": "Self-awareness: pronounce own name + don't self-greet",
-    "phase": "Future",
-    "product": [
-      "Backend"
-    ],
-    "status": "In Progress",
-    "date": "2026-08-27",
-    "description": "Both identity bugs fixed 2026-08-27, not yet on-device verified: normalize_pronunciation() in service_speak regex-substitutes the leetspeak \"alfr3d\" to \"Alfred\" right before every TTS call, and update_user_state() in service_user now guards the welcome-greeting flow so the alfr3d system user never announces itself coming online like a household member (its presence-state row still updates normally). A closer look also found the guard is currently dead/defensive code -- no code path in the schema seed or the three runtime user-insert sites ever creates a row with username='alfr3d'.",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/todo_self_awareness_tts_presence.md"
-  },
-  {
-    "id": "cad-bom-correction-cagr",
-    "milestone": "CAD BOM correction + revised CAGR/monetization strategy",
-    "phase": "Future",
-    "product": [
-      "Backend",
-      "Uplink"
-    ],
-    "status": "In Progress",
-    "date": "2026-08-26",
-    "description": "Recommended-tier Kit parts corrected from $191 (a USD-MSRP artifact) to ~$425 CAD verified Canadian pricing -- Founding-100 ($399) now underwater on parts alone before the N100 pivot above. Added a market CAGR range (12-20% working estimate) and a revised pricing/sales plan: budget-tier storage default, Founding-100 reframed as a small hand-assembled batch, Butler subscription as the primary margin engine. Realistic Year 1: 40-100 Kit units; Year 2: 150-400 cumulative.",
-    "source": "https://app.notion.com/p/3c8d732b1d348120a467cb989dc6863a"
   },
   {
     "id": "explore-launcher-context-source",
@@ -736,8 +405,8 @@
       "littl31.com"
     ],
     "status": "Backburner",
-    "date": null,
-    "description": "CI/CD + security cleanup across all three repos: re-enable alfr3d's disabled ci.yml, finish Aikido signup for littl31, and triage/remediate CVEs Aikido flags once scanning is live across alfr3d, alfr3d_deck, and Littl31. Distinct from Repo tooling standardization (pre-commit/detect-secrets/Dependabot baseline) -- this is the CI pipeline health + vulnerability remediation pass. Not started.",
+    "date": "2026-10-21",
+    "description": "CI is live and the site's CSP, clickjacking and GitHub Actions hardening shipped in September. What is left is triaging vulnerabilities from Aikido scanning, blocked on a paid plan.",
     "source": null
   },
   {
@@ -763,44 +432,6 @@
     "date": "2026-08-30",
     "description": "A planned next step for the household event log -- noticing that one event usually follows another, and gently flagging it when it doesn't -- needs real weeks of history to learn from honestly. The event log itself is brand new, so this is queued rather than built against too little data.",
     "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/todo_transition_learning.md"
-  },
-  {
-    "id": "littl31-csp-header",
-    "milestone": "Locking down the site with security headers",
-    "phase": "Present",
-    "product": [
-      "littl31.com"
-    ],
-    "status": "Shipped",
-    "date": "2026-09-14",
-    "description": "A routine security scan flagged that the site set neither a Content-Security-Policy nor an anti-framing header. Both are now live: a Content-Security-Policy on every page limits the site to loading only its own resources, and a rule at the Cloudflare layer in front of the site (GitHub Pages can't set custom headers itself) stops other sites from embedding it in a frame. The same day also tightened the site's build pipeline permissions and scrubbed an accidentally committed third-party page snapshot from the repository history.",
-    "source": "https://github.com/Littl3-1-Engineering/Littl31/blob/main/todo/todo_csp_header.md"
-  },
-  {
-    "id": "speak-on-deck-when-away",
-    "milestone": "Speaking up on your phone even when nobody's home",
-    "phase": "Future",
-    "product": [
-      "Backend",
-      "Deck"
-    ],
-    "status": "Backburner",
-    "date": "2026-10-03",
-    "description": "If you've turned on spoken notifications on your phone, ALFR3D should still generate speech and send notifications to it when no one is home to hear them, instead of staying silent. Designed, not started.",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d/tree/main/todo"
-  },
-  {
-    "id": "kanji-wisdom-quotes",
-    "milestone": "Wise quotes in kanji, tucked into a corner of the screen",
-    "phase": "Future",
-    "product": [
-      "Deck",
-      "Backend"
-    ],
-    "status": "Backburner",
-    "date": "2026-10-03",
-    "description": "A small, quiet corner of both the phone launcher and the web interface will show a rotating wise quote in kanji script, styled to match the rest of the interface. Designed, not started.",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d/tree/main/todo"
   },
   {
     "id": "compact-settings-redesign",
@@ -852,18 +483,6 @@
     "source": "https://github.com/Littl3-1-Engineering/alfr3d/commit/55ab354e"
   },
   {
-    "id": "shell-prompt-activity-log",
-    "milestone": "A terminal that knows who you are and what just changed",
-    "phase": "Future",
-    "product": [
-      "Deck"
-    ],
-    "status": "Backburner",
-    "date": "2026-10-03",
-    "description": "The launcher's built-in terminal will show a real user@host prompt (your signed-in user and your home's name) and log changes made elsewhere in the app, like a setting change, as if you'd typed the command. Designed, not started.",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/tree/main/todo"
-  },
-  {
     "id": "local-time-event-log",
     "milestone": "Event log times in your own timezone",
     "phase": "Present",
@@ -894,9 +513,235 @@
     "product": [
       "Deck"
     ],
-    "status": "In Progress",
+    "status": "Shipped",
     "date": "2026-10-13",
-    "description": "The launcher follows your account's theme for Deep Cyan, Tactical Amber and Light, with a Settings switch to turn it off; wallpaper and custom-colour themes stay on the phone. Built and tested, but not yet installed on a phone, so changes from the web may take up to 30 minutes to show up there.",
+    "description": "The launcher follows your account's theme for Deep Cyan, Tactical Amber and Light, with a Settings switch to turn it off; wallpaper and custom-colour themes stay on the phone. Verified on a real phone in both directions and released in Alfr3d Deck 1.0.3.",
     "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/commit/d63dfcd"
+  },
+  {
+    "id": "deck-v1-1-redesign",
+    "milestone": "Alfr3d Deck 1.1: three home styles",
+    "phase": "Present",
+    "product": [
+      "Deck"
+    ],
+    "status": "Shipped",
+    "date": "2026-10-20",
+    "description": "Alfr3d Deck gets a full visual redesign without changing what it does. Pick Halo & Whisper, Tactical HUD or Quiet Butler as your home screen; Quiet Butler leads with the most important thing right now, whether that is an urgent alert from Alfr3d or the next event. Radial menu wedges now fit the screen edges in any orientation, and the built-in terminal has been retired.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/releases/tag/v1.1.0"
+  },
+  {
+    "id": "samurai-wisdom",
+    "milestone": "Samurai Wisdom: a daily quote in the corner",
+    "phase": "Present",
+    "product": [
+      "Deck",
+      "Backend"
+    ],
+    "status": "Shipped",
+    "date": "2026-10-06",
+    "description": "A quiet corner of both the phone launcher and the web interface shows a daily samurai quote in vertical kanji, with its reading and meaning, styled to your theme. It can be switched off in Settings.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/commit/b7a1afb"
+  },
+  {
+    "id": "phone-speech",
+    "milestone": "Alfr3d speaks on your phone when nobody's home",
+    "phase": "Present",
+    "product": [
+      "Deck",
+      "Backend"
+    ],
+    "status": "Shipped",
+    "date": "2026-10-16",
+    "description": "With spoken notifications turned on, Alfr3d now speaks through your phone when the house is empty, even with the screen locked, and stays silent if no phone is listening. When you are home it keeps speaking from the house as before.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/commit/ef84205"
+  },
+  {
+    "id": "compact-settings",
+    "milestone": "Compact Settings: the whole page in one window",
+    "phase": "Present",
+    "product": [
+      "Deck"
+    ],
+    "status": "Shipped",
+    "date": "2026-10-04",
+    "description": "An optional one-window Settings layout with no tabs, built from the launcher's glowing HUD rings, with a 50-design ring catalog to choose from. A Figma redesign pass is still ahead.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/commit/bb1bff0"
+  },
+  {
+    "id": "backend-2026-09",
+    "milestone": "Backend: September 2026 in review",
+    "phase": "Present",
+    "product": [
+      "Backend"
+    ],
+    "status": "Shipped",
+    "date": "2026-09-30",
+    "description": [
+      "Alfr3d finally learned to tell time: one shared clock, built from the household's own wake, sleep, sunrise and sunset routines, replaced six that disagreed, so it no longer says \"Good morning\" at 10pm. Its personality quirks became occasional instead of constant, and two more dashboard themes (Matrix and Graphite) arrived.",
+      "The \"leave by now\" travel card fired for real in an actual household for the first time, after calendars started refreshing every fifteen minutes and event times began reading in the household's own timezone. Leave-by cards also stopped being capped at a 30-minute heads-up.",
+      "Two years of situational-awareness history is now kept (up from 90 to 180 days), with disk growth tracked over time.",
+      "ESPHome met its first real sensor. Live temperature and humidity now flow into the dashboard; the first real device exposed two bugs, a network scan that would have found nothing on a real home network and a control panel that would have crashed on the sensor's data, both fixed before anyone hit them.",
+      "Room comfort alerts: Alfr3d says so when a room gets too warm, cold, humid or dry, then learned what is normal for each hour and recalibrated its thresholds against real household data. Along the way it found that its learned baseline could never fire and fixed that, and that power-cycling the sensor orphans its history (a mitigation is in, the root cause is still open).",
+      "An old leftover integration that forwarded the household's live activity feed to a public notification service was found and removed the same day.",
+      "The system-health panel stopped crying wolf: container health now comes from each service's own self-test (13 of 13 report a real verdict, up from 5) instead of being inferred from CPU load, and three services that had silently dropped off the panel are back.",
+      "Resilience fixes: services that consume messages now restart themselves after a power outage instead of waiting for a manual restart; a cache bug that silently dropped every payload containing a decimal number is fixed; power control works again for media players such as a Samsung TV; and welcome announcements no longer \"correct\" the wrong name.",
+      "The first real live \"unusual departure\" alert was found in production history, which confirmed the rhythm-break detector works on real data.",
+      "Self-service updates (v0.4.9): Alfr3d detects a newer version, an authorised household member applies it with one click after re-entering their password, a database backup is taken first, and it rolls itself back if the new version doesn't come up healthy."
+    ],
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/releases/tag/v0.4.9"
+  },
+  {
+    "id": "backend-deck-2026-09",
+    "milestone": "Situational awareness across Backend and Deck: September 2026 in review",
+    "phase": "Present",
+    "product": [
+      "Backend",
+      "Deck"
+    ],
+    "status": "Shipped",
+    "date": "2026-09-30",
+    "description": [
+      "Alfr3d can be told what to call you (a first name, \"boss\", \"Dr. Athos\"), set per person from the web or the launcher, and \"sir\" and \"madam\" are banned outright.",
+      "The launcher now checks in with Alfr3d about every half hour in the background, only with enough battery and politely backing off on bad networks, so cards are current the moment you pick up the phone. A Background Sync switch is in Settings.",
+      "With explicit opt-in, Alfr3d can learn your movements away from home. It is off by default, approximate only, goes only to your own server, is read only while you use your phone, and stops and clears the queue when switched off.",
+      "The brain and the launcher stopped guessing separately: each fact (time of day and routines, battery and do-not-disturb) is now owned by whichever side actually knows it, and each falls back to its own estimate if the other can't be reached.",
+      "Alfr3d notices when a guest has quietly become part of the household: a guest's influence on the mood fades the longer they stay, and after about two weeks it suggests promoting them to a resident.",
+      "Every loading spinner and plain circular button outline across the web dashboard and the Deck's Socket radial menu became a family of animated HUD rings, each shape carrying a fixed meaning and honouring reduced motion. Design recreated from Goran Spasojevic's animated HUD buttons, credited in both apps."
+    ],
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/releases/tag/v0.4.6"
+  },
+  {
+    "id": "deck-2026-09",
+    "milestone": "Deck: September 2026 in review",
+    "phase": "Present",
+    "product": [
+      "Deck"
+    ],
+    "status": "Shipped",
+    "date": "2026-09-30",
+    "description": [
+      "Renamed from \"Spatial Launcher\" to Alfr3d Nexus Launcher and then to Alfr3d Deck, with Socket as its radial menu. \"Nexus\" now belongs to the web dashboard alone.",
+      "Socket was reorganised so common destinations sit one level shallower, with nothing more than three steps deep.",
+      "Alfr3d Shell grew from a toy into a real command line in five phases (device and app management, filesystem, live Alfr3d control, window management). It was later retired in Deck 1.1.",
+      "First-launch setup was rebuilt as a five-step walkthrough; long-pressing any app opens a real context menu; the app list survives being killed in the background.",
+      "A real crash was found and fixed: reinstalling or restoring the launcher onto a new phone could crash it on every launch because Android's backup restored sign-in data whose key does not survive. It now recovers on its own.",
+      "Play Store prep: targeting Android 16, code shrinking verified on a device, a privacy-policy gap closed, the listing rewritten, and device deletion added to the Devices window."
+    ],
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck"
+  },
+  {
+    "id": "littl31-2026-09",
+    "milestone": "littl31.com: September 2026 in review",
+    "phase": "Present",
+    "product": [
+      "littl31.com"
+    ],
+    "status": "Shipped",
+    "date": "2026-09-30",
+    "description": [
+      "The site leads with what Alfr3d is, \"the only home butler you own\", instead of a category label; every feature claim was checked against what the engine really does in production.",
+      "Every \".99\" price was rounded to a whole number: Deck Pro $6, Kit Founding-100 $400, Kit Steady-state $450, Uplink $10/month or $100/year. The pricing switcher also gained real CAD/USD/EUR rotation.",
+      "A Content-Security-Policy and an anti-framing header went live (the latter at the Cloudflare layer, since GitHub Pages can't set headers), alongside tighter build-pipeline permissions and a scrubbed repository history."
+    ],
+    "source": "https://github.com/Littl3-1-Engineering/Littl31"
+  },
+  {
+    "id": "review-pro-features",
+    "milestone": "Deciding what is free and what is Pro in Alfr3d Deck",
+    "phase": "Future",
+    "product": [
+      "Deck"
+    ],
+    "status": "Backburner",
+    "date": "2026-10-21",
+    "description": "A review of exactly what sits behind the $6 Pro unlock, checking that the app and the pricing copy promise the same thing, and deciding where the new features (Compact Settings, Samurai Wisdom, theme sync) belong. Core usability stays free. Not started.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/tree/main/todo"
+  },
+  {
+    "id": "precise-location",
+    "milestone": "Optional precise location",
+    "phase": "Future",
+    "product": [
+      "Deck",
+      "Backend"
+    ],
+    "status": "Backburner",
+    "date": "2026-10-21",
+    "description": "An opt-in second tier on top of today's approximate location. Android's approximate setting is only accurate to about 2 km, which makes everything near home look like one place, so Alfr3d can't see a local walk or tell \"home\" from \"nearby\". Stays off by default and sent only to your own server. Not started.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/tree/main/todo"
+  },
+  {
+    "id": "status-bar-setting",
+    "milestone": "Status bar options",
+    "phase": "Future",
+    "product": [
+      "Deck"
+    ],
+    "status": "Backburner",
+    "date": "2026-10-21",
+    "description": "Settings to choose a transparent or solid status bar, and light or dark icons and text. Not started.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/tree/main/todo"
+  },
+  {
+    "id": "camera-credentials-encrypted",
+    "milestone": "Camera passwords encrypted at rest",
+    "phase": "Future",
+    "product": [
+      "Backend"
+    ],
+    "status": "Backburner",
+    "date": "2026-10-21",
+    "description": "Camera stream addresses include the camera account's login. They will move into Alfr3d's encrypted secrets store like every other integration credential, decrypted only when a stream starts, with existing cameras migrated in place. Not started.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/tree/main/todo"
+  },
+  {
+    "id": "alfr3d-scrip-symbol",
+    "milestone": "Alfr3d Scrip currency symbol",
+    "phase": "Future",
+    "product": [
+      "littl31.com"
+    ],
+    "status": "In Progress",
+    "date": "2026-09-06",
+    "description": "A locale-aware currency toggle (CAD, USD, EUR) with an easter egg: hover and the price scrambles into \"Alfr3d Scrip\". This item is the symbol design; the toggle and scramble are a separate build.",
+    "source": "https://github.com/Littl3-1-Engineering/Littl31"
+  },
+  {
+    "id": "launcher-open-in-maps",
+    "milestone": "Open in Maps from calendar events",
+    "phase": "Future",
+    "product": [
+      "Deck"
+    ],
+    "status": "Backburner",
+    "date": "2026-08-27",
+    "description": "When an event has an address, the launcher will offer both Open in Maps (in your default maps app) and Open in Calendar, instead of guessing which you meant.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck"
+  },
+  {
+    "id": "transactional-email",
+    "milestone": "Transactional email for Uplink and orders",
+    "phase": "Future",
+    "product": [
+      "Backend",
+      "Uplink"
+    ],
+    "status": "Planned",
+    "date": "2026-08-26",
+    "description": "Platform news, order confirmations and shipping confirmations sent from Alfr3d Uplink and commerce infrastructure. Household Kit units themselves never send email, and email codes for first-run setup were rejected because claiming a unit already requires being on its network. Not started.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d"
+  },
+  {
+    "id": "aurora-knob",
+    "milestone": "Exploring Aurora KNOB physical control",
+    "phase": "Future",
+    "product": [
+      "Backend"
+    ],
+    "status": "Planned",
+    "date": "2026-09-05",
+    "description": "A speculative look at whether a physical dial can control Alfr3d through a local API or Zigbee2MQTT, with no cloud dependency. Nothing is committed until that check is done.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d"
   }
 ]
