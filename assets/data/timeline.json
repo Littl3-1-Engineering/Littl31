@@ -743,5 +743,17 @@
     "date": "2026-09-05",
     "description": "A speculative look at whether a physical dial can control Alfr3d through a local API or Zigbee2MQTT, with no cloud dependency. Nothing is committed until that check is done.",
     "source": "https://github.com/Littl3-1-Engineering/alfr3d"
+  },
+  {
+    "id": "deck-v1-1-1",
+    "milestone": "Alfr3d Deck 1.1.1: smarter Tactical HUD",
+    "phase": "Present",
+    "product": [
+      "Deck"
+    ],
+    "status": "Shipped",
+    "date": "2026-10-22",
+    "description": "On the Tactical HUD home, panels now do something when you tap them: the situation report opens your brief and the household panel opens the residents list, next to the daily samurai wisdom card. Compact Settings now lets you switch home style and visual effects from the one-page layout, and the radial menu no longer gets blocked by open windows.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/releases/tag/v1.1.1"
   }
 ]
