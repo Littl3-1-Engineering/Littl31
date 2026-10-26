@@ -755,5 +755,18 @@
     "date": "2026-10-22",
     "description": "On the Tactical HUD home, panels now do something when you tap them: the situation report opens your brief and the household panel opens the residents list, next to the daily samurai wisdom card. Compact Settings now lets you switch home style and visual effects from the one-page layout, and the radial menu no longer gets blocked by open windows.",
     "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/releases/tag/v1.1.1"
+  },
+  {
+    "id": "local-ca-pairing",
+    "milestone": "Secure pairing that survives a new IP address",
+    "phase": "Present",
+    "product": [
+      "Backend",
+      "Deck"
+    ],
+    "status": "Shipped",
+    "date": "2026-10-26",
+    "description": "Your Alfr3d now makes its own private certificate authority at home, and keeps its HTTPS certificate current whenever its network address changes. The Deck pairs with that authority once, after you confirm its fingerprint, so a new IP address or router no longer breaks the connection. If the authority ever changes, the Deck warns you instead of trusting it. Works with local certificates only, no public certificate authority needed. Existing installs pair once more.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/pull/327"
   }
 ]
