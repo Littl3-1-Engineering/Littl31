@@ -758,7 +758,7 @@
   },
   {
     "id": "local-ca-pairing",
-    "milestone": "Secure pairing that survives a new IP address",
+    "milestone": "Alfr3d Deck 1.2.0: secure pairing that survives a new IP address",
     "phase": "Present",
     "product": [
       "Backend",
@@ -766,7 +766,7 @@
     ],
     "status": "Shipped",
     "date": "2026-10-26",
-    "description": "Your Alfr3d now makes its own private certificate authority at home, and keeps its HTTPS certificate current whenever its network address changes. The Deck pairs with that authority once, after you confirm its fingerprint, so a new IP address or router no longer breaks the connection. If the authority ever changes, the Deck warns you instead of trusting it. Works with local certificates only, no public certificate authority needed. Existing installs pair once more.",
-    "source": "https://github.com/Littl3-1-Engineering/alfr3d/pull/327"
+    "description": "Your Alfr3d now makes its own private certificate authority at home, and keeps its HTTPS certificate current whenever its network address changes. The Deck pairs with that authority once, after you confirm its fingerprint, so a new IP address or router no longer breaks the connection. If the authority ever changes, the Deck warns you instead of trusting it. Works with local certificates only, no public certificate authority needed. Existing installs pair once more. Ships in Deck 1.2.0.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/releases/tag/v1.2.0"
   }
 ]
