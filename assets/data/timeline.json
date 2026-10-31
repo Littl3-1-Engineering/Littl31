@@ -503,7 +503,7 @@
     ],
     "status": "In Progress",
     "date": "2026-10-12",
-    "description": "After a weekday spent out when nobody was expected to be, Alfr3d couldn't tell it was unusual. Situational awareness now sits on a learning foundation: two years of household history is cleaned and shaped into data Alfr3d learns from, producing learned routines for who is home when, room climate, activity and the household's typical day, each with a confidence score. Drift detection notices when a routine genuinely changes. One shared engine combines those signals into judgments like 'someone is away unusually', 'a day off nobody planned' and 'an unusual day for the household', and it checks the calendar: a booked event explains an absence, while an empty calendar makes a day at home more surprising. Checking the new judgments against the old rules turned up real flaws, so they were reworked: whether someone has stayed unusually long is now judged against that person's own past stays, and a day off against their own past days, so a part-time resident's ordinary day at home no longer looks suspicious. The household's 'unusual day' is the first old rule switched over, and it copes with phone naps and with devices being retired. The rest runs quietly beside the existing rules until their comparison, which is now kept across restarts, shows they agree.",
+    "description": "After a weekday spent out when nobody was expected to be, Alfr3d couldn't tell it was unusual. Situational awareness now sits on a learning foundation: two years of household history is cleaned and shaped into data Alfr3d learns from, producing learned routines for who is home when, room climate, activity and the household's typical day, each with a confidence score. Drift detection notices when a routine genuinely changes. One shared engine combines those signals into judgments like 'someone is away unusually', 'a day off nobody planned' and 'an unusual day for the household', and it checks the calendar: a booked event explains an absence, while an empty calendar makes a day at home more surprising. Checking the new judgments against the old rules turned up real flaws, so they were reworked: whether someone has stayed unusually long is now judged against that person's own past stays, and a day off against their own past days, so a part-time resident's ordinary day at home no longer looks suspicious. Rule by rule, the old fixed-threshold checks are being switched over to what Alfr3d has learned; the rest keep running quietly beside the existing rules until their comparison shows they agree.",
     "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/sa/SA_ROADMAP.md"
   },
   {
@@ -768,5 +768,17 @@
     "date": "2026-10-26",
     "description": "Your Alfr3d now makes its own private certificate authority at home, and keeps its HTTPS certificate current whenever its network address changes. The Deck pairs with that authority once, after you confirm its fingerprint, so a new IP address or router no longer breaks the connection. If the authority ever changes, the Deck warns you instead of trusting it. Works with local certificates only, no public certificate authority needed. Existing installs pair once more. Ships in Deck 1.2.0.",
     "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/releases/tag/v1.2.0"
+  },
+  {
+    "id": "sa-cutovers",
+    "milestone": "Alfr3d's old fixed rules start giving way to what it has learned",
+    "phase": "Present",
+    "product": [
+      "Backend"
+    ],
+    "status": "Shipped",
+    "date": "2026-10-31",
+    "description": "Three of the old fixed-threshold rules now run on what Alfr3d has learned about this household. The indoor-climate notice compares a reading with that hour's usual instead of one wide daytime band, so ordinary afternoon warmth no longer sets it off. The 'deep in it' focus notice judges window switching against the household's own hours instead of a fixed count of fifteen. And the household's 'unusual day' now chooses its own yardsticks -- device activity, time spent at home and how busy each kind of event is -- and sets its own bar from the household's past days, aiming for roughly one notice every two weeks rather than a hand-picked bar that had never once been reached. Comparing old and new side by side also turned up and fixed a check that had been silently failing every minute, and the comparison now measures how often a learned rule would speak, not how closely it copies an old rule that was often silent. Indoor temperature and humidity are now shown to the nearest degree and percent.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/sa/SA_ROADMAP.md"
   }
 ]
