@@ -503,7 +503,7 @@
     ],
     "status": "In Progress",
     "date": "2026-10-12",
-    "description": "After a weekday spent out when nobody was expected to be, Alfr3d couldn't tell it was unusual. Situational awareness now sits on a learning foundation: two years of household history is cleaned and shaped into data Alfr3d learns from, producing learned routines for who is home when, room climate, activity and the household's typical day, each with a confidence score. Drift detection notices when a routine genuinely changes. One shared engine combines those signals into judgments like 'someone is away unusually', 'a day off nobody planned' and 'an unusual day for the household', and it checks the calendar: a booked event explains an absence, while an empty calendar makes a day at home more surprising. Checking the new judgments against the old rules turned up real flaws, so they were reworked: whether someone has stayed unusually long is now judged against that person's own past stays, and a day off against their own past days, so a part-time resident's ordinary day at home no longer looks suspicious. Rule by rule, the old fixed-threshold checks are being switched over to what Alfr3d has learned; the rest keep running quietly beside the existing rules until their comparison shows they agree.",
+    "description": "After a weekday spent out when nobody was expected to be, Alfr3d couldn't tell it was unusual. Situational awareness now sits on a learning foundation: two years of household history is cleaned and shaped into data Alfr3d learns from, producing learned routines for who is home when, room climate, activity and the household's typical day, each with a confidence score. Drift detection notices when a routine genuinely changes. One shared engine combines those signals into judgments like 'someone is away unusually', 'a day off nobody planned' and 'an unusual day for the household', checks the calendar (a booked event explains an absence) and, as of November, the Deck's network type as a second independent witness. Checking the new judgments against the old rules turned up real flaws, so they were reworked. Every card (climate, attention focus, wind-down, rhythm breaks, the household's unusual day and departure anomaly) now runs on the learned models, and each person has their own learned presence bridge; only the unused baseline table is left to drop. Next: calibrate the combined judgments against real firings, score more signals live, capture card impressions so Alfr3d can learn what is worth showing, and add a third independent witness for people without a Deck.",
     "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/sa/SA_ROADMAP.md"
   },
   {
@@ -755,6 +755,18 @@
     "date": "2026-10-22",
     "description": "On the Tactical HUD home, panels now do something when you tap them: the situation report opens your brief and the household panel opens the residents list, next to the daily samurai wisdom card. Compact Settings now lets you switch home style and visual effects from the one-page layout, and the radial menu no longer gets blocked by open windows.",
     "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/releases/tag/v1.1.1"
+  },
+  {
+    "id": "sa-cutovers-2",
+    "milestone": "SA cutovers II: every card reads a learned model, and each person gets their own presence bridge",
+    "phase": "Present",
+    "product": [
+      "Backend"
+    ],
+    "status": "Shipped",
+    "date": "2026-11-01",
+    "description": "All five situational-awareness cards now read learned models instead of hand-built baselines. rhythm_break_anomaly (PR #355) shows one card per cycle and learns each device's minimum offline time. wind_down_signal reads the learned unlock-count deviation. Stability (how much to trust a learner after a routine changes) is measured for the stay and daytime learners (PR #356). The old entity_baselines device, household and room rows are gone (PR #357). Layer 2 gained a second independent witness: a sustained cellular connection reported by the Deck corroborates 'someone is away unusually', and sustained Wi-Fi explains away a sleeping phone. Last, departure_anomaly was cut over (PR #365, deployed 2026-11-01): it now shows the stay learner's result as \"<name> hasn't been out in 29 h -- unusual for a Tuesday\" and the legacy baseline code and its 6-hourly job were removed. That needed a real fix first. A single 45-minute rule decided when a phone's silence ended a stay, and it was wrong both ways: some phones nap constantly (hundreds of 20-45 minute gaps in four weeks, many at night) while others almost never do, so short walks were hidden inside 'stays'. Each person's bridge is now learned from their own phone's night-time gaps (15-60 minutes; 45 until enough nights are seen) and used by silver, the learners and the live stay start. Replay on production history: one resident's overstay flag-days fell from 8 to 5 over eleven weeks. Known: the one real firing of the old rule (2026-09-12) is still not reproduced, because the stay model asks 'unusually long' rather than 'past the usual departure hour'. Open: merge PR #365 and drop the now-unused entity_baselines table after a few days of the new card; calibrate layer-2 discounts against real firings; live scoring for scalar and rate profiles; card-feedback capture on the Deck; a third family for people without a Deck.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/sa/SA_ROADMAP.md"
   },
   {
     "id": "local-ca-pairing",
