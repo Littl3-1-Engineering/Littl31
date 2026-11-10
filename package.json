@@ -41,7 +41,7 @@
     "locomotive-scroll": "^4.0.6",
     "snapsvg": "^0.5.1",
     "stripe": "^23.0.0",
-    "tailwindcss": "^2.0.2"
+    "tailwindcss": "^4.3.5"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
