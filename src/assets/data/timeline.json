@@ -792,5 +792,31 @@
     "date": "2026-10-31",
     "description": "Three of the old fixed-threshold rules now run on what Alfr3d has learned about this household. The indoor-climate notice compares a reading with that hour's usual instead of one wide daytime band, so ordinary afternoon warmth no longer sets it off. The 'deep in it' focus notice judges window switching against the household's own hours instead of a fixed count of fifteen. And the household's 'unusual day' now chooses its own yardsticks -- device activity, time spent at home and how busy each kind of event is -- and sets its own bar from the household's past days, aiming for roughly one notice every two weeks rather than a hand-picked bar that had never once been reached. Comparing old and new side by side also turned up and fixed a check that had been silently failing every minute, and the comparison now measures how often a learned rule would speak, not how closely it copies an old rule that was often silent. Indoor temperature and humidity are now shown to the nearest degree and percent.",
     "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/sa/SA_ROADMAP.md"
+  },
+  {
+    "id": "deck-v1-2-2",
+    "milestone": "Alfr3d Deck 1.2.2: Quick Controls get the cyber-button look",
+    "phase": "Present",
+    "product": [
+      "Backend",
+      "Deck"
+    ],
+    "status": "Shipped",
+    "date": "2026-11-08",
+    "description": "Quick Controls in the Devices window now match Compact Settings: a grid of cyber-button tiles, each with its own ring shape. Tap a tile to flip a device, long-press for its full controls, and sensors like temperature and humidity show their reading right in the tile. Behind it, Alfr3d now notices when a device is removed from Home Assistant or renamed there, so your favorites follow the device instead of pointing at a ghost.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/pull/62"
+  },
+  {
+    "id": "card-feedback-semantics",
+    "milestone": "Cards learn what you actually want: got it, dismiss, not useful",
+    "phase": "Present",
+    "product": [
+      "Backend",
+      "Deck"
+    ],
+    "status": "In Progress",
+    "date": "2026-11-14",
+    "description": "Each card now has three ways to answer it. A checkmark means got it, an \u00d7 means seen and no comment, and a thumbs-down means not useful, with an optional reason such as wrong time or already knew. Only 'not useful' counts against a card; the other two just clear it for a while. Nothing is learned from these yet: that waits for enough answers to mean something.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/pull/396"
   }
 ]
