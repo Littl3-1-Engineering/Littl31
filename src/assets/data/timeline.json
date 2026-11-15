@@ -792,5 +792,27 @@
     "date": "2026-10-31",
     "description": "Three of the old fixed-threshold rules now run on what Alfr3d has learned about this household. The indoor-climate notice compares a reading with that hour's usual instead of one wide daytime band, so ordinary afternoon warmth no longer sets it off. The 'deep in it' focus notice judges window switching against the household's own hours instead of a fixed count of fifteen. And the household's 'unusual day' now chooses its own yardsticks -- device activity, time spent at home and how busy each kind of event is -- and sets its own bar from the household's past days, aiming for roughly one notice every two weeks rather than a hand-picked bar that had never once been reached. Comparing old and new side by side also turned up and fixed a check that had been silently failing every minute, and the comparison now measures how often a learned rule would speak, not how closely it copies an old rule that was often silent. Indoor temperature and humidity are now shown to the nearest degree and percent.",
     "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/sa/SA_ROADMAP.md"
+  },
+  {
+    "id": "device-health-card",
+    "milestone": "Alfr3d tells you when its own hardware has gone quiet",
+    "phase": "Present",
+    "product": [
+      "Backend"
+    ],
+    "status": "In Progress",
+    "date": "2026-11-14",
+    "description": "Cameras and sensors that belong to the house itself now get their own notice when they have been offline much longer than they ever are. 'Much longer' is judged against each device's own history, not a fixed rule: a computer that sleeps all night isn't flagged by its sleep, while a camera that almost never drops is flagged after a couple of hours. These devices no longer get 'unusual hour' notices, which meant nothing for a camera, and the new notice stays quiet while a smart-home integration is down, since everything it syncs reads offline then. In review; the Deck shows it as a generic notice for now."
+  },
+  {
+    "id": "rhythm-daytype-stability",
+    "milestone": "A school break no longer hides a real change at the weekend (or the reverse)",
+    "phase": "Present",
+    "product": [
+      "Backend"
+    ],
+    "status": "In Progress",
+    "date": "2026-11-14",
+    "description": "Alfr3d judges how far to trust what it has learned about a device from how well that model predicted the last two weeks. That check used to mix weekdays and weekends into one number, so a change on one kind of day, like a school break, lowered confidence for the other and could stop a genuine out-of-routine flag from ever being shown. It is now measured separately for each kind of day. The review tool that checks whether a learned card is quiet enough also gained a start date, so a past bug stops skewing the numbers, and it now counts the cards the household actually saw. In review."
   }
 ]
