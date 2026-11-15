@@ -794,15 +794,42 @@
     "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/sa/SA_ROADMAP.md"
   },
   {
+    "id": "deck-v1-2-2",
+    "milestone": "Alfr3d Deck 1.2.2: Quick Controls get the cyber-button look",
+    "phase": "Present",
+    "product": [
+      "Backend",
+      "Deck"
+    ],
+    "status": "Shipped",
+    "date": "2026-11-08",
+    "description": "Quick Controls in the Devices window now match Compact Settings: a grid of cyber-button tiles, each with its own ring shape. Tap a tile to flip a device, long-press for its full controls, and sensors like temperature and humidity show their reading right in the tile. Behind it, Alfr3d now notices when a device is removed from Home Assistant or renamed there, so your favorites follow the device instead of pointing at a ghost.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/pull/62"
+  },
+  {
+    "id": "card-feedback-semantics",
+    "milestone": "Cards learn what you actually want: got it, dismiss, not useful",
+    "phase": "Present",
+    "product": [
+      "Backend",
+      "Deck"
+    ],
+    "status": "In Progress",
+    "date": "2026-11-14",
+    "description": "Each card now has three ways to answer it. A checkmark means got it, an × means seen and no comment, and a thumbs-down means not useful, with an optional reason such as wrong time or already knew. Only 'not useful' counts against a card; the other two just clear it for a while. Nothing is learned from these yet: that waits for enough answers to mean something.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/pull/396"
+  },
+  {
     "id": "device-health-card",
     "milestone": "Alfr3d tells you when its own hardware has gone quiet",
     "phase": "Present",
     "product": [
       "Backend"
     ],
-    "status": "In Progress",
+    "status": "Shipped",
     "date": "2026-11-14",
-    "description": "Cameras and sensors that belong to the house itself now get their own notice when they have been offline much longer than they ever are. 'Much longer' is judged against each device's own history, not a fixed rule: a computer that sleeps all night isn't flagged by its sleep, while a camera that almost never drops is flagged after a couple of hours. These devices no longer get 'unusual hour' notices, which meant nothing for a camera, and the new notice stays quiet while a smart-home integration is down, since everything it syncs reads offline then. In review; the Deck shows it as a generic notice for now."
+    "description": "Cameras and sensors that belong to the house itself now get their own notice when they have been offline much longer than they ever are. 'Much longer' is judged against each device's own history, not a fixed rule: a computer that sleeps all night isn't flagged by its sleep, while a camera that almost never drops is flagged after a couple of hours. These devices no longer get 'unusual hour' notices, which meant nothing for a camera, and the new notice stays quiet while a smart-home integration is down, since everything it syncs reads offline then. Live in Alfr3d 0.5.0; the Deck shows it as a generic notice for now.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/releases/tag/v0.5.0"
   },
   {
     "id": "rhythm-daytype-stability",
@@ -811,8 +838,21 @@
     "product": [
       "Backend"
     ],
-    "status": "In Progress",
+    "status": "Shipped",
     "date": "2026-11-14",
-    "description": "Alfr3d judges how far to trust what it has learned about a device from how well that model predicted the last two weeks. That check used to mix weekdays and weekends into one number, so a change on one kind of day, like a school break, lowered confidence for the other and could stop a genuine out-of-routine flag from ever being shown. It is now measured separately for each kind of day. The review tool that checks whether a learned card is quiet enough also gained a start date, so a past bug stops skewing the numbers, and it now counts the cards the household actually saw. In review."
+    "description": "Alfr3d judges how far to trust what it has learned about a device from how well that model predicted the last two weeks. That check used to mix weekdays and weekends into one number, so a change on one kind of day, like a school break, lowered confidence for the other and could stop a genuine out-of-routine flag from ever being shown. It is now measured separately for each kind of day. The review tool that checks whether a learned card is quiet enough also gained a start date, so a past bug stops skewing the numbers, and it now counts the cards the household actually saw. Live in Alfr3d 0.5.0."
+  },
+  {
+    "id": "release-0-5-0",
+    "milestone": "Alfr3d 0.5.0 'Learning Curve' and Deck 1.2.3",
+    "phase": "Present",
+    "product": [
+      "Backend",
+      "Deck"
+    ],
+    "status": "Shipped",
+    "date": "2026-11-15",
+    "description": "Alfr3d 0.5.0 is the release where every situational-awareness card runs on what the household has taught it rather than a hand-set threshold, with the new hardware-health notice, per-day-type confidence, card feedback, a self-managed local certificate authority and a long list of fixes and library updates. Deck 1.2.3 follows with a fix so the music-pick suggestion appears only on a real gathering notice. The backend is live on the home server and the Deck is rolling out on Google Play.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/releases/tag/v0.5.0"
   }
 ]
