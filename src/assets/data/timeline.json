@@ -854,5 +854,17 @@
     "date": "2026-11-15",
     "description": "Alfr3d 0.5.0 is the release where every situational-awareness card runs on what the household has taught it rather than a hand-set threshold, with the new hardware-health notice, per-day-type confidence, card feedback, a self-managed local certificate authority and a long list of fixes and library updates. Deck 1.2.3 follows with a fix so the music-pick suggestion appears only on a real gathering notice. The backend is live on the home server and the Deck is rolling out on Google Play.",
     "source": "https://github.com/Littl3-1-Engineering/alfr3d/releases/tag/v0.5.0"
+  },
+  {
+    "id": "sa-baselines-retired",
+    "milestone": "Alfr3d's last fixed-rule memory is retired",
+    "phase": "Present",
+    "product": [
+      "Backend"
+    ],
+    "status": "Shipped",
+    "date": "2026-11-15",
+    "description": "Alfr3d used to keep a separate table of hand-built 'what is normal' numbers for each device and person, refreshed on a fixed schedule. Every notice now reads what the learned models know instead, so that table had no readers left and has been removed from the running house after a verified backup. A check on the way showed the two notices that had looked too chatty after their switch-over, attention and device-rhythm, are within their weekly budget once the window is fully past the switch.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/pull/402"
   }
 ]
