@@ -914,5 +914,17 @@
     "date": "2026-11-19",
     "description": "Every night Alfr3d now asks whether anything it senses lines up with guests being home, the house being empty, or people being away. It tries a small fixed set of ideas and writes down either what it found or exactly why it cannot say yet. Tonight is the first night with real data; so far the honest answer is \"not enough evidence\". A read-only owner view (the data side only for now) lists the findings and how many recent nights each held. Nothing acts on a finding and no notice is created from one.",
     "source": "https://github.com/Littl3-1-Engineering/alfr3d/pull/449"
+  },
+  {
+    "id": "context-learning-weak-witnesses",
+    "milestone": "A second, weaker opinion, used carefully",
+    "phase": "Present",
+    "product": [
+      "Backend"
+    ],
+    "status": "Shipped",
+    "date": "2026-11-19",
+    "description": "Alfr3d's judgments about whether someone is unexpectedly away can now take a second, weaker opinion into account. It is limited by design: it can nudge how confident Alfr3d is, never decide whether something is unusual. Two candidates were tested against the real history. The indoor climate sensor turned out to say nothing about whether anyone is home. The phone's approximate location (accurate to about 2 km) moved results very little and could not yet be checked against anything independent, so it is built but switched off. Precise location was deliberately left alone.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/pull/452"
   }
 ]
