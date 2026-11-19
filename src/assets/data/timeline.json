@@ -866,5 +866,29 @@
     "date": "2026-11-15",
     "description": "Alfr3d used to keep a separate table of hand-built 'what is normal' numbers for each device and person, refreshed on a fixed schedule. Every notice now reads what the learned models know instead, so that table had no readers left and has been removed from the running house after a verified backup. A check on the way showed the two notices that had looked too chatty after their switch-over, attention and device-rhythm, are within their weekly budget once the window is fully past the switch.",
     "source": "https://github.com/Littl3-1-Engineering/alfr3d/pull/402"
+  },
+  {
+    "id": "context-learning-replay-harness",
+    "milestone": "Alfr3d checks its own learning against what really happened",
+    "phase": "Present",
+    "product": [
+      "Backend"
+    ],
+    "status": "In Progress",
+    "date": "2026-11-18",
+    "description": "Before Alfr3d is allowed to learn from anything new, there has to be a trustworthy way to ask whether a change helped. Two checks now exist. One replays the past, day by day, asking each learner what it would have said knowing only what came before, and counts how often each notice would have fired. The other compares those replays with what the running house actually said. The first measurements changed nothing: notices fire about as rarely as intended, and the one number that could not be checked, how much a booked calendar should discount an absence, cannot be until calendar history is kept. The checks now also cover the number-tracking learners (temperature, humidity, phone activity), the message and event rates, and the phone's own network signal. Where they disagree with the running house, that is written down and not smoothed over: one family of number-tracking notices looks to be judged against the wrong kind of average, which needs a direct look before anything is changed.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/pull/423"
+  },
+  {
+    "id": "stay-arrival-fix",
+    "milestone": "A fresh arrival is no longer mistaken for a day-long stay",
+    "phase": "Present",
+    "product": [
+      "Backend"
+    ],
+    "status": "Shipped",
+    "date": "2026-11-18",
+    "description": "The new replay check found a real slip in the running house. In the moment after someone gets home, Alfr3d already knew they had arrived but could not yet read the new sighting, so it briefly measured their previous stay as if it had lasted until now: about a day. That produced a stray, low-confidence record after most arrivals. No notice reached anyone, because none came close to Alfr3d's bar for showing one, but a person with a long track record could eventually have been told they had not been out in a day. Alfr3d now waits for a fresh sighting before measuring a stay. Deployed to the running house.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/pull/422"
   }
 ]
