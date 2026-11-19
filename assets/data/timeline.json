@@ -890,5 +890,29 @@
     "date": "2026-11-18",
     "description": "The new replay check found a real slip in the running house. In the moment after someone gets home, Alfr3d already knew they had arrived but could not yet read the new sighting, so it briefly measured their previous stay as if it had lasted until now: about a day. That produced a stray, low-confidence record after most arrivals. No notice reached anyone, because none came close to Alfr3d's bar for showing one, but a person with a long track record could eventually have been told they had not been out in a day. Alfr3d now waits for a fresh sighting before measuring a stay. Deployed to the running house.",
     "source": "https://github.com/Littl3-1-Engineering/alfr3d/pull/422"
+  },
+  {
+    "id": "context-learning-covariate-engine",
+    "milestone": "One shared test for \"does this explain that?\"",
+    "phase": "Present",
+    "product": [
+      "Backend"
+    ],
+    "status": "Shipped",
+    "date": "2026-11-19",
+    "description": "Alfr3d's learners can now share one honest way of asking whether something it can sense (the weather, a busy calendar) explains something the house does. The test fits on one stretch of history and is judged on a later stretch it has not seen, needs a minimum amount of evidence, limits how many ideas it tries per question, and corrects for having tried several. It worked first on the indoor temperature and humidity readings, with results identical to before. Its first real measurements were a lesson: an early version found strong \"weather effects\" that were really the autumn cooling trend, and an early check could not have found anything at all however strong. Both were fixed and the earlier \"nothing found\" report corrected. Nothing has earned a place in any decision yet.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/pull/444"
+  },
+  {
+    "id": "context-learning-discovery-screen",
+    "milestone": "Alfr3d asks every night what lines up with the house",
+    "phase": "Present",
+    "product": [
+      "Backend"
+    ],
+    "status": "In Progress",
+    "date": "2026-11-19",
+    "description": "Every night Alfr3d now asks whether anything it senses lines up with guests being home, the house being empty, or people being away. It tries a small fixed set of ideas and writes down either what it found or exactly why it cannot say yet. Tonight is the first night with real data; so far the honest answer is \"not enough evidence\". A read-only owner view (the data side only for now) lists the findings and how many recent nights each held. Nothing acts on a finding and no notice is created from one.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/pull/449"
   }
 ]
