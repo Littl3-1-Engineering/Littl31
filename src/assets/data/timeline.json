@@ -950,5 +950,53 @@
     "date": "2026-11-19",
     "description": "The rules are written down and tested before anything can act. Everything starts at \"predict only\". Only the owner can move an action up, one step at a time and shown the evidence. An undo or a \"not useful\" moves it back down immediately. A kill switch returns everything to the start, and guests can never grant or trigger anything. There is no list of forbidden actions, only the rule that every proposal must show what being wrong would cost and whether it can be undone. The tables that will hold this now exist, empty. The part that would actually act is specified, not built.",
     "source": "https://github.com/Littl3-1-Engineering/alfr3d/pull/455"
+  },
+  {
+    "id": "household-day-drift-watch",
+    "milestone": "Alfr3d notices when the household's day changes shape",
+    "phase": "Present",
+    "product": [
+      "Backend"
+    ],
+    "status": "Shipped",
+    "date": "2026-11-20",
+    "description": "The part of Alfr3d that learns how many hours the household is usually home now also watches for a lasting change, like a school break or a new routine. When the pattern shifts, it trusts its own conclusions less for a few weeks instead of calling every day unusual, then recovers on its own.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/pull/463"
+  },
+  {
+    "id": "teach-me-read-api",
+    "milestone": "Teach me, part one: a read-only window onto what Alfr3d has learned",
+    "phase": "Present",
+    "product": [
+      "Backend"
+    ],
+    "status": "In Progress",
+    "date": "2026-11-20",
+    "description": "The owner can now ask Alfr3d what it believes about the household, with how sure it is and the evidence behind each belief. Only the owner can see it, and it never makes up a single confidence score it has not measured. There is no page for it yet and no way to correct a belief; those are next.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/pull/462"
+  },
+  {
+    "id": "email-card-headers-only",
+    "milestone": "The email card now reads only who it is from and the subject",
+    "phase": "Present",
+    "product": [
+      "Backend"
+    ],
+    "status": "Shipped",
+    "date": "2026-11-20",
+    "description": "Alfr3d's rule is that it never reads the body of your email. Writing the plan for a future email feature turned up one spot, the unread-mail card, that was asking Gmail for whole messages. It now asks only for the sender and subject, and a test keeps it that way. The permission itself still allows more, so narrowing it is a decision waiting for the owner.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/pull/467"
+  },
+  {
+    "id": "deck-brief-dismissal-link",
+    "milestone": "Swiping away a card now says which showing it was",
+    "phase": "Present",
+    "product": [
+      "Deck"
+    ],
+    "status": "In Progress",
+    "date": "2026-11-20",
+    "description": "When a card is swiped away in the Deck's brief, Alfr3d now records which appearance of the card it was, so it can later tell a card that is never wanted from one that was just badly timed. Merged; still to be checked on a real phone and released.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/pull/74"
   }
 ]
