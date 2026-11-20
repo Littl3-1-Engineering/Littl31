@@ -926,5 +926,29 @@
     "date": "2026-11-19",
     "description": "Alfr3d's judgments about whether someone is unexpectedly away can now take a second, weaker opinion into account. It is limited by design: it can nudge how confident Alfr3d is, never decide whether something is unusual. Two candidates were tested against the real history. The indoor climate sensor turned out to say nothing about whether anyone is home. The phone's approximate location (accurate to about 2 km) moved results very little and could not yet be checked against anything independent, so it is built but switched off. Precise location was deliberately left alone.",
     "source": "https://github.com/Littl3-1-Engineering/alfr3d/pull/452"
+  },
+  {
+    "id": "layer3-outcomes-and-predictors",
+    "milestone": "How Alfr3d's suggestions turn out",
+    "phase": "Present",
+    "product": [
+      "Backend"
+    ],
+    "status": "In Progress",
+    "date": "2026-11-19",
+    "description": "Before Alfr3d is ever allowed to act on its own, it needs a way to learn how its suggestions end. Every card and future suggestion can now end in one of four outcomes: acted on, ignored, undone or rejected. A first, deliberately small predictor (is this lamp usually on at this hour?) was tried on the real house. The honest results: feedback so far is thin, with twenty explicit reactions ever, and only one of six switches showed a pattern, which may simply be an existing schedule. Nothing acts, and nothing in this step can.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/pull/454"
+  },
+  {
+    "id": "layer3-autonomy-ladder",
+    "milestone": "The rules for earned autonomy, written before any of it exists",
+    "phase": "Present",
+    "product": [
+      "Backend"
+    ],
+    "status": "In Progress",
+    "date": "2026-11-19",
+    "description": "The rules are written down and tested before anything can act. Everything starts at \"predict only\". Only the owner can move an action up, one step at a time and shown the evidence. An undo or a \"not useful\" moves it back down immediately. A kill switch returns everything to the start, and guests can never grant or trigger anything. There is no list of forbidden actions, only the rule that every proposal must show what being wrong would cost and whether it can be undone. The tables that will hold this now exist, empty. The part that would actually act is specified, not built.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/pull/455"
   }
 ]
