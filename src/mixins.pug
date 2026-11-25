@@ -85,8 +85,12 @@ mixin introHero(item, accent, asH1)
                 p.pt-2
                   a(href=item.cta.href, class=`btn-glow accent-${accent}`)= item.cta.text
 
-mixin section(item, defaultAccent)
+//- `flat` drops the horizontal heading parallax. On long pages the last
+//- sections sit at the page bottom, where scroll runs out before the slide
+//- settles, leaving their headings stranded off the right edge.
+mixin section(item, defaultAccent, flat)
   - var accent = item.accent || defaultAccent || 'amber'
+  - var parallax = flat ? {} : { 'data-scroll': '', 'data-scroll-repeat': '', 'data-scroll-speed': '-1', 'data-scroll-position': 'top', 'data-scroll-direction': 'horizontal', 'data-scroll-target': '#' + item.id }
   .flex.items-center.justify-center(id=item.id, class='p-4 md:p-8')
     .max-w-screen-lg.w-full.relative(class=`window-frame accent-${accent}`)
       .window-tab
@@ -97,14 +101,8 @@ mixin section(item, defaultAccent)
             span.font-mono(class='text-xs uppercase tracking-widest text-gray-300')= item.eyebrow
         .window-content(class='p-8 md:p-12')
           h2.font-display.font-bold(
-            data-scroll,
-            data-scroll-repeat,
-            data-scroll-speed='-1',
-            data-scroll-position='top',
-            data-scroll-direction='horizontal',
-            data-scroll-target=`#${item.id}`,
             class=`accent-text-${accent} text-4xl md:text-6xl`
-          )= item.title
+          )&attributes(parallax)= item.title
           hr.my-4(class=`accent-border-${accent} border-t-2 opacity-40`)
 
           if item.quip
