@@ -53,16 +53,21 @@ if (root) {
       match: (e) => e.phase === 'Past',
       sort: sortByDate('asc')
     },
+    // Current Feature Set is what has actually shipped. Work still In Progress
+    // belongs under Upcoming even when its row is already phase 'Present'
+    // (the Notion sync marks a feature Present as soon as it starts landing).
+    // `rollup` folds older shipped entries into summary cards, see rollUp().
     current: {
       accent: 'amber',
       grouped: true,
-      match: (e) => e.phase === 'Present',
+      rollup: true,
+      match: (e) => e.phase === 'Present' && e.status !== 'In Progress',
       sort: sortByDate('desc')
     },
     upcoming: {
       accent: 'orange',
       grouped: false,
-      match: (e) => e.phase === 'Future' && e.status === 'In Progress',
+      match: (e) => (e.phase === 'Future' || e.phase === 'Present') && e.status === 'In Progress',
       sort: sortByDate('asc')
     },
     roadmap: {
@@ -139,13 +144,85 @@ if (root) {
     return `<div class="flex flex-wrap gap-4 mt-6">${cards}</div>`
   }
 
-  // A grouped/summarized entry (a whole month's milestones for one product
-  // folded into one card, per the Documentation Sync Protocol) carries
-  // `description` as an array of bullet highlights instead of a single
-  // paragraph string. Convention: every month up to (not including) the
-  // current one is folded into one monthly card per product; the current
-  // month's entries stay ungrouped, one per commit/milestone. Render
-  // whichever shape the entry actually has.
+  // Roll-up for the Current Feature Set view, computed at render time from
+  // today's date so it keeps working without regenerating timeline.json:
+  //   - entries from the last 30 days stay as individual cards;
+  //   - older entries from this calendar year fold into one card per month;
+  //   - entries from before this calendar year fold into one card per quarter.
+  // A bucket holding a single entry is left as that entry. Undated entries are
+  // never folded. Applied per product section, so a Backend+Deck entry rolls
+  // up separately under each product it belongs to.
+  const RECENT_DAYS = 30
+  const DAY_MS = 24 * 60 * 60 * 1000
+
+  function rollupBucket (entry, now) {
+    const t = entry.date ? Date.parse(entry.date) : NaN
+    if (Number.isNaN(t) || now - t <= RECENT_DAYS * DAY_MS) return null
+    const d = new Date(t)
+    const year = d.getUTCFullYear()
+    const month = d.getUTCMonth()
+    if (year < new Date(now).getUTCFullYear()) {
+      const quarter = Math.floor(month / 3) + 1
+      return { key: `${year}-Q${quarter}`, label: `Q${quarter} ${year}`, quarterly: true }
+    }
+    const label = d.toLocaleDateString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' })
+    return { key: `${year}-${String(month + 1).padStart(2, '0')}`, label, quarterly: false }
+  }
+
+  function firstSentence (text) {
+    const clean = String(text).replace(/\s+/g, ' ').trim()
+    const end = clean.search(/[.!?](\s|$)/)
+    const sentence = end === -1 ? clean : clean.slice(0, end + 1)
+    return sentence.length > 220 ? `${sentence.slice(0, 217).trimEnd()}…` : sentence
+  }
+
+  function rollupSummary (bucket, items, product) {
+    const chronological = items.slice().sort(sortByDate('asc'))
+    const bullets = []
+    chronological.forEach((e) => {
+      if (Array.isArray(e.description)) {
+        // Already a bullet summary (e.g. a monthly card from the sync) — keep its bullets.
+        e.description.forEach((line) => bullets.push(line))
+      } else {
+        bullets.push(`${e.milestone} — ${firstSentence(e.description)}`)
+      }
+    })
+    const latest = chronological[chronological.length - 1]
+    return {
+      id: `rollup-${product}-${bucket.key}`,
+      milestone: `${displayName(product)}: ${bucket.label} in review`,
+      phase: 'Present',
+      product: [product],
+      status: 'Shipped',
+      date: latest.date,
+      dateLabel: bucket.quarterly ? bucket.label : null,
+      description: Array.from(new Set(bullets))
+    }
+  }
+
+  function rollUp (list, product, now) {
+    const out = []
+    const buckets = new Map()
+    list.forEach((e) => {
+      const bucket = rollupBucket(e, now)
+      if (!bucket) {
+        out.push(e)
+        return
+      }
+      if (!buckets.has(bucket.key)) buckets.set(bucket.key, { bucket, items: [] })
+      buckets.get(bucket.key).items.push(e)
+    })
+    buckets.forEach(({ bucket, items }) => {
+      out.push(items.length === 1 ? items[0] : rollupSummary(bucket, items, product))
+    })
+    return out
+  }
+
+  // A grouped/summarized entry (a whole period's milestones for one product
+  // folded into one card, either by the Documentation Sync Protocol or by
+  // rollUp() above) carries `description` as an array of bullet highlights
+  // instead of a single paragraph string. Render whichever shape the entry
+  // actually has.
   function entryDescription (entry) {
     if (Array.isArray(entry.description)) {
       const items = entry.description.map((line) => `<li>${escapeHtml(line)}</li>`).join('')
@@ -160,7 +237,7 @@ if (root) {
         <div class="window-body">
           <div class="window-titlebar">
             <span class="window-dot"></span>
-            <span class="font-mono text-xs uppercase tracking-widest text-gray-300">${escapeHtml(formatDate(entry.date))}</span>
+            <span class="font-mono text-xs uppercase tracking-widest text-gray-300">${escapeHtml(entry.dateLabel || formatDate(entry.date))}</span>
             <span class="font-mono text-xs uppercase tracking-widest text-gray-500">· ${escapeHtml(entry.status)}</span>
           </div>
           <div class="window-content p-6 md:p-8">
@@ -197,10 +274,12 @@ if (root) {
 
     if (config.grouped) {
       const products = activeFilter === 'all' ? PRODUCTS : [activeFilter]
+      const now = Date.now()
       resultsEl.innerHTML = products
         .map((product) => {
-          const inGroup = filtered.filter((e) => e.product.includes(product))
+          let inGroup = filtered.filter((e) => e.product.includes(product))
           if (!inGroup.length) return ''
+          if (config.rollup) inGroup = rollUp(inGroup, product, now).sort(config.sort)
           const cards = inGroup.map((e) => entryCard(e, config.accent)).join('')
           const pricing = pricingTiers(product)
           return `<div>${groupHeading(product, PRODUCT_ACCENT[product] || config.accent)}<div class="space-y-6">${cards}</div>${pricing}</div>`
