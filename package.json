@@ -19,6 +19,7 @@
     "mkdirs": "mkdirp dist/assets dist/js dist/css",
     "copy:assets": "cpr src/assets dist/assets",
     "copy:cname": "cp CNAME dist/CNAME",
+    "copy:sitemap": "node scripts/sitemap.js",
     "prebuild:dev": "run-s clean mkdirs copy:*",
     "build:dev": "run-p html css js:dev",
     "prebuild:prod": "run-s clean mkdirs copy:*",

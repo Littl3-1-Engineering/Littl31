@@ -39,7 +39,7 @@ mixin splash
     if block
       block
 
-mixin introHero(item, accent)
+mixin introHero(item, accent, asH1)
   section#intro(data-scroll-section, class='p-8 flex items-center justify-center')
     .max-w-screen-lg.w-full.relative(class=`window-frame accent-${accent}`)
       .window-tab
@@ -47,7 +47,7 @@ mixin introHero(item, accent)
         .window-titlebar
           span.window-dot
         .window-content(class='p-8 md:p-12')
-          h2.font-display.font-bold.text-right(
+          #{asH1 ? 'h1' : 'h2'}.font-display.font-bold.text-right(
             data-scramble-intro,
             data-scroll,
             data-scroll-repeat,
@@ -123,7 +123,7 @@ mixin section(item, defaultAccent)
             .w-full.mt-12.flex.flex-col(class=`gap-8 md:items-start md:flex-row ${item.right ? 'md:flex-row-reverse' : ''}`)
               div(class='w-full md:w-1/2')
                 .overflow-hidden(class=`accent-border-${accent} border rounded-lg w-full`)
-                  img.w-full(src=item.img)
+                  img.w-full(src=item.img, alt=item.imgAlt || item.imgCaption || item.title, loading='lazy')
                 if item.imgCaption
                   p.font-mono.text-gray-500.mt-3(class='text-xs leading-relaxed')= item.imgCaption
               div(class='w-full md:w-1/2 space-y-6')
@@ -224,7 +224,7 @@ mixin siteFooter(data, backLink)
       .flex.items-center.w-full
         div(class='w-1/3')
         div(class='w-1/3')
-          img.mx-auto(src='assets/images/logo.svg', class='w-24')
+          img.mx-auto(src='assets/images/logo.svg', alt='', class='w-24')
         div.text-right(class='w-1/3')
           div(
             data-scroll,
@@ -246,3 +246,37 @@ mixin siteFooter(data, backLink)
       )= data.text
       p.text-center.mt-2
         a.text-gray-500.transition-colors(href='privacy.html', class='text-xs hover:text-amber-400') Privacy Policy
+
+//- SEO head block: title, description, canonical, robots, Open Graph,
+//- Twitter card, and JSON-LD. `path` is the extensionless public path
+//- ('' for home) — it must match the entry in scripts/sitemap.js.
+mixin seoHead(m, path, ld)
+  - var origin = 'https://www.littl31.com'
+  - var url = origin + '/' + path
+  - var image = origin + '/assets/images/alfr3d-dashboard.jpg'
+  title #{m.title}
+  meta(name='description' content=m.description)
+  link(rel='canonical' href=url)
+  meta(name='robots' content='index, follow, max-image-preview:large')
+  meta(name='theme-color' content='#000000')
+  meta(property='og:site_name' content='Littl3.1 Engineering')
+  meta(property='og:type' content='website')
+  meta(property='og:locale' content='en_US')
+  meta(property='og:title' content=m.title)
+  meta(property='og:description' content=m.description)
+  meta(property='og:url' content=url)
+  meta(property='og:image' content=image)
+  meta(property='og:image:width' content='1400')
+  meta(property='og:image:height' content='693')
+  meta(property='og:image:alt' content='The ALFR3D dashboard')
+  meta(name='twitter:card' content='summary_large_image')
+  meta(name='twitter:title' content=m.title)
+  meta(name='twitter:description' content=m.description)
+  meta(name='twitter:image' content=image)
+  - var graph = [{ '@type': 'WebPage', '@id': url + '#webpage', url: url, name: m.title, description: m.description, isPartOf: { '@id': origin + '/#website' }, inLanguage: 'en' }]
+  if path === ''
+    - graph.push({ '@type': 'Organization', '@id': origin + '/#org', name: 'Littl3.1 Engineering', url: origin + '/', logo: origin + '/assets/images/logo.svg', email: 'athos@littl31.com', sameAs: ['https://github.com/Littl3-1-Engineering'] })
+    - graph.push({ '@type': 'WebSite', '@id': origin + '/#website', url: origin + '/', name: 'Littl3.1 Engineering', publisher: { '@id': origin + '/#org' }, inLanguage: 'en' })
+  if path === 'alfr3d'
+    - graph.push({ '@type': 'SoftwareApplication', name: 'ALFR3D', applicationCategory: 'HomeAutomationApplication', operatingSystem: 'Linux, Android', description: m.description, url: url, image: image, license: 'https://fsl.software/', publisher: { '@id': origin + '/#org' } })
+  script(type='application/ld+json')!= JSON.stringify({ '@context': 'https://schema.org', '@graph': graph }).replace(/</g, '\\u003c')

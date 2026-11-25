@@ -19,45 +19,45 @@ include mixins.pug
     'Uplink': (uplinkProduct && uplinkProduct.pricing) || []
   }
 
-head
-  meta(charset='utf-8')
-  title #{timeline.meta.title}
-  meta(name='description' content=timeline.meta.description)
-  meta(name='viewport' content='width=device-width, initial-scale=1.0')
-  meta(http-equiv='Content-Security-Policy' content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self'; font-src 'self'; media-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'")
-  link(rel='stylesheet' href='css/style.css')
-  link(rel="icon" type="image/png" href='assets/images/favicon.ico')
-  script(src='js/main.js', defer)
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    +seoHead(timeline.meta, 'timeline')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    meta(http-equiv='Content-Security-Policy' content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self'; font-src 'self'; media-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'")
+    link(rel='stylesheet' href='css/style.css')
+    link(rel="icon" type="image/png" href='assets/images/favicon.ico')
+    script(src='js/main.js', defer)
 
-body.text-white.grid-bg
-  +navBar(nav, brand)
+  body.text-white.grid-bg
+    +navBar(nav, brand)
 
-  main(class='pt-24', data-scroll-container)
+    main(class='pt-24', data-scroll-container)
 
-    +introHero(timeline.intro, 'cyan')
+      +introHero(timeline.intro, 'cyan', true)
 
-    section#timeline-app(data-scroll-section, class='py-8 px-4 md:px-8')
-      script#timeline-pricing-data(type='application/json')!= JSON.stringify(timelinePricing)
+      section#timeline-app(data-scroll-section, class='py-8 px-4 md:px-8')
+        script#timeline-pricing-data(type='application/json')!= JSON.stringify(timelinePricing)
 
-      .max-w-screen-lg.mx-auto(data-timeline-root, data-source='assets/data/timeline.json')
+        .max-w-screen-lg.mx-auto(data-timeline-root, data-source='assets/data/timeline.json')
 
-        .flex.flex-wrap.justify-center(data-timeline-tabs, role='tablist', class='gap-2 mb-6')
-          button.timeline-tab.is-active.accent-gray(type='button', data-tab='history', role='tab', aria-selected='true') History
-          button.timeline-tab.accent-amber(type='button', data-tab='current', role='tab', aria-selected='false') Current Feature Set
-          button.timeline-tab.accent-orange(type='button', data-tab='upcoming', role='tab', aria-selected='false') Upcoming
-          button.timeline-tab.accent-cyan(type='button', data-tab='roadmap', role='tab', aria-selected='false') Roadmap
+          .flex.flex-wrap.justify-center(data-timeline-tabs, role='tablist', class='gap-2 mb-6')
+            button.timeline-tab.is-active.accent-gray(type='button', data-tab='history', role='tab', aria-selected='true') History
+            button.timeline-tab.accent-amber(type='button', data-tab='current', role='tab', aria-selected='false') Current Feature Set
+            button.timeline-tab.accent-orange(type='button', data-tab='upcoming', role='tab', aria-selected='false') Upcoming
+            button.timeline-tab.accent-cyan(type='button', data-tab='roadmap', role='tab', aria-selected='false') Roadmap
 
-        p.text-center.text-gray-500(class='text-xs uppercase tracking-widest mb-3') Filter by product
+          p.text-center.text-gray-500(class='text-xs uppercase tracking-widest mb-3') Filter by product
 
-        .flex.flex-wrap.justify-center(data-timeline-filters, class='gap-2 mb-10')
-          button.timeline-filter-chip.is-active(type='button', data-filter='all') All
-          button.timeline-filter-chip.accent-gray(type='button', data-filter='Backend') Backend
-          button.timeline-filter-chip.accent-cyan(type='button', data-filter='Deck') Alfr3d Deck
-          button.timeline-filter-chip.accent-amber(type='button', data-filter='littl31.com') littl31.com
-          button.timeline-filter-chip.accent-orange(type='button', data-filter='Uplink') Alfr3d Uplink
+          .flex.flex-wrap.justify-center(data-timeline-filters, class='gap-2 mb-10')
+            button.timeline-filter-chip.is-active(type='button', data-filter='all') All
+            button.timeline-filter-chip.accent-gray(type='button', data-filter='Backend') Backend
+            button.timeline-filter-chip.accent-cyan(type='button', data-filter='Deck') Alfr3d Deck
+            button.timeline-filter-chip.accent-amber(type='button', data-filter='littl31.com') littl31.com
+            button.timeline-filter-chip.accent-orange(type='button', data-filter='Uplink') Alfr3d Uplink
 
-        p.text-center.text-gray-500.text-sm(data-timeline-status, class='py-16') Loading timeline…
-        div.hidden(data-timeline-results, class='space-y-10')
-        p.text-center.text-gray-500.text-sm.hidden(data-timeline-empty, class='py-16') No entries match this filter.
+          p.text-center.text-gray-500.text-sm(data-timeline-status, class='py-16') Loading timeline…
+          div.hidden(data-timeline-results, class='space-y-10')
+          p.text-center.text-gray-500.text-sm.hidden(data-timeline-empty, class='py-16') No entries match this filter.
 
-    +siteFooter(footer, { href: 'index.html', text: '← Littl3.1 Engineering' })
+      +siteFooter(footer, { href: 'index.html', text: '← Littl3.1 Engineering' })
