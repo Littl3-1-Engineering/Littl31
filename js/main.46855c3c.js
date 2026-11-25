@@ -13203,7 +13203,7 @@ function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Can
 function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
 function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", { writable: !1 }), e; }
 function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _toPrimitive(t, e) { if ("object" != _typeof(t) || !t) return t; var r; if ("undefined" != typeof Symbol && void 0 !== (r = t[Symbol.toPrimitive])) { var i = r.call(t, e || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === e ? String : Number)(t); }
 // https://codepen.io/soulwire/pen/mErPAK
 var TextScramble = exports.TextScramble = /*#__PURE__*/function () {
   function TextScramble(el) {
@@ -13334,7 +13334,7 @@ function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbol
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
 function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _toPrimitive(t, e) { if ("object" != _typeof(t) || !t) return t; var r; if ("undefined" != typeof Symbol && void 0 !== (r = t[Symbol.toPrimitive])) { var i = r.call(t, e || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === e ? String : Number)(t); }
 // Timeline page (timeline.html) — fetches the static timeline.json asset
 // at runtime and renders/filters it client-side. Self-guarded: on any
 // other page `root` is null and the whole module is a no-op, same
@@ -13397,13 +13397,96 @@ if (root) {
       return "\n        <div class=\"window-frame window-sm accent-".concat(escapeHtml(accent), "\">\n          <div class=\"window-body\">\n            <div class=\"window-content px-6 py-4\">\n              <div class=\"font-bold accent-text-").concat(escapeHtml(accent), " text-2xl\">").concat(escapeHtml(amount), "</div>\n              <div class=\"text-xs text-gray-400 mt-1\">").concat(escapeHtml(tier.label), "</div>\n            </div>\n          </div>\n        </div>");
     }).join('');
     return "<div class=\"flex flex-wrap gap-4 mt-6\">".concat(cards, "</div>");
-  }; // A grouped/summarized entry (a whole month's milestones for one product
-  // folded into one card, per the Documentation Sync Protocol) carries
-  // `description` as an array of bullet highlights instead of a single
-  // paragraph string. Convention: every month up to (not including) the
-  // current one is folded into one monthly card per product; the current
-  // month's entries stay ungrouped, one per commit/milestone. Render
-  // whichever shape the entry actually has.
+  }; // Roll-up for the Current Feature Set view, computed at render time from
+  // today's date so it keeps working without regenerating timeline.json:
+  //   - entries from the last 30 days stay as individual cards;
+  //   - older entries from this calendar year fold into one card per month;
+  //   - entries from before this calendar year fold into one card per quarter.
+  // A bucket holding a single entry is left as that entry. Undated entries are
+  // never folded. Applied per product section, so a Backend+Deck entry rolls
+  // up separately under each product it belongs to.
+  var rollupBucket = function rollupBucket(entry, now) {
+    var t = entry.date ? Date.parse(entry.date) : NaN;
+    if (Number.isNaN(t) || now - t <= RECENT_DAYS * DAY_MS) return null;
+    var d = new Date(t);
+    var year = d.getUTCFullYear();
+    var month = d.getUTCMonth();
+    if (year < new Date(now).getUTCFullYear()) {
+      var quarter = Math.floor(month / 3) + 1;
+      return {
+        key: "".concat(year, "-Q").concat(quarter),
+        label: "Q".concat(quarter, " ").concat(year),
+        quarterly: true
+      };
+    }
+    var label = d.toLocaleDateString('en-US', {
+      month: 'long',
+      year: 'numeric',
+      timeZone: 'UTC'
+    });
+    return {
+      key: "".concat(year, "-").concat(String(month + 1).padStart(2, '0')),
+      label: label,
+      quarterly: false
+    };
+  };
+  var firstSentence = function firstSentence(text) {
+    var clean = String(text).replace(/\s+/g, ' ').trim();
+    var end = clean.search(/[.!?](\s|$)/);
+    var sentence = end === -1 ? clean : clean.slice(0, end + 1);
+    return sentence.length > 220 ? "".concat(sentence.slice(0, 217).trimEnd(), "\u2026") : sentence;
+  };
+  var rollupSummary = function rollupSummary(bucket, items, product) {
+    var chronological = items.slice().sort(sortByDate('asc'));
+    var bullets = [];
+    chronological.forEach(function (e) {
+      if (Array.isArray(e.description)) {
+        // Already a bullet summary (e.g. a monthly card from the sync) — keep its bullets.
+        e.description.forEach(function (line) {
+          return bullets.push(line);
+        });
+      } else {
+        bullets.push("".concat(e.milestone, " \u2014 ").concat(firstSentence(e.description)));
+      }
+    });
+    var latest = chronological[chronological.length - 1];
+    return {
+      id: "rollup-".concat(product, "-").concat(bucket.key),
+      milestone: "".concat(displayName(product), ": ").concat(bucket.label, " in review"),
+      phase: 'Present',
+      product: [product],
+      status: 'Shipped',
+      date: latest.date,
+      dateLabel: bucket.quarterly ? bucket.label : null,
+      description: Array.from(new Set(bullets))
+    };
+  };
+  var rollUp = function rollUp(list, product, now) {
+    var out = [];
+    var buckets = new Map();
+    list.forEach(function (e) {
+      var bucket = rollupBucket(e, now);
+      if (!bucket) {
+        out.push(e);
+        return;
+      }
+      if (!buckets.has(bucket.key)) buckets.set(bucket.key, {
+        bucket: bucket,
+        items: []
+      });
+      buckets.get(bucket.key).items.push(e);
+    });
+    buckets.forEach(function (_ref) {
+      var bucket = _ref.bucket,
+        items = _ref.items;
+      out.push(items.length === 1 ? items[0] : rollupSummary(bucket, items, product));
+    });
+    return out;
+  }; // A grouped/summarized entry (a whole period's milestones for one product
+  // folded into one card, either by the Documentation Sync Protocol or by
+  // rollUp() above) carries `description` as an array of bullet highlights
+  // instead of a single paragraph string. Render whichever shape the entry
+  // actually has.
   var entryDescription = function entryDescription(entry) {
     if (Array.isArray(entry.description)) {
       var items = entry.description.map(function (line) {
@@ -13414,7 +13497,7 @@ if (root) {
     return "<p class=\"text-gray-300 text-sm leading-relaxed mt-4\">".concat(escapeHtml(entry.description), "</p>");
   };
   var entryCard = function entryCard(entry, accent) {
-    return "\n      <div class=\"window-frame window-sm accent-".concat(accent, "\">\n        <div class=\"window-body\">\n          <div class=\"window-titlebar\">\n            <span class=\"window-dot\"></span>\n            <span class=\"font-mono text-xs uppercase tracking-widest text-gray-300\">").concat(escapeHtml(formatDate(entry.date)), "</span>\n            <span class=\"font-mono text-xs uppercase tracking-widest text-gray-500\">\xB7 ").concat(escapeHtml(entry.status), "</span>\n          </div>\n          <div class=\"window-content p-6 md:p-8\">\n            <h3 class=\"font-display font-bold text-white text-lg md:text-xl\">").concat(escapeHtml(entry.milestone), "</h3>\n            <div class=\"flex flex-wrap gap-2 mt-3\">").concat(productChips(entry.product), "</div>\n            ").concat(entryDescription(entry), "\n          </div>\n        </div>\n      </div>");
+    return "\n      <div class=\"window-frame window-sm accent-".concat(accent, "\">\n        <div class=\"window-body\">\n          <div class=\"window-titlebar\">\n            <span class=\"window-dot\"></span>\n            <span class=\"font-mono text-xs uppercase tracking-widest text-gray-300\">").concat(escapeHtml(entry.dateLabel || formatDate(entry.date)), "</span>\n            <span class=\"font-mono text-xs uppercase tracking-widest text-gray-500\">\xB7 ").concat(escapeHtml(entry.status), "</span>\n          </div>\n          <div class=\"window-content p-6 md:p-8\">\n            <h3 class=\"font-display font-bold text-white text-lg md:text-xl\">").concat(escapeHtml(entry.milestone), "</h3>\n            <div class=\"flex flex-wrap gap-2 mt-3\">").concat(productChips(entry.product), "</div>\n            ").concat(entryDescription(entry), "\n          </div>\n        </div>\n      </div>");
   };
   var groupHeading = function groupHeading(product, accent) {
     return "<h3 class=\"font-display font-bold accent-text-".concat(accent, " text-2xl md:text-3xl border-b accent-border-").concat(accent, " border-opacity-40 pb-2 mb-6\">").concat(escapeHtml(displayName(product)), "</h3>");
@@ -13438,11 +13521,13 @@ if (root) {
     resultsEl.classList.remove('hidden');
     if (config.grouped) {
       var products = activeFilter === 'all' ? PRODUCTS : [activeFilter];
+      var now = Date.now();
       resultsEl.innerHTML = products.map(function (product) {
         var inGroup = filtered.filter(function (e) {
           return e.product.includes(product);
         });
         if (!inGroup.length) return '';
+        if (config.rollup) inGroup = rollUp(inGroup, product, now).sort(config.sort);
         var cards = inGroup.map(function (e) {
           return entryCard(e, config.accent);
         }).join('');
@@ -13510,11 +13595,16 @@ if (root) {
       },
       sort: sortByDate('asc')
     },
+    // Current Feature Set is what has actually shipped. Work still In Progress
+    // belongs under Upcoming even when its row is already phase 'Present'
+    // (the Notion sync marks a feature Present as soon as it starts landing).
+    // `rollup` folds older shipped entries into summary cards, see rollUp().
     current: {
       accent: 'amber',
       grouped: true,
+      rollup: true,
       match: function match(e) {
-        return e.phase === 'Present';
+        return e.phase === 'Present' && e.status !== 'In Progress';
       },
       sort: sortByDate('desc')
     },
@@ -13522,7 +13612,7 @@ if (root) {
       accent: 'orange',
       grouped: false,
       match: function match(e) {
-        return e.phase === 'Future' && e.status === 'In Progress';
+        return (e.phase === 'Future' || e.phase === 'Present') && e.status === 'In Progress';
       },
       sort: sortByDate('asc')
     },
@@ -13545,6 +13635,8 @@ if (root) {
   var entries = null;
   var activeTab = 'history';
   var activeFilter = 'all';
+  var RECENT_DAYS = 30;
+  var DAY_MS = 24 * 60 * 60 * 1000;
   if (tabsEl) {
     tabsEl.addEventListener('click', function (e) {
       var btn = e.target.closest('[data-tab]');

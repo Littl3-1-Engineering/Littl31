@@ -384,15 +384,15 @@
   },
   {
     "id": "explore-launcher-context-source",
-    "milestone": "Explore: Alfr3d Deck as a new context source for situational awareness",
-    "phase": "Future",
+    "milestone": "Alfr3d Deck now feeds situational awareness",
+    "phase": "Present",
     "product": [
       "Backend",
       "Deck"
     ],
-    "status": "Backburner",
-    "date": "2026-08-27",
-    "description": "Explore feeding the launcher's own on-device signals (attention/dwell, foreground app, etc.) back into the backend's situational-awareness engine as a new context source, alongside existing presence/device signals. One candidate signal, BLE presence sensing, was investigated directly and set aside (see \"BLE presence sensing -- explored and set aside\" above) -- modern phones rotate their Bluetooth address, so nothing personally-carried stayed identifiable in a real scan. The rest of the signal list (WiFi leave/arrive, named context zones, car Bluetooth, etc.) remains unexplored.",
+    "status": "Shipped",
+    "date": "2026-09-12",
+    "description": "The launcher is now a real context source for the backend. It reports how often and how long you use each window (counts and durations only, no app names or contents), an opt-in approximate location while the app is open, and which situational-awareness cards you saw, tapped or dismissed. One candidate signal, BLE presence sensing, was investigated directly and set aside (see \"BLE presence sensing -- explored and set aside\"): modern phones rotate their Bluetooth address, so nothing personally carried stayed identifiable in a real scan. WiFi leave/arrive, named context zones and car Bluetooth were not explored.",
     "source": null
   },
   {
@@ -430,7 +430,7 @@
     ],
     "status": "Backburner",
     "date": "2026-08-30",
-    "description": "A planned next step for the household event log -- noticing that one event usually follows another, and gently flagging it when it doesn't -- needs real weeks of history to learn from honestly. The event log itself is brand new, so this is queued rather than built against too little data.",
+    "description": "A planned next step for the household event log -- noticing that one event usually follows another, and gently flagging it when it doesn't. Re-checked on real data on 2026-10-31 after about two months and 15,000 structured events: still stopped. The pairs that stand out are one entity's own lifecycle, like a track starting then stopping, and the sequences a household cares about (arriving then lights or music, a routine then a device) have no signal or no producer yet. Any window or threshold picked now would be invented.",
     "source": "https://github.com/Littl3-1-Engineering/alfr3d/blob/main/todo/todo_transition_learning.md"
   },
   {
@@ -655,7 +655,7 @@
     ],
     "status": "Backburner",
     "date": "2026-10-21",
-    "description": "A review of exactly what sits behind the $6 Pro unlock, checking that the app and the pricing copy promise the same thing, and deciding where the new features (Compact Settings, Samurai Wisdom, theme sync) belong. Core usability stays free. Not started.",
+    "description": "A review of exactly what sits behind the C$8 Pro unlock, checking that the app and the pricing copy promise the same thing, and deciding where the new features (Compact Settings, Samurai Wisdom, theme sync) belong. Core usability stays free. Not started.",
     "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/tree/main/todo"
   },
   {
@@ -674,13 +674,13 @@
   {
     "id": "status-bar-setting",
     "milestone": "Status bar options",
-    "phase": "Future",
+    "phase": "Present",
     "product": [
       "Deck"
     ],
-    "status": "Backburner",
-    "date": "2026-10-21",
-    "description": "Settings to choose a transparent or solid status bar, and light or dark icons and text. Not started.",
+    "status": "Shipped",
+    "date": "2026-10-06",
+    "description": "Settings to choose a transparent or solid status bar and the icon style (light, dark or automatic) are in the launcher's Settings.",
     "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/tree/main/todo"
   },
   {
@@ -698,13 +698,13 @@
   {
     "id": "alfr3d-scrip-symbol",
     "milestone": "Alfr3d Scrip currency symbol",
-    "phase": "Future",
+    "phase": "Present",
     "product": [
       "littl31.com"
     ],
-    "status": "In Progress",
+    "status": "Shipped",
     "date": "2026-09-06",
-    "description": "A locale-aware currency toggle (CAD, USD, EUR) with an easter egg: hover and the price scrambles into \"Alfr3d Scrip\". This item is the symbol design; the toggle and scramble are a separate build.",
+    "description": "The pricing section has a CAD, USD and EUR switcher using real agreed price points (never a live conversion), plus an easter egg: hover or tap a price and it scrambles into \"Alfr3d Scrip\" with its own symbol, a stylized seven-segment 3 with an extended crossbar, then snaps back to the real currency.",
     "source": "https://github.com/Littl3-1-Engineering/Littl31"
   },
   {
