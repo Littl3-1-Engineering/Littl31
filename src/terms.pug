@@ -1,0 +1,26 @@
+doctype html
+
+include mixins.pug
+
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    +seoHead(terms.meta, 'terms')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    meta(http-equiv='Content-Security-Policy' content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self'; font-src 'self'; media-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'")
+    link(rel='stylesheet' href='css/style.css')
+    link(rel="icon" type="image/png" href='assets/images/favicon.ico')
+    script(src='js/main.js', defer)
+
+  body.text-white.grid-bg
+    +navBar(nav, brand)
+
+    main(class='pt-24', data-scroll-container)
+
+      +introHero(terms.intro, 'gray', true)
+
+      section#terms-sections(data-scroll-section, class='py-8')
+        for item in terms.sections
+          +section(item, 'gray')
+
+      +siteFooter(footer, { href: 'index.html', text: '← Littl3.1 Engineering' })

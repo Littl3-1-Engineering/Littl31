@@ -315,6 +315,99 @@ privacy:
       lines:
         - Email athos@littl31.com — that's a real inbox we read, not a support ticket queue.
 
+terms:
+  meta:
+    title: 'Terms of Service : Littl3.1 Engineering'
+    description: The terms for using littl31.com, ALFR3D Core, Alfr3d Deck, and the ALFR3D Kit, Relay, and Alfr3d Uplink services once they launch. Written plainly, and with some teeth.
+  intro:
+    title: Read this before you get weird.
+    lines:
+      - 'Last updated: November 24, 2026.'
+      - "These are the terms for using anything Littl3.1 Engineering puts out into the world: this website (littl31.com), ALFR3D Core, Alfr3d Deck, and the ALFR3D Kit, Relay, and Alfr3d Uplink services once they exist. Use any of it and you've agreed to what follows. If you haven't, stop now. No hard feelings."
+      - "We wrote this like a person, not a legal department in a fever dream. It is still a real agreement, and every section means what it says."
+  sections:
+    - id: who
+      eyebrow: § 1
+      title: Who we are
+      lines:
+        - "Littl3.1 Engineering is a registered business in Ontario, Canada. It is a small shop with a very big ambition: a home that runs on hardware you own, not a subscription you rent. When these terms say “we,” “us,” or “Littl3.1,” that is who they mean. “You” is whoever has wandered in."
+        - "You must be old enough to form a binding contract where you live, and in any case at least 13. If you are younger, get a parent or guardian to read this with you. Better yet, get them to explain it."
+    - id: what
+      eyebrow: § 2
+      title: What you're getting
+      lines:
+        - "ALFR3D Core is software you download and run on your own hardware, on your own network, under your own roof. Alfr3d Deck is an Android launcher that can talk to that backend if you point it there. Our website is a static site. That is the whole of what exists today."
+        - "The ALFR3D Kit, Relay, and Alfr3d Uplink are plans, not products. Nothing in these terms obliges us to build them, ship them, or ship them on any schedule. When one goes live, it comes with its own commercial terms, and we will add them here, under a new “last updated” date, before you pay for anything."
+    - id: license
+      eyebrow: § 3
+      title: Your license, and its limits
+      lines:
+        - "We grant you a personal, non-exclusive, non-transferable, revocable license to install and use Alfr3d Deck and to run ALFR3D Core for yourself and your household. Where we have published code under an open-source license, that license governs the code. Nothing here narrows it."
+        - "What you may not do: reverse-engineer or resell the parts that aren't open, strip our name off them and call them yours, use them to break the law, or use them to spy on people who haven't agreed to it. The last one matters. ALFR3D learns when people come and go. Your house, your rules, but you answer for how you use it, and you don't get to install it in someone else's life without telling them."
+    - id: yours
+      eyebrow: § 4
+      title: Your house, your data, your problem
+      lines:
+        - "ALFR3D Core is self-hosted. The residents, devices, routines, camera streams, and history live on a machine you operate. We don't have a copy and we can't see it. That is the whole point, and it cuts both ways. You are responsible for backing it up, patching it, securing it, and deciding who can log in. If you expose it to the open internet with a weak password and the whole thing goes sideways, that was a decision you made, and it was never one of ours."
+        - "How we handle the little data that does reach us is set out in our privacy policy, which forms part of these terms."
+    - id: not-safety
+      eyebrow: § 5
+      title: Do not bet your life on a butler
+      lines:
+        - "ALFR3D automates lights, locks, thermostats, speakers, and whatever else you wire into it. It is software running on consumer hardware and consumer networks, and those fail. Wi-Fi drops. Sensors lie. Models guess wrong. Updates break things at three in the morning."
+        - "Do not rely on ALFR3D or Alfr3d Deck as your only safeguard for anything where failure could hurt someone: smoke and carbon monoxide detection, medical equipment, security of persons, heating that keeps pipes from freezing or a baby from overheating. Use certified devices for those and treat ALFR3D as a convenience on top. We wrote the code to be good. We did not write it to be a life-safety system, and we won't claim it is."
+    - id: payments
+      eyebrow: § 6
+      title: Money
+      lines:
+        - "Alfr3d Deck is free to use. Alfr3d Deck Pro is an optional one-time unlock sold through Google Play Billing. Google handles the payment, the receipt, and the refund rules, which are Google Play's refund policy and not ours. If Google refunds you, the unlock goes with it."
+        - "Subscriptions (Relay, Alfr3d Uplink) and hardware (the ALFR3D Kit) are not on sale yet. When they are, payment runs through Stripe, and the price, billing period, renewal, cancellation, and refund terms will be stated plainly at the point of purchase and added to this page. We will not renew anything, or charge anything, that we haven't told you about first."
+        - "Prices can change. A change never reaches back to take money you've already paid for a period you've already bought."
+    - id: availability
+      eyebrow: § 7
+      title: No promises about tomorrow
+      lines:
+        - "We ship updates, change features, and sometimes kill things that didn't earn their keep. Our honesty page lists some of the corpses. We can change, suspend, or end any hosted service or the website. We will give reasonable notice before ending anything you've paid for, and where we can't deliver what you bought we will make it right. We will not promise that a feature, an integration, or a third-party API will exist forever, because that isn't ours to promise."
+        - "Third-party integrations (Home Assistant, SmartThings, ESPHome, Spotify, LLM providers) belong to those companies and run on their terms. If one of them changes the rules or goes dark, we're sorry, and it isn't our breach."
+    - id: warranty
+      eyebrow: § 8
+      title: As is. We mean it.
+      lines:
+        - "THE SOFTWARE, THE WEBSITE, AND EVERYTHING ELSE WE OFFER ARE PROVIDED “AS IS” AND “AS AVAILABLE,” WITHOUT WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT, TO THE FULLEST EXTENT THE LAW ALLOWS."
+        - "In plain English, we try hard, we fix what we find, and we cannot promise it will be bug-free, secure against every attack, or right for your particular house. If your local law gives you rights that can't be waived, those rights stay exactly where they are."
+    - id: liability
+      eyebrow: § 9
+      title: The part where we limit our liability
+      lines:
+        - "TO THE FULLEST EXTENT THE LAW ALLOWS, LITTL3.1 ENGINEERING IS NOT LIABLE FOR INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR FOR LOST PROFITS, LOST DATA, OR LOST USE, ARISING FROM YOUR USE OF ANYTHING WE OFFER. OUR TOTAL LIABILITY FOR ANY CLAIM IS LIMITED TO THE GREATER OF WHAT YOU PAID US IN THE TWELVE MONTHS BEFORE THE CLAIM AND CAD $100."
+        - "Some places do not allow these limits. Where they don't, they apply only as far as the law permits. Nothing here limits liability that the law says cannot be limited, including for fraud, or for death or personal injury caused by negligence."
+    - id: conduct
+      eyebrow: § 10
+      title: Don't be a menace
+      lines:
+        - "Don't attack our site or our infrastructure. Don't probe it for holes without telling us first. If you find one, email us and we will thank you, and we'll fix it. Don't use our name to deceive people, and don't use our software to harass, stalk, or defraud anyone. Break these rules and we may end your access, and if the law gets involved, so be it."
+    - id: ending
+      eyebrow: § 11
+      title: Leaving, and being asked to leave
+      lines:
+        - "You can stop using any of this whenever you like. Uninstall the app, shut the server down, walk away. We may suspend or end your access to anything we host if you break these terms or put us or others at risk. Sections that by their nature outlast the relationship (the warranty disclaimer, the liability limit, and the governing law) survive it."
+    - id: law
+      eyebrow: § 12
+      title: The law that applies
+      lines:
+        - "These terms are governed by the laws of the Province of Ontario and the federal laws of Canada that apply there, without regard to conflict-of-law rules. Disputes go to the courts of Ontario, and you and we both consent to that. If you are a consumer, nothing here removes mandatory consumer-protection rights you have under the law of the place where you live."
+    - id: changes
+      eyebrow: § 13
+      title: Changes
+      lines:
+        - "We will change these terms when the products change. The “last updated” date at the top will change with them, and the new version will live at this same URL. Material changes, like a paid product going live, will get a note in the section they affect. Keep using the thing after a change and you accept the new terms. If you don't accept them, stop."
+        - "If any part of these terms is found unenforceable, the rest still stands. These terms, with the privacy policy, are the whole agreement between you and us."
+    - id: reach-us
+      eyebrow: § 14
+      title: Questions
+      lines:
+        - "Email athos@littl31.com. That is a real inbox, read by a real human, and not a ticket queue. If something here is unclear, ask. We would rather explain it than argue about it later."
+
 honesty:
   meta:
     title: "What Alfr3d Won't Pretend To Do : Littl3.1 Engineering"

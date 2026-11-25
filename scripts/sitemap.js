@@ -11,7 +11,8 @@ const PAGES = [
   { path: 'timeline', priority: '0.7' },
   { path: 'honesty', priority: '0.6' },
   { path: 'lab', priority: '0.5' },
-  { path: 'privacy', priority: '0.3' }
+  { path: 'privacy', priority: '0.3' },
+  { path: 'terms', priority: '0.3' }
 ]
 const lastmod = new Date().toISOString().slice(0, 10)
 
