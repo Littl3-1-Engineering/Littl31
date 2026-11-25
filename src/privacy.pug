@@ -21,6 +21,6 @@ html(lang='en')
 
       section#privacy-sections(data-scroll-section, class='py-8')
         for item in privacy.sections
-          +section(item, 'gray')
+          +section(item, 'gray', true)
 
       +siteFooter(footer, { href: 'index.html', text: '← Littl3.1 Engineering' })

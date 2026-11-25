@@ -124,7 +124,7 @@ alfr3d:
           cta:
             text: → Join the founding-100 waitlist
             href: 'mailto:athos@littl31.com?subject=Alfr3d%20Kit%20%E2%80%94%20Founding%20100%20waitlist'
-          note: "Not yet available — target Q4 '26."
+          note: "Not yet available — target Q1 '27."
           # Dormant: maps this tier to functions/_shared/catalog.js. Not read by any template
           # yet — the CTA above is still the live mailto. See todo/todo_cloud_kit_commerce.md.
           checkout:
@@ -174,9 +174,9 @@ alfr3d:
       wide: true
       pricing:
         - amount: Free
-          label: On Google Play · $6 one-time Pro unlock
+          label: On Google Play · C$8 one-time Pro unlock
           badge: Live
-          info: 'A free core (full spatial canvas, Socket radial menu, double-tap search, window manager, base theming — no trial timer, no expiring feature ceiling) plus a $6 one-time Pro unlock via Google Play Billing (extra themes/icon packs, advanced window layouts, backup & restore). Free automatically for Alfr3d Kit owners and Uplink subscribers (Kit and Uplink are not yet available).'
+          info: 'A free core (full spatial canvas, Socket radial menu, double-tap search, window manager, base theming — no trial timer, no expiring feature ceiling) plus a one-time Pro unlock for C$8 via Google Play Billing (extra themes and custom accent colors, icon packs, window layout presets, backup & restore). Priced in Canadian dollars; Google Play shows the equivalent in your local currency at checkout. Free automatically for Alfr3d Kit owners and Uplink subscribers (Kit and Uplink are not yet available).'
           cta:
             text: → Get it on Google Play
             href: 'https://play.google.com/store/apps/details?id=com.alfr3d.launcher'
@@ -248,7 +248,7 @@ privacy:
   intro:
     title: Your data stays where you put it.
     lines:
-      - 'Last updated: October 7, 2026.'
+      - 'Last updated: November 24, 2026.'
       - This policy covers everything Littl3.1 Engineering operates — this website (littl31.com), ALFR3D Core, Alfr3d Deck, and the ALFR3D Kit, Relay, and Alfr3d Uplink services once they launch.
       - "The short version: we don't run ads, we don't sell data, and most of what ALFR3D does happens entirely on hardware you own. Where that's not true — Google Play billing, a future hosted relay — we say so plainly below."
   sections:
@@ -282,7 +282,7 @@ privacy:
         - The only network requests the launcher makes are to an ALFR3D backend, if and only if you configure one yourself in Settings — the same self-hosted instance described above, under your control — and to your device's default browser when you explicitly choose to search the web.
         - The one paid feature, Alfr3d Deck Pro, is a one-time unlock purchased through Google Play Billing. Google processes that payment; we receive confirmation that you own the unlock, never your payment details.
         - App-ranking data (which apps you use most) is stored locally on-device using Android's DataStore and is never transmitted anywhere. Uninstalling the launcher removes it.
-        - The built-in File Explorer window needs Android's "all files access" (`MANAGE_EXTERNAL_STORAGE`) permission to browse, open, copy, move, rename, and delete files anywhere in shared storage — scoped storage alone only exposes media the app itself created, not arbitrary folders or file types. Nothing you view or manage there is ever transmitted anywhere; the permission powers a local file manager, full stop.
+        - The built-in File Explorer window does not ask for Android's "all files access" permission. It browses the launcher's own storage, plus any folders you choose yourself through Android's system folder picker — it can only see a folder after you pick it, and you can remove a folder again at any time. Nothing you view or manage there is ever transmitted anywhere; it is a local file manager, full stop.
         - If you connect an ALFR3D backend and Context Awareness is active, the launcher periodically reports aggregate attention-telemetry counts to it — how many times you've unlocked the device, how many times you've switched between launcher windows, and how long you spent in each window type — roughly every 15 minutes. No app names, window contents, or anything typed or viewed is included, only these counts and durations, and none of it is sent anywhere if you haven't configured a backend.
         - Location reporting is a separate, off-by-default feature. Only if you turn on "Report this device's location to ALFR3D" in Settings *and* grant the permission does the launcher capture an approximate (coarse, ~2 km accuracy — never precise) location while the app is open, sending it to your configured backend roughly every 30 minutes so it can learn your household's comings and goings. Nothing is captured while the launcher is in the background. Turning the toggle off stops all of it immediately, and the reference ALFR3D backend keeps this location history for 2 years (730 days) before deleting it automatically.
     - id: hosted-services
@@ -415,16 +415,17 @@ honesty:
   intro:
     title: We tell you what we killed, too.
     lines:
-      - Most "AI butler" claims in this category are vaporware. Alfr3d's situational-awareness engine is a two-layer learning system running in production — and three more that were investigated and deliberately not shipped, on real evidence, published here before anyone had to ask.
+      - Most "AI butler" claims in this category are vaporware. Alfr3d's situational-awareness engine is a two-layer learning system running in production — plus the pieces that were investigated and deliberately stopped, rejected or only partly shipped, on real evidence, published here before anyone had to ask.
       - This isn't a compliance page. It's the cheapest, most honest proof of the ownership thesis we have — a system that tells you what it can't do yet is more trustworthy than one that quietly fakes it.
   sections:
     - id: esphome
-      eyebrow: KILLED · SA-9
+      eyebrow: PART SHIPPED · SA-9
       title: Room-level sensors from ESPHome
       lines:
-        - "The plan: extend situational awareness into per-room presence and environment data from ESPHome nodes on your network. The integration itself is fully built — discovery, schema, API routes, frontend, and push-based state are all shipped."
-        - Why it's not live — there's no real ESPHome node on the household's own network to validate it against. Rather than ship an untested integration wired into zero real rules, this stays parked until real hardware exists to test it on.
-        - "Re-entry: the moment a real ESPHome node is reachable on the LAN, this picks back up — most of the work is already sitting there waiting."
+        - "The plan: extend situational awareness into per-room presence and environment data from ESPHome nodes on your network. The integration itself is fully built — discovery, schema, API routes, frontend, and push-based state — and it has been verified end to end against a real ESPHome temperature and humidity sensor on the household's own network."
+        - "What shipped from it: two indoor-climate cards. One is a fixed-threshold comfort advisory. The other learns what's normal for each time of day in your house and speaks up only when the room genuinely deviates from it."
+        - "What didn't: room-level occupancy, the original goal. That needs hardware that can actually sense presence in a room, and the one sensor on the network is a thermometer. Rather than guess at occupancy from a temperature curve, that part stays parked."
+        - "Re-entry: the moment a real presence sensor is reachable on the LAN, occupancy picks back up — the plumbing is already there."
     - id: ble-presence
       eyebrow: KILLED · SA-8
       title: Room-level presence via Bluetooth
@@ -437,8 +438,23 @@ honesty:
       title: Predicting what happens next
       lines:
         - "The plan: move from noticing what's unusual today to actually anticipating what happens next — conditional patterns mined from your own household's history, not a model trained on anyone else's."
-        - Why it's stopped — this needs real history to mine, and the household event log (itself a recent addition) hasn't yet accumulated the weeks of real history the job needs. Shipping a "prediction" feature on too little history would mean faking a confidence it doesn't have.
-        - "Re-entry: once the event log holds at least four continuous weeks of real history. This is the single highest-value item on the whole roadmap once it's viable — the actual definition of anticipation, not just noticing."
+        - "Why it's stopped — we first thought it was only a matter of waiting for history. We checked again on 2026-10-31 with about two months of real events, around 15,000 of them structured, and the volume is no longer the problem. The pairs that stand out statistically are one thing's own lifecycle, like a track starting and then stopping, or the same person messaging and then calling. The sequences a household actually cares about, like arriving and then lights or music, or a routine and then a device, have no signal or nothing producing the events. Any window or threshold we picked now would be invented, and a prediction built on invented numbers is just a guess with a confident face."
+        - "Re-entry: when device events show up on at least three weeks of ordinary days across at least three devices, or a scheduled routine starts controlling a device, or the household regularly uses another controllable thing at a set time. Until one of those happens there is nothing new to measure."
+    - id: acted-on
+      eyebrow: STOPPED · LEARNING FROM OUTCOMES
+      title: Guessing whether you acted on a card
+      lines:
+        - "The plan: work out for ourselves whether a card was useful by watching what happened afterwards. A card says the heater is on in an empty house, the heater goes off, so it was useful."
+        - "Why it's stopped — we checked eight weeks of real production history on 2026-11-14 and there is almost nothing to link. The one card about an empty house with something left on fired once. The 190 times Alfr3d flagged a broken routine, every subject was a phone, gateway or console, and none of them is something a person could switch off from Alfr3d. Ten leave-by cards were followed by someone leaving zero times. The music card matched 2 of 33 and was confounded anyway, because the card is built from that same playback. Rather than invent a link, we built none."
+        - "Re-entry: when the empty-house card has fired about ten times, or the command log holds eight weeks of history (around the end of December 2026), or a card exists whose subject is a device you can control. The honest route is the explicit one: telling Alfr3d got it, dismiss or not useful on a card, which is already in progress."
+    - id: all-files-access
+      eyebrow: REJECTED · ALFR3D DECK
+      title: Access to every file on your phone
+      lines:
+        - "The plan: Deck's built-in File Explorer would browse, copy, move and delete files anywhere on the phone, using Android's all-files access permission."
+        - "Why it's gone — Google reviewed that permission for the Play Store release in October 2026 and rejected it. A file manager isn't a launcher's core purpose, and we agreed. Blanket access to everything on a phone is a lot to ask for a side feature. We removed the permission and rebuilt the explorer on Android's own folder picker. It now sees only the folders you choose, and you can remove a folder again at any time."
+        - "The cost is real: the explorer is less capable than a full file manager and can't wander the whole device. We took the smaller permission and the weaker feature."
+        - "Re-entry: not planned. If we ever want a full file manager, it should be a separate app with its own review, not a permission on your home screen."
     - id: principles
       eyebrow: STANDING RULES
       title: What governs everything that does ship
