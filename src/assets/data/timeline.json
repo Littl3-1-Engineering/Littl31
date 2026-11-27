@@ -998,5 +998,29 @@
     "date": "2026-11-20",
     "description": "When a card is swiped away in the Deck's brief, Alfr3d now records which appearance of the card it was, so it can later tell a card that is never wanted from one that was just badly timed. Merged; still to be checked on a real phone and released.",
     "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/pull/74"
+  },
+  {
+    "id": "routine-times-local",
+    "milestone": "Routine times no longer show in the wrong timezone",
+    "phase": "Present",
+    "product": [
+      "Backend"
+    ],
+    "status": "Shipped",
+    "date": "2026-11-27",
+    "description": "The Deck said the sunset routine last ran at 21:15, when it had actually run at 16:15, right on time. Alfr3d keeps its clock in UTC and the phone was showing that as local time. Alfr3d now labels the time clearly so each device can show it in its own timezone.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d/pull/498"
+  },
+  {
+    "id": "deck-routine-editor",
+    "milestone": "Routines can be edited from the phone",
+    "phase": "Present",
+    "product": [
+      "Deck"
+    ],
+    "status": "In Progress",
+    "date": "2026-11-27",
+    "description": "Each routine in the Deck now has an edit button for its name, time, repeat and on/off switch. Routines Alfr3d depends on by name, such as sunrise and sunset, are protected from being renamed, and their times follow the sun instead of being set by hand. Editing what a routine triggers on and does is still to come. Checked on a real phone; not yet released.",
+    "source": "https://github.com/Littl3-1-Engineering/alfr3d_deck/pull/86"
   }
 ]
